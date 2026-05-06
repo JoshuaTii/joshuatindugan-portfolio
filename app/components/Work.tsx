@@ -17,21 +17,67 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => router.push(`/project/${project.id}`)}
-      className="group relative rounded-2xl border border-white/6 bg-[#0f0f0f] overflow-hidden cursor-pointer transition-all duration-500 hover:border-white/12 hover:scale-[1.01]"
-      style={{ boxShadow: "none", display: "flex", flexDirection: "column" }}
+      className="group relative rounded-2xl border border-white/6 bg-[#0f0f0f] overflow-hidden cursor-pointer hover:border-white/12"
+      style={{
+        boxShadow: "none",
+        display: "flex",
+        flexDirection: "column",
+        // Force GPU compositing layer so border-radius + overflow clip stays crisp.
+        // Do NOT scale the card — scaling an overflow:hidden + rounded element causes
+        // the browser to re-rasterize the clip path each frame, producing the 1px edge gap.
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+        transition: "border-color 300ms ease",
+      }}
       whileHover={{ boxShadow: `0 0 60px ${project.color}12` }}
     >
-      {/* Thumbnail: 280px height */}
-      <div className="relative overflow-hidden bg-[#111]" style={{ height: 280, flexShrink: 0 }}>
+      {/* Thumbnail wrapper — isolated GPU layer, overflow:hidden clips the scaling image */}
+      <div
+        className="relative bg-[#111]"
+        style={{
+          height: 280,
+          flexShrink: 0,
+          overflow: "hidden",
+          // Own compositing layer so the clip boundary never interferes with the card layer
+          transform: "translateZ(0)",
+        }}
+      >
+        {/* Image — only this element scales on hover, nothing else */}
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover group-hover:scale-[1.025]"
+          style={{
+            display: "block",           // kills inline baseline gap (default img bottom space)
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)", // initial GPU layer, avoids promotion flicker on hover start
+            willChange: "transform",
+            transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent" />
 
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 flex items-center justify-center transition-all duration-300">
-          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
+        {/* Bottom gradient — always covers full wrapper with inset:0, never scales */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            inset: 0,
+            background: "linear-gradient(to top, #0f0f0f 0%, transparent 55%)",
+            transform: "translateZ(0)",
+          }}
+        />
+
+        {/* Hover darkening overlay — opacity/background-color only, no dimension changes */}
+        <div
+          className="absolute flex items-center justify-center"
+          style={{
+            inset: 0,
+            backgroundColor: "transparent",
+            transition: "background-color 300ms ease",
+          }}
+        >
+          {/* Inner overlay colour via a child so we can use group-hover Tailwind class */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
+          <div className="relative w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
             <ArrowUpRight size={20} className="text-white" />
           </div>
         </div>
