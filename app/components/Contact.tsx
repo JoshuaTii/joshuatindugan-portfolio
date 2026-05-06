@@ -38,7 +38,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative z-10 py-48 md:py-56 bg-[#090909]/60">
+    <section id="contact" className="relative z-10 pt-[160px] pb-[120px] bg-[#090909]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] pointer-events-none">
@@ -51,19 +51,19 @@ export function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-24"
+          className="text-center mb-20"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-6">Contact</p>
-          <h2 className="text-white mb-7" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Contact</p>
+          <h2 className="text-white mb-6" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             Let&apos;s work together
           </h2>
-          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.85 }}>
+          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.7 }}>
             Whether you have a project in mind or just want to chat about design, my inbox is always open.
           </p>
         </motion.div>
 
         {/* Two columns */}
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-start">
           {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

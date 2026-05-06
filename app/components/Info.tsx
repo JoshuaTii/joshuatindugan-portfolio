@@ -72,7 +72,7 @@ export function Info() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="info" className="relative z-10 py-48 md:py-56 bg-[#0a0a0a]/60">
+    <section id="info" className="relative z-10 pt-[140px] pb-[160px] bg-[#0a0a0a]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4ade80]/15 to-transparent" />
 
       <div ref={ref} className="section-container">
@@ -81,13 +81,13 @@ export function Info() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-24"
+          className="mb-20"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-6">Info</p>
-          <h2 className="text-white mb-9" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Info</p>
+          <h2 className="text-white mb-7" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
             About Me.
           </h2>
-          <p className="text-white/50 max-w-2xl" style={{ lineHeight: 1.95 }}>
+          <p className="text-white/50 max-w-2xl" style={{ lineHeight: 1.7 }}>
             I&apos;m Joshua — a D.C.-based digital designer and photographer with 4 years of experience shaping stories that live on screens, in print, and everywhere in between. Whether I&apos;m designing or taking photos, I approach every project with care, intention, and attention to detail. I care about creating work that not only looks good, but also feels meaningful and impactful.
           </p>
         </motion.div>
@@ -97,7 +97,7 @@ export function Info() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap gap-4 mb-16"
+          className="flex flex-wrap gap-4 mb-12"
         >
           {stats.map((stat, i) => (
             <div
@@ -115,7 +115,7 @@ export function Info() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-4 mb-24"
+          className="flex flex-wrap gap-4 mb-20"
         >
           <a
             href="#"
@@ -136,7 +136,7 @@ export function Info() {
         </motion.div>
 
         {/* Three columns */}
-        <div className="grid lg:grid-cols-3 gap-12 xl:gap-20">
+        <div className="grid lg:grid-cols-3 gap-[56px] xl:gap-[80px]">
           {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

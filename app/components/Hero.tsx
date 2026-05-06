@@ -41,8 +41,8 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-white/50 max-w-lg mx-auto mb-16"
-          style={{ fontSize: "clamp(1.05rem, 2vw, 1.25rem)", lineHeight: 1.85 }}
+          className="text-white/50 max-w-lg mx-auto mb-14"
+          style={{ fontSize: "clamp(1.05rem, 2vw, 1.25rem)", lineHeight: 1.7 }}
         >
           UX Designer crafting intentional digital experiences that bridge user needs and business goals.
         </motion.p>

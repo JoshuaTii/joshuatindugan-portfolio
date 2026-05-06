@@ -87,14 +87,14 @@ export function Work() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="work" className="relative z-10 py-48 md:py-56 bg-[#090909]/60">
+    <section id="work" className="relative z-10 pt-[120px] pb-[140px] bg-[#090909]/60">
       <div className="section-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20 md:mb-24"
+          className="mb-16 md:mb-20"
         >
           <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Selected Work</p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
@@ -107,12 +107,12 @@ export function Work() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.slice(0, 3).map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
-        <div className="grid md:grid-cols-2 gap-7 mt-7">
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
           {projects.slice(3).map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i + 3} />
           ))}
