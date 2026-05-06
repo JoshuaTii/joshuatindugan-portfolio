@@ -38,7 +38,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative z-10 py-32 md:py-40 bg-[#090909]/60">
+    <section id="contact" className="relative z-10 py-48 md:py-56 bg-[#090909]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] pointer-events-none">
@@ -53,11 +53,11 @@ export function Contact() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-24"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Contact</p>
-          <h2 className="text-white mb-5" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-6">Contact</p>
+          <h2 className="text-white mb-7" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             Let&apos;s work together
           </h2>
-          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.8 }}>
+          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.85 }}>
             Whether you have a project in mind or just want to chat about design, my inbox is always open.
           </p>
         </motion.div>
@@ -131,7 +131,7 @@ export function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-[#4ade80] text-[#090909] rounded-xl text-sm tracking-wider uppercase hover:bg-[#86efac] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                  className="w-full flex items-center justify-center gap-3 py-5 px-8 bg-[#4ade80] text-[#090909] rounded-xl text-sm tracking-widest uppercase hover:bg-[#86efac] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                   style={{ fontWeight: 600 }}
                 >
                   Send Message
