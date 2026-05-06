@@ -21,8 +21,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       style={{ boxShadow: "none" }}
       whileHover={{ boxShadow: `0 0 60px ${project.color}12` }}
     >
-      {/* Thumbnail */}
-      <div className="relative h-64 overflow-hidden bg-[#111]">
+      {/* Thumbnail: 280px */}
+      <div className="relative h-[280px] overflow-hidden bg-[#111]">
         <img
           src={project.image}
           alt={project.title}
@@ -44,25 +44,28 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </span>
       </div>
 
-      {/* Content */}
-      <div className="p-8">
-        <div className="flex items-start justify-between mb-4">
+      {/* Content: 32px padding, flex column, gap 16px between elements */}
+      <div className="p-8 flex flex-col">
+        <div className="flex items-start justify-between mb-5">
           <div>
-            <p className="text-xs tracking-widest uppercase mb-2" style={{ color: project.color }}>
+            {/* category: mb 12px */}
+            <p className="text-xs tracking-widest uppercase mb-3" style={{ color: project.color }}>
               {project.category}
             </p>
-            <h3 className="text-white" style={{ fontSize: "1.2rem", fontWeight: 600, lineHeight: 1.35 }}>
+            <h3 className="text-white" style={{ fontSize: "1.2rem", fontWeight: 600, lineHeight: 1.3 }}>
               {project.title}
             </h3>
           </div>
           <span className="text-white/20 text-xs mt-0.5 shrink-0 ml-4">{project.year}</span>
         </div>
 
-        <p className="text-white/40 text-sm mb-7 line-clamp-3" style={{ lineHeight: 1.85 }}>
+        {/* description: mb 20px, line-height 1.65 */}
+        <p className="text-white/40 text-sm mb-5 line-clamp-3" style={{ lineHeight: 1.65 }}>
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2">
+        {/* tags: gap 10px */}
+        <div className="flex flex-wrap gap-[10px]">
           {project.tags.map((tag) => (
             <span
               key={tag}
@@ -73,7 +76,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           ))}
         </div>
 
-        <div className="mt-7 flex items-center gap-1.5 text-xs tracking-wider uppercase" style={{ color: project.color }}>
+        {/* CTA: mt 20px */}
+        <div className="mt-5 flex items-center gap-1.5 text-xs tracking-wider uppercase" style={{ color: project.color }}>
           View Project
           <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
         </div>
@@ -87,32 +91,37 @@ export function Work() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="work" className="relative z-10 pt-[120px] pb-[140px] bg-[#090909]/60">
+    <section id="work" className="relative z-10 !pt-[120px] !pb-[140px] bg-[#090909]/60">
       <div className="section-container">
+        {/* Header: mb 72px */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 md:mb-20"
+          className="mb-[72px]"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Selected Work</p>
+          {/* label: mb 16px */}
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">Selected Work</p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-            <h2 className="text-white" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+            {/* heading: mb 0 (gap handled by flex) */}
+            <h2 className="text-white" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
               Projects that matter
             </h2>
-            <p className="text-white/35 text-sm max-w-xs" style={{ lineHeight: 1.85 }}>
+            <p className="text-white/35 text-sm max-w-xs" style={{ lineHeight: 1.65 }}>
               Click any project to explore the full case study.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        {/* Top row: 3 columns, gap 36px */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-9">
           {projects.slice(0, 3).map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
-        <div className="grid md:grid-cols-2 gap-8 mt-8">
+        {/* Bottom row: 2 columns, gap 36px, mt 36px */}
+        <div className="grid md:grid-cols-2 gap-9 mt-9">
           {projects.slice(3).map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i + 3} />
           ))}

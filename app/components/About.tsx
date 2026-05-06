@@ -13,10 +13,11 @@ export function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative z-10 pt-[120px] pb-[140px] md:pt-[120px] md:pb-[140px] bg-[#090909]/60">
+    <section id="about" className="relative z-10 !pt-[120px] !pb-[140px] bg-[#090909]/60">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-[#4ade80]/30" />
 
-      <div ref={ref} className="section-container grid md:grid-cols-2 gap-[64px] lg:gap-[88px] items-center">
+      {/* Two-column: image | text — gap 96px */}
+      <div ref={ref} className="section-container grid md:grid-cols-2 gap-[96px] items-center">
         {/* Left: portrait */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -37,24 +38,29 @@ export function About() {
           <div className="absolute -top-6 -left-6 w-28 h-28 border border-white/5 rounded-2xl -z-10" />
         </motion.div>
 
-        {/* Right: text */}
+        {/* Right: text — flex column, gap 24px between elements */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">About Me</p>
-          <h2 className="text-white mb-7" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+          {/* label: mb 16px */}
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">About Me</p>
+          {/* heading: mb 24px */}
+          <h2 className="text-white mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             Designing with purpose,<br className="hidden lg:block" /> building with empathy
           </h2>
-          <p className="text-white/50 mb-5 max-w-md" style={{ lineHeight: 1.7 }}>
+          {/* paragraphs: mb 20px each, line-height 1.65 */}
+          <p className="text-white/50 mb-5 max-w-md" style={{ lineHeight: 1.65 }}>
             I&apos;m a UX Designer with a passion for creating digital products that feel effortless. With over 4 years of experience, I specialize in turning complex problems into intuitive, delightful interfaces.
           </p>
-          <p className="text-white/50 mb-10 max-w-md" style={{ lineHeight: 1.7 }}>
+          <p className="text-white/50 mb-8 max-w-md" style={{ lineHeight: 1.65 }}>
             My process is rooted in empathy — I believe great design starts by deeply understanding the people we&apos;re designing for. I work closely with cross-functional teams to deliver experiences that are both beautiful and functional.
           </p>
 
-          <div className="flex flex-wrap gap-2">
+          {/* skill tags: gap 10px, mt 8px above */}
+          <div className="flex flex-wrap gap-[10px]">
             {skills.map((skill, i) => (
               <motion.span
                 key={skill}
