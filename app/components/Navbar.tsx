@@ -51,7 +51,7 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div className="section-container py-5 md:py-7 flex items-center justify-between">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="text-white tracking-widest uppercase text-sm hover:text-[#4ade80] transition-colors duration-300"
@@ -59,7 +59,7 @@ export function Navbar() {
           JT
         </button>
 
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center gap-10 md:gap-12">
           {navLinks.map((link) => (
             <li key={link}>
               <button
@@ -97,7 +97,7 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-[#090909]/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
           >
-            <ul className="flex flex-col px-6 py-6 gap-6">
+            <ul className="section-container py-7 flex flex-col gap-7">
               {navLinks.map((link) => (
                 <li key={link}>
                   <button

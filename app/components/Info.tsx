@@ -72,35 +72,37 @@ export function Info() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="info" className="relative z-10 py-32 bg-[#0a0a0a]/60">
+    <section id="info" className="relative z-10 py-32 md:py-40 bg-[#0a0a0a]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4ade80]/15 to-transparent" />
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
+      <div ref={ref} className="section-container">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20"
+          className="mb-24"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">Info</p>
-          <h2 className="text-white mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Info</p>
+          <h2 className="text-white mb-7" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
             About Me.
           </h2>
-          <p className="text-white/50 max-w-2xl" style={{ lineHeight: 1.8 }}>
+          <p className="text-white/50 max-w-2xl" style={{ lineHeight: 1.9 }}>
             I&apos;m Joshua — a D.C.-based digital designer and photographer with 4 years of experience shaping stories that live on screens, in print, and everywhere in between. Whether I&apos;m designing or taking photos, I approach every project with care, intention, and attention to detail. I care about creating work that not only looks good, but also feels meaningful and impactful.
           </p>
         </motion.div>
 
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap gap-4 mb-20"
+          className="flex flex-wrap gap-4 mb-14"
         >
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="px-6 py-4 rounded-xl border border-white/6 bg-white/2 flex items-center gap-4"
+              className="px-7 py-4 rounded-xl border border-white/6 bg-white/2 flex items-center gap-5"
             >
               <span className="text-[#4ade80]" style={{ fontSize: "1.5rem", fontWeight: 700 }}>{stat.value}</span>
               <span className="text-white/35 text-sm">{stat.label}</span>
@@ -108,11 +110,12 @@ export function Info() {
           ))}
         </motion.div>
 
+        {/* Download buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-4 mb-20"
+          className="flex flex-wrap gap-4 mb-24"
         >
           <a
             href="#"
@@ -132,40 +135,43 @@ export function Info() {
           </a>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-16">
+        {/* Three columns */}
+        <div className="grid lg:grid-cols-3 gap-12 xl:gap-20">
+          {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-white/25 text-xs tracking-widest uppercase mb-8">Services</p>
-            <div className="space-y-6">
+            <p className="text-white/25 text-xs tracking-widest uppercase mb-9">Services</p>
+            <div className="space-y-5">
               {services.map((s, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.25 + i * 0.1 }}
-                  className="group p-5 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 hover:bg-[#4ade80]/3 transition-all duration-300"
+                  className="group p-6 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 hover:bg-[#4ade80]/3 transition-all duration-300"
                 >
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-3">
                     <span className="w-5 h-5 rounded-full border border-[#4ade80]/30 flex items-center justify-center text-[#4ade80] shrink-0" style={{ fontSize: "0.6rem", fontWeight: 700 }}>
                       {s.number}
                     </span>
                     <p className="text-white" style={{ fontWeight: 600 }}>{s.title}</p>
                   </div>
-                  <p className="text-white/40 text-sm pl-8" style={{ lineHeight: 1.7 }}>{s.desc}</p>
+                  <p className="text-white/40 text-sm pl-8" style={{ lineHeight: 1.75 }}>{s.desc}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
+          {/* Software Stack */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-white/25 text-xs tracking-widest uppercase mb-8">Software Stack</p>
+            <p className="text-white/25 text-xs tracking-widest uppercase mb-9">Software Stack</p>
             <div className="grid grid-cols-2 gap-3">
               {softwareStack.map((tool, i) => (
                 <motion.div
@@ -173,22 +179,23 @@ export function Info() {
                   initial={{ opacity: 0, scale: 0.92 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.35 + i * 0.06 }}
-                  className="p-4 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 transition-colors duration-300"
+                  className="p-5 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 transition-colors duration-300"
                 >
-                  <p className="text-white mb-0.5" style={{ fontWeight: 600, fontSize: "0.9rem" }}>{tool.name}</p>
+                  <p className="text-white mb-1" style={{ fontWeight: 600, fontSize: "0.9rem" }}>{tool.name}</p>
                   <p className="text-white/30 text-xs">{tool.desc}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
+          {/* Experience */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-white/25 text-xs tracking-widest uppercase mb-8">Experience</p>
-            <div className="space-y-7">
+            <p className="text-white/25 text-xs tracking-widest uppercase mb-9">Experience</p>
+            <div className="space-y-8">
               {experience.map((item, i) => (
                 <motion.div
                   key={i}
@@ -197,10 +204,10 @@ export function Info() {
                   transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
                   className="relative pl-5 border-l border-white/6 hover:border-[#4ade80]/25 transition-colors duration-300"
                 >
-                  <p className="text-white/25 text-xs mb-1">{item.period}</p>
-                  <p className="text-white mb-0.5" style={{ fontWeight: 600, fontSize: "0.9rem" }}>{item.role}</p>
-                  <p className="text-[#4ade80] text-xs mb-2">{item.company}</p>
-                  <p className="text-white/35 text-sm" style={{ lineHeight: 1.6 }}>{item.description}</p>
+                  <p className="text-white/25 text-xs mb-1.5">{item.period}</p>
+                  <p className="text-white mb-1" style={{ fontWeight: 600, fontSize: "0.9rem" }}>{item.role}</p>
+                  <p className="text-[#4ade80] text-xs mb-2.5">{item.company}</p>
+                  <p className="text-white/35 text-sm" style={{ lineHeight: 1.7 }}>{item.description}</p>
                 </motion.div>
               ))}
             </div>

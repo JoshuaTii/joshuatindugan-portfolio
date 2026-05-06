@@ -34,3 +34,18 @@ body {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
 }
+
+/* Consistent section container */
+.section-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+}
+
+/* Clamp description text in project cards */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

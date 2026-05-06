@@ -32,36 +32,39 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: { preventDefault(): void }) => {
     e.preventDefault();
     setSubmitted(true);
   };
 
   return (
-    <section id="contact" className="relative z-10 py-32 bg-[#090909]/60">
+    <section id="contact" className="relative z-10 py-32 md:py-40 bg-[#090909]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] pointer-events-none">
-        <div className="w-full h-full bg-[#4ade80]/4 blur-[100px] rounded-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] pointer-events-none">
+        <div className="w-full h-full bg-[#4ade80]/4 blur-[120px] rounded-full" />
       </div>
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
+      <div ref={ref} className="section-container">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">Contact</p>
-          <h2 className="text-white mb-4" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-5">Contact</p>
+          <h2 className="text-white mb-5" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             Let&apos;s work together
           </h2>
-          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.7 }}>
+          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.8 }}>
             Whether you have a project in mind or just want to chat about design, my inbox is always open.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        {/* Two columns */}
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -71,22 +74,22 @@ export function Contact() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-20 text-center"
+                className="flex flex-col items-center justify-center py-24 text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#4ade80]/10 border border-[#4ade80]/25 flex items-center justify-center mb-5">
+                <div className="w-16 h-16 rounded-full bg-[#4ade80]/10 border border-[#4ade80]/25 flex items-center justify-center mb-6">
                   <CheckCircle size={28} className="text-[#4ade80]" />
                 </div>
                 <p className="text-white mb-2" style={{ fontWeight: 600, fontSize: "1.2rem" }}>Message Sent!</p>
                 <p className="text-white/40 text-sm">I&apos;ll get back to you within 24 hours.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {[
                   { id: "name", label: "Name", type: "text", placeholder: "Your full name" },
                   { id: "email", label: "Email", type: "email", placeholder: "your@email.com" },
                 ].map((field) => (
                   <div key={field.id}>
-                    <label className="block text-white/40 text-xs tracking-wider uppercase mb-2">
+                    <label className="block text-white/40 text-xs tracking-wider uppercase mb-2.5">
                       {field.label}
                     </label>
                     <input
@@ -107,7 +110,7 @@ export function Contact() {
                 ))}
 
                 <div>
-                  <label className="block text-white/40 text-xs tracking-wider uppercase mb-2">
+                  <label className="block text-white/40 text-xs tracking-wider uppercase mb-2.5">
                     Message
                   </label>
                   <textarea
@@ -117,7 +120,7 @@ export function Contact() {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     required
-                    rows={5}
+                    rows={6}
                     className="w-full px-5 py-4 rounded-xl border bg-white/3 text-white placeholder:text-white/20 outline-none transition-all duration-300 text-sm resize-none"
                     style={{
                       borderColor: focused === "message" ? "rgba(74,222,128,0.35)" : "rgba(255,255,255,0.07)",
@@ -138,14 +141,15 @@ export function Contact() {
             )}
           </motion.div>
 
+          {/* Contact links + availability */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-8"
+            className="space-y-6"
           >
             <div>
-              <p className="text-white/25 text-xs tracking-widest uppercase mb-6">Reach Out Directly</p>
+              <p className="text-white/25 text-xs tracking-widest uppercase mb-7">Reach Out Directly</p>
               <div className="space-y-4">
                 {socials.map((social, i) => (
                   <motion.a
@@ -156,29 +160,29 @@ export function Contact() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.35 + i * 0.08 }}
-                    className="group flex items-center gap-4 p-4 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 hover:bg-[#4ade80]/3 transition-all duration-300"
+                    className="group flex items-center gap-4 p-5 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 hover:bg-[#4ade80]/3 transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/8 flex items-center justify-center group-hover:border-[#4ade80]/25 group-hover:bg-[#4ade80]/8 transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/8 flex items-center justify-center group-hover:border-[#4ade80]/25 group-hover:bg-[#4ade80]/8 transition-all duration-300 shrink-0">
                       <social.icon size={16} className="text-white/50 group-hover:text-[#4ade80] transition-colors duration-300" />
                     </div>
-                    <div>
-                      <p className="text-white/30 text-xs">{social.label}</p>
-                      <p className="text-white/70 text-sm group-hover:text-white transition-colors duration-300">
+                    <div className="min-w-0">
+                      <p className="text-white/30 text-xs mb-0.5">{social.label}</p>
+                      <p className="text-white/70 text-sm group-hover:text-white transition-colors duration-300 truncate">
                         {social.value}
                       </p>
                     </div>
-                    <ArrowRight size={14} className="ml-auto text-white/20 group-hover:text-[#4ade80] transition-all duration-300 -translate-x-1 group-hover:translate-x-0" />
+                    <ArrowRight size={14} className="ml-auto shrink-0 text-white/20 group-hover:text-[#4ade80] transition-all duration-300 -translate-x-1 group-hover:translate-x-0" />
                   </motion.a>
                 ))}
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#4ade80]/10 bg-[#4ade80]/3">
-              <div className="flex items-center gap-2 mb-3">
+            <div className="p-7 rounded-xl border border-[#4ade80]/10 bg-[#4ade80]/3">
+              <div className="flex items-center gap-2.5 mb-4">
                 <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse" />
                 <span className="text-[#4ade80] text-xs tracking-widest uppercase">Available for Work</span>
               </div>
-              <p className="text-white/50 text-sm" style={{ lineHeight: 1.7 }}>
+              <p className="text-white/50 text-sm" style={{ lineHeight: 1.8 }}>
                 Open to work now — freelance projects, collaborations, and full-time opportunities. Let&apos;s create something great.
               </p>
             </div>
