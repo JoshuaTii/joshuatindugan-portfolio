@@ -16,9 +16,10 @@ export function About() {
     <section id="about" className="relative z-10 !pt-[120px] !pb-[140px] bg-[#090909]/60">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-[#4ade80]/30" />
 
-      {/* Two-column: image | text — gap 96px */}
-      <div ref={ref} className="section-container grid md:grid-cols-2 gap-[96px] items-center">
-        {/* Left: portrait */}
+      {/* Two-column grid: gap 96px, image left / text right */}
+      <div ref={ref} className="section-container grid md:grid-cols-2 items-center" style={{ gap: 96 }}>
+
+        {/* Portrait — no padding, just the image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -38,37 +39,61 @@ export function About() {
           <div className="absolute -top-6 -left-6 w-28 h-28 border border-white/5 rounded-2xl -z-10" />
         </motion.div>
 
-        {/* Right: text — flex column, gap 24px between elements */}
+        {/* Text column — flex column, gap 24px between every element */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col"
+          style={{ gap: 24 }}
         >
-          {/* label: mb 16px */}
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">About Me</p>
-          {/* heading: mb 24px */}
-          <h2 className="text-white mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+          {/* Section label — 12px tracking, 16px mb baked into gap */}
+          <p
+            className="text-[#4ade80] text-xs uppercase"
+            style={{ letterSpacing: "0.12em", marginBottom: 0 }}
+          >
+            About Me
+          </p>
+
+          {/* H2 — line-height 1.05, no margin (gap handles separation) */}
+          <h2
+            className="text-white"
+            style={{
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 700,
+              lineHeight: 1.05,
+              letterSpacing: "-0.02em",
+              marginBottom: 0,
+            }}
+          >
             Designing with purpose,<br className="hidden lg:block" /> building with empathy
           </h2>
-          {/* paragraphs: mb 20px each, line-height 1.65 */}
-          <p className="text-white/50 mb-5 max-w-md" style={{ lineHeight: 1.65 }}>
+
+          {/* Body paragraphs — line-height 1.7, max-width 680px */}
+          <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
             I&apos;m a UX Designer with a passion for creating digital products that feel effortless. With over 4 years of experience, I specialize in turning complex problems into intuitive, delightful interfaces.
           </p>
-          <p className="text-white/50 mb-8 max-w-md" style={{ lineHeight: 1.65 }}>
+
+          <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
             My process is rooted in empathy — I believe great design starts by deeply understanding the people we&apos;re designing for. I work closely with cross-functional teams to deliver experiences that are both beautiful and functional.
           </p>
 
-          {/* skill tags: gap 10px, mt 8px above */}
-          <div className="flex flex-wrap gap-[10px]">
+          {/* Skill chips — padding 7px 13px, min-height 30px, gap 10px */}
+          <div className="flex flex-wrap" style={{ gap: 10 }}>
             {skills.map((skill, i) => (
               <motion.span
                 key={skill}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.04 }}
-                className="px-4 py-2 rounded-full border text-white/50 text-xs tracking-wide hover:border-[#4ade80]/30 hover:text-[#4ade80] transition-colors duration-300 cursor-default"
-                style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
+                className="inline-flex items-center rounded-full border text-white/50 text-xs tracking-wide hover:border-[#4ade80]/30 hover:text-[#4ade80] transition-colors duration-300 cursor-default"
+                style={{
+                  padding: "7px 13px",
+                  minHeight: 30,
+                  borderColor: "rgba(255,255,255,0.08)",
+                  background: "rgba(255,255,255,0.03)",
+                  lineHeight: 1,
+                }}
               >
                 {skill}
               </motion.span>

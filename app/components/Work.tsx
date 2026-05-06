@@ -18,11 +18,11 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => router.push(`/project/${project.id}`)}
       className="group relative rounded-2xl border border-white/6 bg-[#0f0f0f] overflow-hidden cursor-pointer transition-all duration-500 hover:border-white/12 hover:scale-[1.01]"
-      style={{ boxShadow: "none" }}
+      style={{ boxShadow: "none", display: "flex", flexDirection: "column" }}
       whileHover={{ boxShadow: `0 0 60px ${project.color}12` }}
     >
-      {/* Thumbnail: 280px */}
-      <div className="relative h-[280px] overflow-hidden bg-[#111]">
+      {/* Thumbnail: 280px height */}
+      <div className="relative overflow-hidden bg-[#111]" style={{ height: 280, flexShrink: 0 }}>
         <img
           src={project.image}
           alt={project.title}
@@ -37,47 +37,64 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </div>
 
         <span
-          className="absolute top-4 right-4 text-xs tracking-widest select-none z-10 px-2.5 py-1 rounded-full border border-white/10 bg-black/50 backdrop-blur-sm"
-          style={{ color: project.color }}
+          className="absolute top-4 right-4 text-xs tracking-widest select-none z-10 rounded-full border border-white/10 bg-black/50 backdrop-blur-sm"
+          style={{ color: project.color, padding: "5px 10px" }}
         >
           {project.number}
         </span>
       </div>
 
-      {/* Content: 32px padding, flex column, gap 16px between elements */}
-      <div className="p-8 flex flex-col">
-        <div className="flex items-start justify-between mb-5">
-          <div>
-            {/* category: mb 12px */}
-            <p className="text-xs tracking-widest uppercase mb-3" style={{ color: project.color }}>
+      {/* Card content: 32px padding, flex column, gap 18px between all elements */}
+      <div
+        className="flex flex-col"
+        style={{ padding: 32, gap: 18, flexGrow: 1 }}
+      >
+        {/* Meta row: category left, year right */}
+        <div className="flex items-start justify-between" style={{ gap: 16 }}>
+          <div className="flex flex-col" style={{ gap: 10 }}>
+            {/* Category kicker — 12px tracking */}
+            <p
+              className="text-xs uppercase"
+              style={{ color: project.color, letterSpacing: "0.12em", lineHeight: 1 }}
+            >
               {project.category}
             </p>
-            <h3 className="text-white" style={{ fontSize: "1.2rem", fontWeight: 600, lineHeight: 1.3 }}>
+            {/* Title — line-height 1.1 */}
+            <h3
+              className="text-white"
+              style={{ fontSize: "1.2rem", fontWeight: 600, lineHeight: 1.1 }}
+            >
               {project.title}
             </h3>
           </div>
-          <span className="text-white/20 text-xs mt-0.5 shrink-0 ml-4">{project.year}</span>
+          <span className="text-white/20 text-xs shrink-0" style={{ marginTop: 2 }}>
+            {project.year}
+          </span>
         </div>
 
-        {/* description: mb 20px, line-height 1.65 */}
-        <p className="text-white/40 text-sm mb-5 line-clamp-3" style={{ lineHeight: 1.65 }}>
+        {/* Description — line-height 1.65, 3-line clamp */}
+        <p className="text-white/40 text-sm line-clamp-3" style={{ lineHeight: 1.65 }}>
           {project.description}
         </p>
 
-        {/* tags: gap 10px */}
-        <div className="flex flex-wrap gap-[10px]">
+        {/* Tags — padding 7px 13px, min-height 30px, gap 10px */}
+        <div className="flex flex-wrap" style={{ gap: 10 }}>
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1.5 rounded-full text-xs border border-white/6 bg-white/3 text-white/40"
+              className="inline-flex items-center rounded-full border border-white/6 bg-white/3 text-white/40 text-xs"
+              style={{ padding: "7px 13px", minHeight: 30, lineHeight: 1 }}
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* CTA: mt 20px */}
-        <div className="mt-5 flex items-center gap-1.5 text-xs tracking-wider uppercase" style={{ color: project.color }}>
+        {/* CTA link — align self start, gap 6px */}
+        <div
+          className="flex items-center text-xs tracking-wider uppercase"
+          style={{ color: project.color, gap: 6, marginTop: "auto", paddingTop: 4 }}
+        >
           View Project
           <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
         </div>
@@ -93,35 +110,57 @@ export function Work() {
   return (
     <section id="work" className="relative z-10 !pt-[120px] !pb-[140px] bg-[#090909]/60">
       <div className="section-container">
-        {/* Header: mb 72px */}
+
+        {/* Work header: title left, helper text right — grid, mb 72px */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-[72px]"
+          style={{ marginBottom: 72 }}
         >
-          {/* label: mb 16px */}
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">Selected Work</p>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-            {/* heading: mb 0 (gap handled by flex) */}
-            <h2 className="text-white" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+          {/* Section label — 16px mb, 0.12em tracking */}
+          <p
+            className="text-[#4ade80] text-xs uppercase"
+            style={{ letterSpacing: "0.12em", marginBottom: 16 }}
+          >
+            Selected Work
+          </p>
+
+          {/* Title + helper in a row at md+ */}
+          <div
+            className="flex flex-col md:flex-row md:items-end md:justify-between"
+            style={{ gap: "24px 64px" }}
+          >
+            <h2
+              className="text-white"
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontWeight: 700,
+                lineHeight: 1.05,
+                letterSpacing: "-0.02em",
+              }}
+            >
               Projects that matter
             </h2>
-            <p className="text-white/35 text-sm max-w-xs" style={{ lineHeight: 1.65 }}>
+            <p
+              className="text-white/35 text-sm"
+              style={{ lineHeight: 1.55, maxWidth: 420, textAlign: "right" }}
+            >
               Click any project to explore the full case study.
             </p>
           </div>
         </motion.div>
 
-        {/* Top row: 3 columns, gap 36px */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-9">
+        {/* Top 3-column grid — gap 36px */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3" style={{ gap: 36 }}>
           {projects.slice(0, 3).map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
-        {/* Bottom row: 2 columns, gap 36px, mt 36px */}
-        <div className="grid md:grid-cols-2 gap-9 mt-9">
+
+        {/* Bottom 2-column grid — gap 36px, mt 36px */}
+        <div className="grid md:grid-cols-2" style={{ gap: 36, marginTop: 36 }}>
           {projects.slice(3).map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i + 3} />
           ))}

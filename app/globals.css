@@ -17,12 +17,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global type rhythm */
 p {
   line-height: 1.65;
+  margin-block: 0;
 }
 
 h1, h2, h3 {
   line-height: 1.05;
+  margin-block: 0;
+}
+
+/* Section labels/kickers: 16px bottom, wide tracking */
+.section-label {
+  display: inline-block;
+  margin-bottom: 16px;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+/* Heading blocks: flex column with consistent gap */
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Tags and chips: min-height 30px, generous padding, gap 10px */
+.tag, .chip, .pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 ::selection {

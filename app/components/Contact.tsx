@@ -37,8 +37,23 @@ export function Contact() {
     setSubmitted(true);
   };
 
+  const inputStyle = (id: string) => ({
+    padding: "18px 22px",
+    minHeight: 56,
+    lineHeight: 1.4,
+    borderRadius: 12,
+    border: "1px solid",
+    borderColor: focused === id ? "rgba(74,222,128,0.35)" : "rgba(255,255,255,0.07)",
+    boxShadow: focused === id ? "0 0 0 3px rgba(74,222,128,0.06)" : "none",
+    background: "rgba(255,255,255,0.03)",
+    color: "white",
+    outline: "none",
+    width: "100%",
+    fontSize: "0.875rem",
+    transition: "border-color 0.3s, box-shadow 0.3s",
+  });
+
   return (
-    /* pt 180px, pb 120px */
     <section id="contact" className="relative z-10 !pt-[180px] !pb-[120px] bg-[#090909]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
@@ -47,26 +62,37 @@ export function Contact() {
       </div>
 
       <div ref={ref} className="section-container">
-        {/* Header: center, max-width 760px, mb 72px */}
+
+        {/* Header — flex column, gap 18px, center, max-width 760px, mb 72px */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center max-w-[760px] mx-auto mb-[72px]"
+          className="flex flex-col items-center text-center"
+          style={{ gap: 18, maxWidth: 760, margin: "0 auto 72px" }}
         >
-          {/* label: mb 16px */}
-          <p className="text-[#4ade80] text-xs tracking-widest uppercase mb-4">Contact</p>
-          {/* heading: mb 24px */}
-          <h2 className="text-white mb-6" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+          <p className="text-[#4ade80] text-xs uppercase" style={{ letterSpacing: "0.12em" }}>
+            Contact
+          </p>
+          <h2
+            className="text-white"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 4rem)",
+              fontWeight: 700,
+              lineHeight: 1.0,
+              letterSpacing: "-0.02em",
+            }}
+          >
             Let&apos;s work together
           </h2>
-          <p className="text-white/40 max-w-md mx-auto" style={{ lineHeight: 1.65 }}>
+          <p className="text-white/40" style={{ lineHeight: 1.65, maxWidth: 480 }}>
             Whether you have a project in mind or just want to chat about design, my inbox is always open.
           </p>
         </motion.div>
 
-        {/* Two columns: gap 72px */}
-        <div className="grid lg:grid-cols-2 gap-[72px] items-start">
+        {/* Two columns — gap 72px */}
+        <div className="grid lg:grid-cols-2 items-start" style={{ gap: 72 }}>
+
           {/* Form column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -78,26 +104,33 @@ export function Contact() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex flex-col items-center justify-center py-24 text-center"
+                style={{ gap: 16 }}
               >
-                <div className="w-16 h-16 rounded-full bg-[#4ade80]/10 border border-[#4ade80]/25 flex items-center justify-center mb-6">
+                <div
+                  className="rounded-full bg-[#4ade80]/10 border border-[#4ade80]/25 flex items-center justify-center"
+                  style={{ width: 64, height: 64 }}
+                >
                   <CheckCircle size={28} className="text-[#4ade80]" />
                 </div>
-                <p className="text-white mb-2" style={{ fontWeight: 600, fontSize: "1.2rem" }}>Message Sent!</p>
+                <p className="text-white" style={{ fontWeight: 600, fontSize: "1.2rem" }}>Message Sent!</p>
                 <p className="text-white/40 text-sm">I&apos;ll get back to you within 24 hours.</p>
               </motion.div>
             ) : (
-              /* Form: flex column, gap 24px between fields */
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              /* Form — flex column, gap 24px between field groups */
+              <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: 24 }}>
+
                 {[
                   { id: "name", label: "Name", type: "text", placeholder: "Your full name" },
                   { id: "email", label: "Email", type: "email", placeholder: "your@email.com" },
                 ].map((field) => (
-                  <div key={field.id}>
-                    {/* label: mb 12px */}
-                    <label className="block text-white/40 text-xs tracking-wider uppercase mb-3">
+                  /* Form group — flex column, gap 10px between label and input */
+                  <div key={field.id} className="flex flex-col" style={{ gap: 10 }}>
+                    <label
+                      className="text-white/40 text-xs uppercase"
+                      style={{ letterSpacing: "0.08em" }}
+                    >
                       {field.label}
                     </label>
-                    {/* input: px 20px, py 18px */}
                     <input
                       type={field.type}
                       placeholder={field.placeholder}
@@ -106,21 +139,20 @@ export function Contact() {
                       onFocus={() => setFocused(field.id)}
                       onBlur={() => setFocused(null)}
                       required
-                      className="w-full rounded-xl border bg-white/3 text-white placeholder:text-white/20 outline-none transition-all duration-300 text-sm"
-                      style={{
-                        padding: "18px 20px",
-                        borderColor: focused === field.id ? "rgba(74,222,128,0.35)" : "rgba(255,255,255,0.07)",
-                        boxShadow: focused === field.id ? "0 0 0 3px rgba(74,222,128,0.06)" : "none",
-                      }}
+                      className="placeholder:text-white/20"
+                      style={inputStyle(field.id)}
                     />
                   </div>
                 ))}
 
-                <div>
-                  <label className="block text-white/40 text-xs tracking-wider uppercase mb-3">
+                {/* Message field group */}
+                <div className="flex flex-col" style={{ gap: 10 }}>
+                  <label
+                    className="text-white/40 text-xs uppercase"
+                    style={{ letterSpacing: "0.08em" }}
+                  >
                     Message
                   </label>
-                  {/* textarea: px 20px, py 18px */}
                   <textarea
                     placeholder="Tell me about your project..."
                     value={form.message}
@@ -128,20 +160,21 @@ export function Contact() {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     required
-                    rows={7}
-                    className="w-full rounded-xl border bg-white/3 text-white placeholder:text-white/20 outline-none transition-all duration-300 text-sm resize-none"
+                    className="resize-none placeholder:text-white/20"
                     style={{
-                      padding: "18px 20px",
-                      borderColor: focused === "message" ? "rgba(74,222,128,0.35)" : "rgba(255,255,255,0.07)",
-                      boxShadow: focused === "message" ? "0 0 0 3px rgba(74,222,128,0.06)" : "none",
+                      ...inputStyle("message"),
+                      minHeight: 180,
+                      height: "auto",
                     }}
+                    rows={7}
                   />
                 </div>
 
+                {/* Submit button — min-height 56px, padding 18px 32px */}
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-3 bg-[#4ade80] text-[#090909] rounded-xl text-sm tracking-widest uppercase hover:bg-[#86efac] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
-                  style={{ fontWeight: 600, padding: "18px 32px" }}
+                  className="w-full inline-flex items-center justify-center bg-[#4ade80] text-[#090909] rounded-xl text-sm tracking-widest uppercase hover:bg-[#86efac] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                  style={{ fontWeight: 600, minHeight: 56, padding: "18px 32px", gap: 10 }}
                 >
                   Send Message
                   <ArrowRight size={16} />
@@ -150,17 +183,24 @@ export function Contact() {
             )}
           </motion.div>
 
-          {/* Contact links + availability */}
+          {/* Right column — contact cards + availability */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-8"
+            className="flex flex-col"
+            style={{ gap: 32 }}
           >
             <div>
-              <p className="text-white/25 text-xs tracking-widest uppercase mb-6">Reach Out Directly</p>
-              {/* social cards: gap 18px, padding 24px */}
-              <div className="flex flex-col gap-[18px]">
+              <p
+                className="text-white/25 text-xs uppercase"
+                style={{ letterSpacing: "0.12em", marginBottom: 20 }}
+              >
+                Reach Out Directly
+              </p>
+
+              {/* Social cards — gap 18px, min-height 84px, padding 24px 28px */}
+              <div className="flex flex-col" style={{ gap: 18 }}>
                 {socials.map((social, i) => (
                   <motion.a
                     key={i}
@@ -170,29 +210,40 @@ export function Contact() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.35 + i * 0.08 }}
-                    className="group flex items-center gap-4 rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 hover:bg-[#4ade80]/3 transition-all duration-300"
-                    style={{ padding: "20px 24px" }}
+                    className="group flex items-center rounded-xl border border-white/6 bg-white/2 hover:border-[#4ade80]/20 hover:bg-[#4ade80]/3 transition-all duration-300"
+                    style={{ minHeight: 84, padding: "24px 28px", gap: 18 }}
                   >
-                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/8 flex items-center justify-center group-hover:border-[#4ade80]/25 group-hover:bg-[#4ade80]/8 transition-all duration-300 shrink-0">
-                      <social.icon size={16} className="text-white/50 group-hover:text-[#4ade80] transition-colors duration-300" />
+                    <div
+                      className="rounded-full bg-white/5 border border-white/8 flex items-center justify-center group-hover:border-[#4ade80]/25 group-hover:bg-[#4ade80]/8 transition-all duration-300 shrink-0"
+                      style={{ width: 44, height: 44 }}
+                    >
+                      <social.icon size={17} className="text-white/50 group-hover:text-[#4ade80] transition-colors duration-300" />
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-white/30 text-xs mb-0.5">{social.label}</p>
+                    <div className="min-w-0 flex flex-col" style={{ gap: 4 }}>
+                      <p className="text-white/30 text-xs">{social.label}</p>
                       <p className="text-white/70 text-sm group-hover:text-white transition-colors duration-300 truncate">
                         {social.value}
                       </p>
                     </div>
-                    <ArrowRight size={14} className="ml-auto shrink-0 text-white/20 group-hover:text-[#4ade80] transition-all duration-300 -translate-x-1 group-hover:translate-x-0" />
+                    <ArrowRight
+                      size={14}
+                      className="ml-auto shrink-0 text-white/20 group-hover:text-[#4ade80] transition-all duration-300 -translate-x-1 group-hover:translate-x-0"
+                    />
                   </motion.a>
                 ))}
               </div>
             </div>
 
-            {/* Availability card: 28px padding */}
-            <div className="p-7 rounded-xl border border-[#4ade80]/10 bg-[#4ade80]/3">
-              <div className="flex items-center gap-2.5 mb-4">
+            {/* Availability card — padding 22px 26px */}
+            <div
+              className="rounded-xl border border-[#4ade80]/10 bg-[#4ade80]/3 flex flex-col"
+              style={{ padding: "22px 26px", gap: 14 }}
+            >
+              <div className="flex items-center" style={{ gap: 10 }}>
                 <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse" />
-                <span className="text-[#4ade80] text-xs tracking-widest uppercase">Available for Work</span>
+                <span className="text-[#4ade80] text-xs uppercase" style={{ letterSpacing: "0.12em" }}>
+                  Available for Work
+                </span>
               </div>
               <p className="text-white/50 text-sm" style={{ lineHeight: 1.65 }}>
                 Open to work now — freelance projects, collaborations, and full-time opportunities. Let&apos;s create something great.
