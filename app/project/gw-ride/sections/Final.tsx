@@ -50,10 +50,12 @@ const NEXT_STEPS = [
 
 export function Final() {
   const ref = useRef(null);
+  const protoRef = useRef(null);
   const guidesRef = useRef(null);
   const feedbackRef = useRef(null);
   const reflectionRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const protoInView = useInView(protoRef, { once: true, margin: "-80px" });
   const guidesInView = useInView(guidesRef, { once: true, margin: "-80px" });
   const feedbackInView = useInView(feedbackRef, { once: true, margin: "-80px" });
   const reflectionInView = useInView(reflectionRef, { once: true, margin: "-80px" });
@@ -173,6 +175,221 @@ export function Final() {
               />
             </motion.div>
           ))}
+        </div>
+
+        {/* ── Interactive Prototype ── */}
+        <div ref={protoRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={protoInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginBottom: 24 }}
+          >
+            <h3
+              style={{
+                fontSize: "1.05rem",
+                fontWeight: 600,
+                color: "#f2ede8",
+                letterSpacing: "-0.01em",
+                marginBottom: 4,
+              }}
+            >
+              Interactive Prototype
+            </h3>
+            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
+              Explore the GW Ride prototype directly in the page. This interactive demo shows the
+              core app flow, including onboarding, route discovery, shuttle information, and campus
+              exploration.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={protoInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginBottom: 96 }}
+          >
+            {/* Desktop/tablet iframe */}
+            <div
+              className="hidden md:block"
+              style={{
+                width: "100%",
+                borderRadius: 16,
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.06)",
+                backgroundColor: "#111113",
+              }}
+            >
+              <iframe
+                src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FezhpWQgVx2L0xAo2q8JGKj%2FGW-Ride%3Fnode-id%3D2251-993%26p%3Df%26viewport%3D-1738%252C-5681%252C0.43%26t%3DhSqqHpGAWMdz0xjR-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D2251%253A993%26page-id%3D0%253A1"
+                title="GW Ride Figma Prototype"
+                loading="lazy"
+                allowFullScreen
+                style={{
+                  width: "100%",
+                  height: "clamp(650px, 60vw, 820px)",
+                  border: 0,
+                  display: "block",
+                }}
+              />
+            </div>
+
+            {/* Mobile fallback card */}
+            <div
+              className="md:hidden"
+              style={{
+                padding: "48px 32px",
+                borderRadius: 16,
+                border: "1px solid rgba(255,255,255,0.06)",
+                backgroundColor: "#111113",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 20,
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 12,
+                  backgroundColor: "rgba(96,165,250,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M10 3L10 13M10 13L6 9M10 13L14 9"
+                    stroke={ACCENT}
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M3 15h14"
+                    stroke={ACCENT}
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    color: "#f2ede8",
+                    marginBottom: 8,
+                  }}
+                >
+                  Best viewed on desktop
+                </p>
+                <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.45)", lineHeight: 1.6 }}>
+                  Open the prototype in Figma to explore the full interactive flow on your device.
+                </p>
+              </div>
+              <a
+                href="https://www.figma.com/proto/ezhpWQgVx2L0xAo2q8JGKj/GW-Ride?node-id=2251-993&p=f&viewport=-1738%2C-5681%2C0.43&t=hSqqHpGAWMdz0xjR-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2251%3A993&page-id=0%3A1"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 24px",
+                  borderRadius: 10,
+                  border: `1px solid rgba(96,165,250,0.3)`,
+                  backgroundColor: "rgba(96,165,250,0.08)",
+                  color: ACCENT,
+                  fontSize: "0.88rem",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "background-color 200ms ease, border-color 200ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.14)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.08)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.3)";
+                }}
+              >
+                Open prototype in Figma
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            {/* Below-iframe: fallback note + CTA (desktop only) */}
+            <div
+              className="hidden md:flex"
+              style={{
+                marginTop: 20,
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "0.75rem",
+                  color: "rgba(242,237,232,0.28)",
+                  textAlign: "center",
+                }}
+              >
+                If the prototype does not load, open it directly in Figma.
+              </p>
+              <a
+                href="https://www.figma.com/proto/ezhpWQgVx2L0xAo2q8JGKj/GW-Ride?node-id=2251-993&p=f&viewport=-1738%2C-5681%2C0.43&t=hSqqHpGAWMdz0xjR-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2251%3A993&page-id=0%3A1"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "10px 20px",
+                  borderRadius: 9,
+                  border: `1px solid rgba(96,165,250,0.25)`,
+                  backgroundColor: "rgba(96,165,250,0.07)",
+                  color: ACCENT,
+                  fontSize: "0.82rem",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "background-color 200ms ease, border-color 200ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.13)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.45)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.07)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.25)";
+                }}
+              >
+                Open prototype in Figma
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </motion.div>
         </div>
 
         {/* ── Visual Guidelines (HTML/CSS) ── */}
