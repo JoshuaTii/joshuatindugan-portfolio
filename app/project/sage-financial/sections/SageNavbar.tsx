@@ -1,26 +1,54 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Overview", href: "#overview" },
-  { label: "Context", href: "#context" },
-  { label: "Research", href: "#research" },
-  { label: "Features", href: "#features" },
-  { label: "Design", href: "#design-evolution" },
-  { label: "Final", href: "#final-design" },
+  { label: "Overview",  href: "#overview",        id: "overview" },
+  { label: "Context",   href: "#context",          id: "context" },
+  { label: "Research",  href: "#research",         id: "research" },
+  { label: "Features",  href: "#features",         id: "features" },
+  { label: "Design",    href: "#design-evolution", id: "design-evolution" },
+  { label: "Final",     href: "#final-design",     id: "final-design" },
 ];
 
+const ACCENT = "#9BE931";
+
 export function SageNavbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled]           = useState(false);
+  const [open, setOpen]                   = useState(false);
+  const [activeSection, setActiveSection] = useState("overview");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    NAV_LINKS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: "-15% 0px -65% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   }, []);
 
   return (
@@ -37,11 +65,11 @@ export function SageNavbar() {
       }}
     >
       <div className="section-container flex items-center justify-between" style={{ height: 68 }}>
-        {/* Left — back link + logo */}
+        {/* Left — back link + SAGE logo */}
         <div className="flex items-center" style={{ gap: 20 }}>
           <Link
             href="/#work"
-            className="flex items-center gap-1.5 group"
+            className="flex items-center gap-1.5"
             style={{
               textDecoration: "none",
               color: "rgba(242,237,232,0.4)",
@@ -63,64 +91,78 @@ export function SageNavbar() {
           />
         </div>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center" style={{ gap: 32 }}>
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-xs uppercase"
-              style={{
-                letterSpacing: "0.1em",
-                textDecoration: "none",
-                color: "rgba(242,237,232,0.4)",
-                transition: "color 250ms ease",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = "#7ab688")}
-              onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(242,237,232,0.4)")}
-            >
-              {link.label}
-            </a>
-          ))}
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center" style={{ gap: 28 }}>
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.id)}
+                className="text-xs uppercase relative"
+                style={{
+                  letterSpacing: "0.1em",
+                  textDecoration: "none",
+                  color: isActive ? ACCENT : "rgba(242,237,232,0.4)",
+                  transition: "color 250ms ease",
+                  paddingBottom: 4,
+                  display: "flex",
+                  flexDirection: "column" as const,
+                  alignItems: "center",
+                  gap: 0,
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) (e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.75)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = isActive ? ACCENT : "rgba(242,237,232,0.4)";
+                }}
+              >
+                {link.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="sage-nav-active"
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: 1.5,
+                      borderRadius: 1,
+                      backgroundColor: ACCENT,
+                    }}
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </div>
 
         {/* Mobile hamburger */}
         <button
           className="md:hidden flex flex-col justify-center items-center"
-          style={{ width: 36, height: 36, gap: 6 }}
+          style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
           <span
             className="block bg-white/60"
-            style={{
-              width: 22,
-              height: 1.5,
-              transform: open ? "translateY(7.5px) rotate(45deg)" : "none",
-              transition: "transform 200ms ease",
-            }}
+            style={{ width: 22, height: 1.5, transform: open ? "translateY(7.5px) rotate(45deg)" : "none", transition: "transform 200ms ease" }}
           />
           <span
             className="block bg-white/60"
-            style={{
-              width: 22,
-              height: 1.5,
-              opacity: open ? 0 : 1,
-              transition: "opacity 200ms ease",
-            }}
+            style={{ width: 22, height: 1.5, opacity: open ? 0 : 1, transition: "opacity 200ms ease" }}
           />
           <span
             className="block bg-white/60"
-            style={{
-              width: 22,
-              height: 1.5,
-              transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none",
-              transition: "transform 200ms ease",
-            }}
+            style={{ width: 22, height: 1.5, transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none", transition: "transform 200ms ease" }}
           />
         </button>
       </div>
 
+      {/* Mobile menu */}
       {open && (
         <div
           className="md:hidden"
@@ -134,16 +176,14 @@ export function SageNavbar() {
             <a
               key={link.href}
               href={link.href}
-              onClick={() => setOpen(false)}
-              className="block text-sm py-3 transition-colors"
+              onClick={(e) => handleNavClick(e, link.id)}
+              className="block text-sm py-3"
               style={{
                 textDecoration: "none",
-                color: "rgba(242,237,232,0.5)",
+                color: activeSection === link.id ? ACCENT : "rgba(242,237,232,0.5)",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
                 transition: "color 250ms ease",
               }}
-              onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = "#7ab688")}
-              onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(242,237,232,0.5)")}
             >
               {link.label}
             </a>
