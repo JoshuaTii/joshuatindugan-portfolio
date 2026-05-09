@@ -130,10 +130,10 @@ export function SEVisual() {
               maxWidth: 640,
             }}
           >
-            I did not use the original app color palette directly. Instead, I softened the palette
-            into a more editorial sage direction so the site could feel connected to SAGE while
-            developing its own publication identity. The updated palette supports trust, calmness,
-            readability, and a quieter editorial tone.
+            The original SAGE app palette used a brighter green accent, but the editorial site
+            needed a softer and more publication-driven tone. I shifted the palette toward muted
+            sage and olive-gray values so the editorial experience could feel trustworthy, calm,
+            and distinct while still staying connected to SAGE.
           </p>
         </motion.div>
 

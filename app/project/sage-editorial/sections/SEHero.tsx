@@ -196,19 +196,11 @@ export function SEHero() {
         className="section-container"
         style={{ paddingBottom: 120 }}
       >
-        <div
-          style={{
-            borderRadius: 20,
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.07)",
-          }}
-        >
-          <img
-            src="/sage-editorial/head-image.png"
-            alt="SAGE Editorial website mockup hero image"
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
+        <img
+          src="/sage-editorial/head-image.png"
+          alt="SAGE Editorial website mockup hero image"
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
       </motion.div>
     </section>
   );

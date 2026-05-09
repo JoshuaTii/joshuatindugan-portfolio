@@ -114,6 +114,17 @@ export function SEProgress() {
                 }}
               />
             </div>
+            <p
+              style={{
+                padding: "10px 24px",
+                fontSize: "0.75rem",
+                color: "rgba(242,237,232,0.3)",
+                lineHeight: 1.5,
+                borderTop: "1px solid rgba(255,255,255,0.04)",
+              }}
+            >
+              Tip: You can drag and zoom inside the Figma preview to explore the layout.
+            </p>
             <div
               style={{
                 padding: "14px 24px",

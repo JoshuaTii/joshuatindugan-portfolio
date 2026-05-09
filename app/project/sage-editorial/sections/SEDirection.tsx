@@ -184,20 +184,12 @@ export function SEDirection() {
             but still distinct from the main SAGE app.
           </p>
 
-          <div
-            style={{
-              borderRadius: 20,
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <img
-              src="/sage-editorial/moodboard.png"
-              alt="SAGE Editorial moodboard exploring newspaper layouts, sage colors, typography, and editorial references"
-              loading="lazy"
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
-          </div>
+          <img
+            src="/sage-editorial/moodboard.png"
+            alt="SAGE Editorial moodboard exploring newspaper layouts, sage colors, typography, and editorial references"
+            loading="lazy"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
         </motion.div>
       </div>
     </section>
