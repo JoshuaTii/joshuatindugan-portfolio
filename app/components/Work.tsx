@@ -24,72 +24,104 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       tabIndex={0}
       role="link"
       aria-label={`View ${project.title} case study`}
-      className="group relative rounded-2xl border border-white/6 bg-[#0f0f0f] overflow-hidden cursor-pointer hover:border-white/12"
+      className="relative rounded-2xl bg-[#0f0f0f] overflow-hidden cursor-pointer"
       style={{
         contain: "layout paint",
         display: "flex",
         flexDirection: "column",
-        transform: "translateZ(0)",
-        backfaceVisibility: "hidden",
-        // CSS transition for box-shadow — avoids Framer Motion's JS-driven animation per frame
+        border: "1px solid",
+        borderColor: hovered ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.06)",
         boxShadow: hovered ? `0 0 48px ${project.color}14` : "none",
         transition: "border-color 300ms ease, box-shadow 300ms ease",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
       }}
     >
-      {/* Thumbnail wrapper — isolated GPU layer, overflow:hidden clips the scaling image */}
+      {/* Thumbnail — isolated GPU layer, clips the scaling image */}
       <div
-        className="relative bg-[#111]"
         style={{
+          position: "relative",
           height: 280,
           flexShrink: 0,
           overflow: "hidden",
-          // Own compositing layer so the clip boundary never interferes with the card layer
+          isolation: "isolate",
           transform: "translateZ(0)",
+          backgroundColor: "#111",
         }}
       >
-        {/* Image — only this element scales on hover, nothing else */}
+        {/* Image — scale driven by hovered state so transform + transition stay in sync */}
         <img
           src={project.image}
           alt={project.title}
           loading={index === 0 ? "eager" : "lazy"}
-          className="w-full h-full object-cover group-hover:scale-[1.025]"
+          className="w-full h-full object-cover"
           style={{
             display: "block",
-            backfaceVisibility: "hidden",
-            transform: "translateZ(0)",
-            transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+            transform: hovered ? "scale(1.03)" : "scale(1)",
+            transition: "transform 450ms cubic-bezier(0.22, 1, 0.36, 1)",
+            willChange: "transform",
           }}
         />
 
-        {/* Bottom gradient — always covers full wrapper with inset:0, never scales */}
+        {/* Bottom gradient — always visible, never animates */}
         <div
-          className="absolute pointer-events-none"
           style={{
+            position: "absolute",
             inset: 0,
             background: "linear-gradient(to top, #0f0f0f 0%, transparent 55%)",
-            transform: "translateZ(0)",
+            pointerEvents: "none",
+            zIndex: 1,
           }}
         />
 
-        {/* Hover darkening overlay — opacity/background-color only, no dimension changes */}
+        {/* Darkening overlay — opacity-only transition avoids background-color repaint per frame */}
         <div
-          className="absolute flex items-center justify-center"
           style={{
+            position: "absolute",
             inset: 0,
-            backgroundColor: "transparent",
-            transition: "background-color 300ms ease",
+            backgroundColor: "rgba(0,0,0,0.36)",
+            opacity: hovered ? 1 : 0,
+            transition: "opacity 300ms ease",
+            pointerEvents: "none",
+            zIndex: 2,
+          }}
+        />
+
+        {/* Arrow button — no backdrop-filter to prevent compositing layer flicker */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+            zIndex: 3,
           }}
         >
-          {/* Inner overlay colour via a child so we can use group-hover Tailwind class */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
-          <div className="relative w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
-            <ArrowUpRight size={20} className="text-white" />
+          <div
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: hovered ? 1 : 0,
+              transform: hovered ? "scale(1)" : "scale(0.9)",
+              transition: "opacity 300ms ease, transform 300ms ease",
+            }}
+          >
+            <ArrowUpRight size={20} color="white" />
           </div>
         </div>
 
+        {/* Project number badge */}
         <span
-          className="absolute top-4 right-4 text-xs tracking-widest select-none z-10 rounded-full border border-white/10 bg-black/50 backdrop-blur-sm"
-          style={{ color: project.color, padding: "5px 10px" }}
+          className="absolute top-4 right-4 text-xs tracking-widest select-none rounded-full border border-white/10 bg-black/50"
+          style={{ color: project.color, padding: "5px 10px", zIndex: 4 }}
         >
           {project.number}
         </span>
@@ -103,14 +135,12 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         {/* Meta row: category left, year right */}
         <div className="flex items-start justify-between" style={{ gap: 16 }}>
           <div className="flex flex-col" style={{ gap: 10 }}>
-            {/* Category kicker — 12px tracking */}
             <p
               className="text-xs uppercase"
               style={{ color: project.color, letterSpacing: "0.12em", lineHeight: 1 }}
             >
               {project.category}
             </p>
-            {/* Title — line-height 1.1 */}
             <h3
               className="text-white"
               style={{ fontSize: "1.2rem", fontWeight: 600, lineHeight: 1.1 }}
@@ -128,7 +158,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           {project.description}
         </p>
 
-        {/* Tags — padding 7px 13px, min-height 30px, gap 10px */}
+        {/* Tags */}
         <div className="flex flex-wrap" style={{ gap: 10 }}>
           {project.tags.map((tag) => (
             <span
@@ -141,13 +171,19 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           ))}
         </div>
 
-        {/* CTA link — align self start, gap 6px */}
+        {/* CTA */}
         <div
           className="flex items-center text-xs tracking-wider uppercase"
           style={{ color: project.color, gap: 6, marginTop: "auto", paddingTop: 4 }}
         >
           View Project
-          <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+          <ArrowUpRight
+            size={13}
+            style={{
+              transform: hovered ? "translate(2px, -2px)" : "translate(0, 0)",
+              transition: "transform 300ms ease",
+            }}
+          />
         </div>
       </div>
     </motion.article>
@@ -170,7 +206,7 @@ export function Work() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginBottom: 72 }}
         >
-          {/* Section label — 16px mb, 0.12em tracking */}
+          {/* Section label */}
           <p
             className="text-[#4ade80] text-xs uppercase"
             style={{ letterSpacing: "0.12em", marginBottom: 16 }}
