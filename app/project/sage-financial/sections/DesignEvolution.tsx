@@ -179,6 +179,8 @@ export function DesignEvolution() {
                       objectFit: "contain",
                       display: "block",
                     }}
+
+                  loading="lazy"
                   />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>
@@ -282,6 +284,8 @@ export function DesignEvolution() {
                     objectFit: "contain",
                     display: "block",
                   }}
+
+                loading="lazy"
                 />
               </div>
               <p className="caption">{screen.caption}</p>

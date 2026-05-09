@@ -155,12 +155,14 @@ export function Contact() {
                 ].map((field) => (
                   <div key={field.id} className="flex flex-col" style={{ gap: 10 }}>
                     <label
+                      htmlFor={`contact-${field.id}`}
                       className="text-white/40 text-xs uppercase"
                       style={{ letterSpacing: "0.08em" }}
                     >
                       {field.label}
                     </label>
                     <input
+                      id={`contact-${field.id}`}
                       type={field.type}
                       placeholder={field.placeholder}
                       value={form[field.id as "name" | "email"]}
@@ -178,12 +180,14 @@ export function Contact() {
                 {/* Message field group */}
                 <div className="flex flex-col" style={{ gap: 10 }}>
                   <label
+                    htmlFor="contact-message"
                     className="text-white/40 text-xs uppercase"
                     style={{ letterSpacing: "0.08em" }}
                   >
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
                     placeholder="Tell me about your project..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}

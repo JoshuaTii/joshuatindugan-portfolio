@@ -140,6 +140,8 @@ export function Features() {
                     padding: 20,
                     backgroundColor: "#f8f6f3",
                   }}
+
+                loading="lazy"
                 />
               </div>
               <p style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>

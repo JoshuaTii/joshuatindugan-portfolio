@@ -63,6 +63,8 @@ function HoverScreen({ src, alt, onClick }: { src: string; alt: string; onClick:
           transition: "transform 250ms ease, box-shadow 250ms ease",
           borderRadius: 10,
         }}
+
+      loading="lazy"
       />
     </div>
   );
@@ -163,6 +165,8 @@ export function Final() {
             src="/intuition/mockup.png"
             alt="InTuition final design mockup"
             style={{ width: "100%", display: "block", maxHeight: 720, objectFit: "contain" }}
+
+          loading="lazy"
           />
         </motion.div>
 
@@ -655,6 +659,8 @@ export function Final() {
               objectFit: "contain",
               borderRadius: 12,
             }}
+
+          loading="lazy"
           />
         </div>
       )}

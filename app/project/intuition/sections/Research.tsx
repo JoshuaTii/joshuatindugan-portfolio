@@ -122,6 +122,8 @@ export function Research() {
                   src={src}
                   alt={`Workshop photo ${i + 1}`}
                   style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }}
+
+                loading="lazy"
                 />
               </motion.div>
             ))}
@@ -268,6 +270,8 @@ export function Research() {
               src="/intuition/persona.png"
               alt="User persona — Rosa Sanchez full card"
               style={{ width: "100%", display: "block" }}
+
+            loading="lazy"
             />
           </div>
         </motion.div>
@@ -439,6 +443,8 @@ export function Research() {
               objectFit: "contain",
               borderRadius: 12,
             }}
+
+          loading="lazy"
           />
         </div>
       )}

@@ -118,6 +118,10 @@ export function Final() {
               transition={{ duration: 0.65, delay: 0.07 * i, ease: [0.22, 1, 0.36, 1] }}
               style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
               onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design — screen ${i + 1}`); } }}
+              tabIndex={0}
+              role="button"
+              aria-label={`Expand final design screen ${i + 1}`}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-5px) scale(1.02)";
               }}
@@ -134,6 +138,8 @@ export function Final() {
                   display: "block",
                   maxHeight: 680,
                 }}
+
+              loading="lazy"
               />
             </motion.div>
           ))}
@@ -156,6 +162,10 @@ export function Final() {
               transition={{ duration: 0.6, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
               style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
               onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design — screen ${i + 1}`); } }}
+              tabIndex={0}
+              role="button"
+              aria-label={`Expand final design screen ${i + 1}`}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
               }}
@@ -172,6 +182,8 @@ export function Final() {
                   display: "block",
                   maxHeight: 400,
                 }}
+
+              loading="lazy"
               />
             </motion.div>
           ))}

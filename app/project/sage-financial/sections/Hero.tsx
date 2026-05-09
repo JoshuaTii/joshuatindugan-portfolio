@@ -141,6 +141,8 @@ export function Hero() {
                 objectFit: "contain",
                 filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.6))",
               }}
+
+            loading="lazy"
             />
           </motion.div>
         </div>

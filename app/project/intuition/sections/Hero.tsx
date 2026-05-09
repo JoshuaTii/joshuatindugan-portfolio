@@ -147,6 +147,8 @@ export function Hero() {
                 position: "relative",
                 zIndex: 1,
               }}
+
+            loading="lazy"
             />
           </motion.div>
         </div>

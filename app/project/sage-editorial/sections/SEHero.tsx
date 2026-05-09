@@ -174,6 +174,8 @@ export function SEHero() {
           src="/sage-editorial/head-image.png"
           alt="SAGE Editorial website mockup hero image"
           style={{ width: "100%", height: "auto", display: "block" }}
+
+        loading="lazy"
         />
       </motion.div>
     </section>

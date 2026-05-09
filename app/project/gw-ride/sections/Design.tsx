@@ -58,6 +58,8 @@ function PhaseGallery({
               backgroundColor: "#111113",
               transition: "transform 300ms ease",
             }}
+
+          loading="lazy"
           />
         </motion.div>
       ))}

@@ -222,6 +222,8 @@ export function Context() {
                     filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.55))",
                     transform: i === 1 ? "translateY(-16px)" : "none",
                   }}
+
+                loading="lazy"
                 />
               )
             )}

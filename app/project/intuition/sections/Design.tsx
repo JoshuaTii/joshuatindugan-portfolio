@@ -71,6 +71,8 @@ function PhaseGallery({ images, inView, baseDelay = 0, onOpen, cols = 4 }: Phase
               display: "block",
               maxHeight: 360,
             }}
+
+          loading="lazy"
           />
         </motion.div>
       ))}
@@ -249,6 +251,8 @@ export function Design() {
               objectFit: "contain",
               borderRadius: 12,
             }}
+
+          loading="lazy"
           />
         </div>
       )}

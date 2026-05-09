@@ -105,6 +105,8 @@ export function Research() {
             src="/sage/pain-points.png"
             alt="Pain points map: barriers identified through resident research"
             style={{ width: "100%", height: "auto", display: "block" }}
+
+          loading="lazy"
           />
           <div
             style={{
@@ -242,6 +244,8 @@ export function Research() {
                       display: "block",
                       objectFit: "contain",
                     }}
+
+                  loading="lazy"
                   />
                 </div>
               ))}

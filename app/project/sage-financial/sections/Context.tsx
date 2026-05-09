@@ -61,6 +61,8 @@ export function Context() {
             src="/sage/systems-map.png"
             alt="Systems map: structural barriers to financial access in Ward 7 and 8"
             style={{ width: "100%", height: "auto", display: "block" }}
+
+          loading="lazy"
           />
           <div
             style={{

@@ -152,6 +152,7 @@ export function Navbar() {
           }}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           <span
             style={{

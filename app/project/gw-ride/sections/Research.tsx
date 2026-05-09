@@ -341,6 +341,8 @@ export function Research() {
                           display: "block",
                           backgroundColor: "#1a1a1e",
                         }}
+
+                      loading="lazy"
                       />
                     </div>
                     <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>

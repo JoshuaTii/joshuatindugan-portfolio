@@ -129,6 +129,8 @@ export function FinalDesign() {
                   borderRadius: 20,
                   pointerEvents: "none",
                 }}
+
+              loading="lazy"
               />
             </motion.div>
           ))}
@@ -179,6 +181,8 @@ export function FinalDesign() {
                   borderRadius: 14,
                   pointerEvents: "none",
                 }}
+
+              loading="lazy"
               />
             </motion.div>
           ))}

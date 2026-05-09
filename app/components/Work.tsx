@@ -18,8 +18,12 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => router.push(`/project/${project.id}`)}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); router.push(`/project/${project.id}`); } }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      tabIndex={0}
+      role="link"
+      aria-label={`View ${project.title} case study`}
       className="group relative rounded-2xl border border-white/6 bg-[#0f0f0f] overflow-hidden cursor-pointer hover:border-white/12"
       style={{
         contain: "layout paint",
