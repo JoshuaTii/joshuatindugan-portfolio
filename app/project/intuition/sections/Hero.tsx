@@ -142,7 +142,7 @@ export function Hero() {
               alt="InTuition logo"
               style={{
                 maxWidth: "100%",
-                width: 400,
+                width: 760,
                 objectFit: "contain",
                 position: "relative",
                 zIndex: 1,

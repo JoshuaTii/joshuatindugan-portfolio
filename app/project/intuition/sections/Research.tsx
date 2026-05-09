@@ -141,11 +141,120 @@ export function Research() {
               textTransform: "uppercase",
               letterSpacing: "0.1em",
               color: "rgba(242,237,232,0.35)",
-              marginBottom: 16,
+              marginBottom: 24,
             }}
           >
             User Persona
           </p>
+
+          {/* Persona text block — extracted from persona card */}
+          <div
+            style={{
+              padding: "32px 36px",
+              borderRadius: 20,
+              border: "1px solid rgba(255,255,255,0.06)",
+              backgroundColor: "#111113",
+              marginBottom: 24,
+            }}
+          >
+            {/* Name + archetype */}
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px 20px", marginBottom: 28 }}>
+              <h3
+                style={{
+                  fontSize: "clamp(1.4rem, 3vw, 2rem)",
+                  fontWeight: 700,
+                  color: "#f2ede8",
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.1,
+                  margin: 0,
+                }}
+              >
+                Rosa Sanchez
+              </h3>
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "4px 12px",
+                  borderRadius: 6,
+                  backgroundColor: ACCENT,
+                  color: "#180727",
+                  fontSize: "0.75rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                The Cool Nerd
+              </span>
+            </div>
+
+            {/* Demographics grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: 16, marginBottom: 28 }}>
+              {[
+                { label: "Age",        value: "18" },
+                { label: "Status",     value: "High school student" },
+                { label: "Location",   value: "Maryland" },
+                { label: "Income",     value: "Lower-class" },
+                { label: "Employment", value: "Part-time waitress" },
+              ].map(({ label, value }) => (
+                <div
+                  key={label}
+                  style={{
+                    padding: "16px 18px",
+                    borderRadius: 12,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    backgroundColor: "rgba(255,255,255,0.03)",
+                  }}
+                >
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 6 }}>
+                    {label}
+                  </p>
+                  <p style={{ fontSize: "0.9rem", fontWeight: 500, color: "#f2ede8", lineHeight: 1.4 }}>
+                    {value}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Goals & Pain points */}
+            <div className="grid md:grid-cols-2" style={{ gap: 16 }}>
+              <div>
+                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(242,237,232,0.35)", marginBottom: 12 }}>
+                  Goals
+                </p>
+                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                  {[
+                    "Find scholarships she actually qualifies for without hours of research",
+                    "Fund college without taking on overwhelming debt",
+                    "Apply efficiently alongside her part-time work schedule",
+                  ].map((g) => (
+                    <li key={g} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "rgba(242,237,232,0.6)", lineHeight: 1.55 }}>
+                      <span style={{ color: ACCENT, flexShrink: 0, marginTop: 3 }}>—</span>
+                      {g}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(242,237,232,0.35)", marginBottom: 12 }}>
+                  Pain Points
+                </p>
+                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                  {[
+                    "Overwhelmed by scattered scholarship websites with conflicting information",
+                    "No guidance as a first-generation college applicant",
+                    "Limited time between school and work to search and apply",
+                  ].map((p) => (
+                    <li key={p} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "rgba(242,237,232,0.6)", lineHeight: 1.55 }}>
+                      <span style={{ color: "rgba(242,237,232,0.3)", flexShrink: 0, marginTop: 3 }}>—</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Existing persona image below */}
           <div
             onClick={() => setLightboxSrc("/intuition/persona.png")}
             style={{
@@ -157,7 +266,7 @@ export function Research() {
           >
             <img
               src="/intuition/persona.png"
-              alt="User persona"
+              alt="User persona — Rosa Sanchez full card"
               style={{ width: "100%", display: "block" }}
             />
           </div>

@@ -28,11 +28,11 @@ const COLOR_SWATCHES = [
 ];
 
 const NEXT_STEPS = [
-  "Conduct usability testing with students from different academic backgrounds",
-  "Test whether scholarship cards provide enough information for quick decision-making",
-  "Refine the application tracker based on real deadline-management behavior",
-  "Build stronger states for empty screens, errors, reminders, and submitted applications",
-  "Expand the workshop section into a more complete support ecosystem",
+  "Test the platform with junior and senior high school first-generation students",
+  "Study how early college-planning students compare scholarship opportunities",
+  "Refine filters around eligibility, deadline, award amount, and education level",
+  "Improve guidance for students applying for scholarships for the first time",
+  "Expand support content around essays, deadlines, and financial aid preparation",
 ];
 
 function HoverScreen({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
@@ -199,6 +199,99 @@ export function Final() {
             ))}
           </div>
         </div>
+
+        {/* ── Interactive Prototype */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={galleryInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            marginTop: 100,
+            paddingTop: 72,
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              color: ACCENT,
+              marginBottom: 16,
+            }}
+          >
+            Interactive Prototype
+          </p>
+          <h3
+            style={{
+              fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "#f2ede8",
+              lineHeight: 1.1,
+              marginBottom: 12,
+            }}
+          >
+            Explore the InTuition experience.
+          </h3>
+          <p
+            style={{
+              fontSize: "1rem",
+              lineHeight: 1.7,
+              color: "rgba(242,237,232,0.5)",
+              maxWidth: 540,
+              marginBottom: 36,
+            }}
+          >
+            Walk through the scholarship discovery and application flow.
+          </p>
+
+          {/* Figma embed */}
+          <div
+            style={{
+              borderRadius: 20,
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.06)",
+              backgroundColor: "#111113",
+              position: "relative",
+            }}
+          >
+            <iframe
+              title="InTuition interactive prototype"
+              src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FZFpuwcRXS8LhFZibl83SUQ%2FInTuition-2.0%3Fnode-id%3D0-1%26t%3D16yinqAVTONmoLcL-1"
+              loading="lazy"
+              allowFullScreen
+              style={{
+                width: "100%",
+                height: "clamp(480px, 60vw, 720px)",
+                border: "none",
+                display: "block",
+              }}
+            />
+          </div>
+
+          <a
+            href="https://www.figma.com/design/ZFpuwcRXS8LhFZibl83SUQ/InTuition-2.0?node-id=0-1&t=16yinqAVTONmoLcL-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              marginTop: 20,
+              fontSize: "0.85rem",
+              color: ACCENT,
+              textDecoration: "none",
+              letterSpacing: "0.02em",
+              transition: "opacity 200ms ease",
+            }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.7")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+          >
+            Open prototype in Figma ↗
+          </a>
+        </motion.div>
 
         {/* ── Visual Guidelines — InTuition brand */}
         <motion.div
@@ -491,9 +584,11 @@ export function Final() {
               marginBottom: 40,
             }}
           >
-            If I continued developing InTuition, I would focus on testing the platform with real
-            students to better understand how they compare scholarships, what filters matter most,
-            and where they hesitate during the application process.
+            If I continued developing InTuition, I would expand testing beyond college students
+            and focus more directly on junior and senior high school first-generation students
+            preparing to fund their higher education. This next phase would help me understand how
+            students earlier in the college-planning process search for scholarships, what language
+            or filters feel most useful to them, and where they need the most guidance before applying.
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
