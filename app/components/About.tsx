@@ -33,6 +33,16 @@ export function About() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-transparent z-10 pointer-events-none" />
+            <div
+              className="absolute inset-0 z-[11] pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "repeat",
+                backgroundSize: "180px 180px",
+                opacity: 0.055,
+                mixBlendMode: "soft-light",
+              }}
+            />
             <div className="absolute inset-0 rounded-3xl border border-white/5 z-20" />
           </div>
           <div className="absolute -bottom-8 -right-8 w-52 h-52 border border-[#4ade80]/10 rounded-3xl -z-10" />
