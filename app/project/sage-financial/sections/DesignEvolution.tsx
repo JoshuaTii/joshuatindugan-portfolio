@@ -6,17 +6,17 @@ const LOGO_STAGES = [
   {
     src: "/sage/logo-sketch-1.jpg",
     label: "Sketch 01",
-    caption: "Early mark exploration â€” concepts of growth, financial movement, and community connection were explored through rough gesture forms.",
+    caption: "Early mark exploration: concepts of growth, financial movement, and community connection were explored through rough gesture forms.",
   },
   {
     src: "/sage/logo-sketch-2.jpg",
     label: "Sketch 02",
-    caption: "Refining toward trustworthiness and accessibility â€” moving away from abstract forms toward something that felt grounded and legible at small sizes.",
+    caption: "Refining toward trustworthiness and accessibility, moving away from abstract forms toward something that felt grounded and legible at small sizes.",
   },
   {
     src: "/sage/logo-initial-design.png",
     label: "Initial Design",
-    caption: "A formalized version that established the typographic relationship and tested the mark for clarity across app contexts â€” splash screens, icons, and headers.",
+    caption: "A formalized version that established the typographic relationship and tested the mark for clarity across app contexts: splash screens, icons, and headers.",
   },
   {
     src: "/sage/logo-final-design.png",
@@ -30,7 +30,7 @@ const PHASES = [
     id: "lofi",
     label: "Lo-fi Wireframes",
     description:
-      "I started with low-fidelity wireframes to validate the core information architecture before committing to any visual language. The goal was to test flows, not aesthetics â€” getting structure right before style.",
+      "I started with low-fidelity wireframes to validate the core information architecture before committing to any visual language. The goal was to test flows, not aesthetics, getting structure right before style.",
     screens: [
       { src: "/sage/de-lofi-1.png", caption: "Cross Section" },
       { src: "/sage/de-lofi-2.png", caption: "Sage" },

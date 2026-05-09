@@ -89,7 +89,7 @@ export function Research() {
             }}
           >
             <p className="caption">
-              Pain points map â€” aggregated barriers, frustrations, and unmet needs surfaced through
+              Pain points map: aggregated barriers, frustrations, and unmet needs surfaced through
               research interviews and secondary data.
             </p>
           </div>
@@ -217,7 +217,7 @@ export function Research() {
               className="caption"
               style={{ marginTop: 12 }}
             >
-              Early ideation sketches â€” exploring interaction models and information flows before
+              Early ideation sketches: exploring interaction models and information flows before
               moving to digital tools. Drag or scroll to see all sketches.
             </p>
           </div>

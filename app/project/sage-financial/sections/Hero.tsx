@@ -21,7 +21,7 @@ export function Hero() {
         style={{ paddingTop: 120, paddingBottom: 80 }}
       >
         <div className="grid md:grid-cols-2 flex-1" style={{ gap: "48px 80px", alignItems: "center" }}>
-          {/* Left â€” text */}
+          {/* Left - text */}
           <div className="flex flex-col" style={{ gap: 0 }}>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -114,7 +114,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right â€” hero mockup */}
+          {/* Right - hero mockup */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

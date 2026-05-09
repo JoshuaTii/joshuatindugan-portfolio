@@ -70,7 +70,7 @@ export function Context() {
             }}
           >
             <p className="caption">
-              Systems map â€” mapping the structural barriers that create financial exclusion in
+              Systems map: mapping the structural barriers that create financial exclusion in
               D.C.'s eastern wards.
             </p>
           </div>

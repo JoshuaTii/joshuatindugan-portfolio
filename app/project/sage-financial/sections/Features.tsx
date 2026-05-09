@@ -86,7 +86,7 @@ function FeatureBlock({
       className={`grid grid-cols-1 ${isEven ? "md:grid-cols-[1fr_1.1fr]" : "md:grid-cols-[1.1fr_1fr]"}`}
       style={{ gap: "48px 80px", alignItems: "center" }}
     >
-      {/* Text â€” always renders first in DOM; CSS order swaps on desktop */}
+      {/* Text - always renders first in DOM; CSS order swaps on desktop */}
       <div
         style={{
           display: "flex",
@@ -130,7 +130,7 @@ function FeatureBlock({
           ))}
         </div>
 
-        {/* Image nav â€” only when more than 1 screen */}
+        {/* Image nav - only when more than 1 screen */}
         {feature.images.length > 1 && (
           <div className="flex flex-wrap" style={{ gap: 8, marginTop: 4 }}>
             {feature.images.map((_, i) => (

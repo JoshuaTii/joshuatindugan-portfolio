@@ -97,7 +97,7 @@ export function Overview() {
             </span>
             <div className="flex flex-col" style={{ gap: 4 }}>
               <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "#f2ede8" }}>
-                Fall 2025 â€“ Spring 2026
+                Fall 2025 - Spring 2026
               </span>
               <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.5)" }}>
                 Two semesters
@@ -156,7 +156,7 @@ export function Overview() {
                 Figma
               </span>
               <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.5)" }}>
-                Photoshop Â· Illustrator
+                Photoshop · Illustrator
               </span>
             </div>
           </motion.div>

@@ -16,7 +16,7 @@ const PRINCIPLES = [
   {
     number: "03",
     title: "Transparency over complexity",
-    body: "No hidden fees. No opaque processes. Every action in SAGE explains itself â€” because clarity is respect, and these users have been lied to before.",
+    body: "No hidden fees. No opaque processes. Every action in SAGE explains itself, because clarity is respect, and these users have been lied to before.",
   },
   {
     number: "04",

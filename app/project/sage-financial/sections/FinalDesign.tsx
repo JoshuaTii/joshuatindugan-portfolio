@@ -3,23 +3,23 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const MAIN_SCREENS = [
-  { src: "/sage/de-final-1.png", alt: "SAGE â€” final screen 1" },
-  { src: "/sage/de-final-2.png", alt: "SAGE â€” final screen 2" },
-  { src: "/sage/de-final-3.png", alt: "SAGE â€” final screen 3" },
-  { src: "/sage/de-final-4.png", alt: "SAGE â€” final screen 4" },
+  { src: "/sage/de-final-1.png", alt: "SAGE final screen 1" },
+  { src: "/sage/de-final-2.png", alt: "SAGE final screen 2" },
+  { src: "/sage/de-final-3.png", alt: "SAGE final screen 3" },
+  { src: "/sage/de-final-4.png", alt: "SAGE final screen 4" },
 ];
 
 const GALLERY_SCREENS = Array.from({ length: 17 }, (_, i) => ({
   src: `/sage/de-final-${i + 1}.png`,
-  alt: `SAGE final design â€” screen ${i + 1}`,
+  alt: `SAGE final design screen ${i + 1}`,
 }));
 
 const COLOR_SWATCHES = [
-  { name: "White", hex: "#FFFFFF", desc: "Primary text â€” clean contrast for maximum readability." },
-  { name: "Lime Green", hex: "#9BE931", desc: "Primary accent â€” energy, growth, and financial empowerment." },
-  { name: "Light Lime", hex: "#D1FEAE", desc: "Secondary tint â€” soft highlights and background accent states." },
-  { name: "Dark Navy", hex: "#011521", desc: "Primary background â€” grounded depth that anchors trust." },
-  { name: "Navy", hex: "#10203D", desc: "Surface background â€” card and panel elevation." },
+  { name: "White", hex: "#FFFFFF", desc: "Primary text: clean contrast for maximum readability." },
+  { name: "Lime Green", hex: "#9BE931", desc: "Primary accent: energy, growth, and financial empowerment." },
+  { name: "Light Lime", hex: "#D1FEAE", desc: "Secondary tint: soft highlights and background accent states." },
+  { name: "Dark Navy", hex: "#011521", desc: "Primary background: grounded depth that anchors trust." },
+  { name: "Navy", hex: "#10203D", desc: "Surface background: card and panel elevation." },
 ];
 
 export function FinalDesign() {
@@ -91,7 +91,7 @@ export function FinalDesign() {
           </p>
         </motion.div>
 
-        {/* Main 4 screens â€” large, no borders */}
+        {/* Main 4 screens - large, no borders */}
         <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 24, marginBottom: 24, padding: "8px 0" }}>
           {MAIN_SCREENS.map((screen, i) => (
             <motion.div
@@ -134,7 +134,7 @@ export function FinalDesign() {
           ))}
         </div>
 
-        {/* Full gallery grid â€” all 17 screens */}
+        {/* Full gallery grid - all 17 screens */}
         <div
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
           style={{ columnGap: 36, rowGap: 56, marginBottom: 120, padding: "12px 0" }}
@@ -573,7 +573,7 @@ export function FinalDesign() {
                     }}
                   >
                     Structured and legible across every screen size. Basic Sans carries body
-                    copy, labels, and UI elements â€” clear without clinical coldness.
+                    copy, labels, and UI elements, clear without clinical coldness.
                   </p>
                 </div>
               </div>
@@ -609,7 +609,7 @@ export function FinalDesign() {
               {[
                 {
                   label: "Trust",
-                  body: "Dark backgrounds with warm text feel safe rather than cold. The SAGE green appears sparingly â€” reserved for actions and positive reinforcement.",
+                  body: "Dark backgrounds with warm text feel safe rather than cold. The SAGE green appears sparingly, reserved for actions and positive reinforcement.",
                 },
                 {
                   label: "Clarity",
@@ -621,7 +621,7 @@ export function FinalDesign() {
                 },
                 {
                   label: "Community",
-                  body: "Warm amber secondary accents signal human connection and shared progress â€” not just individual financial metrics.",
+                  body: "Warm amber secondary accents signal human connection and shared progress, not just individual financial metrics.",
                 },
               ].map(({ label, body }) => (
                 <div key={label} style={{ display: "flex", flexDirection: "column" as const, gap: 10 }}>
