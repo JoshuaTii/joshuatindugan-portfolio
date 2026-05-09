@@ -1,7 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 
 const ACCENT = "#4ade80";
 
@@ -30,30 +28,6 @@ export function SEHero() {
             "radial-gradient(ellipse 70% 60% at 20% 40%, rgba(74,222,128,0.05) 0%, transparent 65%)",
         }}
       />
-
-      {/* Back nav */}
-      <div
-        className="section-container"
-        style={{ paddingTop: 40, position: "absolute", top: 0, left: 0, right: 0, zIndex: 10 }}
-      >
-        <Link
-          href="/#work"
-          className="flex items-center gap-1.5"
-          style={{
-            textDecoration: "none",
-            color: "rgba(242,237,232,0.35)",
-            fontSize: "0.75rem",
-            letterSpacing: "0.06em",
-            transition: "color 250ms ease",
-            width: "fit-content",
-          }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#f2ede8")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.35)")}
-        >
-          <ArrowLeft size={13} />
-          Portfolio
-        </Link>
-      </div>
 
       <div className="section-container" style={{ paddingBlock: "140px 80px" }}>
         <div style={{ maxWidth: 820 }}>

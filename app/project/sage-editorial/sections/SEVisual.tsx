@@ -5,9 +5,11 @@ import { motion, useInView } from "framer-motion";
 const ACCENT = "#4ade80";
 
 const APP_PALETTE = [
-  { name: "Off White",  hex: "#F8F9F3", textDark: true,  desc: "Surface and background base" },
-  { name: "Bright Sage", hex: "#D1FEAE", textDark: true,  desc: "Primary app accent" },
-  { name: "Deep Navy",  hex: "#011521", textDark: false, desc: "Primary app background" },
+  { name: "Pure White",    hex: "#FFFFFF", textDark: true,  desc: "Surface and background base" },
+  { name: "Vibrant Sage",  hex: "#9BE931", textDark: true,  desc: "Primary app accent — bright green" },
+  { name: "Light Sage",    hex: "#D1FEAE", textDark: true,  desc: "Secondary green — soft highlight" },
+  { name: "Deep Navy",     hex: "#011521", textDark: false, desc: "Primary app background" },
+  { name: "Midnight Blue", hex: "#10203D", textDark: false, desc: "Supporting dark tone" },
 ];
 
 const EDITORIAL_PALETTE = [
@@ -156,7 +158,7 @@ export function SEVisual() {
           >
             App Color Palette
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: 16, maxWidth: 640 }}>
+          <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 16 }}>
             {APP_PALETTE.map((s) => (
               <Swatch key={s.hex} {...s} />
             ))}
