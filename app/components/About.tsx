@@ -28,7 +28,7 @@ export function About() {
         >
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
             <img
-              src="/portrait.jpg"
+              src="/portrait.png"
               alt="Joshua Tindugan"
               className="w-full h-full object-cover"
             />
