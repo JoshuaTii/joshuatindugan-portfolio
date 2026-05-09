@@ -7,28 +7,23 @@ const ACCENT = "#60A5FA";
 const META_CARDS = [
   {
     label: "Role",
-    primary: "UX Designer",
-    secondary: "UX Researcher",
+    items: ["UX Designer", "UX Researcher"],
   },
   {
     label: "Timeline",
-    primary: "Spring 2026",
-    secondary: "One semester",
+    items: ["Fall 2024"],
   },
   {
     label: "Team",
-    primary: "Solo Project",
-    secondary: "Independent work",
+    items: ["Collaborative Design Project"],
   },
   {
     label: "Tools",
-    primary: "Figma",
-    secondary: "Adobe CC · Google Maps",
+    items: ["Figma", "Photoshop", "Illustrator"],
   },
   {
     label: "Deliverables",
-    primary: "Mobile App Concept",
-    secondary: "Research · Wireframes · Hi-Fi",
+    items: ["Mobile App Concept", "Research · Wireframes · Hi-Fi"],
   },
 ];
 
@@ -90,9 +85,9 @@ export function Overview() {
           </div>
         </motion.div>
 
-        {/* Meta cards */}
+        {/* Meta cards — equal item hierarchy */}
         <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 16 }}>
-          {META_CARDS.map(({ label, primary, secondary }, i) => (
+          {META_CARDS.map(({ label, items }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 24 }}
@@ -114,13 +109,15 @@ export function Overview() {
               >
                 {label}
               </span>
-              <div className="flex flex-col" style={{ gap: 4 }}>
-                <span style={{ fontSize: "0.9rem", fontWeight: 500, color: "#f2ede8" }}>
-                  {primary}
-                </span>
-                <span style={{ fontSize: "0.78rem", color: "rgba(242,237,232,0.45)" }}>
-                  {secondary}
-                </span>
+              <div className="flex flex-col" style={{ gap: 6 }}>
+                {items.map((item) => (
+                  <span
+                    key={item}
+                    style={{ fontSize: "0.88rem", fontWeight: 500, color: "#f2ede8", lineHeight: 1.4 }}
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}

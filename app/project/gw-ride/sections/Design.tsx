@@ -6,83 +6,59 @@ import { Lightbox } from "./Lightbox";
 const ACCENT = "#60A5FA";
 
 const LOFI_IMAGES = [
-  { src: "/gwride/lofi-opening.png", caption: "Onboarding / opening flow" },
-  { src: "/gwride/lofi-main-1.png", caption: "Main map view — draft 1" },
-  { src: "/gwride/lofi-main-2.png", caption: "Main map view — draft 2" },
-  { src: "/gwride/lofi-main-3.png", caption: "Main map view — draft 3" },
-  { src: "/gwride/lofi-explore.png", caption: "Explore / browse routes" },
-  { src: "/gwride/lofi-map.png", caption: "Full campus map view" },
+  "/gwride/lofi-opening.png",
+  "/gwride/lofi-main-1.png",
+  "/gwride/lofi-main-2.png",
+  "/gwride/lofi-main-3.png",
+  "/gwride/lofi-explore.png",
+  "/gwride/lofi-explore-2.png",
+  "/gwride/lofi-explore-3.png",
+  "/gwride/lofi-map.png",
 ];
 
-const HIFI_IMAGES = [
-  { src: "/gwride/revision-opening.png", caption: "Opening — revised" },
-  { src: "/gwride/revision-opening-2.png", caption: "Onboarding flow — screen 2" },
-  { src: "/gwride/revision-opening-3.png", caption: "Onboarding flow — screen 3" },
-  { src: "/gwride/revision-main.png", caption: "Main tracking view — revised" },
-  { src: "/gwride/revision-main-2.png", caption: "Route cards — revised" },
-  { src: "/gwride/revision-main-3.png", caption: "Stop detail — revised" },
-  { src: "/gwride/revision-explore.png", caption: "Explore view — revised" },
-  { src: "/gwride/revision-map.png", caption: "Full-screen map — revised" },
-];
+const PROTO_IMAGES = Array.from({ length: 8 }, (_, i) => `/gwride/proto-${i + 1}.png`);
+const HIFI_IMAGES = Array.from({ length: 8 }, (_, i) => `/gwride/hifi-${i + 1}.png`);
 
-type GalleryItem = { src: string; caption: string };
-
-function GalleryGrid({
-  items,
+function PhaseGallery({
+  images,
   inView,
   onOpen,
-  colClass = "grid-cols-2 md:grid-cols-3",
+  altPrefix,
 }: {
-  items: GalleryItem[];
+  images: string[];
   inView: boolean;
   onOpen: (src: string, alt: string) => void;
-  colClass?: string;
+  altPrefix: string;
 }) {
   return (
-    <div
-      className={`grid ${colClass}`}
-      style={{ gap: 16 }}
-    >
-      {items.map((item, i) => (
+    <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 12 }}>
+      {images.map((src, i) => (
         <motion.div
-          key={item.src}
+          key={src}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.06 * i, ease: [0.22, 1, 0.36, 1] }}
-          style={{ display: "flex", flexDirection: "column" as const, gap: 10, cursor: "zoom-in" }}
-          onClick={() => onOpen(item.src, item.caption)}
+          transition={{ duration: 0.6, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
+          style={{ cursor: "zoom-in", borderRadius: 14, overflow: "hidden" }}
+          onClick={() => onOpen(src, `${altPrefix} — screen ${i + 1}`)}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.transform = "none";
+          }}
         >
-          <div
+          <img
+            src={src}
+            alt={`${altPrefix} — screen ${i + 1}`}
             style={{
-              borderRadius: 14,
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.06)",
+              width: "100%",
+              objectFit: "contain",
+              display: "block",
+              maxHeight: 480,
               backgroundColor: "#111113",
-              transition: "transform 300ms ease, border-color 300ms ease",
+              transition: "transform 300ms ease",
             }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.2)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "none";
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)";
-            }}
-          >
-            <img
-              src={item.src}
-              alt={item.caption}
-              style={{
-                width: "100%",
-                objectFit: "contain",
-                display: "block",
-                maxHeight: 320,
-              }}
-            />
-          </div>
-          <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.4 }}>
-            {item.caption}
-          </p>
+          />
         </motion.div>
       ))}
     </div>
@@ -91,8 +67,10 @@ function GalleryGrid({
 
 export function Design() {
   const ref = useRef(null);
+  const protoRef = useRef(null);
   const hifiRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const protoInView = useInView(protoRef, { once: true, margin: "-80px" });
   const hifiInView = useInView(hifiRef, { once: true, margin: "-80px" });
 
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
@@ -137,65 +115,118 @@ export function Design() {
             From structure to polish — one iteration at a time.
           </h2>
           <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
-            The design moved through two distinct phases: low-fidelity wireframes to nail the
-            information hierarchy and core flows, followed by high-fidelity screens to refine
-            the visual language, readability, and interaction details.
+            The design moved through three distinct phases: low-fidelity wireframes to establish
+            structure and core flows, a first prototype to test information hierarchy with real
+            screens, and a revised high-fidelity pass that refined the visual language based on
+            what the prototype revealed.
           </p>
         </motion.div>
 
-        {/* ── Lo-fi ── */}
+        {/* ── Phase 01: Lo-fi ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 32 }}
+          style={{ marginBottom: 20 }}
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
             <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
               Low Fidelity Wireframes
             </h3>
-            <span style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                color: "rgba(242,237,232,0.3)",
+                fontWeight: 500,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+              }}
+            >
               Phase 01
             </span>
           </div>
           <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
             Wireframes explored three core flows — onboarding, the main shuttle tracking map view, and an
-            explore/browse mode for discovering routes. At this stage, decisions were structural:
-            where does the ETA live? How do you show multiple routes without overwhelming the screen?
-            What does a stop look like without visual decoration in the way?
+            explore mode for discovering routes. At this stage, decisions were structural: where does the
+            ETA live? How do you show multiple routes without overwhelming the screen? What does a stop
+            look like without visual decoration in the way?
           </p>
         </motion.div>
 
         <div style={{ marginBottom: 96 }}>
-          <GalleryGrid items={LOFI_IMAGES} inView={inView} onOpen={openLightbox} colClass="grid-cols-2 md:grid-cols-3" />
+          <PhaseGallery images={LOFI_IMAGES} inView={inView} onOpen={openLightbox} altPrefix="Low fidelity wireframe" />
         </div>
 
-        {/* ── Hi-fi ── */}
+        {/* ── Phase 02: Medium Fidelity / First Prototype ── */}
+        <div ref={protoRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={protoInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginBottom: 20 }}
+          >
+            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
+              <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
+                Medium Fidelity — First Prototype
+              </h3>
+              <span
+                style={{
+                  fontSize: "0.75rem",
+                  color: "rgba(242,237,232,0.3)",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                Phase 02
+              </span>
+            </div>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
+              The first prototype brought wireframe structure into real screens — introducing color, type,
+              and component shape for the first time. This phase was about testing whether the layout
+              decisions made in lo-fi actually held up when real content filled the space: real ETA numbers,
+              actual stop names, route colors with meaning.
+            </p>
+          </motion.div>
+
+          <div style={{ marginBottom: 96 }}>
+            <PhaseGallery images={PROTO_IMAGES} inView={protoInView} onOpen={openLightbox} altPrefix="First prototype" />
+          </div>
+        </div>
+
+        {/* ── Phase 03: High Fidelity / Revised Prototype ── */}
         <div ref={hifiRef}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={hifiInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 32 }}
+            style={{ marginBottom: 20 }}
           >
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
               <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
-                High Fidelity Screens
+                High Fidelity — Revised Prototype
               </h3>
-              <span style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                Phase 02
+              <span
+                style={{
+                  fontSize: "0.75rem",
+                  color: "rgba(242,237,232,0.3)",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                Phase 03
               </span>
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
-              After building an initial prototype and collecting informal student feedback, the design
-              was refined significantly. Key improvements: stronger typographic hierarchy on the main
-              map view, a cleaner route card layout that surfaces ETAs without visual clutter, and a
-              more intuitive stop detail pattern that grounds location in campus landmarks students
-              actually recognize.
+              After collecting informal feedback on the first prototype, the design was significantly
+              refined. Key improvements: stronger typographic hierarchy on the main map view, a cleaner
+              route card layout that surfaces ETAs without visual clutter, and a more intuitive stop detail
+              pattern that grounds location in campus landmarks students actually recognize.
             </p>
           </motion.div>
 
-          <GalleryGrid items={HIFI_IMAGES} inView={hifiInView} onOpen={openLightbox} colClass="grid-cols-2 md:grid-cols-4" />
+          <PhaseGallery images={HIFI_IMAGES} inView={hifiInView} onOpen={openLightbox} altPrefix="High fidelity revised prototype" />
         </div>
 
         {/* Evolution note */}

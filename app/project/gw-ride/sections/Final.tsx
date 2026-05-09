@@ -5,16 +5,28 @@ import { Lightbox } from "./Lightbox";
 
 const ACCENT = "#60A5FA";
 
-const FINAL_SCREENS = [
-  { src: "/gwride/final-opening.png", caption: "Onboarding — splash & entry" },
-  { src: "/gwride/final-opening-1.png", caption: "Onboarding — screen 2" },
-  { src: "/gwride/final-opening-2.png", caption: "Onboarding — screen 3" },
-  { src: "/gwride/final-main.png", caption: "Main — live tracking view" },
-  { src: "/gwride/final-main-2.png", caption: "Main — route cards" },
-  { src: "/gwride/final-main-3.png", caption: "Main — stop detail" },
-  { src: "/gwride/final-main-4.png", caption: "Main — ETA overlay" },
-  { src: "/gwride/final-explore.png", caption: "Explore — route browser" },
-  { src: "/gwride/final-explore-2.png", caption: "Explore — route detail" },
+const HERO_SCREENS = [
+  "/gwride/mockup-1.png",
+  "/gwride/mockup-2.png",
+  "/gwride/mockup-3.png",
+  "/gwride/mockup-4.png",
+  "/gwride/mockup-5.png",
+];
+
+const SUPPORTING_SCREENS = [
+  "/gwride/mockup-onboarding.png",
+  "/gwride/mockup-onboarding-1.png",
+  "/gwride/mockup-onboarding-2.png",
+  "/gwride/mockup-onboarding-3.png",
+  "/gwride/mockup-onboarding-4.png",
+  "/gwride/mockup-home-4.png",
+  "/gwride/mockup-explore-2.png",
+];
+
+const COLORS = [
+  { hex: "#AA9868", name: "GWU Buff", usage: "Primary brand · Accent" },
+  { hex: "#033C5A", name: "GWU Colonial Blue", usage: "Backgrounds · Structure" },
+  { hex: "#FFFFFF", name: "White", usage: "Text · Icons · UI" },
 ];
 
 const FEEDBACK_THEMES = [
@@ -33,7 +45,7 @@ const FEEDBACK_THEMES = [
 ];
 
 const NEXT_STEPS = [
-  "Test with real students during actual commute moments on campus",
+  "Test with students during actual commute moments on campus",
   "Partner with GW Transportation to access live shuttle data via API integration",
   "Add push notifications and alerts for approaching shuttles at saved stops",
   "Conduct a formal accessibility audit — screen reader support, color contrast, tap target size",
@@ -43,9 +55,11 @@ const NEXT_STEPS = [
 
 export function Final() {
   const ref = useRef(null);
+  const guidesRef = useRef(null);
   const feedbackRef = useRef(null);
   const reflectionRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const guidesInView = useInView(guidesRef, { once: true, margin: "-80px" });
   const feedbackInView = useInView(feedbackRef, { once: true, margin: "-80px" });
   const reflectionInView = useInView(reflectionRef, { once: true, margin: "-80px" });
 
@@ -97,107 +111,262 @@ export function Final() {
           </p>
         </motion.div>
 
-        {/* Final screens gallery */}
+        {/* ── Hero screens — 5 large mockups ── */}
+        <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 16, marginBottom: 16 }}>
+          {HERO_SCREENS.map((src, i) => (
+            <motion.div
+              key={src}
+              initial={{ opacity: 0, y: 28 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.65, delay: 0.07 * i, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                cursor: "zoom-in",
+                borderRadius: 14,
+                overflow: "hidden",
+                transition: "transform 300ms ease",
+              }}
+              onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "none";
+              }}
+            >
+              <img
+                src={src}
+                alt={`Final design — screen ${i + 1}`}
+                style={{
+                  width: "100%",
+                  objectFit: "contain",
+                  display: "block",
+                  maxHeight: 600,
+                  backgroundColor: "#111113",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.25)", marginBottom: 56, textAlign: "center" as const }}>
+          Click any screen to expand
+        </p>
+
+        {/* ── Supporting screens ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="grid grid-cols-2 md:grid-cols-3"
-          style={{ gap: 16, marginBottom: 16 }}
-        >
-          {FINAL_SCREENS.map((screen, i) => (
-            <motion.div
-              key={screen.src}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                display: "flex",
-                flexDirection: "column" as const,
-                gap: 10,
-                cursor: "zoom-in",
-              }}
-              onClick={() => openLightbox(screen.src, screen.caption)}
-            >
-              <div
-                style={{
-                  borderRadius: 14,
-                  overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
-                  transition: "transform 300ms ease, border-color 300ms ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.25)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "none";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)";
-                }}
-              >
-                <img
-                  src={screen.src}
-                  alt={screen.caption}
-                  style={{
-                    width: "100%",
-                    objectFit: "contain",
-                    display: "block",
-                    maxHeight: 360,
-                  }}
-                />
-              </div>
-              <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.4 }}>
-                {screen.caption}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.25)", marginBottom: 96 }}>
-          Click any screen to expand — all final design screens
-        </p>
-
-        {/* Visual guidelines */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 96 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginBottom: 16 }}
         >
           <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
-            Visual Guidelines
+            Additional Screens
           </h3>
-          <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", marginBottom: 24 }}>
-            The typography and color system established for GW Ride.
-          </p>
-          <div
-            style={{
-              borderRadius: 16,
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.06)",
-              cursor: "zoom-in",
-              backgroundColor: "#111113",
-            }}
-            onClick={() => openLightbox("/gwride/visual-guidelines.png", "GW Ride visual guidelines — typography and color")}
-          >
-            <img
-              src="/gwride/visual-guidelines.png"
-              alt="GW Ride visual guidelines"
-              style={{
-                width: "100%",
-                objectFit: "contain",
-                display: "block",
-                transition: "transform 300ms ease",
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.transform = "scale(1.01)")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.transform = "scale(1)")}
-            />
-          </div>
-          <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.35)", marginTop: 12, textAlign: "center" as const }}>
-            Typography system — GW Liberated (headings) + Basic Sans (body)
+          <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
+            Onboarding flow, home variants, and explore views.
           </p>
         </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 12, marginBottom: 96 }}>
+          {SUPPORTING_SCREENS.map((src, i) => (
+            <motion.div
+              key={src}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                cursor: "zoom-in",
+                borderRadius: 12,
+                overflow: "hidden",
+                transition: "transform 300ms ease",
+              }}
+              onClick={() => openLightbox(src, `Final design — additional screen ${i + 1}`)}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px) scale(1.01)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "none";
+              }}
+            >
+              <img
+                src={src}
+                alt={`Final design — additional screen ${i + 1}`}
+                style={{
+                  width: "100%",
+                  objectFit: "contain",
+                  display: "block",
+                  maxHeight: 380,
+                  backgroundColor: "#111113",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Visual Guidelines (HTML/CSS) ── */}
+        <div ref={guidesRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={guidesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginBottom: 24 }}
+          >
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+              Visual Guidelines
+            </h3>
+            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
+              Typography and color system established for GW Ride.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={guidesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              padding: "40px 40px",
+              borderRadius: 20,
+              border: "1px solid rgba(255,255,255,0.06)",
+              backgroundColor: "#111113",
+              marginBottom: 96,
+            }}
+          >
+            {/* Typography */}
+            <p
+              style={{
+                fontSize: "0.7rem",
+                fontWeight: 500,
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                color: "rgba(242,237,232,0.3)",
+                marginBottom: 24,
+              }}
+            >
+              Typography
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 24, marginBottom: 48 }}>
+              {/* GW Liberated */}
+              <div
+                style={{
+                  padding: "28px 28px",
+                  borderRadius: 14,
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  backgroundColor: "#0d0d10",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "0.68rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: ACCENT,
+                    marginBottom: 16,
+                    fontWeight: 500,
+                  }}
+                >
+                  Display · Headings
+                </div>
+                <div
+                  style={{
+                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                    fontWeight: 800,
+                    color: "#f2ede8",
+                    lineHeight: 1,
+                    letterSpacing: "-0.03em",
+                    marginBottom: 12,
+                    fontFamily: "serif",
+                  }}
+                >
+                  GW Liberated
+                </div>
+                <div style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
+                  A B C D E F G H I J K<br />
+                  1 2 3 4 5 6 7 8 9 0
+                </div>
+              </div>
+
+              {/* Basic Sans */}
+              <div
+                style={{
+                  padding: "28px 28px",
+                  borderRadius: 14,
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  backgroundColor: "#0d0d10",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "0.68rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: ACCENT,
+                    marginBottom: 16,
+                    fontWeight: 500,
+                  }}
+                >
+                  Body · Interface
+                </div>
+                <div
+                  style={{
+                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                    fontWeight: 500,
+                    color: "#f2ede8",
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                    marginBottom: 12,
+                  }}
+                >
+                  Basic Sans
+                </div>
+                <div style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
+                  a b c d e f g h i j k l m<br />
+                  Used for labels, ETAs, stop names
+                </div>
+              </div>
+            </div>
+
+            {/* Colors */}
+            <p
+              style={{
+                fontSize: "0.7rem",
+                fontWeight: 500,
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                color: "rgba(242,237,232,0.3)",
+                marginBottom: 24,
+              }}
+            >
+              Color System
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 16 }}>
+              {COLORS.map((color) => (
+                <div
+                  key={color.hex}
+                  style={{
+                    borderRadius: 14,
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                >
+                  <div
+                    style={{
+                      height: 80,
+                      backgroundColor: color.hex,
+                      borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    }}
+                  />
+                  <div style={{ padding: "16px 18px", backgroundColor: "#0d0d10" }}>
+                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#f2ede8", marginBottom: 4, fontFamily: "monospace" }}>
+                      {color.hex}
+                    </p>
+                    <p style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.6)", marginBottom: 2 }}>{color.name}</p>
+                    <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.35)" }}>{color.usage}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
         {/* ── User Feedback ── */}
         <div ref={feedbackRef}>
@@ -232,7 +401,15 @@ export function Final() {
                   gap: 12,
                 }}
               >
-                <span style={{ fontSize: "0.78rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: ACCENT }}>
+                <span
+                  style={{
+                    fontSize: "0.78rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    color: ACCENT,
+                  }}
+                >
                   {f.theme}
                 </span>
                 <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.65)" }}>

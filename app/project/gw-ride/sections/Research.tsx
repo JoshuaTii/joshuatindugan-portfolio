@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "./Lightbox";
 
 const ACCENT = "#60A5FA";
@@ -8,7 +9,7 @@ const ACCENT = "#60A5FA";
 const FINDINGS = [
   {
     stat: "Awareness Gap",
-    body: "Most students are unaware of the full GWU shuttle network — many don't know which routes exist near where they live or study.",
+    body: "Most students are unaware of the full GWU shuttle network — many don't know which routes run near where they live or study.",
   },
   {
     stat: "Unreliable ETAs",
@@ -24,7 +25,7 @@ const FINDINGS = [
   },
   {
     stat: "Time-Pressured Decisions",
-    body: "Transit choices happen in seconds — often mid-walk, mid-conversation, or mid-class. Information that requires effort to find simply gets ignored.",
+    body: "Transit choices happen in seconds — often mid-walk or mid-class. Information that takes effort to find simply gets ignored.",
   },
 ];
 
@@ -33,7 +34,7 @@ const STORYBOARD_FRAMES = Array.from({ length: 9 }, (_, i) => ({
   caption: [
     "Nick checks his class schedule and realizes he has 12 minutes to get across campus.",
     "He heads toward the shuttle stop, unsure which route to take or when it arrives.",
-    "He stands at the stop with no information — no ETA, no map, no indication a shuttle is even coming.",
+    "He stands at the stop with no information — no ETA, no map, no indication a shuttle is coming.",
     "Five minutes pass. He pulls out his phone, tries the campus app — it's unclear and outdated.",
     "Frustrated, he opens a rideshare app instead and requests a car.",
     "The shuttle arrives two minutes later. Nick is already in the Uber.",
@@ -47,6 +48,7 @@ export function Research() {
   const ref = useRef(null);
   const personaRef = useRef(null);
   const storyRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const personaInView = useInView(personaRef, { once: true, margin: "-80px" });
   const storyInView = useInView(storyRef, { once: true, margin: "-80px" });
@@ -54,6 +56,10 @@ export function Research() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const openLightbox = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
   const closeLightbox = useCallback(() => setLightbox(null), []);
+
+  const scrollCarousel = useCallback((dir: 1 | -1) => {
+    scrollRef.current?.scrollBy({ left: dir * 272, behavior: "smooth" });
+  }, []);
 
   return (
     <section id="research" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px" }}>
@@ -93,9 +99,9 @@ export function Research() {
             Understanding the gap between system and experience.
           </h2>
           <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
-            To understand why students avoided the shuttle, we conducted student interviews across the
-            GWU campus — focusing on daily commute behaviors, transit decision moments, and the specific
-            friction points that push students toward rideshares instead of available campus options.
+            We conducted student interviews across the GWU campus, focusing on daily commute
+            behaviors, transit decision moments, and the specific friction points that push students
+            toward rideshares instead of available campus shuttle options.
           </p>
         </motion.div>
 
@@ -106,15 +112,7 @@ export function Research() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginBottom: 24 }}
         >
-          <h3
-            style={{
-              fontSize: "1.05rem",
-              fontWeight: 600,
-              color: "#f2ede8",
-              letterSpacing: "-0.01em",
-              marginBottom: 4,
-            }}
-          >
+          <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
             Key Findings
           </h3>
           <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
@@ -139,15 +137,7 @@ export function Research() {
                 gap: 12,
               }}
             >
-              <span
-                style={{
-                  fontSize: "0.78rem",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  color: ACCENT,
-                }}
-              >
+              <span style={{ fontSize: "0.78rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: ACCENT }}>
                 {f.stat}
               </span>
               <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.65)" }}>
@@ -165,19 +155,11 @@ export function Research() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 24 }}
           >
-            <h3
-              style={{
-                fontSize: "1.05rem",
-                fontWeight: 600,
-                color: "#f2ede8",
-                letterSpacing: "-0.01em",
-                marginBottom: 4,
-              }}
-            >
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Persona
             </h3>
             <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
-              A tool for keeping design decisions grounded in real student behavior.
+              A design tool grounded in real student behavior and commute patterns.
             </p>
           </motion.div>
 
@@ -185,9 +167,7 @@ export function Research() {
             initial={{ opacity: 0, y: 28 }}
             animate={personaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="grid md:grid-cols-2"
             style={{
-              gap: 32,
               padding: "40px 36px",
               borderRadius: 20,
               border: "1px solid rgba(255,255,255,0.06)",
@@ -195,89 +175,87 @@ export function Research() {
               marginBottom: 96,
             }}
           >
-            {/* Image */}
-            <div style={{ display: "flex", flexDirection: "column" as const, gap: 16 }}>
-              <div
-                style={{
-                  borderRadius: 16,
-                  overflow: "hidden",
-                  cursor: "zoom-in",
-                  position: "relative",
-                }}
-                onClick={() => openLightbox("/gwride/persona.png", "GW Ride user persona — Gabriella Torres")}
-              >
-                <img
-                  src="/gwride/persona.png"
-                  alt="User persona — Gabriella Torres"
-                  style={{
-                    width: "100%",
-                    objectFit: "contain",
-                    borderRadius: 16,
-                    transition: "transform 300ms ease",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.transform = "scale(1.02)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.transform = "scale(1)")}
-                />
-              </div>
-              <p className="caption" style={{ fontSize: "0.78rem", color: "rgba(242,237,232,0.4)", textAlign: "center" as const }}>
-                Click to expand — user persona
-              </p>
-            </div>
+            <div className="grid md:grid-cols-2" style={{ gap: 40 }}>
+              {/* Left — identity */}
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 28 }}>
+                <div>
+                  <p style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 12, fontWeight: 500 }}>
+                    Primary Persona
+                  </p>
+                  <h4 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 6 }}>
+                    Cameron Jones
+                  </h4>
+                  <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.5)", marginBottom: 20 }}>
+                    Age 19 · Freshman · Exercise Science + Fine Arts
+                  </p>
+                  <p style={{ fontSize: "0.93rem", lineHeight: 1.75, color: "rgba(242,237,232,0.6)" }}>
+                    Cameron is a first-year student living on the Mount Vernon Campus. Coming from
+                    a suburban area with limited public transit experience, navigating GWU's two
+                    campuses feels overwhelming. They rely on the Vex shuttle daily to get between
+                    Corcoran and Milken — but crowded buses, unpredictable delays, and limited stop
+                    coverage make every commute feel like a gamble.
+                  </p>
+                </div>
 
-            {/* Info */}
-            <div style={{ display: "flex", flexDirection: "column" as const, gap: 28 }}>
-              <div>
-                <p style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 8, fontWeight: 500 }}>
-                  Meet the User
-                </p>
-                <h4 style={{ fontSize: "1.4rem", fontWeight: 700, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
-                  Gabriella Torres
-                </h4>
-                <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.5)" }}>
-                  Age 20 · Sophomore · Political Science
-                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                  {[
+                    { label: "Location", items: ["Mount Vernon Campus"] },
+                    { label: "Daily Route", items: ["Corcoran ↔ Milken", "via Vex shuttle"] },
+                  ].map(({ label, items }) => (
+                    <div key={label}>
+                      <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(242,237,232,0.3)", marginBottom: 8, fontWeight: 500 }}>
+                        {label}
+                      </p>
+                      {items.map((item) => (
+                        <p key={item} style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.65)", lineHeight: 1.5 }}>{item}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.6)" }}>
-                Gabriella commutes between Wilson Hall and Foggy Bottom every day. She relies on campus
-                transit to get to classes on time, but constantly deals with missed shuttles and unclear
-                schedules that leave her defaulting to expensive rideshares.
-              </p>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+              {/* Right — structured attributes */}
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 24 }}>
                 {[
                   {
                     label: "Goals",
-                    items: ["Reliable class arrival", "Predictable commute times", "Avoid rideshare costs"],
+                    items: [
+                      "Get between classes quickly without long walks",
+                      "Find food nearby between class sessions",
+                      "Avoid the stress of missed or overcrowded shuttles",
+                    ],
                   },
                   {
                     label: "Frustrations",
-                    items: ["Unclear shuttle schedules", "Confusing route maps", "Inaccurate ETAs"],
+                    items: [
+                      "15-minute walks between Milken and Corcoran",
+                      "No time for lunch between back-to-back classes",
+                      "Vex crowding and unpredictable wait times",
+                      "Delays worsen significantly in poor weather",
+                    ],
                   },
-                ].map(({ label, items }) => (
+                  {
+                    label: "Design Implication",
+                    items: [
+                      "Real-time Vex tracking + clear ETA would let Cameron confidently plan each leg of their day — reducing the anxiety that currently makes every commute feel uncertain.",
+                    ],
+                    accent: true,
+                  },
+                ].map(({ label, items, accent }) => (
                   <div key={label}>
-                    <p style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(242,237,232,0.35)", marginBottom: 10, fontWeight: 500 }}>
+                    <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.09em", color: accent ? ACCENT : "rgba(242,237,232,0.3)", marginBottom: 10, fontWeight: 500 }}>
                       {label}
                     </p>
-                    <div style={{ display: "flex", flexDirection: "column" as const, gap: 6 }}>
+                    <div style={{ display: "flex", flexDirection: "column" as const, gap: 7 }}>
                       {items.map((item) => (
-                        <div key={item} className="flex items-start" style={{ gap: 8 }}>
-                          <span style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: ACCENT, flexShrink: 0, marginTop: 7 }} />
-                          <span style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.6)", lineHeight: 1.5 }}>{item}</span>
+                        <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                          <span style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: accent ? ACCENT : "rgba(242,237,232,0.3)", flexShrink: 0, marginTop: 8 }} />
+                          <span style={{ fontSize: "0.88rem", color: accent ? "rgba(242,237,232,0.75)" : "rgba(242,237,232,0.6)", lineHeight: 1.6 }}>{item}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 ))}
-              </div>
-
-              <div style={{ paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <p style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(242,237,232,0.35)", marginBottom: 8, fontWeight: 500 }}>
-                  Core Need
-                </p>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.6)", fontStyle: "italic" }}>
-                  "I just need to know if it's worth waiting — or if I should call a car right now."
-                </p>
               </div>
             </div>
           </motion.div>
@@ -291,81 +269,149 @@ export function Research() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 24 }}
           >
-            <h3
-              style={{
-                fontSize: "1.05rem",
-                fontWeight: 600,
-                color: "#f2ede8",
-                letterSpacing: "-0.01em",
-                marginBottom: 4,
-              }}
-            >
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Storyboard
             </h3>
             <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
-              Following Nick, a GWU freshman who misses his shuttle due to lack of real-time information
-              — and how GW Ride changes that moment.
+              Following Nick — a GWU freshman who misses his shuttle due to lack of real-time
+              information, and how GW Ride changes that moment.
             </p>
           </motion.div>
 
-          {/* Horizontal scroll rail */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={storyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              overflowX: "auto",
-              paddingBottom: 20,
-              scrollbarWidth: "none" as const,
-              msOverflowStyle: "none",
-            }}
-            className="ideation-carousel"
+            style={{ position: "relative" }}
           >
-            <div style={{ display: "flex", gap: 16, minWidth: "max-content" }}>
-              {STORYBOARD_FRAMES.map((frame, i) => (
-                <div
-                  key={frame.src}
-                  style={{ width: 240, flexShrink: 0, display: "flex", flexDirection: "column" as const, gap: 10, cursor: "zoom-in" }}
-                  onClick={() => openLightbox(frame.src, `Storyboard frame ${i + 1}`)}
-                >
+            {/* Right fade gradient */}
+            <div
+              style={{
+                position: "absolute",
+                right: 0,
+                top: 0,
+                bottom: 24,
+                width: 72,
+                background: "linear-gradient(to left, #09090b, transparent)",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Scrollable rail */}
+            <div
+              ref={scrollRef}
+              style={{
+                overflowX: "auto",
+                paddingBottom: 24,
+                scrollbarWidth: "none" as const,
+                msOverflowStyle: "none",
+              }}
+              className="ideation-carousel"
+            >
+              <div style={{ display: "flex", gap: 16, minWidth: "max-content", paddingRight: 72 }}>
+                {STORYBOARD_FRAMES.map((frame, i) => (
                   <div
+                    key={frame.src}
                     style={{
-                      borderRadius: 12,
-                      overflow: "hidden",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                      backgroundColor: "#111113",
+                      width: 256,
+                      flexShrink: 0,
+                      display: "flex",
+                      flexDirection: "column" as const,
+                      gap: 10,
+                      cursor: "zoom-in",
                     }}
+                    onClick={() => openLightbox(frame.src, `Storyboard frame ${i + 1}`)}
                   >
-                    <img
-                      src={frame.src}
-                      alt={`Storyboard frame ${i + 1}`}
+                    <div
                       style={{
-                        width: "100%",
-                        aspectRatio: "4/3",
-                        objectFit: "contain",
-                        display: "block",
-                        transition: "transform 300ms ease",
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        border: "1px solid rgba(255,255,255,0.06)",
                         backgroundColor: "#1a1a1e",
                       }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.transform = "scale(1.03)")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.transform = "scale(1)")}
-                    />
+                    >
+                      <img
+                        src={frame.src}
+                        alt={`Storyboard frame ${i + 1}`}
+                        style={{
+                          width: "100%",
+                          aspectRatio: "4/3",
+                          objectFit: "contain",
+                          display: "block",
+                          backgroundColor: "#1a1a1e",
+                        }}
+                      />
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>
+                      <span style={{ fontSize: "0.7rem", color: ACCENT, fontWeight: 500 }}>
+                        Frame {i + 1}
+                      </span>
+                      <p style={{ fontSize: "0.78rem", color: "rgba(242,237,232,0.5)", lineHeight: 1.5 }}>
+                        {frame.caption}
+                      </p>
+                    </div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>
-                    <span style={{ fontSize: "0.7rem", color: ACCENT, fontWeight: 500 }}>
-                      Frame {i + 1}
-                    </span>
-                    <p style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.5)", lineHeight: 1.5 }}>
-                      {frame.caption}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Arrow controls */}
+            <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
+              <button
+                onClick={() => scrollCarousel(-1)}
+                aria-label="Scroll storyboard left"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#111113",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  transition: "border-color 200ms ease, background-color 200ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = ACCENT;
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "#111113";
+                }}
+              >
+                <ChevronLeft size={16} color="rgba(242,237,232,0.6)" />
+              </button>
+              <button
+                onClick={() => scrollCarousel(1)}
+                aria-label="Scroll storyboard right"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#111113",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  transition: "border-color 200ms ease, background-color 200ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = ACCENT;
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "#111113";
+                }}
+              >
+                <ChevronRight size={16} color="rgba(242,237,232,0.6)" />
+              </button>
             </div>
           </motion.div>
-          <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.25)", marginTop: 8 }}>
-            ← scroll to see all frames
-          </p>
         </div>
       </div>
 

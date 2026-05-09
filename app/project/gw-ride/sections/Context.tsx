@@ -208,7 +208,7 @@ export function Context() {
           transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginTop: 56, display: "flex", justifyContent: "center" }}
         >
-          <div style={{ position: "relative", display: "inline-flex", gap: 20 }}>
+          <div style={{ position: "relative", display: "inline-flex", gap: 28 }}>
             {["/gwride/final-main.png", "/gwride/final-main-2.png", "/gwride/final-main-3.png"].map(
               (src, i) => (
                 <img
@@ -216,11 +216,11 @@ export function Context() {
                   src={src}
                   alt={`GW Ride screen ${i + 1}`}
                   style={{
-                    width: "clamp(100px, 18vw, 180px)",
+                    width: "clamp(180px, 28vw, 300px)",
                     objectFit: "contain",
-                    borderRadius: 20,
-                    filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.5))",
-                    transform: i === 1 ? "translateY(-12px)" : "none",
+                    borderRadius: 24,
+                    filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.55))",
+                    transform: i === 1 ? "translateY(-16px)" : "none",
                   }}
                 />
               )

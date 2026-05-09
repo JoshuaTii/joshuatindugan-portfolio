@@ -10,7 +10,6 @@ export function Hero() {
       className="relative overflow-hidden !pt-0 !pb-0"
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
-      {/* Background glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -93,7 +92,6 @@ export function Hero() {
               route visibility, and stop information — so navigating campus feels confident and low-stress.
             </motion.p>
 
-            {/* Meta row */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -103,8 +101,8 @@ export function Hero() {
             >
               {[
                 { label: "Role", value: "UX Designer + Researcher" },
-                { label: "Timeline", value: "Spring 2026" },
-                { label: "Platform", value: "Mobile — iOS" },
+                { label: "Timeline", value: "Fall 2024" },
+                { label: "Platform", value: "Mobile" },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col" style={{ gap: 5 }}>
                   <span
@@ -121,78 +119,84 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — hero mockup cluster */}
+          {/* Right — hero mockup cluster with clear visual hierarchy */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 24 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center"
-            style={{ position: "relative", minHeight: 480 }}
+            style={{ position: "relative", height: 560 }}
           >
-            {/* Glow behind cluster */}
+            {/* Glow */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(96,165,250,0.12) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 70% 70% at 50% 40%, rgba(96,165,250,0.12) 0%, transparent 70%)",
                 filter: "blur(40px)",
               }}
             />
 
-            {/* Back screen — slightly left */}
-            <motion.img
-              src="/gwride/final-main.png"
-              alt="GW Ride main tracking screen"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                position: "absolute",
-                left: "0%",
-                top: "50%",
-                transform: "translateY(-50%) rotate(-4deg)",
-                width: "46%",
-                maxWidth: 200,
-                objectFit: "contain",
-                filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.5))",
-                zIndex: 1,
-                borderRadius: 20,
-              }}
-            />
-
-            {/* Front center screen — main */}
-            <img
-              src="/gwride/final-opening.png"
-              alt="GW Ride opening screen"
-              style={{
-                position: "relative",
-                zIndex: 2,
-                width: "54%",
-                maxWidth: 240,
-                objectFit: "contain",
-                filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.6))",
-                borderRadius: 24,
-              }}
-            />
-
-            {/* Right screen */}
+            {/* Right screen — lowest, smallest, back */}
             <motion.img
               src="/gwride/final-explore.png"
               alt="GW Ride explore screen"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 0.65, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 position: "absolute",
-                right: "0%",
-                top: "50%",
-                transform: "translateY(-50%) rotate(4deg)",
-                width: "46%",
-                maxWidth: 200,
+                right: "2%",
+                top: "45%",
+                width: "38%",
+                maxWidth: 175,
                 objectFit: "contain",
-                filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.5))",
+                borderRadius: 22,
+                filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.45))",
+                transform: "rotate(4deg)",
                 zIndex: 1,
-                borderRadius: 20,
+              }}
+            />
+
+            {/* Left screen — mid-height, medium */}
+            <motion.img
+              src="/gwride/final-main.png"
+              alt="GW Ride main tracking screen"
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 0.82, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: "absolute",
+                left: "2%",
+                top: "22%",
+                width: "44%",
+                maxWidth: 205,
+                objectFit: "contain",
+                borderRadius: 22,
+                filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))",
+                transform: "rotate(-4deg)",
+                zIndex: 2,
+              }}
+            />
+
+            {/* Center screen — top, largest, front */}
+            <motion.img
+              src="/gwride/final-opening.png"
+              alt="GW Ride opening screen"
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "2%",
+                transform: "translateX(-50%)",
+                width: "54%",
+                maxWidth: 250,
+                objectFit: "contain",
+                borderRadius: 26,
+                filter: "drop-shadow(0 32px 56px rgba(0,0,0,0.65))",
+                zIndex: 3,
               }}
             />
           </motion.div>

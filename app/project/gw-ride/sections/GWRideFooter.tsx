@@ -21,7 +21,7 @@ export function GWRideFooter() {
             <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
               A UX case study by Joshua Tindugan.
               <br />
-              George Washington University, 2025–2026.
+              George Washington University, 2024.
             </p>
           </div>
 
