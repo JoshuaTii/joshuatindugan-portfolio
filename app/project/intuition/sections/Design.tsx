@@ -12,9 +12,9 @@ const SKETCH_IMAGES = [
 ];
 
 const LOFI_IMAGES = [
-  { src: "/intuition/lofi/main-page.png",         alt: "Lo-fi — Main page" },
-  { src: "/intuition/lofi/profile.png",           alt: "Lo-fi — Profile" },
-  { src: "/intuition/lofi/social.png",            alt: "Lo-fi — Social feed" },
+  { src: "/intuition/lofi/main-page.png",           alt: "Lo-fi — Main page" },
+  { src: "/intuition/lofi/Profile.png",             alt: "Lo-fi — Profile" },
+  { src: "/intuition/lofi/Social.png",              alt: "Lo-fi — Social feed" },
   { src: "/intuition/lofi/filling-scholarship.png", alt: "Lo-fi — Filling scholarship" },
 ];
 

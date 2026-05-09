@@ -5,11 +5,11 @@ import { motion, useInView } from "framer-motion";
 const ACCENT = "#f59e0b";
 
 const META_CARDS = [
-  { label: "Role",        items: ["UI/UX Designer", "Prototyper"] },
-  { label: "Timeline",   items: ["8 Weeks · 2023"] },
-  { label: "Team",       items: ["Collaborative Student Project"] },
-  { label: "Tools",      items: ["Figma", "FigJam", "Notion"] },
-  { label: "Deliverables", items: ["Web App Prototype", "Research · Wireframes · Hi-Fi"] },
+  { label: "Role",         items: ["UX Designer"] },
+  { label: "Timeline",     items: ["Fall 2024"] },
+  { label: "Team",         items: ["Collaborative Student Project"] },
+  { label: "Tools",        items: ["Figma", "Illustrator", "Photoshop"] },
+  { label: "Deliverables", items: ["Website Prototype", "Hi-Fi"] },
 ];
 
 export function Overview() {

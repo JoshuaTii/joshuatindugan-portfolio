@@ -101,9 +101,9 @@ export function Hero() {
               style={{ gap: "16px 36px" }}
             >
               {[
-                { label: "Role",     value: "UI/UX Designer · Prototyper" },
-                { label: "Timeline", value: "8 Weeks · 2023" },
-                { label: "Platform", value: "Web App" },
+                { label: "Role",     value: "UX Designer" },
+                { label: "Timeline", value: "Fall 2024" },
+                { label: "Platform", value: "Website" },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col" style={{ gap: 5 }}>
                   <span
@@ -120,84 +120,32 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — mockup cluster */}
+          {/* Right — InTuition logo */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center"
-            style={{ position: "relative", height: 560 }}
+            style={{ position: "relative" }}
           >
             {/* Glow */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 70% at 50% 40%, rgba(245,158,11,0.1) 0%, transparent 70%)",
-                filter: "blur(40px)",
+                  "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(245,158,11,0.08) 0%, transparent 70%)",
+                filter: "blur(60px)",
               }}
             />
-
-            {/* Back-right screen */}
-            <motion.img
-              src="/intuition/final/Explore.png"
-              alt="InTuition explore screen"
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 0.6, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            <img
+              src="/intuition/logo.png"
+              alt="InTuition logo"
               style={{
-                position: "absolute",
-                right: "4%",
-                top: "44%",
-                width: "42%",
-                maxWidth: 210,
+                maxWidth: "100%",
+                width: 400,
                 objectFit: "contain",
-                filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.45))",
-                borderRadius: 12,
-                transform: "rotate(4deg)",
+                position: "relative",
                 zIndex: 1,
-              }}
-            />
-
-            {/* Back-left screen */}
-            <motion.img
-              src="/intuition/final/Main-1.png"
-              alt="InTuition main screen"
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 0.75, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                position: "absolute",
-                left: "0%",
-                top: "28%",
-                width: "46%",
-                maxWidth: 230,
-                objectFit: "contain",
-                filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))",
-                borderRadius: 12,
-                transform: "rotate(-4deg)",
-                zIndex: 2,
-              }}
-            />
-
-            {/* Center — main mockup */}
-            <motion.img
-              src="/intuition/mockup.png"
-              alt="InTuition mockup"
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "2%",
-                transform: "translateX(-50%)",
-                width: "58%",
-                maxWidth: 320,
-                objectFit: "contain",
-                filter: "drop-shadow(0 32px 56px rgba(0,0,0,0.65))",
-                borderRadius: 12,
-                zIndex: 3,
               }}
             />
           </motion.div>

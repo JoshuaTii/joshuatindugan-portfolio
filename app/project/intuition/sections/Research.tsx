@@ -11,6 +11,13 @@ const WORKSHOP_PHOTOS = [
   "/intuition/workshop/photo-4.png",
 ];
 
+const USER_TESTING_OBSERVATIONS = [
+  "We need to narrow down what the intention of the social page is",
+  "Color choices need to make the website feel inviting",
+  "Need to shorten some sections of text",
+  "Could add in what it would look like to view another user's profile",
+];
+
 const INSIGHTS = [
   {
     number: "01",
@@ -121,70 +128,126 @@ export function Research() {
           </div>
         </motion.div>
 
-        {/* User persona + feedback */}
-        <div className="grid md:grid-cols-2" style={{ gap: "40px 60px", marginBottom: 80 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        {/* User Persona — full width */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginBottom: 48 }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "rgba(242,237,232,0.35)",
+              marginBottom: 16,
+            }}
           >
-            <p
-              style={{
-                fontSize: "0.75rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: "rgba(242,237,232,0.35)",
-                marginBottom: 16,
-              }}
-            >
-              User Persona
-            </p>
-            <div
-              onClick={() => setLightboxSrc("/intuition/persona.png")}
-              style={{ borderRadius: 16, overflow: "hidden", cursor: "zoom-in", border: "1px solid rgba(255,255,255,0.06)" }}
-            >
-              <img
-                src="/intuition/persona.png"
-                alt="User persona"
-                style={{ width: "100%", display: "block" }}
-              />
-            </div>
-          </motion.div>
+            User Persona
+          </p>
+          <div
+            onClick={() => setLightboxSrc("/intuition/persona.png")}
+            style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              cursor: "zoom-in",
+              border: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <img
+              src="/intuition/persona.png"
+              alt="User persona"
+              style={{ width: "100%", display: "block" }}
+            />
+          </div>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        {/* User Feedback — live text below persona */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginBottom: 80 }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "rgba(242,237,232,0.35)",
+              marginBottom: 16,
+            }}
+          >
+            User Testing Observations
+          </p>
+          <div
+            style={{
+              padding: "32px 36px",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.06)",
+              backgroundColor: "#111113",
+            }}
           >
             <p
               style={{
-                fontSize: "0.75rem",
+                fontSize: "0.8rem",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
-                color: "rgba(242,237,232,0.35)",
-                marginBottom: 16,
+                color: ACCENT,
+                fontWeight: 600,
+                marginBottom: 20,
               }}
             >
-              User Feedback
+              From prototype testing sessions
             </p>
-            <div
-              onClick={() => setLightboxSrc("/intuition/feedback/Frame.png")}
-              style={{ borderRadius: 16, overflow: "hidden", cursor: "zoom-in", border: "1px solid rgba(255,255,255,0.06)" }}
+            <ul
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+                margin: 0,
+                paddingLeft: 0,
+                listStyle: "none",
+              }}
             >
-              <img
-                src="/intuition/feedback/Frame.png"
-                alt="User feedback synthesis"
-                style={{ width: "100%", display: "block" }}
-              />
-            </div>
-          </motion.div>
-        </div>
+              {USER_TESTING_OBSERVATIONS.map((obs, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.25 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: 14,
+                    fontSize: "0.95rem",
+                    lineHeight: 1.6,
+                    color: "rgba(242,237,232,0.65)",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: "50%",
+                      backgroundColor: ACCENT,
+                      marginTop: 8,
+                      flexShrink: 0,
+                    }}
+                  />
+                  {obs}
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
 
         {/* Key insights */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontSize: "0.75rem",
             textTransform: "uppercase",
@@ -202,7 +265,7 @@ export function Research() {
               key={number}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.35 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 padding: "28px 24px",
                 borderRadius: 16,

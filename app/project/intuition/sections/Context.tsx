@@ -223,9 +223,7 @@ export function Context() {
           }}
         >
           <span style={{ color: "rgba(245,158,11,0.6)", fontWeight: 500 }}>Scope: </span>
-          A collaborative UI/UX student project focused on designing a website prototype that
-          improves access to scholarships and simplifies the application process. Eight weeks from
-          problem discovery through high-fidelity prototype delivery.
+          Two months from problem discovery through high-fidelity prototype delivery.
         </motion.p>
       </div>
     </section>

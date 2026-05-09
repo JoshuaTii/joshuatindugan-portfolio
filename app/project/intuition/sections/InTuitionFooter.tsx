@@ -21,7 +21,7 @@ export function InTuitionFooter() {
             <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
               A UX case study by Joshua Tindugan.
               <br />
-              Collaborative student project, 2023.
+              Collaborative student project, 2024.
             </p>
           </div>
 

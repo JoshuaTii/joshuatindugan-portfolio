@@ -3,6 +3,7 @@ import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
 import { Research } from "./sections/Research";
+import { Features } from "./sections/Features";
 import { Design } from "./sections/Design";
 import { Final } from "./sections/Final";
 import { InTuitionFooter } from "./sections/InTuitionFooter";
@@ -21,6 +22,7 @@ export default function InTuitionPage() {
       <Overview />
       <Context />
       <Research />
+      <Features />
       <Design />
       <Final />
       <InTuitionFooter />
