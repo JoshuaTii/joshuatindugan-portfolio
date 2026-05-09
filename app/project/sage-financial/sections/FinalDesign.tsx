@@ -24,8 +24,10 @@ const COLOR_SWATCHES = [
 
 export function FinalDesign() {
   const ref = useRef(null);
+  const protoRef = useRef(null);
   const guidelinesRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const protoInView = useInView(protoRef, { once: true, margin: "-80px" });
   const guidelinesInView = useInView(guidelinesRef, { once: true, margin: "-80px" });
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
@@ -183,6 +185,198 @@ export function FinalDesign() {
         </div>
 
         {/* â”€â”€ Visual Guidelines â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ── Interactive Prototype ── */}
+        <div ref={protoRef} style={{ marginBottom: 120 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={protoInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginBottom: 24 }}
+          >
+            <p className="kicker">Interactive Prototype</p>
+            <div
+              className="flex flex-col md:flex-row md:items-end md:justify-between"
+              style={{ gap: "12px 64px" }}
+            >
+              <h2
+                style={{
+                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  color: "#f2ede8",
+                  maxWidth: 480,
+                }}
+              >
+                Try it yourself.
+              </h2>
+              <p
+                style={{
+                  fontSize: "0.9rem",
+                  lineHeight: 1.65,
+                  color: "rgba(242,237,232,0.45)",
+                  maxWidth: 400,
+                  flexShrink: 0,
+                }}
+              >
+                Explore the SAGE prototype directly in the page. This interactive demo shows the
+                core product flow, including onboarding, learning, resource discovery, financial
+                support, and transparency-focused decision moments.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={protoInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {/* Desktop/tablet iframe */}
+            <div
+              className="hidden md:block"
+              style={{
+                width: "100%",
+                borderRadius: 20,
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.06)",
+                backgroundColor: "#111113",
+              }}
+            >
+              <iframe
+                src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FCat48J4rpvGNeh3lSnIhGs%2FSAGE%3Fnode-id%3D1-2724%26p%3Df%26viewport%3D354%252C585%252C0.04%26t%3DfdrABSxSpw5dH5ZJ-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D1%253A179%26page-id%3D0%253A1"
+                title="SAGE Figma Prototype"
+                loading="lazy"
+                allowFullScreen
+                style={{
+                  width: "100%",
+                  height: "clamp(650px, 60vw, 820px)",
+                  border: 0,
+                  display: "block",
+                }}
+              />
+            </div>
+
+            {/* Mobile fallback card */}
+            <div
+              className="md:hidden"
+              style={{
+                padding: "48px 32px",
+                borderRadius: 20,
+                border: "1px solid rgba(255,255,255,0.06)",
+                backgroundColor: "#111113",
+                display: "flex",
+                flexDirection: "column" as const,
+                alignItems: "center",
+                gap: 20,
+                textAlign: "center" as const,
+              }}
+            >
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 12,
+                  backgroundColor: "rgba(155,233,49,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M4 10h12M10 4l6 6-6 6"
+                    stroke="#9BE931"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#f2ede8", marginBottom: 8 }}>
+                  Best viewed on desktop
+                </p>
+                <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.45)", lineHeight: 1.6 }}>
+                  Open the prototype in Figma to explore the full interactive flow on your device.
+                </p>
+              </div>
+              <a
+                href="https://www.figma.com/proto/Cat48J4rpvGNeh3lSnIhGs/SAGE?node-id=1-2724&p=f&viewport=354%2C585%2C0.04&t=fdrABSxSpw5dH5ZJ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A179&page-id=0%3A1"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 24px",
+                  borderRadius: 10,
+                  border: "1px solid rgba(155,233,49,0.3)",
+                  backgroundColor: "rgba(155,233,49,0.08)",
+                  color: "#9BE931",
+                  fontSize: "0.88rem",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "background-color 200ms ease, border-color 200ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.14)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.08)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.3)";
+                }}
+              >
+                Open prototype in Figma
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Below-iframe fallback note + CTA (desktop) */}
+            <div
+              className="hidden md:flex"
+              style={{ marginTop: 20, flexDirection: "column" as const, alignItems: "center", gap: 12 }}
+            >
+              <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.28)", textAlign: "center" as const }}>
+                If the prototype does not load, open it directly in Figma.
+              </p>
+              <a
+                href="https://www.figma.com/proto/Cat48J4rpvGNeh3lSnIhGs/SAGE?node-id=1-2724&p=f&viewport=354%2C585%2C0.04&t=fdrABSxSpw5dH5ZJ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A179&page-id=0%3A1"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "10px 20px",
+                  borderRadius: 9,
+                  border: "1px solid rgba(155,233,49,0.25)",
+                  backgroundColor: "rgba(155,233,49,0.07)",
+                  color: "#9BE931",
+                  fontSize: "0.82rem",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "background-color 200ms ease, border-color 200ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.13)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.45)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.07)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.25)";
+                }}
+              >
+                Open prototype in Figma
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
         <motion.div
           ref={guidelinesRef}
           initial={{ opacity: 0, y: 32 }}
