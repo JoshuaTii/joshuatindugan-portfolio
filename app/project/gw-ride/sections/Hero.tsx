@@ -188,7 +188,7 @@ export function Hero() {
               transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 position: "absolute",
-                left: "50%",
+                left: "46%",
                 top: "2%",
                 transform: "translateX(-50%)",
                 width: "54%",

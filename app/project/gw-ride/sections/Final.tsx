@@ -13,15 +13,10 @@ const HERO_SCREENS = [
   "/gwride/mockup-5.png",
 ];
 
-const SUPPORTING_SCREENS = [
-  "/gwride/mockup-onboarding.png",
-  "/gwride/mockup-onboarding-1.png",
-  "/gwride/mockup-onboarding-2.png",
-  "/gwride/mockup-onboarding-3.png",
-  "/gwride/mockup-onboarding-4.png",
-  "/gwride/mockup-home-4.png",
-  "/gwride/mockup-explore-2.png",
-];
+const FINAL_ORDER_SCREENS = [
+  "a", "b", "c", "d", "e", "f",
+  "g", "h", "i", "j", "k", "l",
+].map((letter) => `/gwride/final-order/${letter}.png`);
 
 const COLORS = [
   { hex: "#AA9868", name: "GWU Buff", usage: "Primary brand · Accent" },
@@ -152,23 +147,9 @@ export function Final() {
           Click any screen to expand
         </p>
 
-        {/* ── Supporting screens ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 16 }}
-        >
-          <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
-            Additional Screens
-          </h3>
-          <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
-            Onboarding flow, home variants, and explore views.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 12, marginBottom: 96 }}>
-          {SUPPORTING_SCREENS.map((src, i) => (
+        {/* ── Final design order gallery ── */}
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 20, marginBottom: 96 }}>
+          {FINAL_ORDER_SCREENS.map((src: string, i: number) => (
             <motion.div
               key={src}
               initial={{ opacity: 0, y: 20 }}
@@ -176,13 +157,13 @@ export function Final() {
               transition={{ duration: 0.6, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 cursor: "zoom-in",
-                borderRadius: 12,
+                borderRadius: 14,
                 overflow: "hidden",
                 transition: "transform 300ms ease",
               }}
-              onClick={() => openLightbox(src, `Final design — additional screen ${i + 1}`)}
+              onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px) scale(1.01)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "none";
@@ -190,12 +171,12 @@ export function Final() {
             >
               <img
                 src={src}
-                alt={`Final design — additional screen ${i + 1}`}
+                alt={`Final design — screen ${i + 1}`}
                 style={{
                   width: "100%",
                   objectFit: "contain",
                   display: "block",
-                  maxHeight: 380,
+                  maxHeight: 520,
                   backgroundColor: "#111113",
                 }}
               />
@@ -274,12 +255,19 @@ export function Final() {
                     lineHeight: 1,
                     letterSpacing: "-0.03em",
                     marginBottom: 12,
-                    fontFamily: "serif",
+                    fontFamily: '"GW Liberated", Georgia, serif',
                   }}
                 >
                   GW Liberated
                 </div>
-                <div style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
+                <div
+                  style={{
+                    fontSize: "0.85rem",
+                    color: "rgba(242,237,232,0.4)",
+                    lineHeight: 1.5,
+                    fontFamily: '"GW Liberated", Georgia, serif',
+                  }}
+                >
                   A B C D E F G H I J K<br />
                   1 2 3 4 5 6 7 8 9 0
                 </div>
