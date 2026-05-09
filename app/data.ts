@@ -23,8 +23,8 @@ export const projects = [
   {
     slug: "sage",
     title: "Sage Financial Access",
-    period: "Year '25–'26",
-    tags: ["UI/UX", "Branding"],
+    period: "Fall 2025 and Spring 2026",
+    tags: ["UI/UX", "Branding", "UX Research", "Accessibility"],
     category: "UI/UX Design",
     description:
       "An equity-centered, community-driven banking platform addressing financial barriers in underserved D.C. neighborhoods through trust, transparency, and education.",
@@ -45,8 +45,8 @@ export const projects = [
   {
     slug: "intuition",
     title: "InTuition",
-    period: "Fall '24",
-    tags: ["Product Design"],
+    period: "Fall 2024",
+    tags: ["Product Design", "UI/UX"],
     category: "UI/UX Design",
     description:
       "A scholarship discovery platform using smart filtering and unified applications to simplify how students find and apply for funding.",
@@ -67,8 +67,8 @@ export const projects = [
   {
     slug: "gwride",
     title: "GW Ride",
-    period: "Spring '24",
-    tags: ["UX", "Transport"],
+    period: "Spring 2024",
+    tags: ["UI/UX", "Transport"],
     category: "UI/UX Design",
     description:
       "A mobile app improving campus transportation at George Washington University with real-time tracking, arrival estimates, and crowd-level insights.",
@@ -89,14 +89,14 @@ export const projects = [
   {
     slug: "photography",
     title: "Photography Archive",
-    period: "'24–Present",
+    period: "2023–Present",
     tags: ["Photography"],
     category: "Photography",
     description:
       "A visual archive of lifestyle, editorial, and brand photography — studying color, composition, and perspective beyond the technical.",
     overview:
       "An ongoing visual practice studying color, layout, and perspectives beyond technical camera settings. The archive spans lifestyle, editorial, product, and brand work shot across Washington D.C.",
-    scope: "Personal ongoing visual archive, 2024 to present.",
+    scope: "Personal ongoing visual archive, 2023 to present.",
     features: [
       "Lifestyle and street photography across Washington D.C.",
       "Editorial and brand photography for local clients",

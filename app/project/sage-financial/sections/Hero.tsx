@@ -93,7 +93,7 @@ export function Hero() {
             >
               {[
                 { label: "Role", value: "UX Designer + Researcher" },
-                { label: "Timeline", value: "Aug 2025 â€“ May 2026" },
+                { label: "Timeline", value: "Fall 2025 – Spring 2026" },
                 { label: "Platform", value: "iOS / Android" },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col" style={{ gap: 5 }}>

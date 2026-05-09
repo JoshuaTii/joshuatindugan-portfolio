@@ -11,7 +11,7 @@ const META_CARDS = [
   },
   {
     label: "Timeline",
-    items: ["Fall 2024"],
+    items: ["Spring 2024"],
   },
   {
     label: "Team",
