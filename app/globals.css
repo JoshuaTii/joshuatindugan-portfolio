@@ -132,10 +132,24 @@ section {
 }
 
 .ideation-carousel {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(122, 182, 136, 0.45) rgba(255, 255, 255, 0.06);
 }
 
 .ideation-carousel::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+
+.ideation-carousel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+
+.ideation-carousel::-webkit-scrollbar-thumb {
+  background: rgba(122, 182, 136, 0.45);
+  border-radius: 2px;
+}
+
+.ideation-carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(122, 182, 136, 0.7);
 }

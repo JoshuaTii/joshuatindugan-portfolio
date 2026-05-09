@@ -1,5 +1,5 @@
 ﻿"use client";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 
 const METHODS = [
@@ -20,6 +20,31 @@ const METHODS = [
 export function Research() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active: false, startX: 0, scrollLeft: 0 });
+  const [grabbing, setGrabbing] = useState(false);
+
+  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    drag.current = { active: true, startX: e.clientX, scrollLeft: el.scrollLeft };
+    el.setPointerCapture(e.pointerId);
+    setGrabbing(true);
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!drag.current.active) return;
+    const el = carouselRef.current;
+    if (!el) return;
+    const delta = e.clientX - drag.current.startX;
+    el.scrollLeft = drag.current.scrollLeft - delta;
+  }, []);
+
+  const onPointerUp = useCallback(() => {
+    drag.current.active = false;
+    setGrabbing(false);
+  }, []);
 
   return (
     <section id="research" className="!pt-[120px] !pb-[140px]">
@@ -174,6 +199,12 @@ export function Research() {
           {/* Carousel wrapper */}
           <div style={{ position: "relative" as const }}>
             <div
+              ref={carouselRef}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              onPointerLeave={onPointerUp}
+              onPointerCancel={onPointerUp}
               style={{
                 display: "flex",
                 gap: 20,
@@ -181,7 +212,10 @@ export function Research() {
                 scrollSnapType: "x mandatory",
                 WebkitOverflowScrolling: "touch",
                 paddingBottom: 16,
-                cursor: "grab",
+                cursor: grabbing ? "grabbing" : "grab",
+                userSelect: "none",
+                touchAction: "pan-y",
+                overscrollBehaviorInline: "contain",
               }}
               className="ideation-carousel"
             >
@@ -201,6 +235,7 @@ export function Research() {
                   <img
                     src={`/sage/ideation-0${n}.png`}
                     alt={`Early ideation sketch ${n}`}
+                    draggable={false}
                     style={{
                       width: "100%",
                       height: "auto",
