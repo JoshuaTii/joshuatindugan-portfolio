@@ -107,22 +107,17 @@ export function Final() {
         </motion.div>
 
         {/* ── Hero screens — 5 large mockups ── */}
-        <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 16, marginBottom: 16 }}>
+        <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 20, marginBottom: 16 }}>
           {HERO_SCREENS.map((src, i) => (
             <motion.div
               key={src}
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.65, delay: 0.07 * i, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                cursor: "zoom-in",
-                borderRadius: 14,
-                overflow: "hidden",
-                transition: "transform 300ms ease",
-              }}
+              style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
               onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-5px) scale(1.02)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "none";
@@ -135,32 +130,29 @@ export function Final() {
                   width: "100%",
                   objectFit: "contain",
                   display: "block",
-                  maxHeight: 600,
-                  backgroundColor: "#111113",
+                  maxHeight: 680,
                 }}
               />
             </motion.div>
           ))}
         </div>
 
-        <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.25)", marginBottom: 56, textAlign: "center" as const }}>
+        <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.25)", marginBottom: 72, textAlign: "center" as const }}>
           Click any screen to expand
         </p>
 
-        {/* ── Final design order gallery ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 20, marginBottom: 96 }}>
+        {/* ── Final design order gallery — 4 rows × 3 cols ── */}
+        <div
+          className="grid grid-cols-2 md:grid-cols-3"
+          style={{ columnGap: 40, rowGap: 52, marginBottom: 96 }}
+        >
           {FINAL_ORDER_SCREENS.map((src: string, i: number) => (
             <motion.div
               key={src}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                cursor: "zoom-in",
-                borderRadius: 14,
-                overflow: "hidden",
-                transition: "transform 300ms ease",
-              }}
+              style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
               onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
@@ -176,8 +168,7 @@ export function Final() {
                   width: "100%",
                   objectFit: "contain",
                   display: "block",
-                  maxHeight: 520,
-                  backgroundColor: "#111113",
+                  maxHeight: 400,
                 }}
               />
             </motion.div>
