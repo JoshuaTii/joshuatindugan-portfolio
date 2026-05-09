@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { skills, experience } from "../data";
 
 const springEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -78,13 +77,15 @@ export default function About() {
             </span>
           </div>
 
-          <Link
-            href="/about/cv.pdf"
+          <a
+            href="/documents/Joshua_Tindugan_CV.pdf"
+            download="Joshua_Tindugan_CV.pdf"
+            aria-label="Download Joshua Tindugan CV PDF"
             className="inline-flex items-center gap-2 mt-6 text-sm font-medium transition-colors hover:text-white"
             style={{ color: "var(--muted)" }}
           >
             ↓ Download CV
-          </Link>
+          </a>
         </motion.div>
 
         {/* Services */}

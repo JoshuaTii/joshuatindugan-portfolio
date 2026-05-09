@@ -135,8 +135,9 @@ export function Info() {
           style={{ gap: 16, marginBottom: 80 }}
         >
           <a
-            href="#"
-            download
+            href="/documents/Joshua_Tindugan_Resume.pdf"
+            download="Joshua_Tindugan_Resume.pdf"
+            aria-label="Download Joshua Tindugan resume PDF"
             className="group inline-flex items-center rounded-xl border border-[#4ade80]/25 bg-[#4ade80]/5 text-[#4ade80] text-sm tracking-wide hover:bg-[#4ade80]/12 hover:border-[#4ade80]/50 transition-all duration-300"
             style={{ gap: 10, padding: "14px 24px", minHeight: 52 }}
           >
@@ -144,13 +145,14 @@ export function Info() {
             Download Résumé
           </a>
           <a
-            href="#"
-            download
+            href="/documents/Joshua_Tindugan_CV.pdf"
+            download="Joshua_Tindugan_CV.pdf"
+            aria-label="Download Joshua Tindugan CV PDF"
             className="group inline-flex items-center rounded-xl border border-white/10 bg-white/3 text-white/60 text-sm tracking-wide hover:border-white/20 hover:text-white hover:bg-white/6 transition-all duration-300"
             style={{ gap: 10, padding: "14px 24px", minHeight: 52 }}
           >
             <FileText size={15} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
-            Download Cover Letter
+            Download CV
           </a>
         </motion.div>
 
