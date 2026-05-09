@@ -29,12 +29,32 @@ export function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleSubmit = (e: { preventDefault(): void }) => {
+  const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, _honeypot: "" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data.error || "Something went wrong. Please try again.");
+        setStatus("error");
+      } else {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+      }
+    } catch {
+      setErrorMsg("Something went wrong. Please try again or email me directly.");
+      setStatus("error");
+    }
   };
 
   const inputStyle = (id: string) => ({
@@ -99,7 +119,7 @@ export function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            {submitted ? (
+            {status === "success" ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -112,18 +132,27 @@ export function Contact() {
                 >
                   <CheckCircle size={28} className="text-[#4ade80]" />
                 </div>
-                <p className="text-white" style={{ fontWeight: 600, fontSize: "1.2rem" }}>Message Sent!</p>
-                <p className="text-white/40 text-sm">I&apos;ll get back to you within 24 hours.</p>
+                <p className="text-white" style={{ fontWeight: 600, fontSize: "1.2rem" }}>Message sent.</p>
+                <p className="text-white/40 text-sm">I&apos;ll get back to you soon.</p>
               </motion.div>
             ) : (
               /* Form — flex column, gap 24px between field groups */
               <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: 24 }}>
 
+                {/* Honeypot — hidden from real users, bots fill it in */}
+                <input
+                  type="text"
+                  name="_honeypot"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  style={{ display: "none" }}
+                  onChange={() => {}}
+                />
+
                 {[
                   { id: "name", label: "Name", type: "text", placeholder: "Your full name" },
                   { id: "email", label: "Email", type: "email", placeholder: "your@email.com" },
                 ].map((field) => (
-                  /* Form group — flex column, gap 10px between label and input */
                   <div key={field.id} className="flex flex-col" style={{ gap: 10 }}>
                     <label
                       className="text-white/40 text-xs uppercase"
@@ -139,6 +168,7 @@ export function Contact() {
                       onFocus={() => setFocused(field.id)}
                       onBlur={() => setFocused(null)}
                       required
+                      disabled={status === "loading"}
                       className="placeholder:text-white/20"
                       style={inputStyle(field.id)}
                     />
@@ -160,6 +190,7 @@ export function Contact() {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     required
+                    disabled={status === "loading"}
                     className="resize-none placeholder:text-white/20"
                     style={{
                       ...inputStyle("message"),
@@ -170,14 +201,33 @@ export function Contact() {
                   />
                 </div>
 
-                {/* Submit button — min-height 56px, padding 18px 32px */}
+                {/* Error message */}
+                {status === "error" && (
+                  <p
+                    role="alert"
+                    aria-live="polite"
+                    style={{ fontSize: "0.875rem", color: "#f87171", lineHeight: 1.5 }}
+                  >
+                    {errorMsg}
+                  </p>
+                )}
+
+                {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center bg-[#4ade80] text-[#090909] rounded-xl text-sm tracking-widest uppercase hover:bg-[#86efac] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
-                  style={{ fontWeight: 600, minHeight: 56, padding: "18px 32px", gap: 10 }}
+                  disabled={status === "loading"}
+                  className="w-full inline-flex items-center justify-center bg-[#4ade80] text-[#090909] rounded-xl text-sm tracking-widest uppercase transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                  style={{
+                    fontWeight: 600,
+                    minHeight: 56,
+                    padding: "18px 32px",
+                    gap: 10,
+                    opacity: status === "loading" ? 0.7 : 1,
+                    cursor: status === "loading" ? "not-allowed" : "pointer",
+                  }}
                 >
-                  Send Message
-                  <ArrowRight size={16} />
+                  {status === "loading" ? "Sending…" : "Send Message"}
+                  {status !== "loading" && <ArrowRight size={16} />}
                 </button>
               </form>
             )}

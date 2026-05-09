@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 
 const navLinks = ["About", "Work", "Info", "Contact"];
 
@@ -11,8 +10,8 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -20,9 +19,7 @@ export function Navbar() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { rootMargin: "-40% 0px -55% 0px" }
@@ -34,84 +31,199 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (id: string) => {
+  const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id.toLowerCase());
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
     setMobileOpen(false);
-  };
+  }, []);
 
   return (
     <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#090909]/90 backdrop-blur-xl border-b border-white/5"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        // Border is ALWAYS 1px — only color transitions, never width.
+        // This prevents the 1px layout shift that caused the white-line flash.
+        backgroundColor: scrolled ? "rgba(9,9,9,0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled
+          ? "1px solid rgba(255,255,255,0.06)"
+          : "1px solid transparent",
+        transition:
+          "background-color 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease",
+      }}
     >
-      <div className="section-container py-5 md:py-7 flex items-center justify-between">
+      {/* Fixed 68px height matches SAGE navbar — never changes on scroll */}
+      <div
+        className="section-container flex items-center justify-between"
+        style={{ height: 68 }}
+      >
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-white tracking-widest uppercase text-sm hover:text-[#4ade80] transition-colors duration-300"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "rgba(255,255,255,0.7)",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            fontSize: "0.875rem",
+            transition: "color 300ms ease",
+          }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#4ade80")}
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)")
+          }
         >
           JT
         </button>
 
-        <ul className="hidden md:flex items-center gap-10 md:gap-12">
-          {navLinks.map((link) => (
-            <li key={link}>
-              <button
-                onClick={() => scrollTo(link)}
-                className={`relative text-sm tracking-wider uppercase transition-colors duration-300 group ${
-                  activeSection === link.toLowerCase()
-                    ? "text-[#4ade80]"
-                    : "text-white/60 hover:text-white"
-                }`}
-              >
-                {link}
-                <span
-                  className={`absolute -bottom-1 left-0 h-px bg-[#4ade80] transition-all duration-300 ${
-                    activeSection === link.toLowerCase() ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </button>
-            </li>
-          ))}
+        {/* Desktop nav */}
+        <ul
+          className="hidden md:flex items-center"
+          style={{ gap: 40, listStyle: "none", margin: 0, padding: 0 }}
+        >
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.toLowerCase();
+            return (
+              <li key={link}>
+                <button
+                  onClick={() => scrollTo(link)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    position: "relative",
+                    fontSize: "0.8125rem",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: isActive ? "#4ade80" : "rgba(255,255,255,0.5)",
+                    transition: "color 250ms ease",
+                    paddingBottom: 4,
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive)
+                      (e.currentTarget as HTMLElement).style.color =
+                        "rgba(255,255,255,0.85)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = isActive
+                      ? "#4ade80"
+                      : "rgba(255,255,255,0.5)";
+                  }}
+                >
+                  {link}
+                  {isActive && (
+                    <motion.span
+                      layoutId="home-nav-active"
+                      style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: 1.5,
+                        borderRadius: 1,
+                        backgroundColor: "#4ade80",
+                      }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              </li>
+            );
+          })}
         </ul>
 
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden text-white/70 hover:text-[#4ade80] transition-colors"
+          className="md:hidden flex flex-col justify-center items-center"
+          style={{
+            width: 36,
+            height: 36,
+            gap: 6,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+          }}
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          <span
+            style={{
+              display: "block",
+              width: 22,
+              height: 1.5,
+              backgroundColor: "rgba(255,255,255,0.6)",
+              transform: mobileOpen ? "translateY(7.5px) rotate(45deg)" : "none",
+              transition: "transform 200ms ease",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: 22,
+              height: 1.5,
+              backgroundColor: "rgba(255,255,255,0.6)",
+              opacity: mobileOpen ? 0 : 1,
+              transition: "opacity 200ms ease",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: 22,
+              height: 1.5,
+              backgroundColor: "rgba(255,255,255,0.6)",
+              transform: mobileOpen ? "translateY(-7.5px) rotate(-45deg)" : "none",
+              transition: "transform 200ms ease",
+            }}
+          />
         </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#090909]/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
-          >
-            <ul className="section-container py-7 flex flex-col gap-7">
-              {navLinks.map((link) => (
-                <li key={link}>
-                  <button
-                    onClick={() => scrollTo(link)}
-                    className="text-white/70 hover:text-[#4ade80] transition-colors text-sm tracking-wider uppercase"
-                  >
-                    {link}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div
+          className="md:hidden"
+          style={{
+            backgroundColor: "rgba(9,9,9,0.96)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            padding: "16px 32px 24px",
+          }}
+        >
+          {navLinks.map((link) => (
+            <button
+              key={link}
+              onClick={() => scrollTo(link)}
+              style={{
+                display: "block",
+                width: "100%",
+                textAlign: "left",
+                background: "none",
+                border: "none",
+                borderBottom: "1px solid rgba(255,255,255,0.04)",
+                cursor: "pointer",
+                color:
+                  activeSection === link.toLowerCase()
+                    ? "#4ade80"
+                    : "rgba(255,255,255,0.5)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                fontSize: "0.875rem",
+                padding: "12px 0",
+                transition: "color 250ms ease",
+              }}
+            >
+              {link}
+            </button>
+          ))}
+        </div>
+      )}
     </motion.nav>
   );
 }

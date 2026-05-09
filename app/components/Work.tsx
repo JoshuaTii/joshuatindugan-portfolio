@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const router = useRouter();
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.article
@@ -17,19 +18,19 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => router.push(`/project/${project.id}`)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       className="group relative rounded-2xl border border-white/6 bg-[#0f0f0f] overflow-hidden cursor-pointer hover:border-white/12"
       style={{
-        boxShadow: "none",
+        contain: "layout paint",
         display: "flex",
         flexDirection: "column",
-        // Force GPU compositing layer so border-radius + overflow clip stays crisp.
-        // Do NOT scale the card — scaling an overflow:hidden + rounded element causes
-        // the browser to re-rasterize the clip path each frame, producing the 1px edge gap.
         transform: "translateZ(0)",
         backfaceVisibility: "hidden",
-        transition: "border-color 300ms ease",
+        // CSS transition for box-shadow — avoids Framer Motion's JS-driven animation per frame
+        boxShadow: hovered ? `0 0 48px ${project.color}14` : "none",
+        transition: "border-color 300ms ease, box-shadow 300ms ease",
       }}
-      whileHover={{ boxShadow: `0 0 60px ${project.color}12` }}
     >
       {/* Thumbnail wrapper — isolated GPU layer, overflow:hidden clips the scaling image */}
       <div
@@ -46,12 +47,12 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         <img
           src={project.image}
           alt={project.title}
+          loading={index === 0 ? "eager" : "lazy"}
           className="w-full h-full object-cover group-hover:scale-[1.025]"
           style={{
-            display: "block",           // kills inline baseline gap (default img bottom space)
+            display: "block",
             backfaceVisibility: "hidden",
-            transform: "translateZ(0)", // initial GPU layer, avoids promotion flicker on hover start
-            willChange: "transform",
+            transform: "translateZ(0)",
             transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         />
