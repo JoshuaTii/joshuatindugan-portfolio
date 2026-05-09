@@ -259,7 +259,7 @@ export function Final() {
           >
             <iframe
               title="InTuition interactive prototype"
-              src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FZFpuwcRXS8LhFZibl83SUQ%2FInTuition-2.0%3Fnode-id%3D0-1%26t%3D16yinqAVTONmoLcL-1"
+              src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FZFpuwcRXS8LhFZibl83SUQ%2FInTuition-2.0%3Fnode-id%3D1-233%26viewport%3D609%252C263%252C0.12%26t%3DOzFutJdTgII3wVm2-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D1%253A233%26page-id%3D0%253A1"
               loading="lazy"
               allowFullScreen
               style={{
@@ -272,7 +272,7 @@ export function Final() {
           </div>
 
           <a
-            href="https://www.figma.com/design/ZFpuwcRXS8LhFZibl83SUQ/InTuition-2.0?node-id=0-1&t=16yinqAVTONmoLcL-1"
+            href="https://www.figma.com/proto/ZFpuwcRXS8LhFZibl83SUQ/InTuition-2.0?node-id=1-233&viewport=609%2C263%2C0.12&t=OzFutJdTgII3wVm2-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A233&page-id=0%3A1"
             target="_blank"
             rel="noopener noreferrer"
             style={{
