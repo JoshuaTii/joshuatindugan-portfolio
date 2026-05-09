@@ -29,7 +29,8 @@ export function About() {
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
             <img
               src="/portrait.png"
-              alt="Joshua Tindugan"
+              alt="Portrait of Joshua Tindugan, UX/UI Designer"
+              loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-transparent z-10 pointer-events-none" />

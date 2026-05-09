@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* ── CSS variables used by legacy /about /work /contact routes ── */
+:root {
+  --lime:   #4ade80;
+  --text:   rgba(255, 255, 255, 0.88);
+  --muted:  rgba(255, 255, 255, 0.40);
+  --card:   rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.08);
+}
+
 @font-face {
   font-family: "GW Liberated";
   src: url("/fonts/GW_Liberated.otf") format("opentype");
