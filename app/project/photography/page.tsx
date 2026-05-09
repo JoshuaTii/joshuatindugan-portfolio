@@ -1,6 +1,7 @@
 import { PhotoHero } from "./sections/PhotoHero";
 import { GalleryIntro } from "./sections/GalleryIntro";
 import { PhotoGallery } from "./sections/PhotoGallery";
+import { PhotoFooter } from "./sections/PhotoFooter";
 
 export const metadata = {
   title: "Photography — Visual Archive | Joshua Tindugan",
@@ -14,6 +15,7 @@ export default function PhotographyPage() {
       <PhotoHero />
       <GalleryIntro />
       <PhotoGallery />
+      <PhotoFooter />
     </main>
   );
 }
