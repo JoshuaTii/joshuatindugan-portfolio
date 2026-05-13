@@ -490,8 +490,7 @@ export default function CVPage() {
             <div className="cv-edu-entry">
               <p className="cv-edu-school">The George Washington University</p>
               <p className="cv-edu-sub">Corcoran School of the Arts &amp; Design</p>
-              <p className="cv-edu-detail">BFA in Interaction Design</p>
-              <p className="cv-edu-detail">Minor: Graphic Design</p>
+              <p className="cv-edu-detail">B.F.A. in Interaction Design, Minor in Graphic Design</p>
               <p className="cv-edu-detail">Expected May 2026 · Washington, DC</p>
             </div>
 
@@ -505,9 +504,9 @@ export default function CVPage() {
 
             <span className="cv-sidebar-label">Languages</span>
             <ul className="cv-simple-list">
-              <li>English — Fluent</li>
-              <li>Tagalog — Native</li>
-              <li>Cebuano — Native</li>
+              <li>English: Fluent</li>
+              <li>Tagalog: Native</li>
+              <li>Cebuano: Native</li>
             </ul>
 
             <hr className="cv-sidebar-rule" />
@@ -596,9 +595,9 @@ export default function CVPage() {
           <div>
             <span className="cv-mini-label">Languages</span>
             <ul>
-              <li>English — Fluent</li>
-              <li>Tagalog — Native</li>
-              <li>Cebuano — Native</li>
+              <li>English: Fluent</li>
+              <li>Tagalog: Native</li>
+              <li>Cebuano: Native</li>
             </ul>
           </div>
           <div>

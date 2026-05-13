@@ -188,7 +188,7 @@ export function SEProgress() {
               color: "rgba(242,237,232,0.6)",
             }}
           >
-            During peer critique, the response was mostly positive — which is always welcome, but
+            During peer critique, the response was mostly positive, which is always welcome, but
             not always the most actionable design feedback. Since there were not many major
             critiques to act on, I used that moment to self-audit the system more closely: checking
             hierarchy, section rhythm, readability, and whether the editorial direction still felt

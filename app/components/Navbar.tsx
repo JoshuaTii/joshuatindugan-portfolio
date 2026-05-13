@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = ["About", "Work", "Info", "Contact"];
 
@@ -153,6 +153,7 @@ export function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
         >
           <span
             style={{
@@ -188,43 +189,50 @@ export function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {mobileOpen && (
-        <div
-          className="md:hidden"
-          style={{
-            backgroundColor: "rgba(9,9,9,0.96)",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            padding: "16px 32px 24px",
-          }}
-        >
-          {navLinks.map((link) => (
-            <button
-              key={link}
-              onClick={() => scrollTo(link)}
-              style={{
-                display: "block",
-                width: "100%",
-                textAlign: "left",
-                background: "none",
-                border: "none",
-                borderBottom: "1px solid rgba(255,255,255,0.04)",
-                cursor: "pointer",
-                color:
-                  activeSection === link.toLowerCase()
-                    ? "#4ade80"
-                    : "rgba(255,255,255,0.5)",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                fontSize: "0.875rem",
-                padding: "12px 0",
-                transition: "color 250ms ease",
-              }}
-            >
-              {link}
-            </button>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            id="mobile-nav"
+            className="md:hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              backgroundColor: "rgba(9,9,9,0.96)",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+              padding: "16px 32px 24px",
+            }}
+          >
+            {navLinks.map((link) => (
+              <button
+                key={link}
+                onClick={() => scrollTo(link)}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  textAlign: "left",
+                  background: "none",
+                  border: "none",
+                  borderBottom: "1px solid rgba(255,255,255,0.04)",
+                  cursor: "pointer",
+                  color:
+                    activeSection === link.toLowerCase()
+                      ? "#4ade80"
+                      : "rgba(255,255,255,0.5)",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  fontSize: "0.875rem",
+                  padding: "12px 0",
+                  transition: "color 250ms ease",
+                }}
+              >
+                {link}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

@@ -7,7 +7,7 @@ const ACCENT = "#4ade80";
 const DIRECTION_CARDS = [
   {
     title: "Familiarity through editorial cues",
-    body: "Newspaper-like structures, article blocks, section hierarchy, and strong grids help the experience feel familiar and readable — drawing on what readers already know.",
+    body: "Newspaper-like structures, article blocks, section hierarchy, and strong grids help the experience feel familiar and readable, drawing on what readers already know.",
   },
   {
     title: "Trust through structure",

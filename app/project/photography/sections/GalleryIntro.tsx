@@ -64,7 +64,7 @@ export function GalleryIntro() {
               }}
             >
               A curated collection of photographs exploring architecture, patterns, color,
-              perspective, and composition. Each image captures a moment of observation — through
+              perspective, and composition. Each image captures a moment of observation: through
               the geometry of a building, the quiet rhythm of repeated forms, the mood of color,
               or the way light changes a scene.
             </p>

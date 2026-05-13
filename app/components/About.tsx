@@ -77,16 +77,16 @@ export function About() {
               marginBottom: 0,
             }}
           >
-            Designing with purpose,<br className="hidden lg:block" /> building with empathy
+            A designer who starts with the<br className="hidden lg:block" /> people the system already failed.
           </h2>
 
           {/* Body paragraphs — line-height 1.7, max-width 680px */}
           <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
-            I&apos;m a UX Designer with a passion for creating digital products that feel effortless. With over 4 years of experience, I specialize in turning complex problems into intuitive, delightful interfaces.
+            I&apos;m a senior interaction design student at GWU, finishing a thesis I&apos;ve spent two semesters on: SAGE, a financial access platform built for D.C.&apos;s Ward 7 and Ward 8 neighborhoods. My work tends to start with a systemic question, then follow the research until the design earns its existence.
           </p>
 
           <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
-            My process is rooted in empathy — I believe great design starts by deeply understanding the people we&apos;re designing for. I work closely with cross-functional teams to deliver experiences that are both beautiful and functional.
+            Outside the screen work, I shoot film and study composition through photography. Same practice, different medium. I&apos;m graduating May 2026 and looking for a team that cares about the work as much as the output.
           </p>
 
           {/* Skill chips — padding 7px 13px, min-height 30px, gap 10px */}

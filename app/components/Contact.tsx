@@ -74,7 +74,7 @@ export function Contact() {
   });
 
   return (
-    <section id="contact" className="relative z-10 !pt-[180px] !pb-[120px] bg-[#090909]/60">
+    <section id="contact" className="relative z-10 !pt-[140px] !pb-[160px] bg-[#090909]/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] pointer-events-none">
@@ -106,7 +106,7 @@ export function Contact() {
             Let&apos;s work together
           </h2>
           <p className="text-white/40" style={{ lineHeight: 1.65, maxWidth: 480 }}>
-            Whether you have a project in mind or just want to chat about design, my inbox is always open.
+            Open to full-time roles, freelance, and collaboration. If you&apos;re looking for a designer who takes the work seriously, let&apos;s talk.
           </p>
         </motion.div>
 
@@ -146,7 +146,6 @@ export function Contact() {
                   tabIndex={-1}
                   aria-hidden="true"
                   style={{ display: "none" }}
-                  onChange={() => {}}
                 />
 
                 {[
@@ -300,7 +299,7 @@ export function Contact() {
                 </span>
               </div>
               <p className="text-white/50 text-sm" style={{ lineHeight: 1.65 }}>
-                Open to work now — freelance projects, collaborations, and full-time opportunities. Let&apos;s create something great.
+                Currently available: freelance, full-time, and collaborative projects. Graduating May 2026 from GWU Interaction Design.
               </p>
             </div>
           </motion.div>

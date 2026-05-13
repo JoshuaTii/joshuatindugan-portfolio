@@ -27,7 +27,7 @@ const COLORS = [
 const FEEDBACK_THEMES = [
   {
     theme: "Intuitive Navigation",
-    body: "Students found the app easy to navigate without instruction. Core flows — checking a shuttle ETA, finding a stop — were completed without hesitation.",
+    body: "Students found the app easy to navigate without instruction. Core flows (checking a shuttle ETA, finding a stop) were completed without hesitation.",
   },
   {
     theme: "Improved Confidence",
@@ -35,7 +35,7 @@ const FEEDBACK_THEMES = [
   },
   {
     theme: "Information Hierarchy",
-    body: "The layout was praised for being scannable. Students could extract the key decision — is a shuttle close enough to wait for? — in under five seconds.",
+    body: "The layout was praised for being scannable. Students could extract the key decision (is a shuttle close enough to wait for?) in under five seconds.",
   },
 ];
 
@@ -43,7 +43,7 @@ const NEXT_STEPS = [
   "Test with students during actual commute moments on campus",
   "Partner with GW Transportation to access live shuttle data via API integration",
   "Add push notifications and alerts for approaching shuttles at saved stops",
-  "Conduct a formal accessibility audit — screen reader support, color contrast, tap target size",
+  "Conduct a formal accessibility audit: screen reader support, color contrast, tap target size",
   "Expand stop detail screens with campus building names and landmark references",
   "Explore a commute scheduler mode for planning transit around class times",
 ];
@@ -103,7 +103,7 @@ export function Final() {
           </h2>
           <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
             The final screens bring together live tracking, route clarity, stop detail, and
-            an intuitive navigation pattern — all in service of one outcome: students who
+            an intuitive navigation pattern, all in service of one outcome: students who
             trust their shuttle option enough to use it.
           </p>
         </motion.div>
@@ -714,13 +714,13 @@ export function Final() {
           >
             <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
               Designing GW Ride taught me that transportation UX is fundamentally about reducing anxiety,
-              not adding features. Students don't want more information — they want the right information
+              not adding features. Students don't want more information. They want the right information
               at the right moment. The most valuable insight was how much cognitive load unclear transit
               data creates. A three-second ETA check shouldn't require navigating three screens.
             </p>
             <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
               This project also showed me how visual hierarchy functions as a tool, not just an aesthetic
-              choice. Every decision — type scale, information density, color contrast — was in direct
+              choice. Every decision (type scale, information density, color contrast) was in direct
               service of helping someone make a faster, more confident decision in a genuinely
               pressure-filled moment. Designing for urgency is a distinct and valuable skill.
             </p>

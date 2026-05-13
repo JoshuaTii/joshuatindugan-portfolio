@@ -76,10 +76,12 @@ export function SEFinalDesign() {
               maxWidth: 640,
             }}
           >
-            The final design brings the editorial direction into a high-fidelity website experience.
-            It uses structured article sections, publication-style hierarchy, muted sage tones, and
-            expressive typography to create a site that feels both familiar and distinct from the
-            main SAGE app.
+            The final design resolves every direction decision into concrete editorial choices.
+            Structured article sections establish reading rhythm and signal to users that content
+            is organized, not overwhelming. The muted sage palette deliberately steps back from
+            the app's brighter accent: a publication earns trust through restraint, not energy.
+            Expressive serif headlines carry the warmth and credibility that SAGE's communities
+            need to feel like this publication was made for them, not distributed to them.
           </p>
         </motion.div>
 

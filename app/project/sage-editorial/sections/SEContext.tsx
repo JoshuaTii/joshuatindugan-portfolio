@@ -59,10 +59,9 @@ export function SEContext() {
               marginBottom: 28,
             }}
           >
-            SAGE began as a financial empowerment platform focused on access, trust, and support
-            for communities historically affected by redlining and financial exclusion. For this
-            editorial project, I wanted to extend that system beyond product features and into
-            storytelling.
+            SAGE started as a banking access tool for D.C.&apos;s Ward 7 and Ward 8, designed around
+            the communities that predatory lenders had targeted for decades. For this editorial
+            project, I wanted to extend that system beyond product features and into storytelling.
           </p>
           <p
             style={{
@@ -72,10 +71,10 @@ export function SEContext() {
               maxWidth: 640,
             }}
           >
-            The editorial site became a way to discuss the lived experiences, local stories, daily
-            decisions, community updates, and hidden realities that shape financial life in Ward 7
-            and Ward 8. It creates a softer and more familiar entry point into the same themes
-            SAGE addresses: trust, access, care, and community knowledge.
+            The editorial site became a space for local stories, daily decisions, community
+            updates, and the financial realities that shape life in Ward 7 and Ward 8. It creates
+            a more familiar entry point into the same themes SAGE addresses: trust, access, and
+            the kind of financial knowledge that doesn&apos;t travel through bank brochures.
           </p>
         </motion.div>
 
@@ -103,7 +102,7 @@ export function SEContext() {
             }}
           >
             The goal was not to make the site feel like a corporate resource hub. The goal was to
-            make it feel like a familiar publication — with structure, warmth, and a clear
+            make it feel like a familiar publication: with structure, warmth, and a clear
             editorial voice.
           </p>
         </motion.div>
@@ -140,11 +139,11 @@ export function SEContext() {
               color: "rgba(242,237,232,0.6)",
             }}
           >
-            This project was created for an editorial design course where the objective was to
-            design a digital editorial site with a clear focus area, strong content organization,
-            and visual direction across a multi-page system. The assignment emphasized grid systems,
-            typesetting, hierarchy, navigation, and how design shapes the reader's experience of
-            content.
+            The editorial course became a reason to ask a different question: what does SAGE look
+            like when it&apos;s not selling something? The deliverable was a multi-page digital
+            publication. The real challenge was making financial life feel human enough that
+            someone would actually read it. Grid systems, typesetting, hierarchy, and editorial
+            voice all in service of that.
           </p>
         </motion.div>
       </div>

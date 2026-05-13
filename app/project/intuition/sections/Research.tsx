@@ -22,12 +22,12 @@ const INSIGHTS = [
   {
     number: "01",
     title: "Overwhelm as a barrier",
-    body: "Students described the scholarship search as emotionally draining — not from lack of effort, but from the sheer volume of disconnected information to track.",
+    body: "Students described the scholarship search as emotionally draining. Not from lack of effort, but from the sheer volume of disconnected information to track.",
   },
   {
     number: "02",
     title: "First-gen students are most at risk",
-    body: "Participants who were first-generation college students reported feeling especially lost — they lacked the institutional knowledge that peers with connected families take for granted.",
+    body: "Participants who were first-generation college students reported feeling especially lost. They lacked the institutional knowledge that peers with connected families take for granted.",
   },
   {
     number: "03",
@@ -37,7 +37,7 @@ const INSIGHTS = [
   {
     number: "04",
     title: "Deadline anxiety is universal",
-    body: "Almost every participant mentioned missing or nearly missing deadlines because information was spread across bookmarks, emails, and sticky notes — not one place.",
+    body: "Almost every participant mentioned missing or nearly missing deadlines because information was spread across bookmarks, emails, and sticky notes. Never in one place.",
   },
 ];
 

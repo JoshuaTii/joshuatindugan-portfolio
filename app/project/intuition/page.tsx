@@ -9,7 +9,7 @@ import { Final } from "./sections/Final";
 import { InTuitionFooter } from "./sections/InTuitionFooter";
 
 export const metadata = {
-  title: "InTuition — Scholarship Discovery UX | Joshua Tindugan",
+  title: "InTuition: Scholarship Discovery UX | Joshua Tindugan",
   description:
     "A scholarship discovery platform using smart filtering and unified applications to simplify how students find and apply for funding. UX case study by Joshua Tindugan.",
 };

@@ -8,7 +8,7 @@ const FEATURES = [
   {
     number: "01",
     title: "Personalized Scholarship Matching",
-    body: "Students discover scholarships based on their profile, academic background, interests, financial need, and eligibility — surfaced instantly, not buried across dozens of sites.",
+    body: "Students discover scholarships based on their profile, academic background, interests, financial need, and eligibility, surfaced instantly rather than buried across dozens of sites.",
   },
   {
     number: "02",
@@ -23,7 +23,7 @@ const FEATURES = [
   {
     number: "04",
     title: "Application Tracker",
-    body: "Saved, in-progress, submitted, and upcoming scholarship applications all in one place — with deadline reminders so nothing slips through the cracks.",
+    body: "Saved, in-progress, submitted, and upcoming scholarship applications all in one place, with deadline reminders so nothing slips through the cracks.",
   },
 ];
 

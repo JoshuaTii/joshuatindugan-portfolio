@@ -6,17 +6,17 @@ const ACCENT = "#4ade80";
 
 const APP_PALETTE = [
   { name: "Pure White",    hex: "#FFFFFF", textDark: true,  desc: "Surface and background base" },
-  { name: "Vibrant Sage",  hex: "#9BE931", textDark: true,  desc: "Primary app accent — bright green" },
-  { name: "Light Sage",    hex: "#D1FEAE", textDark: true,  desc: "Secondary green — soft highlight" },
+  { name: "Vibrant Sage",  hex: "#9BE931", textDark: true,  desc: "Primary app accent, bright green" },
+  { name: "Light Sage",    hex: "#D1FEAE", textDark: true,  desc: "Secondary green, soft highlight" },
   { name: "Deep Navy",     hex: "#011521", textDark: false, desc: "Primary app background" },
   { name: "Midnight Blue", hex: "#10203D", textDark: false, desc: "Supporting dark tone" },
 ];
 
 const EDITORIAL_PALETTE = [
   { name: "Off White",   hex: "#F8F9F3", textDark: true,  desc: "Light background / editorial surface" },
-  { name: "Muted Sage",  hex: "#47574C", textDark: false, desc: "Editorial primary green — calm, trustworthy" },
-  { name: "Olive Gray",  hex: "#7B7A5B", textDark: false, desc: "Secondary tone — warmth and editorial texture" },
-  { name: "Deep Navy",   hex: "#011521", textDark: false, desc: "Anchoring background — shared with the app" },
+  { name: "Muted Sage",  hex: "#47574C", textDark: false, desc: "Editorial primary green, calm and trustworthy" },
+  { name: "Olive Gray",  hex: "#7B7A5B", textDark: false, desc: "Secondary tone, warmth and editorial texture" },
+  { name: "Deep Navy",   hex: "#011521", textDark: false, desc: "Anchoring background, shared with the app" },
 ];
 
 function Swatch({
@@ -250,7 +250,7 @@ export function SEVisual() {
                 Community Stories, Told Clearly.
               </p>
               <p style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.35)", lineHeight: 1.5 }}>
-                Warbler is used for expressive editorial headlines and section titles — bringing a
+                Warbler is used for expressive editorial headlines and section titles, bringing a
                 publication quality and warmth to the reading experience.
               </p>
             </div>
@@ -291,7 +291,7 @@ export function SEVisual() {
                     fontFamily: "var(--font-inter), system-ui, sans-serif",
                   }}
                 >
-                  Access. Trust. Community. These are not abstract ideas — they are daily realities
+                  Access. Trust. Community. These are not abstract ideas. They are daily realities
                   for Ward 7 and Ward 8 residents navigating financial life.
                 </p>
                 <p
@@ -308,7 +308,7 @@ export function SEVisual() {
                 </p>
               </div>
               <p style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.35)", lineHeight: 1.5 }}>
-                Basic Sans handles body copy, navigation, labels, and all supporting text — keeping
+                Basic Sans handles body copy, navigation, labels, and all supporting text, keeping
                 the reading experience clean and accessible.
               </p>
             </div>

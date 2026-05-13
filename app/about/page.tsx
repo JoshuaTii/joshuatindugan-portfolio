@@ -27,7 +27,7 @@ export default function About() {
         </h1>
         <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
           A D.C. based creative designer and photographer working with care, intention, and
-          attention to detail — shaping stories that live on screens, in print, and everywhere in between.
+          attention to detail, shaping stories that live on screens, in print, and everywhere in between.
         </p>
       </motion.div>
 
@@ -41,13 +41,13 @@ export default function About() {
             <p>
               Based in Washington, D.C. since 2022, I design digital and print experiences that
               centre community, trust, and equity. My work spans mobile apps, editorial systems,
-              brand identities, and photography — all driven by the same principle: good design
+              brand identities, and photography, all driven by the same principle: good design
               should serve people first.
             </p>
             <p>
-              I&apos;m currently completing my B.S. in Interaction and Graphic Design at George
-              Washington University (May 2026), where my capstone thesis explored equitable
-              financial product design for underserved D.C. neighborhoods.
+              I&apos;m currently completing a B.F.A. in Interaction Design, Minor in Graphic Design,
+              at George Washington University (May 2026). My capstone thesis explored equitable financial product design
+              for underserved D.C. neighborhoods.
             </p>
             <p>
               Outside of client and academic work, I run{" "}
@@ -60,7 +60,7 @@ export default function About() {
               >
                 @joshuba.archive
               </a>{" "}
-              — an ongoing photography project studying color, light, and everyday life in the city.
+              an ongoing photography project studying color, light, and everyday life in the city.
             </p>
           </div>
 
@@ -70,10 +70,10 @@ export default function About() {
               <span className="text-xs font-medium" style={{ color: "#10b981" }}>Open for work</span>
             </div>
             <span className="text-xs px-3 py-1.5 rounded-full border" style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
-              4 years experience
+              GWU &apos;26
             </span>
             <span className="text-xs px-3 py-1.5 rounded-full border" style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
-              5+ projects
+              5 case studies
             </span>
           </div>
 
@@ -97,7 +97,7 @@ export default function About() {
             {[
               {
                 title: "Web Design",
-                desc: "Intuitive, elegant websites that balance form and function — from wireframe to final build.",
+                desc: "Intuitive, elegant websites that balance form and function, from wireframe to final build.",
               },
               {
                 title: "Graphic Design",

@@ -88,8 +88,8 @@ export function Hero() {
                 marginBottom: 48,
               }}
             >
-              A web app concept that replaces the fragmented scholarship search with a single smart platform —
-              matching students to opportunities based on their profile and letting them apply through one
+              A web app concept that replaces the fragmented scholarship search with a single smart platform.
+              It matches students to opportunities based on their profile and lets them apply through one
               unified form.
             </motion.p>
 

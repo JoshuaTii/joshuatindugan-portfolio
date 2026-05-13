@@ -9,7 +9,7 @@ const ACCENT = "#60A5FA";
 const FINDINGS = [
   {
     stat: "Awareness Gap",
-    body: "Most students are unaware of the full GWU shuttle network — many don't know which routes run near where they live or study.",
+    body: "Most students are unaware of the full GWU shuttle network. Many don't know which routes run near where they live or study.",
   },
   {
     stat: "Unreliable ETAs",
@@ -17,7 +17,7 @@ const FINDINGS = [
   },
   {
     stat: "Wait Anxiety",
-    body: "Without knowing when the next shuttle arrives, waiting feels open-ended and stressful — especially when students are running between classes.",
+    body: "Without knowing when the next shuttle arrives, waiting feels open-ended and stressful, especially when students are running between classes.",
   },
   {
     stat: "Low App Satisfaction",
@@ -25,7 +25,7 @@ const FINDINGS = [
   },
   {
     stat: "Time-Pressured Decisions",
-    body: "Transit choices happen in seconds — often mid-walk or mid-class. Information that takes effort to find simply gets ignored.",
+    body: "Transit choices happen in seconds, often mid-walk or mid-class. Information that takes effort to find simply gets ignored.",
   },
 ];
 
@@ -34,13 +34,13 @@ const STORYBOARD_FRAMES = Array.from({ length: 9 }, (_, i) => ({
   caption: [
     "Nick checks his class schedule and realizes he has 12 minutes to get across campus.",
     "He heads toward the shuttle stop, unsure which route to take or when it arrives.",
-    "He stands at the stop with no information — no ETA, no map, no indication a shuttle is coming.",
-    "Five minutes pass. He pulls out his phone, tries the campus app — it's unclear and outdated.",
+    "He stands at the stop with no information: no ETA, no map, no indication a shuttle is coming.",
+    "Five minutes pass. He pulls out his phone, tries the campus app. It's unclear and outdated.",
     "Frustrated, he opens a rideshare app instead and requests a car.",
     "The shuttle arrives two minutes later. Nick is already in the Uber.",
-    "With GW Ride, Nick checks the app before leaving — he sees a live shuttle 3 minutes away.",
+    "With GW Ride, Nick checks the app before leaving. He sees a live shuttle 3 minutes away.",
     "He walks to the stop confidently, knowing exactly when to arrive.",
-    "He boards on time and gets to class without the stress — or the added cost.",
+    "He boards on time and gets to class without the stress, or the added cost.",
   ][i],
 }));
 
@@ -192,7 +192,7 @@ export function Research() {
                     Cameron is a first-year student living on the Mount Vernon Campus. Coming from
                     a suburban area with limited public transit experience, navigating GWU's two
                     campuses feels overwhelming. They rely on the Vex shuttle daily to get between
-                    Corcoran and Milken — but crowded buses, unpredictable delays, and limited stop
+                    Corcoran and Milken, but crowded buses, unpredictable delays, and limited stop
                     coverage make every commute feel like a gamble.
                   </p>
                 </div>
@@ -237,7 +237,7 @@ export function Research() {
                   {
                     label: "Design Implication",
                     items: [
-                      "Real-time Vex tracking + clear ETA would let Cameron confidently plan each leg of their day — reducing the anxiety that currently makes every commute feel uncertain.",
+                      "Real-time Vex tracking + clear ETA would let Cameron confidently plan each leg of their day, reducing the anxiety that currently makes every commute feel uncertain.",
                     ],
                     accent: true,
                   },
@@ -273,7 +273,7 @@ export function Research() {
               Storyboard
             </h3>
             <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
-              Following Nick — a GWU freshman who misses his shuttle due to lack of real-time
+              Following Nick, a GWU freshman who misses his shuttle due to lack of real-time
               information, and how GW Ride changes that moment.
             </p>
           </motion.div>

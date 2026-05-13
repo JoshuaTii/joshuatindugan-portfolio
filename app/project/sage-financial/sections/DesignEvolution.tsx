@@ -42,7 +42,7 @@ const PHASES = [
     id: "proto",
     label: "Initial Prototype",
     description:
-      "The initial prototype added structure to the flows and tested information hierarchy with real users. Feedback from this phase drove significant changes to onboarding and the loan application flow.",
+      "The initial prototype introduced color, type, and real content into the flows for the first time. Testing this version revealed that the onboarding felt institutional and the loan application flow had too many steps before users understood what they were agreeing to. Both were redesigned before the final pass.",
     screens: [
       { src: "/sage/de-proto-1.png", caption: "Cross Section" },
       { src: "/sage/de-proto-2.png", caption: "Sage" },
@@ -107,7 +107,7 @@ export function DesignEvolution() {
           </p>
         </motion.div>
 
-        {/* â”€â”€ Logo Evolution â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* Logo Evolution */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -205,7 +205,7 @@ export function DesignEvolution() {
         {/* Divider */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: 72 }} />
 
-        {/* â”€â”€ Phase selector â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* Phase selector */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

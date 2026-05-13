@@ -10,7 +10,7 @@ import { SiteFooter } from "./components/SiteFooter";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#090909]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-[#090909]">
       <ParticleBackground />
       <Navbar />
       <Hero />

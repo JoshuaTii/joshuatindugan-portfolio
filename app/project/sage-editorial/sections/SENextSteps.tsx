@@ -11,7 +11,7 @@ const NEXT_STEPS = [
   },
   {
     title: "Expand the article system",
-    body: "Design additional article templates — long-form features, resource roundups, and community spotlights — to show how the editorial grid adapts to different content types.",
+    body: "Design additional article templates (long-form features, resource roundups, and community spotlights) to show how the editorial grid adapts to different content types.",
   },
   {
     title: "Develop the mobile experience",
@@ -23,7 +23,7 @@ const NEXT_STEPS = [
   },
   {
     title: "Connect editorial content to app features",
-    body: "Map specific article types to SAGE app features — for example, a story about local credit unions could link directly to the app's credit union finder — creating a seamless bridge between reading and action.",
+    body: "Map specific article types to SAGE app features. For example, a story about local credit unions could link directly to the app's credit union finder, creating a seamless bridge between reading and action.",
   },
 ];
 

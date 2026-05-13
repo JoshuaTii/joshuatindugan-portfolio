@@ -9,7 +9,7 @@ const PRINCIPLES = [
   {
     number: "01",
     title: "Make timing obvious",
-    body: "The most important information — when the next shuttle arrives — should be visible immediately. No tapping, no searching, no interpreting.",
+    body: "The most important information (when the next shuttle arrives) should be visible immediately. No tapping, no searching, no interpreting.",
   },
   {
     number: "02",
@@ -24,12 +24,12 @@ const PRINCIPLES = [
   {
     number: "04",
     title: "Connect movement with campus discovery",
-    body: "Beyond getting from one stop to another, GW Ride creates an opportunity for students to discover nearby campus places — making transportation feel more connected to everyday student life.",
+    body: "Beyond getting from one stop to another, GW Ride creates an opportunity for students to discover nearby campus places, making transportation feel more connected to everyday student life.",
   },
 ];
 
 const SKETCHES = [
-  { src: "/gwride/sketch-1.png", caption: "Early ideation — app concept and core flow structure" },
+  { src: "/gwride/sketch-1.png", caption: "Early ideation: app concept and core flow structure" },
   { src: "/gwride/sketch-2.png", caption: "Brainstorming tracking features and navigation patterns" },
 ];
 

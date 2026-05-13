@@ -6,14 +6,18 @@ const inter = Inter({ subsets: ["latin"] });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: "Joshua Tindugan · UX/UI Designer",
+  title: "Joshua Tindugan · Interaction Designer",
   description:
-    "UX/UI designer focused on research-driven, accessible, and visually polished digital experiences across financial access, public systems, cultural institutions, and editorial design.",
-  keywords: ["UX Design", "UI Design", "Product Design", "Photography", "Washington DC", "Portfolio"],
+    "Interaction design senior at GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery. Graduating May 2026.",
+  keywords: ["UX Design", "UI Design", "Interaction Design", "Product Design", "Photography", "Washington DC", "Portfolio"],
+  metadataBase: new URL("https://joshuaubatindugan.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Joshua Tindugan · UX/UI Designer",
+    title: "Joshua Tindugan · Interaction Designer",
     description:
-      "UX/UI designer focused on research-driven, accessible, and visually polished digital experiences across financial access, public systems, cultural institutions, and editorial design.",
+      "Interaction design senior at GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery. Graduating May 2026.",
     url: "https://joshuaubatindugan.com",
     siteName: "Joshua Tindugan",
     type: "website",
@@ -22,9 +26,16 @@ export const metadata: Metadata = {
         url: "https://joshuaubatindugan.com/portrait.png",
         width: 1200,
         height: 630,
-        alt: "Joshua Tindugan — UX/UI Designer",
+        alt: "Joshua Tindugan, Interaction Designer",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Joshua Tindugan · Interaction Designer",
+    description:
+      "Interaction design senior at GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery.",
+    images: ["https://joshuaubatindugan.com/portrait.png"],
   },
 };
 

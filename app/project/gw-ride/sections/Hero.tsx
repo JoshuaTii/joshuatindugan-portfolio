@@ -89,7 +89,7 @@ export function Hero() {
               }}
             >
               A mobile app concept designed to reduce the uncertainty students face around shuttle timing,
-              route visibility, and stop information — so navigating campus feels confident and low-stress.
+              route visibility, and stop information, so navigating campus feels confident and low-stress.
             </motion.p>
 
             <motion.div

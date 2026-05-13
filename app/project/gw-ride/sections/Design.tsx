@@ -114,7 +114,7 @@ export function Design() {
               marginBottom: 20,
             }}
           >
-            From structure to polish — one iteration at a time.
+            From structure to polish, one iteration at a time.
           </h2>
           <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
             The design moved through three distinct phases: low-fidelity wireframes to establish
@@ -148,7 +148,7 @@ export function Design() {
             </span>
           </div>
           <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
-            Wireframes explored three core flows — onboarding, the main shuttle tracking map view, and an
+            Wireframes explored three core flows: onboarding, the main shuttle tracking map view, and an
             explore mode for discovering routes. At this stage, decisions were structural: where does the
             ETA live? How do you show multiple routes without overwhelming the screen? What does a stop
             look like without visual decoration in the way?
@@ -169,7 +169,7 @@ export function Design() {
           >
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
               <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
-                Medium Fidelity — First Prototype
+                Medium Fidelity: First Prototype
               </h3>
               <span
                 style={{
@@ -184,7 +184,7 @@ export function Design() {
               </span>
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
-              The first prototype brought wireframe structure into real screens — introducing color, type,
+              The first prototype brought wireframe structure into real screens, introducing color, type,
               and component shape for the first time. This phase was about testing whether the layout
               decisions made in lo-fi actually held up when real content filled the space: real ETA numbers,
               actual stop names, route colors with meaning.
@@ -206,7 +206,7 @@ export function Design() {
           >
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
               <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
-                High Fidelity — Revised Prototype
+                High Fidelity: Revised Prototype
               </h3>
               <span
                 style={{
@@ -247,7 +247,7 @@ export function Design() {
           <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.6)" }}>
             <strong style={{ color: "rgba(242,237,232,0.85)" }}>What changed most between iterations:</strong>{" "}
             The first prototype revealed that students scanned for ETA first, route name second, and stop
-            detail last. The revised screens were reorganized around that scanning order — making the
+            detail last. The revised screens were reorganized around that scanning order, making the
             single most important number (minutes until arrival) the largest, most immediate element on
             every key screen.
           </p>

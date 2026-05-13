@@ -6,7 +6,7 @@ const PRINCIPLES = [
   {
     number: "01",
     title: "Simplicity over sophistication",
-    body: "Every screen should work for someone using a phone for the first time. We removed every element that did not serve a direct user need.",
+    body: "Every screen should work for someone with limited smartphone experience and little reason to trust a new app. I removed every element that did not serve a direct user need. Cognitive overhead is not a small inconvenience here. It is a barrier to financial access.",
   },
   {
     number: "02",

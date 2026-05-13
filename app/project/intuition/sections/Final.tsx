@@ -144,8 +144,8 @@ export function Final() {
             marginBottom: 64,
           }}
         >
-          The finished design connects every part of the scholarship journey — discovery, application,
-          tracking, and community — into a single, cohesive experience.
+          The finished design connects every part of the scholarship journey (discovery, application,
+          tracking, and community) into a single, cohesive experience.
         </motion.p>
 
         {/* ── Hero mockup */}
@@ -361,7 +361,7 @@ export function Final() {
                   }}
                 >
                   <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(242,237,232,0.3)", marginBottom: 12 }}>
-                    Header — Arima Medium
+                    Header, Arima Medium
                   </p>
                   <p
                     style={{
@@ -390,7 +390,7 @@ export function Final() {
                   }}
                 >
                   <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(242,237,232,0.3)", marginBottom: 12 }}>
-                    Subheader — Arima Regular
+                    Subheader, Arima Regular
                   </p>
                   <p
                     style={{
@@ -418,7 +418,7 @@ export function Final() {
                   }}
                 >
                   <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(242,237,232,0.3)", marginBottom: 12 }}>
-                    Body — Albert Sans
+                    Body, Albert Sans
                   </p>
                   <p
                     style={{
@@ -528,16 +528,17 @@ export function Final() {
 
           <div className="grid md:grid-cols-2" style={{ gap: "28px 80px" }}>
             <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "rgba(242,237,232,0.6)" }}>
-              This project helped me think more deeply about how design can reduce barriers in
-              education access. A scholarship platform cannot solve the cost of higher education by
-              itself, but it can make the process of finding support feel less scattered, less
-              confusing, and less discouraging.
+              The scholarship search is not a feature problem. It is a cognitive load problem.
+              Students already have access to scholarships. What they do not have is a way to
+              filter, track, and act on that information without it consuming time they cannot
+              spare. That framing kept the design focused on structure and clarity rather than
+              adding more discovery surfaces.
             </p>
             <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "rgba(242,237,232,0.6)" }}>
               The biggest design lesson was that students do not simply need more information. They
-              need information structured in a way that helps them act. Through InTuition, I focused
-              on creating a platform experience that feels clear, supportive, and useful at each
-              stage of the scholarship journey.
+              need information structured in a way that helps them act. Working collaboratively also
+              meant learning to defend design decisions in critique: articulating not just what we
+              built, but why a specific structural choice serves the user's actual moment of need.
             </p>
           </div>
         </motion.div>

@@ -12,7 +12,7 @@ import { Reflection } from "./sections/Reflection";
 import { SageFooter } from "./sections/SageFooter";
 
 export const metadata = {
-  title: "SAGE — Financial Access | Joshua Tindugan",
+  title: "SAGE: Financial Access | Joshua Tindugan",
   description:
     "A financial empowerment platform designed for Washington D.C.'s Ward 7 and 8 communities. UX case study by Joshua Tindugan.",
 };

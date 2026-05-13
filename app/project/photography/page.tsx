@@ -4,7 +4,7 @@ import { PhotoGallery } from "./sections/PhotoGallery";
 import { PhotoFooter } from "./sections/PhotoFooter";
 
 export const metadata = {
-  title: "Photography — Visual Archive | Joshua Tindugan",
+  title: "Photography: Visual Archive | Joshua Tindugan",
   description:
     "A visual archive of architecture, patterns, color, composition, and the quiet moments that often go unnoticed. Shot on Canon EOS R50.",
 };

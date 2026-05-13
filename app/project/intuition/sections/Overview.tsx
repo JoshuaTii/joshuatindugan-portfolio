@@ -51,9 +51,9 @@ export function Overview() {
                 lineHeight: 1.1,
               }}
             >
-              Making scholarship discovery
+              The scholarship process wastes the time
               <br />
-              accessible to every student.
+              of the students who can least afford to lose it.
             </h2>
             <p
               style={{
@@ -126,12 +126,13 @@ export function Overview() {
           <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
             Applying for scholarships is broken. Students spend hours hunting across dozens of websites,
             filling out redundant forms, and still miss opportunities they were qualified for. InTuition
-            reimagines this experience — a single, smart platform that does the matching work for you.
+            reimagines this experience: a single, smart platform that does the matching work for you.
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
-            Our solution: a profile-driven matching engine that surfaces relevant scholarships
-            instantly. One unified application form shares data across multiple opportunities.
-            Progress tracking and deadline reminders reduce the stress of managing the whole process.
+            We designed a profile-driven matching engine that surfaces relevant scholarships
+            the moment a student builds their profile. A single unified form applies that data
+            across multiple opportunities, eliminating the redundant work that causes most
+            students to give up halfway through.
           </p>
         </motion.div>
       </div>

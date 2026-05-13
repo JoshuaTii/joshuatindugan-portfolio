@@ -102,7 +102,7 @@ export function Context() {
               </span>
             </div>
             <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)" }}>
-              Students — especially first-generation college students — face an invisible wall when trying
+              First-generation college students especially face a structural wall when trying
               to find financial support. Information is scattered across dozens of sites, each with
               different requirements and redundant application forms. The process is so overwhelming
               that many qualified students never apply at all.
@@ -179,7 +179,7 @@ export function Context() {
             </div>
             <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)" }}>
               InTuition consolidates the entire scholarship journey into one cohesive platform.
-              Students build a profile once — and the system uses that data to surface personalized
+              Students build a profile once, and the system uses that data to surface personalized
               matches, pre-fill applications, and track deadlines automatically. Less friction
               at every step means more students reach the finish line.
             </p>

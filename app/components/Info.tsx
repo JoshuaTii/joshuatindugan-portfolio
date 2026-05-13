@@ -5,11 +5,11 @@ import { Download, FileText } from "lucide-react";
 
 const experience = [
   {
-    role: "Interaction and Graphic Design Student",
+    role: "Interaction Design Student",
     company: "George Washington University",
-    period: "2022 — Present",
+    period: "2022–Present",
     description:
-      "Currently enrolled in Interaction and Graphic Design program in Corcoran School of the Arts and Design at GWU. Graduating May 2026.",
+      "B.F.A. in Interaction Design, Minor in Graphic Design. Corcoran School of the Arts and Design. Graduating May 2026.",
   },
   {
     role: "Web Designer",
@@ -26,11 +26,11 @@ const experience = [
       "Designed a presentation template and updated content for a more impactful, editable, and streamlined presentation of agency's work. Visual identity.",
   },
   {
-    role: "Apple Coding Camp Internship",
-    company: "MBSYEP, D.C.",
+    role: "Coding Camp Intern",
+    company: "MBSYEP (Apple Coding Camp), D.C.",
     period: "2020",
     description:
-      "Learned basic Python skills through mobile puzzle game. Developed and proposed a prototype of an interior design application using Keynote. Coding and Design.",
+      "Completed problem-solving and programming curriculum. Developed and presented a prototype interior design application as a final project deliverable.",
   },
 ];
 
@@ -57,12 +57,12 @@ const services = [
   {
     number: "3",
     title: "Photography",
-    desc: "Capturing authentic, atmospheric visuals that enhance your brand and tell a story — including lifestyle, editorial, product, and brand photography.",
+    desc: "Capturing authentic, atmospheric visuals that enhance your brand and tell a story. Lifestyle, editorial, product, and brand photography.",
   },
 ];
 
 const stats = [
-  { value: "4+", label: "Years of experience" },
+  { value: "May 2026", label: "Graduating" },
   { value: "GWU", label: "George Washington University" },
   { value: "10+", label: "Projects completed" },
 ];
@@ -97,10 +97,10 @@ export function Info() {
               letterSpacing: "-0.02em",
             }}
           >
-            About Me.
+            The work, the tools,<br /> the background.
           </h2>
           <p className="text-white/50" style={{ lineHeight: 1.65 }}>
-            I&apos;m Joshua — a D.C.-based digital designer and photographer with 4 years of experience shaping stories that live on screens, in print, and everywhere in between. Whether I&apos;m designing or taking photos, I approach every project with care, intention, and attention to detail. I care about creating work that not only looks good, but also feels meaningful and impactful.
+            I&apos;m Joshua, a D.C.-based interaction designer and photographer finishing my degree at GWU in May 2026. My thesis project spent two semesters designing a financial access platform for Ward 7 and 8 residents. Outside of design school I shoot film, take on freelance work, and look for problems where the design gap and the human gap are the same thing.
           </p>
         </motion.div>
 

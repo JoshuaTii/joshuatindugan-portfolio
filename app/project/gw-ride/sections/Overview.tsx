@@ -139,14 +139,14 @@ export function Overview() {
         >
           <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
             GW Ride started with a simple observation: GWU has a shuttle network, but most students
-            don't use it — not because the shuttles aren't there, but because students can't trust
+            don't use it. Not because the shuttles aren't there, but because students can't trust
             the information available to them. Unclear ETAs, confusing routes, and zero real-time
             visibility make the default choice a rideshare.
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
-            This project is an exploration of what it would take to change that default. By centering
-            the design on live tracking, route clarity, and instant decision support, GW Ride is built
-            around one idea: giving students just enough information to confidently commit to the shuttle.
+            By centering on live tracking, route clarity, and instant decision support, GW Ride is built
+            around one question: what&apos;s the minimum information a student needs to confidently choose
+            the shuttle over a rideshare? The answer shaped every screen.
           </p>
         </motion.div>
       </div>

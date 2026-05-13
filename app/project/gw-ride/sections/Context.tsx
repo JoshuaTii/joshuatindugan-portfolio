@@ -93,7 +93,7 @@ export function Context() {
               and route information is difficult to access quickly.
             </p>
             <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.6)", marginTop: 12 }}>
-              When students can't trust transit information, they default to rideshares — adding cost,
+              When students can't trust transit information, they default to rideshares, adding cost,
               stress, and environmental impact to their daily routine. The underlying problem isn't
               shuttle availability. It's information confidence.
             </p>
@@ -168,7 +168,7 @@ export function Context() {
             <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.6)" }}>
               GW Ride is a mobile app centered on giving students the information confidence to
               choose the shuttle. By surfacing live tracking, clear ETAs, route context, and stop
-              detail, the app makes the shuttle feel reliable — even before a student leaves their building.
+              detail, the app makes the shuttle feel reliable before a student even leaves their building.
             </p>
             <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.6)", marginTop: 12 }}>
               The design focuses on speed and scannability: a student standing outside with ten minutes
@@ -238,7 +238,7 @@ export function Context() {
             letterSpacing: "0.04em",
           }}
         >
-          Final design — main tracking and route views
+          Final design: main tracking and route views
         </p>
       </div>
     </section>

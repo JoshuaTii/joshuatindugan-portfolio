@@ -7,7 +7,7 @@ const ACCENT = "#4ade80";
 const TAKEAWAYS = [
   {
     label: "Design beyond the product",
-    body: "Thinking about SAGE as a broader ecosystem — not just an app — pushed me to consider how editorial design, storytelling, and information architecture can serve the same mission differently.",
+    body: "Thinking about SAGE as a broader ecosystem (not just an app) pushed me to consider how editorial design, storytelling, and information architecture can serve the same mission differently.",
   },
   {
     label: "Editorial structure as UX",
@@ -73,7 +73,7 @@ export function SEReflection() {
           >
             This project helped me think about SAGE beyond the boundaries of an app interface.
             Designing an editorial extension meant stepping into a different kind of design
-            problem — one where the primary challenge was not feature layout or interaction
+            problem: the primary challenge was not feature layout or interaction
             state, but rather how to make content feel trustworthy, readable, and genuinely
             connected to a community.
           </p>
@@ -170,7 +170,7 @@ export function SEReflection() {
             }}
           >
             Designing editorial content is not just about layout. It is about how structure
-            communicates trust — and how a publication can carry forward the same mission
+            communicates trust, and how a publication can carry forward the same mission
             as a product, just in a different register.
           </p>
         </motion.div>

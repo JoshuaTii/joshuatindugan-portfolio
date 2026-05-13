@@ -9,7 +9,7 @@ import { Final } from "./sections/Final";
 import { GWRideFooter } from "./sections/GWRideFooter";
 
 export const metadata = {
-  title: "GW Ride — Campus Transit UX | Joshua Tindugan",
+  title: "GW Ride: Campus Transit UX | Joshua Tindugan",
   description:
     "A mobile app concept designed to improve how George Washington University students navigate campus shuttle transportation. UX case study by Joshua Tindugan.",
 };

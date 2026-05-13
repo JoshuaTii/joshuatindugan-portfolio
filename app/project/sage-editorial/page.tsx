@@ -10,7 +10,7 @@ import { SENextSteps } from "./sections/SENextSteps";
 import { SEFooter } from "./sections/SEFooter";
 
 export const metadata = {
-  title: "SAGE Editorial — Joshua Tindugan",
+  title: "SAGE Editorial | Joshua Tindugan",
   description:
     "An editorial website extension of the SAGE financial empowerment platform, designed for Ward 7 and Ward 8 communities in Washington D.C.",
 };

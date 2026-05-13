@@ -6,11 +6,11 @@ export const projects = [
     tags: ["Editorial", "Design"],
     category: "UI/UX Design",
     description:
-      "A community-centered publication extending the SAGE financial platform — sharing local stories, resources, and daily updates for underserved D.C. neighborhoods.",
+      "A community-centered publication extending the SAGE financial platform, sharing local stories, resources, and daily updates for underserved D.C. neighborhoods.",
     overview:
       "SAGE Editorial extends a financial empowerment platform into a community-centered publication that shares local stories, resources, and daily updates designed to build trust and connect D.C. residents with support beyond traditional banking.",
     scope:
-      "Student design project covering four page types — homepage, section landing, article, and feature pages.",
+      "Student design project covering four page types: homepage, section landing, article, and feature pages.",
     features: [
       "Community updates and local storytelling",
       "Financial guidance integrated into editorial content",
@@ -29,7 +29,7 @@ export const projects = [
     description:
       "An equity-centered, community-driven banking platform addressing financial barriers in underserved D.C. neighborhoods through trust, transparency, and education.",
     overview:
-      "Sage examines how digital design can address financial inequity. Research foundations include redlining, banking deserts, and institutional distrust — synthesized through interviews, field observations, and systems mapping.",
+      "Sage examines how digital design can address financial inequity. Research foundations include redlining, banking deserts, and institutional distrust, synthesized through interviews, field observations, and systems mapping.",
     scope:
       "Equity-focused design thesis and capstone undergraduate project utilizing research and systems mapping for underserved communities, prioritizing trust and financial stability.",
     features: [
@@ -51,7 +51,7 @@ export const projects = [
     description:
       "A scholarship discovery platform using smart filtering and unified applications to simplify how students find and apply for funding.",
     overview:
-      "InTuition simplifies how students find and apply for scholarships through smart filters, unified applications, and guidance resources — removing friction from an overwhelmingly complex process.",
+      "InTuition simplifies how students find and apply for scholarships through smart filters, unified applications, and guidance resources, removing friction from an overwhelmingly complex process.",
     scope:
       "Collaborative UI/UX student project focused on designing a website prototype that improves access to scholarships and simplifies the application process.",
     features: [
@@ -73,7 +73,7 @@ export const projects = [
     description:
       "A mobile app improving campus transportation at George Washington University with real-time tracking, arrival estimates, and crowd-level insights.",
     overview:
-      "GW Ride addresses shuttle limitations through real-time tracking, estimated arrival times, and crowd-level insights — plus expanded stop coverage and dining integration to help students plan commutes and avoid delays.",
+      "GW Ride addresses shuttle limitations through real-time tracking, estimated arrival times, and crowd-level insights, plus expanded stop coverage and dining integration to help students plan commutes and avoid delays.",
     scope:
       "Mobile app design collaborative project focused on improving transportation across GWU campuses through research-driven solutions.",
     features: [
@@ -93,7 +93,7 @@ export const projects = [
     tags: ["Photography"],
     category: "Photography",
     description:
-      "A visual archive of lifestyle, editorial, and brand photography — studying color, composition, and perspective beyond the technical.",
+      "A visual archive of lifestyle, editorial, and brand photography, studying color, composition, and perspective beyond the technical.",
     overview:
       "An ongoing visual practice studying color, layout, and perspectives beyond technical camera settings. The archive spans lifestyle, editorial, product, and brand work shot across Washington D.C.",
     scope: "Personal ongoing visual archive, 2023 to present.",
@@ -120,9 +120,9 @@ export const skills = [
 export const experience = [
   {
     year: "2024–2026",
-    role: "Interaction & Graphic Design Student",
+    role: "Interaction Design Student",
     org: "George Washington University",
-    detail: "B.S. graduating May 2026",
+    detail: "B.F.A. in Interaction Design, Minor in Graphic Design. Graduating May 2026.",
   },
   {
     year: "2023",

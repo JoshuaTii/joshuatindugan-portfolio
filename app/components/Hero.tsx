@@ -64,7 +64,7 @@ export function Hero() {
             maxWidth: 580,
           }}
         >
-          UX Designer crafting intentional digital experiences that bridge user needs and business goals.
+          Interaction design senior at GWU. I design for trust: financial access platforms, transit tools, scholarship discovery. Graduating May 2026.
         </motion.p>
 
         {/* Buttons — mt 44px, gap 18px, min-height 52px, padding 16px 32px */}
