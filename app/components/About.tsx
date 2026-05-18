@@ -77,16 +77,16 @@ export function About() {
               marginBottom: 0,
             }}
           >
-            A designer who starts with the<br className="hidden lg:block" /> people the system already failed.
+            A designer who overthinks buttons so users don&apos;t have to.
           </h2>
 
           {/* Body paragraphs — line-height 1.7, max-width 680px */}
           <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
-            I&apos;m a senior interaction design student at GWU, finishing a thesis I&apos;ve spent two semesters on: SAGE, a financial access platform built for D.C.&apos;s Ward 7 and Ward 8 neighborhoods. My work tends to start with a systemic question, then follow the research until the design earns its existence.
+            I&apos;m a UI/UX designer based in Washington, D.C. I care about building digital experiences that feel clear, thoughtful, and actually useful, not just pretty screens with nice shadows. My work starts with people, research, and the messy details that usually get overlooked. Whether I&apos;m designing a financial access platform, a campus transportation experience, or editorial sites, I&apos;m always asking the same thing: how can this feel easier, smarter, and more human?
           </p>
 
           <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
-            Outside the screen work, I shoot film and study composition through photography. Same practice, different medium. I&apos;m graduating May 2026 and looking for a team that cares about the work as much as the output.
+            Outside the screen, I&apos;m usually shooting photography, drawing, studying composition, or noticing spacing issues in places where no one asked. Same practice, different medium. I&apos;m drawn to teams that care deeply about craft, purpose, and making products people genuinely want to use.
           </p>
 
           {/* Skill chips — padding 7px 13px, min-height 30px, gap 10px */}
