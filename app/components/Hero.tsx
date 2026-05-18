@@ -64,7 +64,7 @@ export function Hero() {
             maxWidth: 580,
           }}
         >
-          Interaction design senior at GWU. I design for trust: financial access platforms, transit tools, scholarship discovery. Graduating May 2026.
+          A UX/UI designer who cares about people, pixels, and making sure nobody gets lost on a screen.
         </motion.p>
 
         {/* Buttons — mt 44px, gap 18px, min-height 52px, padding 16px 32px */}

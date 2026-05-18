@@ -9,7 +9,7 @@ const experience = [
     company: "George Washington University",
     period: "2022–Present",
     description:
-      "B.F.A. in Interaction Design, Minor in Graphic Design. Corcoran School of the Arts and Design. Graduating May 2026.",
+      "B.F.A. in Interaction Design, Minor in Graphic Design. Corcoran School of the Arts and Design. Graduated May 2026.",
   },
   {
     role: "Web Designer",
@@ -41,6 +41,8 @@ const softwareStack = [
   { name: "InDesign", desc: "Layout Design" },
   { name: "Lightroom", desc: "Photo Editing" },
   { name: "Framer", desc: "No-code web design" },
+  { name: "HTML", desc: "Basic" },
+  { name: "CSS", desc: "Basic" },
 ];
 
 const services = [
@@ -62,7 +64,7 @@ const services = [
 ];
 
 const stats = [
-  { value: "May 2026", label: "Graduating" },
+  { value: "May 2026", label: "Graduated" },
   { value: "GWU", label: "George Washington University" },
   { value: "10+", label: "Projects completed" },
 ];

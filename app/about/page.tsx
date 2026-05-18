@@ -21,14 +21,10 @@ export default function About() {
         </p>
         <h1
           className="font-black tracking-tight leading-none mb-6"
-          style={{ fontSize: "clamp(3rem,8vw,7rem)", color: "var(--text)" }}
+          style={{ fontSize: "clamp(2rem,6vw,5rem)", color: "var(--text)" }}
         >
-          About Me
+          A designer who overthinks buttons so users don&apos;t have to.
         </h1>
-        <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
-          A D.C. based creative designer and photographer working with care, intention, and
-          attention to detail, shaping stories that live on screens, in print, and everywhere in between.
-        </p>
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-16 mb-20">
@@ -39,28 +35,18 @@ export default function About() {
           </h2>
           <div className="space-y-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
             <p>
-              Based in Washington, D.C. since 2022, I design digital and print experiences that
-              centre community, trust, and equity. My work spans mobile apps, editorial systems,
-              brand identities, and photography, all driven by the same principle: good design
-              should serve people first.
+              I&apos;m a UI/UX designer based in Washington, D.C. I care about building digital
+              experiences that feel clear, thoughtful, and actually useful, not just pretty screens
+              with nice shadows. My work starts with people, research, and the messy details that
+              usually get overlooked. Whether I&apos;m designing a financial access platform, a
+              campus transportation experience, or editorial sites, I&apos;m always asking the
+              same thing: how can this feel easier, smarter, and more human?
             </p>
             <p>
-              I&apos;m currently completing a B.F.A. in Interaction Design, Minor in Graphic Design,
-              at George Washington University (May 2026). My capstone thesis explored equitable financial product design
-              for underserved D.C. neighborhoods.
-            </p>
-            <p>
-              Outside of client and academic work, I run{" "}
-              <a
-                href="https://instagram.com/joshuba.archive"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline transition-colors hover:text-white"
-                style={{ color: "var(--lime)" }}
-              >
-                @joshuba.archive
-              </a>{" "}
-              an ongoing photography project studying color, light, and everyday life in the city.
+              Outside the screen, I&apos;m usually shooting photography, drawing, studying
+              composition, or noticing spacing issues in places where no one asked. Same practice,
+              different medium. I&apos;m drawn to teams that care deeply about craft, purpose, and
+              making products people genuinely want to use.
             </p>
           </div>
 

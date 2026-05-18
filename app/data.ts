@@ -122,7 +122,7 @@ export const experience = [
     year: "2024–2026",
     role: "Interaction Design Student",
     org: "George Washington University",
-    detail: "B.F.A. in Interaction Design, Minor in Graphic Design. Graduating May 2026.",
+    detail: "B.F.A. in Interaction Design, Minor in Graphic Design. Graduated May 2026.",
   },
   {
     year: "2023",
