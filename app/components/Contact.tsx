@@ -299,7 +299,7 @@ export function Contact() {
                 </span>
               </div>
               <p className="text-white/50 text-sm" style={{ lineHeight: 1.65 }}>
-                Currently available: freelance, full-time, and collaborative projects. Graduating May 2026 from GWU Interaction Design.
+                Currently available: freelance, full-time, and collaborative projects.
               </p>
             </div>
           </motion.div>

@@ -102,7 +102,7 @@ export function Info() {
             The work, the tools,<br /> the background.
           </h2>
           <p className="text-white/50" style={{ lineHeight: 1.65 }}>
-            I&apos;m Joshua, a D.C.-based interaction designer and photographer finishing my degree at GWU in May 2026. My thesis project spent two semesters designing a financial access platform for Ward 7 and 8 residents. Outside of design school I shoot film, take on freelance work, and look for problems where the design gap and the human gap are the same thing.
+            D.C.-based interaction designer and photographer holding a B.F.A Interaction Design degree.
           </p>
         </motion.div>
 
