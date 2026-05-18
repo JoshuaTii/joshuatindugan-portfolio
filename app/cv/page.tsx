@@ -24,6 +24,8 @@ export const metadata: Metadata = {
 
 /* ─── CV Styles ──────────────────────────────────────────────── */
 const CSS = `
+  @import url('https://api.fontshare.com/v2/css?f[]=warbler-text@400,700&f[]=basic-sans@400,500,700&display=swap');
+
   .cv-root *, .cv-root *::before, .cv-root *::after {
     box-sizing: border-box; margin: 0; padding: 0;
   }
@@ -42,12 +44,21 @@ const CSS = `
     --f-label:      9px;
     --f-entry:      13px;
     --f-proj:       14.5px;
-    font-family: var(--font-inter, Inter, -apple-system, BlinkMacSystemFont, sans-serif);
+    font-family: 'Basic Sans', system-ui, -apple-system, sans-serif;
     background: #e9e6e0;
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     padding: 0;
+  }
+
+  /* Warbler Text Display for all headings and entry titles */
+  .cv-name,
+  .cv-section-title,
+  .cv-entry-title,
+  .cv-project-title,
+  .cv-edu-school {
+    font-family: 'Warbler Text', Georgia, 'Times New Roman', serif;
   }
 
   /* Print bar */
@@ -491,7 +502,7 @@ export default function CVPage() {
               <p className="cv-edu-school">The George Washington University</p>
               <p className="cv-edu-sub">Corcoran School of the Arts &amp; Design</p>
               <p className="cv-edu-detail">B.F.A. in Interaction Design, Minor in Graphic Design</p>
-              <p className="cv-edu-detail">Expected May 2026 · Washington, DC</p>
+              <p className="cv-edu-detail">May 2026 · Washington, DC</p>
             </div>
 
             <div className="cv-edu-entry">

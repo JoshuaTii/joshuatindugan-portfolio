@@ -8,7 +8,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 export const metadata: Metadata = {
   title: "Joshua Tindugan · Interaction Designer",
   description:
-    "Interaction design senior at GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery. Graduating May 2026.",
+    "Interaction designer, B.F.A. GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery.",
   keywords: ["UX Design", "UI Design", "Interaction Design", "Product Design", "Photography", "Washington DC", "Portfolio"],
   metadataBase: new URL("https://joshuaubatindugan.com"),
   alternates: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Joshua Tindugan · Interaction Designer",
     description:
-      "Interaction design senior at GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery. Graduating May 2026.",
+      "Interaction designer, B.F.A. GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery.",
     url: "https://joshuaubatindugan.com",
     siteName: "Joshua Tindugan",
     type: "website",
