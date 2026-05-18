@@ -376,10 +376,11 @@ export function DesignEvolution() {
               maxWidth: 680,
             }}
           >
-            The redesign is stronger because it does more than make the app look better. It makes
-            the experience feel safer, clearer, and more respectful. The final version uses color
-            with purpose, breaks financial information into smaller pieces, and helps users
-            understand their next step without feeling overwhelmed.
+            The redesign is stronger because it does more than make the app look better. Testing
+            showed that the earlier version felt too bright, almost too &ldquo;Cash App-y&rdquo; and
+            busy for a financial product, so I refined the experience to feel safer, clearer, and
+            more trustworthy. The final version uses color with purpose, simplifies financial
+            information, and helps users understand their next step without feeling overwhelmed.
           </p>
         </motion.div>
       </div>
