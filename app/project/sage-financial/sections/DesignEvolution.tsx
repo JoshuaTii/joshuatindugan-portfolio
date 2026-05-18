@@ -30,7 +30,14 @@ const PHASES = [
     id: "lofi",
     label: "Lo-fi Wireframes",
     description:
-      "I started with low-fidelity wireframes to validate the core information architecture before committing to any visual language. The goal was to test flows, not aesthetics, getting structure right before style.",
+      "At this stage, I kept the design simple on purpose. Before making anything look polished, I wanted to understand whether the basic structure made sense. The goal was to make sure users could quickly understand where to go, what to do, and how the main features connected.",
+    cards: [
+      "Focused on structure before visual design.",
+      "Tested the core flows: payment status, learning, local support, and microloan progress.",
+      "Used grayscale to check hierarchy without relying on color.",
+      "Built the interface around cards so complex financial information felt easier to scan.",
+      "Established bottom navigation early so the app could feel like a daily-use tool.",
+    ],
     screens: [
       { src: "/sage/de-lofi-1.png", caption: "Cross Section" },
       { src: "/sage/de-lofi-2.png", caption: "Sage" },
@@ -42,7 +49,14 @@ const PHASES = [
     id: "proto",
     label: "Initial Prototype",
     description:
-      "The initial prototype introduced color, type, and real content into the flows for the first time. Testing this version revealed that the onboarding felt institutional and the loan application flow had too many steps before users understood what they were agreeing to. Both were redesigned before the final pass.",
+      "Once the structure felt solid, I started adding personality through color, type, real content, and imagery. This version helped me see what felt promising, but also what needed more restraint. It made the app feel more alive, but also showed that the visual tone had to feel more trustworthy for a financial product.",
+    cards: [
+      "Added color, typography, icons, real copy, and image-based lesson cards.",
+      "Used bright green to suggest money, growth, and progress.",
+      "Placed payment actions near the payment amount to reduce decision friction.",
+      "Added the map experience to connect users with nearby community resources.",
+      "Learned that the green felt optimistic, but too dominant and less mature for the final direction.",
+    ],
     screens: [
       { src: "/sage/de-proto-1.png", caption: "Cross Section" },
       { src: "/sage/de-proto-2.png", caption: "Sage" },
@@ -54,7 +68,15 @@ const PHASES = [
     id: "final",
     label: "Final Design",
     description:
-      "The final design refined the visual language to feel trustworthy and approachable rather than clinical. Every screen had to communicate safety and respect from the first glance.",
+      "The final design became more focused, calm, and intentional. I wanted SAGE to feel supportive without feeling childish, and professional without feeling cold. Since the app deals with money, repayment, learning, and local resources, every visual decision needed to build trust quickly.",
+    cards: [
+      "Shifted to a dark navy interface to create a calmer and more secure feeling.",
+      "Used green as an accent for progress, success, and key actions instead of the main background.",
+      "Refined spacing, cards, contrast, and hierarchy for faster scanning.",
+      "Made repayment feel more encouraging with language like \"60% paid\" and \"You're on track.\"",
+      "Organized local help around real user needs like debt, food, rent, and emergencies.",
+      "Made learning feel less intimidating through visual cards, progress bars, and clear next steps.",
+    ],
     screens: [
       { src: "/sage/de-final-2.png", caption: "Cross Section" },
       { src: "/sage/de-final-3.png", caption: "Sage" },
@@ -251,11 +273,39 @@ export function DesignEvolution() {
             lineHeight: 1.75,
             color: "rgba(242,237,232,0.55)",
             maxWidth: 600,
-            marginBottom: 40,
+            marginBottom: 24,
           }}
         >
           {phase.description}
         </motion.p>
+
+        {/* Design choice cards */}
+        <motion.div
+          key={activePhase + "-cards"}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 12, marginBottom: 40 }}
+        >
+          {phase.cards.map((card, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "18px 20px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.07)",
+                backgroundColor: "#111113",
+                fontSize: "0.88rem",
+                lineHeight: 1.65,
+                color: "rgba(242,237,232,0.6)",
+                borderLeft: "2px solid rgba(122,182,136,0.4)",
+              }}
+            >
+              {card}
+            </div>
+          ))}
+        </motion.div>
 
         {/* Screen grid */}
         <motion.div
@@ -291,6 +341,46 @@ export function DesignEvolution() {
               <p className="caption">{screen.caption}</p>
             </div>
           ))}
+        </motion.div>
+
+        {/* Why the redesign is stronger */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            marginTop: 72,
+            padding: "32px 36px",
+            borderRadius: 16,
+            border: "1px solid rgba(122,182,136,0.15)",
+            backgroundColor: "rgba(122,182,136,0.04)",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.72rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              color: "#7ab688",
+              marginBottom: 14,
+            }}
+          >
+            Why the redesign is stronger
+          </p>
+          <p
+            style={{
+              fontSize: "0.95rem",
+              lineHeight: 1.75,
+              color: "rgba(242,237,232,0.6)",
+              maxWidth: 680,
+            }}
+          >
+            The redesign is stronger because it does more than make the app look better. It makes
+            the experience feel safer, clearer, and more respectful. The final version uses color
+            with purpose, breaks financial information into smaller pieces, and helps users
+            understand their next step without feeling overwhelmed.
+          </p>
         </motion.div>
       </div>
     </section>

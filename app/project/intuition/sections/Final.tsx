@@ -141,12 +141,50 @@ export function Final() {
             lineHeight: 1.75,
             color: "rgba(242,237,232,0.5)",
             maxWidth: 600,
-            marginBottom: 64,
+            marginBottom: 32,
           }}
         >
-          The finished design connects every part of the scholarship journey (discovery, application,
-          tracking, and community) into a single, cohesive experience.
+          The final design brought the experience together as one complete scholarship platform.
+          Instead of making students jump across websites, InTuition organizes discovery, matching,
+          applying, tracking, and community in one place. The design became less about finding more
+          scholarships and more about helping students know which opportunities matter and what to
+          do next.
         </motion.p>
+
+        {/* Design choice cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 12, marginBottom: 64 }}
+        >
+          {[
+            "Used a soft purple and lavender palette to make the experience feel academic, calm, and approachable.",
+            "Added amber gold as an accent to highlight important actions and moments of opportunity.",
+            "Used Albert Sans for body text so scholarship information stayed readable and practical.",
+            "Organized scholarships around smart filters like deadline, award amount, eligibility, major, year level, and required materials.",
+            "Made the reusable student profile a core feature to reduce repetitive form-filling.",
+            "Added tracking features so saved, in-progress, submitted, and upcoming applications stay in one place.",
+            "Kept peer/community features connected to confidence and social proof, not just social networking.",
+          ].map((card, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "18px 20px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.07)",
+                backgroundColor: "#111113",
+                fontSize: "0.88rem",
+                lineHeight: 1.65,
+                color: "rgba(242,237,232,0.6)",
+                borderLeft: "2px solid rgba(245,158,11,0.4)",
+              }}
+            >
+              {card}
+            </div>
+          ))}
+        </motion.div>
 
         {/* ── Hero mockup */}
         <motion.div

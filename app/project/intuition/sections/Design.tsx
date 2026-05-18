@@ -85,7 +85,14 @@ const PHASES = [
     number: "01",
     label: "Phase 01",
     title: "Lo-fi Sketches & Wireframes",
-    body: "We started with rough pencil sketches, deliberately lo-fi to prevent aesthetic choices from locking in structure too early. The key design question at this stage was how to hold three distinct modes: discovery (browsing available scholarships), application (the form flow itself), and social (community context and peer stories). Getting the spatial relationship between those three right took several cycles before anything moved into Figma.",
+    body: "At the beginning, we kept the design rough so we could focus on the system instead of the styling. InTuition had to support multiple student needs at once: finding scholarships, understanding eligibility, applying efficiently, and learning from peers. The early sketches helped us figure out how those pieces should connect before committing to a polished interface.",
+    cards: [
+      "Focused on structure before visual design.",
+      "Explored how discovery, applications, profiles, and social features could live in one platform.",
+      "Used rough sketches to test layout options quickly without getting attached to one direction.",
+      "Prioritized a dashboard-style structure because students needed one place to browse, track, and act.",
+      "Kept the experience centered on reducing overwhelm, not simply showing more scholarships.",
+    ],
     images: SKETCH_IMAGES,
     cols: 4 as const,
   },
@@ -93,7 +100,14 @@ const PHASES = [
     number: "02",
     label: "Phase 02",
     title: "Lo-fi Digital Mockups",
-    body: "Moving into Figma, we translated the best sketch concepts into low-fidelity digital screens. These clarified the information architecture: how scholarship listings, profiles, and the social feed would relate to each other.",
+    body: "Once the core idea felt clearer, we moved the best sketches into Figma. This helped us test the information architecture more seriously. The goal was to see whether students could understand where scholarships, their profile, and the social feed belonged within the same experience.",
+    cards: [
+      "Translated the strongest sketch concepts into digital wireframes.",
+      "Clarified the relationship between scholarship listings, student profiles, and peer/social content.",
+      "Used simple layouts to check whether the platform felt easy to navigate.",
+      "Treated the student profile as a functional tool, not just an account page, because it powers matching and reusable application data.",
+      "Started shaping the platform around the idea that students should enter information once and reuse it across opportunities.",
+    ],
     images: LOFI_IMAGES,
     cols: 4 as const,
   },
@@ -101,7 +115,14 @@ const PHASES = [
     number: "03",
     label: "Phase 03",
     title: "Medium Fidelity",
-    body: "With the layout validated, we added visual weight: typography hierarchy, card spacing, and an early color palette. Medium-fi allowed us to test the main page before investing in full polish.",
+    body: "In this phase, the product started to feel more real. We added stronger hierarchy, spacing, early colors, and clearer content blocks. This helped us see how students might scan scholarship opportunities and decide what to click first. The goal was to make the experience feel helpful without making it feel crowded.",
+    cards: [
+      "Added typography hierarchy, card spacing, and an early color direction.",
+      "Used cards to separate scholarships into easier-to-scan opportunities.",
+      "Started testing how filters, scholarship details, and profile-based matching could work together.",
+      "Made the interface more structured so deadlines, award amounts, and eligibility could stand out faster.",
+      "Used this phase to catch sections that felt too text-heavy before moving into the full prototype.",
+    ],
     images: MEDIUM_IMAGES,
     cols: 4 as const,
   },
@@ -109,7 +130,14 @@ const PHASES = [
     number: "04",
     label: "Phase 04",
     title: "Interactive Prototype",
-    body: "The first clickable prototype connected all the core flows: login, onboarding, scholarship discovery, application, and social sharing. Two rounds of user testing surfaced that the social page's purpose was unclear, text-heavy sections were causing drop-off, and users wanted to see how peer profiles integrated with applications. Those findings directly shaped the revisions in the final design.",
+    body: "The clickable prototype connected the main experience from onboarding to scholarship discovery, application, and social sharing. This phase was important because it showed where the concept worked and where users still felt unclear. Testing revealed that the social page needed a sharper purpose, some text needed to be shortened, and peer profiles needed to connect more clearly to the scholarship journey.",
+    cards: [
+      "Connected login, onboarding, discovery, application, and social flows.",
+      "Tested whether students understood the purpose of each main section.",
+      "Found that the social feature needed to feel more useful, not just added on.",
+      "Reduced text-heavy moments to make the experience easier to scan.",
+      "Strengthened the connection between peer stories, user profiles, and scholarship confidence.",
+    ],
     images: PROTO_IMAGES,
     cols: 4 as const,
   },
@@ -174,7 +202,7 @@ export function Design() {
         </motion.h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 96 }}>
-          {PHASES.map(({ number, label, title, body, images, cols }, phaseIdx) => (
+          {PHASES.map(({ number, label, title, body, cards, images, cols }, phaseIdx) => (
             <motion.div
               key={number}
               initial={{ opacity: 0, y: 32 }}
@@ -212,6 +240,30 @@ export function Design() {
                 <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)" }}>
                   {body}
                 </p>
+              </div>
+
+              {/* Design choice cards */}
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                style={{ gap: 12, marginBottom: 32 }}
+              >
+                {cards.map((card: string, ci: number) => (
+                  <div
+                    key={ci}
+                    style={{
+                      padding: "18px 20px",
+                      borderRadius: 12,
+                      border: "1px solid rgba(255,255,255,0.07)",
+                      backgroundColor: "#111113",
+                      fontSize: "0.88rem",
+                      lineHeight: 1.65,
+                      color: "rgba(242,237,232,0.6)",
+                      borderLeft: `2px solid rgba(245,158,11,0.4)`,
+                    }}
+                  >
+                    {card}
+                  </div>
+                ))}
               </div>
 
               <PhaseGallery

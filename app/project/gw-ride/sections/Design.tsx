@@ -148,12 +148,45 @@ export function Design() {
             </span>
           </div>
           <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
-            Wireframes explored three core flows: onboarding, the main shuttle tracking map view, and an
-            explore mode for discovering routes. At this stage, decisions were structural: where does the
-            ETA live? How do you show multiple routes without overwhelming the screen? What does a stop
-            look like without visual decoration in the way?
+            At the beginning, we kept the design simple so we could focus on the real problem: students
+            were not missing shuttles because the system did not exist, they were missing them because
+            the information was unclear and the stops were not always placed around student convenience.
+            The lo-fi stage helped us map the basic experience around timing, routes, and proposed bus
+            stops near key campus destinations, making it easier for students to understand where to go
+            and whether the shuttle fit their schedule before thinking about visual polish.
           </p>
         </motion.div>
+
+        {/* Lo-fi design choice cards */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 12, marginBottom: 32 }}
+        >
+          {[
+            "Focused on structure before visual design.",
+            "Explored the core flows: onboarding, live shuttle tracking, route discovery, and stop details.",
+            "Placed ETA information early because arrival time is the first thing students need.",
+            "Used map-first screens because shuttle decisions depend on location and timing.",
+            "Kept route and stop information modular so students could scan quickly while walking or between classes.",
+            "Designed the navigation around fast access, not deep exploration, because transit decisions happen in seconds.",
+          ].map((card, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "18px 20px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.07)",
+                backgroundColor: "#111113",
+                fontSize: "0.88rem",
+                lineHeight: 1.65,
+                color: "rgba(242,237,232,0.6)",
+                borderLeft: "2px solid rgba(96,165,250,0.4)",
+              }}
+            >
+              {card}
+            </div>
+          ))}
+        </div>
 
         <div style={{ marginBottom: 96 }}>
           <PhaseGallery images={LOFI_IMAGES} inView={inView} onOpen={openLightbox} altPrefix="Low fidelity wireframe" />
@@ -184,12 +217,43 @@ export function Design() {
               </span>
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
-              The first prototype brought wireframe structure into real screens, introducing color, type,
-              and component shape for the first time. This phase was about testing whether the layout
-              decisions made in lo-fi actually held up when real content filled the space: real ETA numbers,
-              actual stop names, route colors with meaning.
+              Once the structure felt clear, we moved into a more realistic prototype with color, type,
+              route cards, stop names, and ETA details. This phase helped us test whether the interface
+              still worked once real content was added. The main goal was to make shuttle information
+              feel trustworthy enough for a student to choose the Vex instead of opening a rideshare app.
             </p>
           </motion.div>
+
+          {/* Medium fidelity design choice cards */}
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: 12, marginBottom: 32 }}
+          >
+            {[
+              "Added real ETA numbers, stop names, route labels, and visual hierarchy.",
+              "Used route cards to separate shuttle options without overwhelming the map.",
+              "Made timing the strongest visual element because students scan for \"how many minutes?\" first.",
+              "Added route colors to help students distinguish options faster.",
+              "Tested whether students could understand the next shuttle, route direction, and stop context without extra explanation.",
+              "Learned that the layout needed to prioritize ETA first, route name second, and stop detail last.",
+            ].map((card, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "18px 20px",
+                  borderRadius: 12,
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  backgroundColor: "#111113",
+                  fontSize: "0.88rem",
+                  lineHeight: 1.65,
+                  color: "rgba(242,237,232,0.6)",
+                  borderLeft: "2px solid rgba(96,165,250,0.4)",
+                }}
+              >
+                {card}
+              </div>
+            ))}
+          </div>
 
           <div style={{ marginBottom: 96 }}>
             <PhaseGallery images={PROTO_IMAGES} inView={protoInView} onOpen={openLightbox} altPrefix="First prototype" />
@@ -221,12 +285,43 @@ export function Design() {
               </span>
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
-              After collecting informal feedback on the first prototype, the design was significantly
-              refined. Key improvements: stronger typographic hierarchy on the main map view, a cleaner
-              route card layout that surfaces ETAs without visual clutter, and a more intuitive stop detail
-              pattern that grounds location in campus landmarks students actually recognize.
+              After feedback, the design became more focused and easier to scan. This phase was about
+              removing friction from the decision moment. If a student has ten minutes before class,
+              the app cannot ask them to think too hard. The revised prototype made the most important
+              information larger, clearer, and closer to the actions students needed to take.
             </p>
           </motion.div>
+
+          {/* High fidelity design choice cards */}
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: 12, marginBottom: 32 }}
+          >
+            {[
+              "Strengthened the typographic hierarchy so the ETA stood out immediately.",
+              "Cleaned up route cards so they felt useful instead of crowded.",
+              "Made stop details more grounded in campus landmarks students recognize.",
+              "Reduced visual noise around the map so movement and timing stayed central.",
+              "Improved the flow between tracking, route detail, and campus exploration.",
+              "Refined the experience around one question: is the shuttle close enough for me to wait?",
+            ].map((card, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "18px 20px",
+                  borderRadius: 12,
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  backgroundColor: "#111113",
+                  fontSize: "0.88rem",
+                  lineHeight: 1.65,
+                  color: "rgba(242,237,232,0.6)",
+                  borderLeft: "2px solid rgba(96,165,250,0.4)",
+                }}
+              >
+                {card}
+              </div>
+            ))}
+          </div>
 
           <PhaseGallery images={HIFI_IMAGES} inView={hifiInView} onOpen={openLightbox} altPrefix="High fidelity revised prototype" />
         </div>

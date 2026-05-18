@@ -53,7 +53,7 @@ export function SEProgress() {
               marginBottom: 28,
             }}
           >
-            Progress and Layout Exploration
+            Lo-fi Sketches and Layout Exploration
           </h2>
           <p
             style={{
@@ -63,11 +63,81 @@ export function SEProgress() {
               maxWidth: 640,
             }}
           >
-            For the low to medium fidelity stage, I focused on building a strong editorial
-            structure before refining the visual system. The priority was clarity: how sections
-            are organized, how readers move through content, and how grids can support multiple
-            types of editorial information without feeling chaotic.
+            For SAGE Editorial, the lo-fi stage is less about app functionality and more about
+            building a reading system. Since this project extends SAGE into stories, updates, and
+            community context, the early sketches needed to answer a different question: not
+            "what can users do here?" but "how should people move through information in a way
+            that feels trustworthy, local, and easy to read?" The goal was to shape a publication
+            experience that could carry serious topics like financial access, community resources,
+            and Ward 7 and Ward 8 stories without feeling like a corporate resource page.
           </p>
+        </motion.div>
+
+        {/* Lo-fi Sketches subsection */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginBottom: 40 }}
+        >
+          <p
+            style={{
+              fontSize: "0.72rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              color: "rgba(74,222,128,0.7)",
+              marginBottom: 12,
+            }}
+          >
+            Lo-fi Sketches
+          </p>
+          <p
+            style={{
+              fontSize: "0.95rem",
+              lineHeight: 1.75,
+              color: "rgba(242,237,232,0.55)",
+              maxWidth: 600,
+              marginBottom: 24,
+            }}
+          >
+            At this stage, I focused on creating the structure of the editorial site before making
+            visual decisions. I treated the page like a publication system, not a landing page.
+            That meant thinking about rhythm, section order, article hierarchy, and how different
+            types of content could sit together without overwhelming the reader.
+          </p>
+
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: 12 }}
+          >
+            {[
+              "Explored newspaper and magazine-inspired layouts to make the site feel familiar and readable.",
+              "Used early grids to test how headlines, article cards, feature stories, and resource sections could work together.",
+              "Prioritized reading flow so the page could move from big-picture context into more specific community stories and updates.",
+              "Treated spacing as a trust-building tool, giving serious content enough room to breathe instead of feeling dense or promotional.",
+              "Designed the hierarchy around scanning first, then deeper reading, because users may not read every article immediately.",
+              "Considered how the editorial site could feel connected to SAGE without copying the app interface directly.",
+              "Focused on making financial access feel human through structure, not just through visuals or copy.",
+              "Used the lo-fi phase to test whether the site felt like a real publication with a point of view, rather than a collection of disconnected content blocks.",
+            ].map((card, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "18px 20px",
+                  borderRadius: 12,
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  backgroundColor: "#111113",
+                  fontSize: "0.88rem",
+                  lineHeight: 1.65,
+                  color: "rgba(242,237,232,0.6)",
+                  borderLeft: "2px solid rgba(74,222,128,0.35)",
+                }}
+              >
+                {card}
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Figma embed */}
@@ -156,7 +226,7 @@ export function SEProgress() {
           </div>
         </motion.div>
 
-        {/* Peer critique note */}
+        {/* Final validation note */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={embedInView ? { opacity: 1, y: 0 } : {}}
@@ -164,8 +234,8 @@ export function SEProgress() {
           style={{
             padding: "32px 36px",
             borderRadius: 20,
-            border: "1px solid rgba(255,255,255,0.06)",
-            backgroundColor: "#111113",
+            border: "1px solid rgba(74,222,128,0.1)",
+            backgroundColor: "rgba(74,222,128,0.03)",
             maxWidth: 720,
           }}
         >
@@ -175,11 +245,11 @@ export function SEProgress() {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
-              color: "rgba(242,237,232,0.35)",
+              color: "rgba(74,222,128,0.6)",
               marginBottom: 14,
             }}
           >
-            Peer Critique
+            What this phase validated
           </p>
           <p
             style={{
@@ -188,11 +258,10 @@ export function SEProgress() {
               color: "rgba(242,237,232,0.6)",
             }}
           >
-            During peer critique, the response was mostly positive, which is always welcome, but
-            not always the most actionable design feedback. Since there were not many major
-            critiques to act on, I used that moment to self-audit the system more closely: checking
-            hierarchy, section rhythm, readability, and whether the editorial direction still felt
-            genuinely connected to SAGE and its communities.
+            The main validation for this phase is that the sketches gave the project an editorial
+            backbone. They helped define how SAGE could expand beyond a financial tool and become
+            a storytelling platform. Before color, typography, or polished mockups, the structure
+            needed to prove that the content could feel organized, credible, and community-centered.
           </p>
         </motion.div>
       </div>

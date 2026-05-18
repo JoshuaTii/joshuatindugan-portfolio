@@ -102,10 +102,47 @@ export function Final() {
             A polished transit experience built around student confidence.
           </h2>
           <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
-            The final screens bring together live tracking, route clarity, stop detail, and
-            an intuitive navigation pattern, all in service of one outcome: students who
-            trust their shuttle option enough to use it.
+            The final design brings the experience together as a campus transit tool built around
+            confidence. It does not try to overload students with every possible transit detail.
+            Instead, it gives them the right information at the right time: where the shuttle is,
+            when it arrives, what route it follows, and whether it is worth waiting for.
           </p>
+        </motion.div>
+
+        {/* Final design choice cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 12, marginBottom: 48 }}
+        >
+          {[
+            "Used GWU-inspired colors to make the app feel connected to the campus system.",
+            "Used Colonial Blue for structure and trust, with Buff as a warm branded accent.",
+            "Kept the map central because location is the foundation of the experience.",
+            "Made ETAs large and immediate so students can decide quickly.",
+            "Used route cards to turn complex transit data into simple choices.",
+            "Added stop detail screens so students know exactly where to go, not just which route exists.",
+            "Included campus exploration to connect transportation with everyday student life, like finding nearby buildings, food, or destinations.",
+            "Built the final experience around speed, scannability, and confidence.",
+          ].map((card, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "18px 20px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.07)",
+                backgroundColor: "#111113",
+                fontSize: "0.88rem",
+                lineHeight: 1.65,
+                color: "rgba(242,237,232,0.6)",
+                borderLeft: "2px solid rgba(96,165,250,0.4)",
+              }}
+            >
+              {card}
+            </div>
+          ))}
         </motion.div>
 
         {/* ── Hero screens — 5 large mockups ── */}
