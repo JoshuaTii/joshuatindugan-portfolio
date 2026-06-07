@@ -37,7 +37,7 @@ export function Reflection() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 640,
               marginBottom: 28,
             }}
@@ -48,7 +48,7 @@ export function Reflection() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.55)",
+              color: "var(--cs-text-muted)",
               maxWidth: 600,
             }}
           >
@@ -68,8 +68,8 @@ export function Reflection() {
               style={{
                 padding: 32,
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 18,
@@ -79,7 +79,7 @@ export function Reflection() {
                 style={{
                   fontSize: "0.95rem",
                   fontWeight: 600,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   lineHeight: 1.4,
                   fontFamily: "var(--font-playfair), Georgia, serif",
                   fontStyle: "italic",
@@ -117,7 +117,7 @@ export function Reflection() {
             style={{
               fontSize: "1.3rem",
               fontWeight: 600,
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               letterSpacing: "-0.01em",
               fontFamily: "var(--font-inter), system-ui, sans-serif",
             }}
@@ -149,7 +149,7 @@ export function Reflection() {
                 >
                   {title}
                 </span>
-                <p style={{ fontSize: "0.88rem", lineHeight: 1.65, color: "rgba(242,237,232,0.48)" }}>
+                <p style={{ fontSize: "0.88rem", lineHeight: 1.65, color: "var(--cs-text-faint)" }}>
                   {desc}
                 </p>
               </div>

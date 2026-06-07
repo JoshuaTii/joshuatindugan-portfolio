@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Lightbox } from "./Lightbox";
 
-const ACCENT = "#60A5FA";
+const ACCENT = "var(--cs-accent-gw)";
 
 const PRINCIPLES = [
   {
@@ -44,7 +44,7 @@ export function Features() {
   const closeLightbox = useCallback(() => setLightbox(null), []);
 
   return (
-    <section id="features" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px", backgroundColor: "#0d0d10" }}>
+    <section id="features" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px", backgroundColor: "var(--cs-bg-secondary)" }}>
       <div className="section-container">
         {/* Header */}
         <motion.div
@@ -72,7 +72,7 @@ export function Features() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               maxWidth: 640,
               marginBottom: 20,
@@ -80,8 +80,8 @@ export function Features() {
           >
             From open questions to a focused product direction.
           </h2>
-          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
-            Early ideation explored a range of concepts — from GPS-based shuttle tracking to
+          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 600 }}>
+            Early ideation explored a range of concepts, from GPS-based shuttle tracking to
             campus transit consultation tools. The process helped narrow focus toward the features
             that directly address the core problem: real-time confidence at the moment of decision.
           </p>
@@ -94,10 +94,10 @@ export function Features() {
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginBottom: 20 }}
         >
-          <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+          <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
             Brainstorming
           </h3>
-          <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
+          <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)" }}>
             Paper sketches from early concept exploration.
           </p>
         </motion.div>
@@ -116,8 +116,8 @@ export function Features() {
                 style={{
                   borderRadius: 16,
                   overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   transition: "transform 300ms ease, border-color 300ms ease",
                 }}
                 onMouseEnter={(e) => {
@@ -126,7 +126,7 @@ export function Features() {
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = "none";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--cs-border)";
                 }}
               >
                 <img
@@ -144,7 +144,7 @@ export function Features() {
                 loading="lazy"
                 />
               </div>
-              <p style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
                 {sketch.caption}
               </p>
             </motion.div>
@@ -159,10 +159,10 @@ export function Features() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 24 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Why This Direction?
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", maxWidth: 600 }}>
               The research pointed clearly toward real-time information as the core need. The design
               rationale for every major decision came back to four principles.
             </p>
@@ -181,8 +181,8 @@ export function Features() {
                   gap: "0 28px",
                   padding: "28px 32px",
                   borderRadius: 16,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   alignItems: "start",
                 }}
               >
@@ -203,14 +203,14 @@ export function Features() {
                     style={{
                       fontSize: "1rem",
                       fontWeight: 600,
-                      color: "#f2ede8",
+                      color: "var(--cs-text)",
                       marginBottom: 8,
                       letterSpacing: "-0.01em",
                     }}
                   >
                     {p.title}
                   </h4>
-                  <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.6)" }}>
+                  <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                     {p.body}
                   </p>
                 </div>

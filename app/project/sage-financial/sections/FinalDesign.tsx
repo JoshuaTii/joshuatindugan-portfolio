@@ -16,7 +16,7 @@ const GALLERY_SCREENS = Array.from({ length: 17 }, (_, i) => ({
 
 const COLOR_SWATCHES = [
   { name: "White", hex: "#FFFFFF", desc: "Primary text: clean contrast for maximum readability." },
-  { name: "Lime Green", hex: "#9BE931", desc: "Primary accent: energy, growth, and financial empowerment." },
+  { name: "Lime Green", hex: "var(--cs-accent-sf)", desc: "Primary accent: energy, growth, and financial empowerment." },
   { name: "Light Lime", hex: "#D1FEAE", desc: "Secondary tint: soft highlights and background accent states." },
   { name: "Dark Navy", hex: "#011521", desc: "Primary background: grounded depth that anchors trust." },
   { name: "Navy", hex: "#10203D", desc: "Surface background: card and panel elevation." },
@@ -54,7 +54,7 @@ export function FinalDesign() {
     <section
       id="final-design"
       className="!pt-[120px] !pb-[160px]"
-      style={{ backgroundColor: "rgba(17,17,19,0.5)" }}
+      style={{ backgroundColor: "var(--cs-bg-secondary)" }}
     >
       <div className="section-container">
         {/* Header */}
@@ -71,7 +71,7 @@ export function FinalDesign() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               marginBottom: 20,
             }}
           >
@@ -81,7 +81,7 @@ export function FinalDesign() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.7,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               maxWidth: 520,
               margin: "0 auto",
             }}
@@ -106,7 +106,7 @@ export function FinalDesign() {
               aria-label={`View ${screen.alt} full screen`}
               style={{
                 borderRadius: 20,
-                backgroundColor: "#111113",
+                backgroundColor: "var(--cs-surface)",
                 position: "relative" as const,
                 zIndex: 1,
                 cursor: "pointer",
@@ -158,7 +158,7 @@ export function FinalDesign() {
               aria-label={`View ${screen.alt} full screen`}
               style={{
                 borderRadius: 14,
-                backgroundColor: "#111113",
+                backgroundColor: "var(--cs-surface)",
                 position: "relative" as const,
                 zIndex: 1,
                 cursor: "pointer",
@@ -207,7 +207,7 @@ export function FinalDesign() {
                   fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
                   fontWeight: 700,
                   letterSpacing: "-0.02em",
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   maxWidth: 480,
                 }}
               >
@@ -217,7 +217,7 @@ export function FinalDesign() {
                 style={{
                   fontSize: "0.9rem",
                   lineHeight: 1.65,
-                  color: "rgba(242,237,232,0.45)",
+                  color: "var(--cs-text-faint)",
                   maxWidth: 400,
                   flexShrink: 0,
                 }}
@@ -241,8 +241,8 @@ export function FinalDesign() {
                 width: "100%",
                 borderRadius: 20,
                 overflow: "hidden",
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
               }}
             >
               <iframe
@@ -265,8 +265,8 @@ export function FinalDesign() {
               style={{
                 padding: "48px 32px",
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 alignItems: "center",
@@ -288,7 +288,7 @@ export function FinalDesign() {
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path
                     d="M4 10h12M10 4l6 6-6 6"
-                    stroke="#9BE931"
+                    stroke="var(--cs-accent-sf)"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -296,10 +296,10 @@ export function FinalDesign() {
                 </svg>
               </div>
               <div>
-                <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#f2ede8", marginBottom: 8 }}>
+                <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--cs-text)", marginBottom: 8 }}>
                   Best viewed on desktop
                 </p>
-                <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.45)", lineHeight: 1.6 }}>
+                <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.6 }}>
                   Open the prototype in Figma to explore the full interactive flow on your device.
                 </p>
               </div>
@@ -315,7 +315,7 @@ export function FinalDesign() {
                   borderRadius: 10,
                   border: "1px solid rgba(155,233,49,0.3)",
                   backgroundColor: "rgba(155,233,49,0.08)",
-                  color: "#9BE931",
+                  color: "var(--cs-accent-sf)",
                   fontSize: "0.88rem",
                   fontWeight: 500,
                   textDecoration: "none",
@@ -342,7 +342,7 @@ export function FinalDesign() {
               className="hidden md:flex"
               style={{ marginTop: 20, flexDirection: "column" as const, alignItems: "center", gap: 12 }}
             >
-              <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.28)", textAlign: "center" as const }}>
+              <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)", textAlign: "center" as const }}>
                 If the prototype does not load, open it directly in Figma.
               </p>
               <a
@@ -357,7 +357,7 @@ export function FinalDesign() {
                   borderRadius: 9,
                   border: "1px solid rgba(155,233,49,0.25)",
                   backgroundColor: "rgba(155,233,49,0.07)",
-                  color: "#9BE931",
+                  color: "var(--cs-accent-sf)",
                   fontSize: "0.82rem",
                   fontWeight: 500,
                   textDecoration: "none",
@@ -397,7 +397,7 @@ export function FinalDesign() {
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                color: "#f2ede8",
+                color: "var(--cs-text)",
                 maxWidth: 540,
               }}
             >
@@ -407,7 +407,7 @@ export function FinalDesign() {
               style={{
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.45)",
+                color: "var(--cs-text-faint)",
                 maxWidth: 380,
                 flexShrink: 0,
               }}
@@ -428,7 +428,7 @@ export function FinalDesign() {
               style={{
                 fontSize: "0.8rem",
                 fontWeight: 600,
-                color: "rgba(242,237,232,0.4)",
+                color: "var(--cs-text-faint)",
                 textTransform: "uppercase" as const,
                 letterSpacing: "0.12em",
                 marginBottom: 24,
@@ -448,25 +448,25 @@ export function FinalDesign() {
                       height: 72,
                       borderRadius: 12,
                       backgroundColor: swatch.hex,
-                      border: (swatch.hex === "#011521" || swatch.hex === "#10203D") ? "1px solid rgba(255,255,255,0.12)" : "none",
+                      border: (swatch.hex === "#011521" || swatch.hex === "#10203D") ? "1px solid var(--cs-border-strong)" : "none",
                       flexShrink: 0,
                     }}
                   />
                   <div style={{ display: "flex", flexDirection: "column" as const, gap: 3 }}>
-                    <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "#f2ede8" }}>
+                    <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--cs-text)" }}>
                       {swatch.name}
                     </span>
                     <span
                       style={{
                         fontSize: "0.72rem",
-                        color: "rgba(242,237,232,0.35)",
+                        color: "var(--cs-text-faint)",
                         letterSpacing: "0.04em",
                         fontFamily: "monospace",
                       }}
                     >
                       {swatch.hex}
                     </span>
-                    <p style={{ fontSize: "0.78rem", lineHeight: 1.5, color: "rgba(242,237,232,0.45)", marginTop: 2 }}>
+                    <p style={{ fontSize: "0.78rem", lineHeight: 1.5, color: "var(--cs-text-faint)", marginTop: 2 }}>
                       {swatch.desc}
                     </p>
                   </div>
@@ -486,7 +486,7 @@ export function FinalDesign() {
               style={{
                 fontSize: "0.8rem",
                 fontWeight: 600,
-                color: "rgba(242,237,232,0.4)",
+                color: "var(--cs-text-faint)",
                 textTransform: "uppercase" as const,
                 letterSpacing: "0.12em",
                 marginBottom: 24,
@@ -501,18 +501,18 @@ export function FinalDesign() {
                 style={{
                   padding: "32px 36px",
                   borderRadius: 20,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   display: "flex",
                   flexDirection: "column" as const,
                   gap: 16,
                 }}
               >
                 <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>
-                  <span style={{ fontSize: "0.72rem", color: "#9BE931", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>
+                  <span style={{ fontSize: "0.72rem", color: "var(--cs-accent-sf)", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>
                     Display
                   </span>
-                  <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.4)" }}>
+                  <span style={{ fontSize: "0.82rem", color: "var(--cs-text-faint)" }}>
                     Clash Display
                   </span>
                 </div>
@@ -521,7 +521,7 @@ export function FinalDesign() {
                     fontFamily: "var(--font-playfair), Georgia, serif",
                     fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                     fontWeight: 300,
-                    color: "#f2ede8",
+                    color: "var(--cs-text)",
                     lineHeight: 1.1,
                     letterSpacing: "-0.02em",
                   }}
@@ -530,7 +530,7 @@ export function FinalDesign() {
                   <br />
                   Red Lines
                 </p>
-                <p style={{ fontSize: "0.85rem", lineHeight: 1.65, color: "rgba(242,237,232,0.45)" }}>
+                <p style={{ fontSize: "0.85rem", lineHeight: 1.65, color: "var(--cs-text-faint)" }}>
                   Used for headlines and hero text. The thin geometric weight commands attention
                   without aggression, balancing SAGE's energy with approachability.
                 </p>
@@ -541,18 +541,18 @@ export function FinalDesign() {
                 style={{
                   padding: "32px 36px",
                   borderRadius: 20,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   display: "flex",
                   flexDirection: "column" as const,
                   gap: 16,
                 }}
               >
                 <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>
-                  <span style={{ fontSize: "0.72rem", color: "#9BE931", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>
+                  <span style={{ fontSize: "0.72rem", color: "var(--cs-accent-sf)", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>
                     Body + UI
                   </span>
-                  <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.4)" }}>
+                  <span style={{ fontSize: "0.82rem", color: "var(--cs-text-faint)" }}>
                     Basic Sans
                   </span>
                 </div>
@@ -562,7 +562,7 @@ export function FinalDesign() {
                       fontFamily: "var(--font-inter), system-ui, sans-serif",
                       fontSize: "1.05rem",
                       fontWeight: 600,
-                      color: "#f2ede8",
+                      color: "var(--cs-text)",
                       lineHeight: 1.3,
                     }}
                   >
@@ -572,7 +572,7 @@ export function FinalDesign() {
                     style={{
                       fontFamily: "var(--font-inter), system-ui, sans-serif",
                       fontSize: "0.9rem",
-                      color: "rgba(242,237,232,0.55)",
+                      color: "var(--cs-text-muted)",
                       lineHeight: 1.65,
                     }}
                   >
@@ -600,7 +600,7 @@ export function FinalDesign() {
               style={{
                 fontSize: "0.8rem",
                 fontWeight: 600,
-                color: "rgba(242,237,232,0.4)",
+                color: "var(--cs-text-faint)",
                 textTransform: "uppercase" as const,
                 letterSpacing: "0.12em",
                 marginBottom: 24,
@@ -629,10 +629,10 @@ export function FinalDesign() {
                 },
               ].map(({ label, body }) => (
                 <div key={label} style={{ display: "flex", flexDirection: "column" as const, gap: 10 }}>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#9BE931" }}>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--cs-accent-sf)" }}>
                     {label}
                   </span>
-                  <p style={{ fontSize: "0.85rem", lineHeight: 1.65, color: "rgba(242,237,232,0.5)" }}>
+                  <p style={{ fontSize: "0.85rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                     {body}
                   </p>
                 </div>
@@ -676,9 +676,9 @@ export function FinalDesign() {
                 width: 44,
                 height: 44,
                 borderRadius: "50%",
-                background: "rgba(255,255,255,0.08)",
-                border: "1px solid rgba(255,255,255,0.14)",
-                color: "rgba(242,237,232,0.8)",
+                background: "var(--cs-border-strong)",
+                border: "1px solid var(--cs-border-strong)",
+                color: "var(--cs-text)",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",

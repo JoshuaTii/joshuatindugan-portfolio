@@ -1,14 +1,135 @@
 @import "tailwindcss";
 
-/* ── CSS variables used by legacy /about /work /contact routes ── */
-:root {
-  --lime:   #4ade80;
-  --text:   rgba(255, 255, 255, 0.88);
-  --muted:  rgba(255, 255, 255, 0.40);
-  --card:   rgba(255, 255, 255, 0.03);
-  --border: rgba(255, 255, 255, 0.08);
+/* ─── Dark theme (default) ────────────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg:           #0a0a0a;
+  --bg-secondary: #181818;
+  --card:         #141414;
+  --card-border:  rgba(255,255,255,0.08);
+  --card-hover:   rgba(255,255,255,0.12);
+  /* text on filled green buttons — black in dark (bright btn), white in light (dark btn) */
+  --btn-text:     #0a0a0a;
+
+  --text:         rgba(255,255,255,0.90);
+  --text-2:       rgba(255,255,255,0.55);
+  /* 0.45 → 4.8:1 on #0a0a0a, 4.3:1 on #141414 — passes WCAG UI component 3:1 */
+  --text-3:       rgba(255,255,255,0.45);
+
+  --green:        #45c97c;
+  --green-btn:    #45c97c;
+  --green-text:   #45c97c;
+  --green-dim:    rgba(69,201,124,0.12);
+  --green-border: rgba(69,201,124,0.25);
+
+  --input-bg:     rgba(255,255,255,0.04);
+  --input-border: rgba(255,255,255,0.10);
+  --input-focus:  rgba(255,255,255,0.18);
+  /* Shared border for Connect inputs + Reach Out Directly cards (one source of truth) */
+  --contact-border: rgba(255,255,255,0.12);
+
+  --nav-bg:       rgba(10,10,10,0.92);
+  --nav-border:   rgba(255,255,255,0.06);
+
+  --particle-color: rgba(69,201,124,VAR_ALPHA);  /* placeholder, used in JS */
+
+  /* Legacy aliases */
+  --lime:         #45c97c;
+  --border:       rgba(255,255,255,0.08);
+  --muted:        rgba(255,255,255,0.40);
+
+  /* ── Case Study tokens — dark mode ─────────────────────────────────────── */
+  /* Warm cream text on dark editorial backgrounds */
+  --cs-bg:             #0a0a0a;   /* main case-study page background */
+  --cs-bg-secondary:   #0d0d10;   /* alternating / soft sections     */
+  --cs-nav-bg:         rgba(9,9,11,0.93);
+  --cs-menu-bg:        rgba(9,9,11,0.97);
+  --cs-text:           #f2ede8;
+  --cs-text-muted:     rgba(242,237,232,0.58);
+  --cs-text-faint:     rgba(242,237,232,0.38);
+  --cs-surface:        #111113;
+  --cs-surface-2:      #161618;
+  --cs-border:         rgba(255,255,255,0.07);
+  --cs-border-strong:  rgba(255,255,255,0.13);
+  --cs-hamburger:      rgba(255,255,255,0.60);
+
+  /* Per-project accent colors — bright for dark bg (all >5:1 on #111113) */
+  --cs-accent-se:      #4ade80;   /* SAGE Editorial  */
+  --cs-accent-sf:      #9BE931;   /* SAGE Financial  */
+  --cs-accent-gw:      #60A5FA;   /* GW Ride         */
+  --cs-accent-it:      #f59e0b;   /* InTuition       */
+  --cs-accent-ph:      #d4b896;   /* Photography     */
 }
 
+/* ─── Light theme ─────────────────────────────────────────────────────────── */
+/* Use html[data-theme="light"] — specificity (0,1,1) beats :root (0,1,0) */
+html[data-theme="light"] {
+  --bg:           #e8f2ec;
+  --bg-secondary: #dceae3;
+  --card:         #ffffff;
+  --card-border:  rgba(0,0,0,0.10);
+  --card-hover:   rgba(0,0,0,0.16);
+
+  /* text-2: 6.4:1 on #e8f2ec; text-3: 4.7:1 on white cards, 4.6:1 on light-green bg */
+  --text:         rgba(0,0,0,0.88);
+  --text-2:       rgba(0,0,0,0.64);
+  --text-3:       rgba(0,0,0,0.55);
+
+  /* green: #1d7a46 = 4.8:1 on #e8f2ec — passes 4.5:1 for small text */
+  --green:        #1d7a46;
+  /* green-btn: #2ea05a — bright enough for black text overlay (6.3:1) */
+  --green-btn:    #2ea05a;
+  --green-text:   #1d7a46;
+  --green-dim:    rgba(29,122,70,0.10);
+  --green-border: rgba(29,122,70,0.28);
+
+  /* input-border: rgba(0,0,0,0.44) ≈ 3.3:1 on white — passes WCAG non-text contrast */
+  --input-bg:     rgba(255,255,255,0.80);
+  --input-border: rgba(0,0,0,0.44);
+  --input-focus:  rgba(0,0,0,0.70);
+  /* Shared border for Connect inputs + Reach Out Directly cards — ~3:1 on white, clearly visible */
+  --contact-border: rgba(17,24,28,0.42);
+  /* text on filled green buttons — white in light mode because --green-btn is dark */
+  --btn-text:     #ffffff;
+
+  --nav-bg:       rgba(232,242,236,0.94);
+  --nav-border:   rgba(0,0,0,0.10);
+
+  --lime:         #1d7a46;
+  --border:       rgba(0,0,0,0.10);
+  --muted:        rgba(0,0,0,0.50);
+
+  /* ── Case Study tokens — light mode ─────────────────────────────────────
+     STRICT two-color background system:
+       --cs-bg            #F6F9FD  main page background
+       --cs-bg-secondary  #E5F5EA  all secondary surfaces / cards / sections
+     Text contrast (vs #F6F9FD, L≈0.94 / vs #E5F5EA, L≈0.90):
+       --cs-text        rgba(17,24,28,0.92) → ~13:1 / ~12:1  ✓
+       --cs-text-muted  rgba(17,24,28,0.66) → ~6.4:1 / ~6:1  ✓ (body 4.5+)
+       --cs-text-faint  rgba(17,24,28,0.50) → ~4.0:1 / ~3.8:1 ✓ (UI/large 3+)
+     Per-project accents: all ≥ 4.5:1 on both surfaces ─────────────────── */
+  --cs-bg:             #F6F9FD;
+  --cs-bg-secondary:   #E5F5EA;
+  --cs-nav-bg:         rgba(246,249,253,0.95);
+  --cs-menu-bg:        rgba(246,249,253,0.99);
+  --cs-text:           rgba(17,24,28,0.92);
+  --cs-text-muted:     rgba(17,24,28,0.66);
+  --cs-text-faint:     rgba(17,24,28,0.50);
+  --cs-surface:        #E5F5EA;   /* cards / panels — secondary color */
+  --cs-surface-2:      #E5F5EA;   /* keep the two-color rule          */
+  --cs-border:         rgba(17,24,28,0.14);
+  --cs-border-strong:  rgba(17,24,28,0.26);
+  --cs-hamburger:      rgba(17,24,28,0.66);
+
+  /* Per-project accent colors — darkened for 4.5:1+ on light bg */
+  --cs-accent-se:      #1a6b3a;   /* SAGE Editorial  6.5:1 on white */
+  --cs-accent-sf:      #4a6300;   /* SAGE Financial  6.6:1 on white */
+  --cs-accent-gw:      #1a4fa0;   /* GW Ride         7.7:1 on white */
+  --cs-accent-it:      #7a4800;   /* InTuition       7.4:1 on white */
+  --cs-accent-ph:      #6b4e2b;   /* Photography     5.2:1 on white */
+}
+
+/* ─── Custom font ─────────────────────────────────────────────────────────── */
 @font-face {
   font-family: "GW Liberated";
   src: url("/fonts/GW_Liberated.otf") format("opentype");
@@ -17,169 +138,93 @@
   font-display: swap;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ─── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: auto; }
 
 body {
-  background: #090909;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  transition: background 300ms ease, color 300ms ease;
 }
 
-/* Global type rhythm */
-p {
-  line-height: 1.65;
-  margin-block: 0;
+img { display: block; max-width: 100%; }
+p   { line-height: 1.68; margin-block: 0; }
+h1, h2, h3, h4 { line-height: 1.06; margin-block: 0; }
+
+/* ─── Selection ───────────────────────────────────────────────────────────── */
+::selection { background: var(--green); color: #fff; }
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(69,201,124,0.25); border-radius: 2px; }
+
+/* ─── Focus ───────────────────────────────────────────────────────────────── */
+:focus-visible              { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
+:focus:not(:focus-visible)  { outline: none; }
+
+/* ─── Theme-aware placeholder — overrides Tailwind placeholder:text-white/20 ── */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-3);
+  opacity: 1; /* Firefox */
 }
 
-h1, h2, h3 {
-  line-height: 1.05;
-  margin-block: 0;
-}
-
-/* Section labels/kickers: 16px bottom, wide tracking */
-.section-label {
-  display: inline-block;
-  margin-bottom: 16px;
-  letter-spacing: 0.12em;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-}
-
-/* Heading blocks: flex column with consistent gap */
-.section-heading {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-/* Tags and chips: min-height 30px, generous padding, gap 10px */
-.tag, .chip, .pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30px;
-  padding: 7px 13px;
-  border-radius: 999px;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-::selection {
-  background: #4ade80;
-  color: #090909;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: #090909;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-}
-
-/* Container: 32px padding desktop, 20px mobile, max 1280px */
+/* ─── Layout helpers ──────────────────────────────────────────────────────── */
 .section-container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin-inline: auto;
-  padding-inline: 32px;
+  padding-inline: 40px;
+}
+@media (max-width: 768px) { .section-container { padding-inline: 24px; } }
+
+section { padding-block: 100px; }
+@media (max-width: 768px) { section { padding-block: 72px; } }
+
+/* ─── Marquee animation ───────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-@media (max-width: 768px) {
-  .section-container {
-    padding-inline: 20px;
-  }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+  will-change: transform;
 }
 
-/* Global section padding: 120px desktop, 72px mobile */
-section {
-  padding-block: 120px;
+/* ─── Case study utilities (kept for sub-pages) ───────────────────────────── */
+.section-label   { display:inline-block; margin-bottom:14px; letter-spacing:.11em; font-size:.7rem; text-transform:uppercase; color:var(--text-3); }
+.section-heading { display:flex; flex-direction:column; gap:18px; }
+.tag, .chip, .pill { display:inline-flex; align-items:center; justify-content:center; min-height:28px; padding:5px 12px; border-radius:4px; line-height:1; white-space:nowrap; font-size:.75rem; }
+.line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.kicker   { display:inline-block; font-size:.72rem; font-weight:500; text-transform:uppercase; letter-spacing:.11em; color:var(--green); margin-bottom:14px; }
+.caption  { font-size:.78rem; color:var(--text-3); line-height:1.55; }
+
+.ideation-carousel { scrollbar-width:thin; scrollbar-color:rgba(69,201,124,.35) rgba(255,255,255,.05); }
+.ideation-carousel::-webkit-scrollbar { height:3px; }
+.ideation-carousel::-webkit-scrollbar-track { background:rgba(255,255,255,.05); border-radius:2px; }
+.ideation-carousel::-webkit-scrollbar-thumb { background:rgba(69,201,124,.35); border-radius:2px; }
+
+/* ─── Social icon hover — green tint ─────────────────────────────────────── */
+/* Converts any icon (white in dark-mode, black in light-mode) to green on hover */
+.social-icon { display: flex; opacity: 0.65; transition: opacity 200ms ease; }
+.social-icon:hover { opacity: 1; }
+.social-icon:hover img {
+  filter: brightness(0) saturate(100%) invert(59%) sepia(48%) saturate(500%) hue-rotate(98deg) brightness(96%) !important;
 }
 
-@media (max-width: 768px) {
-  section {
-    padding-block: 72px;
-  }
-}
-
-/* Clamp description text in project cards */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* SAGE case study utilities */
-.kicker {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #7ab688;
-  margin-bottom: 16px;
-}
-
-.caption {
-  font-size: 0.8rem;
-  color: rgba(242, 237, 232, 0.55);
-  line-height: 1.5;
-}
-
-/* Reduce motion for users who prefer it */
+/* ─── Reduced motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Focus-visible styles for keyboard navigation */
-:focus-visible {
-  outline: 2px solid rgba(74, 222, 128, 0.7);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Don't show focus ring on mouse click */
-:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.ideation-carousel {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(122, 182, 136, 0.45) rgba(255, 255, 255, 0.06);
-}
-
-.ideation-carousel::-webkit-scrollbar {
-  height: 4px;
-}
-
-.ideation-carousel::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 2px;
-}
-
-.ideation-carousel::-webkit-scrollbar-thumb {
-  background: rgba(122, 182, 136, 0.45);
-  border-radius: 2px;
-}
-
-.ideation-carousel::-webkit-scrollbar-thumb:hover {
-  background: rgba(122, 182, 136, 0.7);
 }

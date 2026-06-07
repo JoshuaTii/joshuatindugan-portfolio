@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#f59e0b";
+const ACCENT = "var(--cs-accent-it)";
 
 const FEATURES = [
   {
@@ -37,9 +37,9 @@ export function Features() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "rgba(255,255,255,0.015)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
+        backgroundColor: "var(--cs-border)",
+        borderTop: "1px solid var(--cs-border)",
+        borderBottom: "1px solid var(--cs-border)",
       }}
     >
       <div className="section-container" ref={ref}>
@@ -67,7 +67,7 @@ export function Features() {
             fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            color: "#f2ede8",
+            color: "var(--cs-text)",
             lineHeight: 1.1,
             marginBottom: 64,
             maxWidth: 680,
@@ -92,8 +92,8 @@ export function Features() {
               style={{
                 padding: "32px 28px",
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 16,
@@ -114,7 +114,7 @@ export function Features() {
                 style={{
                   fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
                   fontWeight: 700,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   letterSpacing: "-0.01em",
                   lineHeight: 1.2,
                   margin: 0,
@@ -126,7 +126,7 @@ export function Features() {
                 style={{
                   fontSize: "0.9rem",
                   lineHeight: 1.75,
-                  color: "rgba(242,237,232,0.55)",
+                  color: "var(--cs-text-muted)",
                   margin: 0,
                 }}
               >

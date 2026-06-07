@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#4ade80";
+const ACCENT = "var(--cs-accent-se)";
 
 const TAKEAWAYS = [
   {
@@ -54,7 +54,7 @@ export function SEReflection() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 720,
               lineHeight: 1.1,
               marginBottom: 28,
@@ -66,7 +66,7 @@ export function SEReflection() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
               marginBottom: 24,
             }}
@@ -81,7 +81,7 @@ export function SEReflection() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
             }}
           >
@@ -103,8 +103,8 @@ export function SEReflection() {
               style={{
                 padding: "28px 24px",
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 14,
@@ -125,7 +125,7 @@ export function SEReflection() {
                 style={{
                   fontSize: "0.95rem",
                   fontWeight: 700,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   letterSpacing: "-0.01em",
                   lineHeight: 1.3,
                   margin: 0,
@@ -137,7 +137,7 @@ export function SEReflection() {
                 style={{
                   fontSize: "0.88rem",
                   lineHeight: 1.75,
-                  color: "rgba(242,237,232,0.5)",
+                  color: "var(--cs-text-muted)",
                   margin: 0,
                 }}
               >
@@ -164,7 +164,7 @@ export function SEReflection() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.7)",
+              color: "var(--cs-text-muted)",
               fontFamily: "var(--font-playfair), Georgia, serif",
               fontStyle: "italic",
             }}

@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 
-const ACCENT = "#4ade80";
+const ACCENT = "var(--cs-accent-se)";
 
 const TAGS = ["UI/UX", "Editorial Design", "Visual System", "Content Strategy"];
 
@@ -58,7 +58,7 @@ export function SEHero() {
               fontWeight: 700,
               letterSpacing: "-0.025em",
               lineHeight: 1.02,
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               marginBottom: 28,
             }}
           >
@@ -75,7 +75,7 @@ export function SEHero() {
               fontWeight: 400,
               fontFamily: "var(--font-playfair), Georgia, serif",
               fontStyle: "italic",
-              color: "rgba(242,237,232,0.55)",
+              color: "var(--cs-text-muted)",
               lineHeight: 1.5,
               marginBottom: 24,
               maxWidth: 680,
@@ -93,7 +93,7 @@ export function SEHero() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               maxWidth: 580,
               marginBottom: 48,
             }}
@@ -120,12 +120,12 @@ export function SEHero() {
                     fontSize: "0.7rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
-                    color: "rgba(242,237,232,0.35)",
+                    color: "var(--cs-text-faint)",
                   }}
                 >
                   {label}
                 </span>
-                <span style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.8)", fontWeight: 500 }}>
+                <span style={{ fontSize: "0.88rem", color: "var(--cs-text)", fontWeight: 500 }}>
                   {value}
                 </span>
               </div>
@@ -151,7 +151,7 @@ export function SEHero() {
                   border: `1px solid rgba(74,222,128,0.18)`,
                   backgroundColor: `rgba(74,222,128,0.05)`,
                   fontSize: "0.75rem",
-                  color: `rgba(74,222,128,0.75)`,
+                  color: "var(--cs-accent-se)",
                   letterSpacing: "0.04em",
                 }}
               >

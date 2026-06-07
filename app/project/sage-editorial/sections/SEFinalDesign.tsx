@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#4ade80";
+const ACCENT = "var(--cs-accent-se)";
 
 const FINAL_FIGMA_SRC =
   "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F0ymuy0VQlIhUR7PuUn7OwG%2FEditorial-Sage%3Fnode-id%3D0-1%26t%3DHje2gMCEyqMNwmhc-1";
@@ -30,8 +30,8 @@ export function SEFinalDesign() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "rgba(17,17,19,0.5)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        backgroundColor: "var(--cs-bg-secondary)",
+        borderTop: "1px solid var(--cs-border)",
       }}
     >
       <div className="section-container">
@@ -60,7 +60,7 @@ export function SEFinalDesign() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 720,
               lineHeight: 1.1,
               marginBottom: 28,
@@ -72,7 +72,7 @@ export function SEFinalDesign() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
             }}
           >
@@ -112,7 +112,7 @@ export function SEFinalDesign() {
             style={{
               fontSize: "0.82rem",
               fontWeight: 600,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               marginBottom: 20,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
@@ -125,8 +125,8 @@ export function SEFinalDesign() {
             style={{
               borderRadius: 20,
               overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.07)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
             }}
           >
             <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
@@ -147,14 +147,14 @@ export function SEFinalDesign() {
             <div
               style={{
                 padding: "14px 24px",
-                borderTop: "1px solid rgba(255,255,255,0.06)",
+                borderTop: "1px solid var(--cs-border)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: 16,
               }}
             >
-              <span style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.35)" }}>
+              <span style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)" }}>
                 Full high-fidelity design file
               </span>
               <a
@@ -186,7 +186,7 @@ export function SEFinalDesign() {
             style={{
               fontSize: "0.82rem",
               fontWeight: 600,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               marginBottom: 8,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
@@ -197,7 +197,7 @@ export function SEFinalDesign() {
           <p
             style={{
               fontSize: "0.9rem",
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               lineHeight: 1.6,
               marginBottom: 20,
             }}
@@ -209,8 +209,8 @@ export function SEFinalDesign() {
             style={{
               borderRadius: 20,
               overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.07)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
             }}
           >
             <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
@@ -231,13 +231,13 @@ export function SEFinalDesign() {
             <div
               style={{
                 padding: "10px 24px",
-                borderTop: "1px solid rgba(255,255,255,0.04)",
+                borderTop: "1px solid var(--cs-border)",
               }}
             >
               <p
                 style={{
                   fontSize: "0.75rem",
-                  color: "rgba(242,237,232,0.3)",
+                  color: "var(--cs-text-faint)",
                   lineHeight: 1.5,
                   marginBottom: 10,
                 }}
@@ -252,7 +252,7 @@ export function SEFinalDesign() {
                   gap: 16,
                 }}
               >
-                <span style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.35)" }}>
+                <span style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)" }}>
                   Interactive page flow
                 </span>
                 <a

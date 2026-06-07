@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -61,8 +61,8 @@ export function Lightbox({ src, alt, onClose }: LightboxProps) {
               width: 44,
               height: 44,
               borderRadius: "50%",
-              background: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.15)",
+              background: "var(--cs-border-strong)",
+              border: "1px solid var(--cs-border-strong)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

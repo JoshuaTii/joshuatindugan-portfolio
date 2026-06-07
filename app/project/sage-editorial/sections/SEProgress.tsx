@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#4ade80";
+const ACCENT = "var(--cs-accent-se)";
 
 const PROGRESS_FIGMA_SRC =
   "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F0ymuy0VQlIhUR7PuUn7OwG%2FEditorial-Sage%3Fnode-id%3D1-4646%26t%3DHje2gMCEyqMNwmhc-1";
@@ -47,7 +47,7 @@ export function SEProgress() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 720,
               lineHeight: 1.1,
               marginBottom: 28,
@@ -59,7 +59,7 @@ export function SEProgress() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
             }}
           >
@@ -86,7 +86,7 @@ export function SEProgress() {
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
-              color: "rgba(74,222,128,0.7)",
+              color: "var(--cs-accent-se)",
               marginBottom: 12,
             }}
           >
@@ -96,7 +96,7 @@ export function SEProgress() {
             style={{
               fontSize: "0.95rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.55)",
+              color: "var(--cs-text-muted)",
               maxWidth: 600,
               marginBottom: 24,
             }}
@@ -126,11 +126,11 @@ export function SEProgress() {
                 style={{
                   padding: "18px 20px",
                   borderRadius: 12,
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   fontSize: "0.88rem",
                   lineHeight: 1.65,
-                  color: "rgba(242,237,232,0.6)",
+                  color: "var(--cs-text-muted)",
                   borderLeft: "2px solid rgba(74,222,128,0.35)",
                 }}
               >
@@ -152,7 +152,7 @@ export function SEProgress() {
             style={{
               fontSize: "0.82rem",
               fontWeight: 600,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               marginBottom: 20,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
@@ -165,8 +165,8 @@ export function SEProgress() {
             style={{
               borderRadius: 20,
               overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.07)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
             }}
           >
             <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
@@ -188,9 +188,9 @@ export function SEProgress() {
               style={{
                 padding: "10px 24px",
                 fontSize: "0.75rem",
-                color: "rgba(242,237,232,0.3)",
+                color: "var(--cs-text-faint)",
                 lineHeight: 1.5,
-                borderTop: "1px solid rgba(255,255,255,0.04)",
+                borderTop: "1px solid var(--cs-border)",
               }}
             >
               Tip: You can drag and zoom inside the Figma preview to explore the layout.
@@ -198,14 +198,14 @@ export function SEProgress() {
             <div
               style={{
                 padding: "14px 24px",
-                borderTop: "1px solid rgba(255,255,255,0.06)",
+                borderTop: "1px solid var(--cs-border)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: 16,
               }}
             >
-              <span style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.35)" }}>
+              <span style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)" }}>
                 Low to medium fidelity exploration
               </span>
               <a
@@ -245,7 +245,7 @@ export function SEProgress() {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
-              color: "rgba(74,222,128,0.6)",
+              color: "var(--cs-accent-se)",
               marginBottom: 14,
             }}
           >
@@ -255,7 +255,7 @@ export function SEProgress() {
             style={{
               fontSize: "0.95rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
             }}
           >
             The main validation for this phase is that the sketches gave the project an editorial

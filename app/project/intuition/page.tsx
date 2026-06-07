@@ -1,4 +1,4 @@
-import { InTuitionNavbar } from "./sections/InTuitionNavbar";
+﻿import { InTuitionNavbar } from "./sections/InTuitionNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function InTuitionPage() {
   return (
-    <main style={{ backgroundColor: "#09090b" }}>
+    <main style={{ backgroundColor: "var(--cs-bg)" }}>
       <InTuitionNavbar />
       <Hero />
       <Overview />

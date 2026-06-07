@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const ACCENT = "#60A5FA";
+const ACCENT = "var(--cs-accent-gw)";
 
 export function Hero() {
   return (
@@ -51,7 +51,7 @@ export function Hero() {
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
                 lineHeight: 1,
-                color: "#f2ede8",
+                color: "var(--cs-text)",
                 marginBottom: 20,
               }}
             >
@@ -67,7 +67,7 @@ export function Hero() {
                 fontWeight: 400,
                 fontFamily: "var(--font-playfair), Georgia, serif",
                 fontStyle: "italic",
-                color: "rgba(242,237,232,0.6)",
+                color: "var(--cs-text-muted)",
                 letterSpacing: "0.01em",
                 lineHeight: 1.35,
                 marginBottom: 36,
@@ -83,7 +83,7 @@ export function Hero() {
               style={{
                 fontSize: "1rem",
                 lineHeight: 1.75,
-                color: "rgba(242,237,232,0.6)",
+                color: "var(--cs-text-muted)",
                 maxWidth: 480,
                 marginBottom: 48,
               }}
@@ -107,11 +107,11 @@ export function Hero() {
                 <div key={label} className="flex flex-col" style={{ gap: 5 }}>
                   <span
                     className="text-xs uppercase"
-                    style={{ letterSpacing: "0.1em", color: "rgba(242,237,232,0.4)" }}
+                    style={{ letterSpacing: "0.1em", color: "var(--cs-text-faint)" }}
                   >
                     {label}
                   </span>
-                  <span style={{ fontSize: "0.9rem", color: "rgba(242,237,232,0.85)", fontWeight: 500 }}>
+                  <span style={{ fontSize: "0.9rem", color: "var(--cs-text)", fontWeight: 500 }}>
                     {value}
                   </span>
                 </div>
@@ -212,7 +212,7 @@ export function Hero() {
         >
           <span
             className="text-xs uppercase"
-            style={{ letterSpacing: "0.1em", color: "rgba(242,237,232,0.25)" }}
+            style={{ letterSpacing: "0.1em", color: "var(--cs-text-faint)" }}
           >
             Scroll
           </span>
@@ -220,7 +220,7 @@ export function Hero() {
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown size={14} style={{ color: "rgba(242,237,232,0.25)" }} />
+            <ArrowDown size={14} style={{ color: "var(--cs-text-faint)" }} />
           </motion.div>
         </motion.div>
       </div>

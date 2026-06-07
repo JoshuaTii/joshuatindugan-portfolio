@@ -110,7 +110,7 @@ export function DesignEvolution() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 640,
               marginBottom: 16,
             }}
@@ -121,7 +121,7 @@ export function DesignEvolution() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.7,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               maxWidth: 520,
             }}
           >
@@ -151,7 +151,7 @@ export function DesignEvolution() {
                 fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)",
                 fontWeight: 600,
                 letterSpacing: "-0.02em",
-                color: "#f2ede8",
+                color: "var(--cs-text)",
                 lineHeight: 1.1,
               }}
             >
@@ -161,7 +161,7 @@ export function DesignEvolution() {
               style={{
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.45)",
+                color: "var(--cs-text-faint)",
                 maxWidth: 400,
                 flexShrink: 0,
               }}
@@ -184,7 +184,7 @@ export function DesignEvolution() {
                   style={{
                     borderRadius: 14,
                     overflow: "hidden",
-                    backgroundColor: "#111113",
+                    backgroundColor: "var(--cs-surface)",
                     minHeight: 200,
                     display: "flex",
                     alignItems: "center",
@@ -225,7 +225,7 @@ export function DesignEvolution() {
         </motion.div>
 
         {/* Divider */}
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: 72 }} />
+        <div style={{ borderTop: "1px solid var(--cs-border)", marginBottom: 72 }} />
 
         {/* Phase selector */}
         <motion.div
@@ -242,9 +242,9 @@ export function DesignEvolution() {
               style={{
                 padding: "10px 22px",
                 borderRadius: 999,
-                border: `1px solid ${activePhase === p.id ? "#7ab688" : "rgba(255,255,255,0.08)"}`,
+                border: `1px solid ${activePhase === p.id ? "#7ab688" : "var(--cs-border-strong)"}`,
                 backgroundColor: activePhase === p.id ? "rgba(122,182,136,0.1)" : "transparent",
-                color: activePhase === p.id ? "#7ab688" : "rgba(242,237,232,0.45)",
+                color: activePhase === p.id ? "#7ab688" : "var(--cs-text-faint)",
                 fontSize: "0.8rem",
                 fontWeight: 500,
                 cursor: "pointer",
@@ -271,7 +271,7 @@ export function DesignEvolution() {
           style={{
             fontSize: "0.95rem",
             lineHeight: 1.75,
-            color: "rgba(242,237,232,0.55)",
+            color: "var(--cs-text-muted)",
             maxWidth: 600,
             marginBottom: 24,
           }}
@@ -294,11 +294,11 @@ export function DesignEvolution() {
               style={{
                 padding: "18px 20px",
                 borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.07)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.6)",
+                color: "var(--cs-text-muted)",
                 borderLeft: "2px solid rgba(122,182,136,0.4)",
               }}
             >
@@ -372,7 +372,7 @@ export function DesignEvolution() {
             style={{
               fontSize: "0.95rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 680,
             }}
           >

@@ -2,112 +2,137 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const skills = [
-  "User Research", "Wireframing", "Prototyping", "Figma",
-  "Design Systems", "Usability Testing", "Information Architecture",
-  "Interaction Design", "Accessibility", "Visual Design",
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const EXPERIENCE = [
+  {
+    role:   "Interaction Design Student",
+    org:    "George Washington University",
+    period: "2022 – 2026",
+    detail: "B.F.A. in Interaction Design, Minor in Graphic Design. Corcoran School of the Arts and Design. Graduated May 2026.",
+  },
+  {
+    role:   "Web Designer Intern",
+    org:    "Mom n Tot Spot, Alexandria VA",
+    period: "2023",
+    detail: "Redesigned the website to make booking easily accessible to users while improving the overall visual appearance.",
+  },
+  {
+    role:   "Document Design Intern",
+    org:    "Joy Riot, Advertisement Agency",
+    period: "2023",
+    detail: "Designed presentation templates and updated content for a more impactful, editable, and streamlined presentation.",
+  },
+  {
+    role:   "Coding and Design Intern",
+    org:    "Apple Coding Camp, MBSYEP D.C.",
+    period: "2020",
+    detail: "Completed programming curriculum and developed a prototype interior design application as a final project deliverable.",
+  },
 ];
 
 export function About() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const ref    = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="about" className="relative z-10 !pt-[120px] !pb-[140px] bg-[#090909]/60">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-[#4ade80]/30" />
+    <section
+      id="about"
+      style={{
+        position: "relative", zIndex: 1,
+        paddingBlock: "100px 120px",
+        background: "var(--bg-secondary)", /* lighter dark panel */
+        transition: "background 300ms ease",
+      }}
+    >
+      <div ref={ref} className="section-container grid md:grid-cols-2" style={{ gap: 72, alignItems: "start" }}>
 
-      {/* Two-column grid: gap 96px, image left / text right */}
-      <div ref={ref} className="section-container grid md:grid-cols-2 items-center" style={{ gap: 96 }}>
-
-        {/* Portrait — no padding, just the image */}
+        {/* Left — bio */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -24 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
+          transition={{ duration: 0.8, ease: EASE }}
+          style={{ display: "flex", flexDirection: "column", gap: 22 }}
         >
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
-            <img
-              src="/portrait.png"
-              alt="Portrait of Joshua Tindugan, UX/UI Designer"
-              loading="lazy"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-transparent z-10 pointer-events-none" />
-            <div
-              className="absolute inset-0 z-[11] pointer-events-none"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-                backgroundRepeat: "repeat",
-                backgroundSize: "180px 180px",
-                opacity: 0.055,
-                mixBlendMode: "soft-light",
-              }}
-            />
-            <div className="absolute inset-0 rounded-3xl border border-white/5 z-20" />
-          </div>
-          <div className="absolute -bottom-8 -right-8 w-52 h-52 border border-[#4ade80]/10 rounded-3xl -z-10" />
-          <div className="absolute -top-6 -left-6 w-28 h-28 border border-white/5 rounded-2xl -z-10" />
-        </motion.div>
-
-        {/* Text column — flex column, gap 24px between every element */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col"
-          style={{ gap: 24 }}
-        >
-          {/* Section label — 12px tracking, 16px mb baked into gap */}
-          <p
-            className="text-[#4ade80] text-xs uppercase"
-            style={{ letterSpacing: "0.12em", marginBottom: 0 }}
-          >
-            About Me
+          <p style={{
+            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.2em",
+            textTransform: "uppercase", color: "var(--text-3)",
+          }}>
+            ABOUT
           </p>
-
-          {/* H2 — line-height 1.05, no margin (gap handles separation) */}
-          <h2
-            className="text-white"
-            style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-              marginBottom: 0,
-            }}
-          >
-            A designer who overthinks buttons so users don&apos;t have to.
+          <h2 style={{
+            fontFamily: "var(--font-hand, 'Caveat', cursive)",
+            fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
+            fontWeight: 700, color: "var(--green)", lineHeight: 1.05,
+          }}>
+            Who is Joshua?
           </h2>
 
-          {/* Body paragraphs — line-height 1.7, max-width 680px */}
-          <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
-            I&apos;m a UI/UX designer based in Washington, D.C. I care about building digital experiences that feel clear, thoughtful, and actually useful, not just pretty screens with nice shadows. My work starts with people, research, and the messy details that usually get overlooked. Whether I&apos;m designing a financial access platform, a campus transportation experience, or editorial sites, I&apos;m always asking the same thing: how can this feel easier, smarter, and more human?
+          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.875rem", lineHeight: 1.78, color: "var(--text-2)" }}>
+            My name is Joshua Uba Tindugan, a UX/UI designer shaped by art, curiosity, and the belief that design should feel human. Growing up on the small island of Camiguin in the Philippines, there was little access to technology, but drawing became my first way of exploring ideas, stories, and imagination. After moving to the United States, I discovered how art and technology could work together, which led me to pursue Interaction Design at George Washington University.
+          </p>
+          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.875rem", lineHeight: 1.78, color: "var(--text-2)" }}>
+            Through my time at GWU, I have been able to learn from design professors, receive feedback from established designers, and grow through projects that challenged me to think beyond the screen. My goal as a designer is to create transparent, accessible, and immersive experiences that feel simple, intuitive, and meaningful.
           </p>
 
-          <p className="text-white/50" style={{ lineHeight: 1.7, maxWidth: 680 }}>
-            Outside the screen, I&apos;m usually shooting photography, drawing, studying composition, or noticing spacing issues in places where no one asked. Same practice, different medium. I&apos;m drawn to teams that care deeply about craft, purpose, and making products people genuinely want to use.
+          {/* Quote — same size as body text, subtle emphasis via font weight */}
+          <p style={{
+            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontSize: "0.875rem",
+            fontWeight: 600,
+            color: "var(--text-2)",
+            lineHeight: 1.78,
+            marginTop: 4,
+          }}>
+            UI/UX does not only live on screens. It lives in the moments where people feel seen, guided, and understood.
+          </p>
+        </motion.div>
+
+        {/* Right — experience */}
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.12, ease: EASE }}
+          style={{ display: "flex", flexDirection: "column", gap: 28 }}
+        >
+          <p style={{
+            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.2em",
+            textTransform: "uppercase", color: "var(--text-3)",
+          }}>
+            | IMPACTFUL EXPERIENCE
           </p>
 
-          {/* Skill chips — padding 7px 13px, min-height 30px, gap 10px */}
-          <div className="flex flex-wrap" style={{ gap: 10 }}>
-            {skills.map((skill, i) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.3 + i * 0.04 }}
-                className="inline-flex items-center rounded-full border text-white/50 text-xs tracking-wide hover:border-[#4ade80]/30 hover:text-[#4ade80] transition-colors duration-300 cursor-default"
+          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+            {EXPERIENCE.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.18 + i * 0.08, ease: EASE }}
                 style={{
-                  padding: "7px 13px",
-                  minHeight: 30,
-                  borderColor: "rgba(255,255,255,0.08)",
-                  background: "rgba(255,255,255,0.03)",
-                  lineHeight: 1,
+                  borderLeft: "2px solid var(--card-border)",
+                  paddingLeft: 18,
+                  display: "flex", flexDirection: "column", gap: 4,
+                  transition: "border-color 250ms ease",
                 }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--green)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--card-border)"; }}
               >
-                {skill}
-              </motion.span>
+                <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.875rem", fontWeight: 700, color: "var(--text)", lineHeight: 1.2 }}>
+                  {item.role}
+                </p>
+                <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.75rem", color: "var(--green)", fontWeight: 600 }}>
+                  {item.org}
+                </p>
+                <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.68rem", color: "var(--text-3)" }}>
+                  {item.period}
+                </p>
+                <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.78rem", lineHeight: 1.65, color: "var(--text-2)", marginTop: 4 }}>
+                  {item.detail}
+                </p>
+              </motion.div>
             ))}
           </div>
         </motion.div>

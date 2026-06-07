@@ -1,4 +1,4 @@
-import { PhotoHero } from "./sections/PhotoHero";
+﻿import { PhotoHero } from "./sections/PhotoHero";
 import { GalleryIntro } from "./sections/GalleryIntro";
 import { PhotoGallery } from "./sections/PhotoGallery";
 import { PhotoFooter } from "./sections/PhotoFooter";
@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function PhotographyPage() {
   return (
-    <main style={{ backgroundColor: "#09090b" }}>
+    <main style={{ backgroundColor: "var(--cs-bg)" }}>
       <PhotoHero />
       <GalleryIntro />
       <PhotoGallery />

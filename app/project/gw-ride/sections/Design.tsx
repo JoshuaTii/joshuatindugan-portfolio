@@ -3,7 +3,7 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Lightbox } from "./Lightbox";
 
-const ACCENT = "#60A5FA";
+const ACCENT = "var(--cs-accent-gw)";
 
 const LOFI_IMAGES = [
   "/gwride/lofi-opening.png",
@@ -39,7 +39,7 @@ function PhaseGallery({
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
           style={{ cursor: "zoom-in", borderRadius: 14, overflow: "hidden" }}
-          onClick={() => onOpen(src, `${altPrefix} — screen ${i + 1}`)}
+          onClick={() => onOpen(src, `${altPrefix}, screen ${i + 1}`)}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
           }}
@@ -49,13 +49,13 @@ function PhaseGallery({
         >
           <img
             src={src}
-            alt={`${altPrefix} — screen ${i + 1}`}
+            alt={`${altPrefix}, screen ${i + 1}`}
             style={{
               width: "100%",
               objectFit: "contain",
               display: "block",
               maxHeight: 480,
-              backgroundColor: "#111113",
+              backgroundColor: "var(--cs-surface)",
               transition: "transform 300ms ease",
             }}
 
@@ -108,7 +108,7 @@ export function Design() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               maxWidth: 640,
               marginBottom: 20,
@@ -116,7 +116,7 @@ export function Design() {
           >
             From structure to polish, one iteration at a time.
           </h2>
-          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
+          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 600 }}>
             The design moved through three distinct phases: low-fidelity wireframes to establish
             structure and core flows, a first prototype to test information hierarchy with real
             screens, and a revised high-fidelity pass that refined the visual language based on
@@ -132,13 +132,13 @@ export function Design() {
           style={{ marginBottom: 20 }}
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em" }}>
               Low Fidelity Wireframes
             </h3>
             <span
               style={{
                 fontSize: "0.75rem",
-                color: "rgba(242,237,232,0.3)",
+                color: "var(--cs-text-faint)",
                 fontWeight: 500,
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
@@ -147,7 +147,7 @@ export function Design() {
               Phase 01
             </span>
           </div>
-          <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
+          <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)", maxWidth: 640 }}>
             At the beginning, we kept the design simple so we could focus on the real problem: students
             were not missing shuttles because the system did not exist, they were missing them because
             the information was unclear and the stops were not always placed around student convenience.
@@ -175,11 +175,11 @@ export function Design() {
               style={{
                 padding: "18px 20px",
                 borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.07)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.6)",
+                color: "var(--cs-text-muted)",
                 borderLeft: "2px solid rgba(96,165,250,0.4)",
               }}
             >
@@ -201,13 +201,13 @@ export function Design() {
             style={{ marginBottom: 20 }}
           >
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
-              <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
+              <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em" }}>
                 Medium Fidelity: First Prototype
               </h3>
               <span
                 style={{
                   fontSize: "0.75rem",
-                  color: "rgba(242,237,232,0.3)",
+                  color: "var(--cs-text-faint)",
                   fontWeight: 500,
                   textTransform: "uppercase",
                   letterSpacing: "0.08em",
@@ -216,7 +216,7 @@ export function Design() {
                 Phase 02
               </span>
             </div>
-            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)", maxWidth: 640 }}>
               Once the structure felt clear, we moved into a more realistic prototype with color, type,
               route cards, stop names, and ETA details. This phase helped us test whether the interface
               still worked once real content was added. The main goal was to make shuttle information
@@ -242,11 +242,11 @@ export function Design() {
                 style={{
                   padding: "18px 20px",
                   borderRadius: 12,
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   fontSize: "0.88rem",
                   lineHeight: 1.65,
-                  color: "rgba(242,237,232,0.6)",
+                  color: "var(--cs-text-muted)",
                   borderLeft: "2px solid rgba(96,165,250,0.4)",
                 }}
               >
@@ -269,13 +269,13 @@ export function Design() {
             style={{ marginBottom: 20 }}
           >
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
-              <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em" }}>
+              <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em" }}>
                 High Fidelity: Revised Prototype
               </h3>
               <span
                 style={{
                   fontSize: "0.75rem",
-                  color: "rgba(242,237,232,0.3)",
+                  color: "var(--cs-text-faint)",
                   fontWeight: 500,
                   textTransform: "uppercase",
                   letterSpacing: "0.08em",
@@ -284,7 +284,7 @@ export function Design() {
                 Phase 03
               </span>
             </div>
-            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)", maxWidth: 640 }}>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)", maxWidth: 640 }}>
               After feedback, the design became more focused and easier to scan. This phase was about
               removing friction from the decision moment. If a student has ten minutes before class,
               the app cannot ask them to think too hard. The revised prototype made the most important
@@ -310,11 +310,11 @@ export function Design() {
                 style={{
                   padding: "18px 20px",
                   borderRadius: 12,
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   fontSize: "0.88rem",
                   lineHeight: 1.65,
-                  color: "rgba(242,237,232,0.6)",
+                  color: "var(--cs-text-muted)",
                   borderLeft: "2px solid rgba(96,165,250,0.4)",
                 }}
               >
@@ -339,8 +339,8 @@ export function Design() {
             border: "1px solid rgba(96,165,250,0.12)",
           }}
         >
-          <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.6)" }}>
-            <strong style={{ color: "rgba(242,237,232,0.85)" }}>What changed most between iterations:</strong>{" "}
+          <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
+            <strong style={{ color: "var(--cs-text)" }}>What changed most between iterations:</strong>{" "}
             The first prototype revealed that students scanned for ETA first, route name second, and stop
             detail last. The revised screens were reorganized around that scanning order, making the
             single most important number (minutes until arrival) the largest, most immediate element on

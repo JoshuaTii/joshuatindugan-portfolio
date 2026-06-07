@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#4ade80";
+const ACCENT = "var(--cs-accent-se)";
 
 const APP_PALETTE = [
   { name: "Pure White",    hex: "#FFFFFF", textDark: true,  desc: "Surface and background base" },
@@ -35,7 +35,7 @@ function Swatch({
       style={{
         borderRadius: 16,
         overflow: "hidden",
-        border: "1px solid rgba(255,255,255,0.06)",
+        border: "1px solid var(--cs-border)",
         display: "flex",
         flexDirection: "column" as const,
       }}
@@ -54,7 +54,7 @@ function Swatch({
             fontSize: "0.75rem",
             fontWeight: 700,
             fontFamily: "monospace",
-            color: textDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)",
+            color: textDark ? "rgba(0,0,0,0.6)" : "var(--cs-hamburger)",
             letterSpacing: "0.05em",
           }}
         >
@@ -64,14 +64,14 @@ function Swatch({
       <div
         style={{
           padding: "14px 16px",
-          backgroundColor: "#111113",
+          backgroundColor: "var(--cs-surface)",
           display: "flex",
           flexDirection: "column" as const,
           gap: 4,
         }}
       >
-        <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "#f2ede8" }}>{name}</span>
-        <span style={{ fontSize: "0.78rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.4 }}>{desc}</span>
+        <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--cs-text)" }}>{name}</span>
+        <span style={{ fontSize: "0.78rem", color: "var(--cs-text-faint)", lineHeight: 1.4 }}>{desc}</span>
       </div>
     </div>
   );
@@ -87,8 +87,8 @@ export function SEVisual() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "rgba(17,17,19,0.5)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        backgroundColor: "var(--cs-bg-secondary)",
+        borderTop: "1px solid var(--cs-border)",
       }}
     >
       <div className="section-container" ref={ref}>
@@ -116,7 +116,7 @@ export function SEVisual() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 720,
               lineHeight: 1.1,
               marginBottom: 28,
@@ -128,7 +128,7 @@ export function SEVisual() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
             }}
           >
@@ -152,7 +152,7 @@ export function SEVisual() {
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 24,
             }}
           >
@@ -178,7 +178,7 @@ export function SEVisual() {
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 24,
             }}
           >
@@ -203,7 +203,7 @@ export function SEVisual() {
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 32,
             }}
           >
@@ -216,8 +216,8 @@ export function SEVisual() {
               style={{
                 padding: "36px 32px",
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 20,
@@ -235,13 +235,13 @@ export function SEVisual() {
                 >
                   Headlines
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)" }}>Warbler</span>
+                <span style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)" }}>Warbler</span>
               </div>
               <p
                 style={{
                   fontSize: "clamp(2rem, 4vw, 3rem)",
                   fontWeight: 700,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   lineHeight: 1.1,
                   letterSpacing: "-0.02em",
                   fontFamily: "Georgia, 'Times New Roman', serif",
@@ -249,7 +249,7 @@ export function SEVisual() {
               >
                 Community Stories, Told Clearly.
               </p>
-              <p style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.35)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.82rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
                 Warbler is used for expressive editorial headlines and section titles, bringing a
                 publication quality and warmth to the reading experience.
               </p>
@@ -260,8 +260,8 @@ export function SEVisual() {
               style={{
                 padding: "36px 32px",
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 20,
@@ -279,14 +279,14 @@ export function SEVisual() {
                 >
                   Body / Navigation
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)" }}>Basic Sans</span>
+                <span style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)" }}>Basic Sans</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column" as const, gap: 16 }}>
                 <p
                   style={{
                     fontSize: "1.1rem",
                     fontWeight: 400,
-                    color: "#f2ede8",
+                    color: "var(--cs-text)",
                     lineHeight: 1.6,
                     fontFamily: "var(--font-inter), system-ui, sans-serif",
                   }}
@@ -300,14 +300,14 @@ export function SEVisual() {
                     fontWeight: 500,
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
-                    color: "rgba(242,237,232,0.4)",
+                    color: "var(--cs-text-faint)",
                     fontFamily: "var(--font-inter), system-ui, sans-serif",
                   }}
                 >
                   Money · Housing · Community · Resources
                 </p>
               </div>
-              <p style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.35)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.82rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
                 Basic Sans handles body copy, navigation, labels, and all supporting text, keeping
                 the reading experience clean and accessible.
               </p>

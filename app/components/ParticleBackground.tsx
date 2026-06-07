@@ -1,37 +1,37 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useTheme } from "../providers/ThemeProvider";
 
 interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  baseVx: number;
-  baseVy: number;
-  size: number;
-  alpha: number;
+  x: number; y: number;
+  vx: number; vy: number;
+  baseVx: number; baseVy: number;
+  size: number; alpha: number;
 }
 
-const REPULSE_RADIUS = 130;
-const REPULSE_STRENGTH = 4.5;
-const RETURN_SPEED = 0.04;
-const PARTICLE_COUNT = 80;
-const CONNECTION_DIST = 130;
+const REPULSE_RADIUS   = 120;
+const REPULSE_STRENGTH = 4;
+const RETURN_SPEED     = 0.04;
+const PARTICLE_COUNT   = 70;
+const CONNECTION_DIST  = 120;
 
 export function ParticleBackground() {
+  const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouse = useRef({ x: -9999, y: -9999 });
+  const mouse     = useRef({ x: -9999, y: -9999 });
+  const themeRef  = useRef(theme);
+
+  useEffect(() => { themeRef.current = theme; }, [theme]);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Decorative animation — stop entirely when the user prefers reduced motion
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let width = (canvas.width = window.innerWidth);
+    let width  = (canvas.width  = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
     let animId: number;
 
@@ -40,61 +40,50 @@ export function ParticleBackground() {
     const spawn = () => {
       particles.length = 0;
       for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const baseVx = (Math.random() - 0.5) * 0.35;
-        const baseVy = (Math.random() - 0.5) * 0.35;
+        const bvx = (Math.random() - 0.5) * 0.35;
+        const bvy = (Math.random() - 0.5) * 0.35;
         particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: baseVx,
-          vy: baseVy,
-          baseVx,
-          baseVy,
-          size: Math.random() * 1.8 + 0.5,
-          alpha: Math.random() * 0.45 + 0.1,
+          x: Math.random() * width, y: Math.random() * height,
+          vx: bvx, vy: bvy, baseVx: bvx, baseVy: bvy,
+          size: Math.random() * 1.6 + 0.5,
+          alpha: Math.random() * 0.4 + 0.1,
         });
       }
     };
-
     spawn();
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-
+      const dark = themeRef.current === "dark";
+      // Dark: #45c97c (bright green, subtle on black)
+      // Light: #14502d (deep forest green, visible against #F6F9FD / #e8f2ec)
+      const r = dark ? 69  : 20;
+      const g = dark ? 201 : 80;
+      const b = dark ? 124 : 45;
+      // Light particles need more weight to read against a pale background
+      const alphaMul = dark ? 1 : 1.7;
       const mx = mouse.current.x;
       const my = mouse.current.y;
 
       for (const p of particles) {
-        const dx = p.x - mx;
-        const dy = p.y - my;
+        const dx   = p.x - mx;
+        const dy   = p.y - my;
         const dist = Math.sqrt(dx * dx + dy * dy);
-
         if (dist < REPULSE_RADIUS && dist > 0) {
           const force = ((REPULSE_RADIUS - dist) / REPULSE_RADIUS) * REPULSE_STRENGTH;
           p.vx += (dx / dist) * force * 0.08;
           p.vy += (dy / dist) * force * 0.08;
         }
-
         p.vx += (p.baseVx - p.vx) * RETURN_SPEED;
         p.vy += (p.baseVy - p.vy) * RETURN_SPEED;
-
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        const maxSpeed = 4;
-        if (speed > maxSpeed) {
-          p.vx = (p.vx / speed) * maxSpeed;
-          p.vy = (p.vy / speed) * maxSpeed;
-        }
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
+        if (speed > 4) { p.vx = (p.vx / speed) * 4; p.vy = (p.vy / speed) * 4; }
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = width;  if (p.x > width)  p.x = 0;
+        if (p.y < 0) p.y = height; if (p.y > height) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(74, 222, 128, ${p.alpha})`;
+        ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(1, p.alpha * alphaMul)})`;
         ctx.fill();
       }
 
@@ -102,46 +91,35 @@ export function ParticleBackground() {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
+          const d  = Math.sqrt(dx * dx + dy * dy);
           if (d < CONNECTION_DIST) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(74, 222, 128, ${0.07 * (1 - d / CONNECTION_DIST)})`;
-            ctx.lineWidth = 0.5;
+            const lineAlpha = dark ? 0.06 : 0.16;
+            ctx.strokeStyle = `rgba(${r},${g},${b},${lineAlpha * (1 - d / CONNECTION_DIST)})`;
+            ctx.lineWidth = dark ? 0.5 : 0.7;
             ctx.stroke();
           }
         }
       }
-
       animId = requestAnimationFrame(draw);
     };
-
     draw();
 
-    const onResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      spawn();
-    };
+    const onResize    = () => { width = canvas.width  = window.innerWidth; height = canvas.height = window.innerHeight; spawn(); };
+    const onMouseMove = (e: MouseEvent) => { mouse.current = { x: e.clientX, y: e.clientY }; };
+    const onLeave     = () => { mouse.current = { x: -9999, y: -9999 }; };
 
-    const onMouseMove = (e: MouseEvent) => {
-      mouse.current = { x: e.clientX, y: e.clientY };
-    };
-
-    const onMouseLeave = () => {
-      mouse.current = { x: -9999, y: -9999 };
-    };
-
-    window.addEventListener("resize", onResize);
-    window.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("resize",    onResize,    { passive: true });
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("mouseleave", onLeave);
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize",    onResize);
       window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mouseleave", onLeave);
     };
   }, []);
 
@@ -149,8 +127,12 @@ export function ParticleBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.85 }}
+      style={{
+        position: "fixed", inset: 0,
+        pointerEvents: "none", zIndex: 0,
+        opacity: theme === "dark" ? 0.75 : 0.8,
+        transition: "opacity 300ms ease",
+      }}
     />
   );
 }

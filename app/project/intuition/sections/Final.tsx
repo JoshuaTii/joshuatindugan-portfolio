@@ -2,21 +2,21 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#f59e0b";
+const ACCENT = "var(--cs-accent-it)";
 
 const GALLERY_SCREENS = [
   { src: "/intuition/final/Login.png",    alt: "Login screen" },
   { src: "/intuition/final/sign-up.png",  alt: "Sign up screen" },
   { src: "/intuition/final/Main.png",     alt: "Main dashboard" },
-  { src: "/intuition/final/Main-1.png",   alt: "Main — scholarships list" },
-  { src: "/intuition/final/Main-2.png",   alt: "Main — filtered view" },
-  { src: "/intuition/final/Main-3.png",   alt: "Main — detail panel" },
+  { src: "/intuition/final/Main-1.png",   alt: "Main, scholarships list" },
+  { src: "/intuition/final/Main-2.png",   alt: "Main, filtered view" },
+  { src: "/intuition/final/Main-3.png",   alt: "Main, detail panel" },
   { src: "/intuition/final/Explore.png",  alt: "Explore scholarships" },
   { src: "/intuition/final/Inbox.png",    alt: "Inbox" },
   { src: "/intuition/final/Chat.png",     alt: "Chat" },
   { src: "/intuition/final/Letter.png",   alt: "Letter template" },
-  { src: "/intuition/final/Chat-1.png",   alt: "Chat — conversation" },
-  { src: "/intuition/final/Letter-1.png", alt: "Letter — variation" },
+  { src: "/intuition/final/Chat-1.png",   alt: "Chat, conversation" },
+  { src: "/intuition/final/Letter-1.png", alt: "Letter, variation" },
 ];
 
 // Real InTuition brand colors from visual guideline
@@ -121,7 +121,7 @@ export function Final() {
             fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            color: "#f2ede8",
+            color: "var(--cs-text)",
             lineHeight: 1.1,
             marginBottom: 16,
             maxWidth: 680,
@@ -139,7 +139,7 @@ export function Final() {
           style={{
             fontSize: "1rem",
             lineHeight: 1.75,
-            color: "rgba(242,237,232,0.5)",
+            color: "var(--cs-text-muted)",
             maxWidth: 600,
             marginBottom: 32,
           }}
@@ -173,11 +173,11 @@ export function Final() {
               style={{
                 padding: "18px 20px",
                 borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.07)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.6)",
+                color: "var(--cs-text-muted)",
                 borderLeft: "2px solid rgba(245,158,11,0.4)",
               }}
             >
@@ -218,7 +218,7 @@ export function Final() {
               fontSize: "0.75rem",
               textTransform: "uppercase",
               letterSpacing: "0.1em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 20,
             }}
           >
@@ -250,7 +250,7 @@ export function Final() {
           style={{
             marginTop: 100,
             paddingTop: 72,
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--cs-border)",
           }}
         >
           <p
@@ -270,7 +270,7 @@ export function Final() {
               fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               marginBottom: 12,
             }}
@@ -281,7 +281,7 @@ export function Final() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.7,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               maxWidth: 540,
               marginBottom: 36,
             }}
@@ -294,8 +294,8 @@ export function Final() {
             style={{
               borderRadius: 20,
               overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               position: "relative",
             }}
           >
@@ -344,7 +344,7 @@ export function Final() {
           style={{
             marginTop: 120,
             paddingTop: 80,
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--cs-border)",
           }}
         >
           <p
@@ -365,7 +365,7 @@ export function Final() {
               fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               marginBottom: 56,
             }}
@@ -381,7 +381,7 @@ export function Final() {
                   fontSize: "0.75rem",
                   textTransform: "uppercase",
                   letterSpacing: "0.1em",
-                  color: "rgba(242,237,232,0.3)",
+                  color: "var(--cs-text-faint)",
                   marginBottom: 24,
                 }}
               >
@@ -394,11 +394,11 @@ export function Final() {
                   style={{
                     padding: "24px 28px",
                     borderRadius: 16,
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backgroundColor: "#111113",
+                    border: "1px solid var(--cs-border)",
+                    backgroundColor: "var(--cs-surface)",
                   }}
                 >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(242,237,232,0.3)", marginBottom: 12 }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                     Header, Arima Medium
                   </p>
                   <p
@@ -406,14 +406,14 @@ export function Final() {
                       fontFamily: "Georgia, 'Times New Roman', serif",
                       fontSize: "2.8rem",
                       fontWeight: 500,
-                      color: "#f2ede8",
+                      color: "var(--cs-text)",
                       lineHeight: 1.05,
                       letterSpacing: "-0.01em",
                     }}
                   >
                     Header
                   </p>
-                  <p style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.35)", marginTop: 10 }}>
+                  <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", marginTop: 10 }}>
                     Arima-Medium · used for primary headings and display text
                   </p>
                 </div>
@@ -423,11 +423,11 @@ export function Final() {
                   style={{
                     padding: "24px 28px",
                     borderRadius: 16,
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backgroundColor: "#111113",
+                    border: "1px solid var(--cs-border)",
+                    backgroundColor: "var(--cs-surface)",
                   }}
                 >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(242,237,232,0.3)", marginBottom: 12 }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                     Subheader, Arima Regular
                   </p>
                   <p
@@ -435,13 +435,13 @@ export function Final() {
                       fontFamily: "Georgia, 'Times New Roman', serif",
                       fontSize: "1.75rem",
                       fontWeight: 400,
-                      color: "#f2ede8",
+                      color: "var(--cs-text)",
                       lineHeight: 1.2,
                     }}
                   >
                     Subheader
                   </p>
-                  <p style={{ fontSize: "0.8rem", color: "rgba(242,237,232,0.35)", marginTop: 10 }}>
+                  <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", marginTop: 10 }}>
                     Arima-regular · used for section subheadings and navigation
                   </p>
                 </div>
@@ -451,11 +451,11 @@ export function Final() {
                   style={{
                     padding: "24px 28px",
                     borderRadius: 16,
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backgroundColor: "#111113",
+                    border: "1px solid var(--cs-border)",
+                    backgroundColor: "var(--cs-surface)",
                   }}
                 >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(242,237,232,0.3)", marginBottom: 12 }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                     Body, Albert Sans
                   </p>
                   <p
@@ -463,7 +463,7 @@ export function Final() {
                       fontFamily: "system-ui, -apple-system, sans-serif",
                       fontSize: "1rem",
                       fontWeight: 400,
-                      color: "rgba(242,237,232,0.65)",
+                      color: "var(--cs-text-muted)",
                       lineHeight: 1.7,
                     }}
                   >
@@ -482,7 +482,7 @@ export function Final() {
                   fontSize: "0.75rem",
                   textTransform: "uppercase",
                   letterSpacing: "0.1em",
-                  color: "rgba(242,237,232,0.3)",
+                  color: "var(--cs-text-faint)",
                   marginBottom: 24,
                 }}
               >
@@ -499,8 +499,8 @@ export function Final() {
                       gap: 16,
                       padding: "16px 20px",
                       borderRadius: 14,
-                      border: "1px solid rgba(255,255,255,0.06)",
-                      backgroundColor: "#111113",
+                      border: "1px solid var(--cs-border)",
+                      backgroundColor: "var(--cs-surface)",
                     }}
                   >
                     <div
@@ -510,12 +510,12 @@ export function Final() {
                         borderRadius: 10,
                         backgroundColor: hex,
                         flexShrink: 0,
-                        border: "1px solid rgba(255,255,255,0.08)",
+                        border: "1px solid var(--cs-border)",
                       }}
                     />
                     <div>
-                      <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f2ede8" }}>{label}</p>
-                      <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.4)" }}>
+                      <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--cs-text)" }}>{label}</p>
+                      <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>
                         #{hex.replace("#", "")} · {role}
                       </p>
                     </div>
@@ -535,7 +535,7 @@ export function Final() {
           style={{
             marginTop: 120,
             paddingTop: 80,
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--cs-border)",
           }}
         >
           <p
@@ -556,7 +556,7 @@ export function Final() {
               fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               marginBottom: 48,
             }}
@@ -565,14 +565,14 @@ export function Final() {
           </h2>
 
           <div className="grid md:grid-cols-2" style={{ gap: "28px 80px" }}>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "rgba(242,237,232,0.6)" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "var(--cs-text-muted)" }}>
               The scholarship search is not a feature problem. It is a cognitive load problem.
               Students already have access to scholarships. What they do not have is a way to
               filter, track, and act on that information without it consuming time they cannot
               spare. That framing kept the design focused on structure and clarity rather than
               adding more discovery surfaces.
             </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "rgba(242,237,232,0.6)" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "var(--cs-text-muted)" }}>
               The biggest design lesson was that students do not simply need more information. They
               need information structured in a way that helps them act. Working collaboratively also
               meant learning to defend design decisions in critique: articulating not just what we
@@ -589,7 +589,7 @@ export function Final() {
           style={{
             marginTop: 80,
             paddingTop: 64,
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--cs-border)",
           }}
         >
           <p
@@ -610,7 +610,7 @@ export function Final() {
               fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               marginBottom: 20,
             }}
@@ -622,7 +622,7 @@ export function Final() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
               marginBottom: 40,
             }}
@@ -647,8 +647,8 @@ export function Final() {
                   gap: 16,
                   padding: "18px 24px",
                   borderRadius: 14,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                 }}
               >
                 <span
@@ -663,7 +663,7 @@ export function Final() {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.6, color: "rgba(242,237,232,0.65)" }}>
+                <p style={{ fontSize: "0.9rem", lineHeight: 1.6, color: "var(--cs-text-muted)" }}>
                   {step}
                 </p>
               </motion.div>

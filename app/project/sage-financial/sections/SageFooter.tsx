@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export function SageFooter() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingBlock: "64px 48px" }}>
+    <footer style={{ borderTop: "1px solid var(--cs-border)", paddingBlock: "64px 48px" }}>
       <div className="section-container">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between" style={{ gap: 32 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -13,7 +13,7 @@ export function SageFooter() {
               alt="SAGE"
               style={{ height: 24, width: "auto", objectFit: "contain", objectPosition: "left" }}
             />
-            <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
+            <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
               A UX thesis by Joshua Tindugan.
               <br />
               George Washington University, 2025–2026.
@@ -24,14 +24,14 @@ export function SageFooter() {
             <Link
               href="/#work"
               className="flex items-center gap-2 text-sm"
-              style={{ textDecoration: "none", color: "rgba(242,237,232,0.4)", transition: "color 250ms ease" }}
+              style={{ textDecoration: "none", color: "var(--cs-text-faint)", transition: "color 250ms ease" }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#7ab688")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.4)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-text-faint)")}
             >
               <ArrowLeft size={14} />
               Back to portfolio
             </Link>
-            <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.2)" }}>
+            <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>
               &copy; 2026 Joshua Tindugan
             </p>
           </div>

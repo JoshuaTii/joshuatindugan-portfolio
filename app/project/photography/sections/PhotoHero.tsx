@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -28,14 +28,14 @@ export function PhotoHero() {
           className="flex items-center gap-1.5"
           style={{
             textDecoration: "none",
-            color: "rgba(242,237,232,0.35)",
+            color: "var(--cs-text-faint)",
             fontSize: "0.75rem",
             letterSpacing: "0.06em",
             transition: "color 250ms ease",
             width: "fit-content",
           }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#f2ede8")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.35)")}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-text)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-text-faint)")}
         >
           <ArrowLeft size={13} />
           Portfolio
@@ -71,7 +71,7 @@ export function PhotoHero() {
               fontWeight: 700,
               letterSpacing: "-0.025em",
               lineHeight: 1.02,
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               marginBottom: 28,
             }}
           >
@@ -90,7 +90,7 @@ export function PhotoHero() {
               fontWeight: 400,
               fontFamily: "var(--font-playfair), Georgia, serif",
               fontStyle: "italic",
-              color: "rgba(242,237,232,0.55)",
+              color: "var(--cs-text-muted)",
               lineHeight: 1.5,
               marginBottom: 32,
               maxWidth: 680,
@@ -108,7 +108,7 @@ export function PhotoHero() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               maxWidth: 580,
               marginBottom: 48,
             }}
@@ -152,7 +152,7 @@ export function PhotoHero() {
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
           height: 120,
-          background: "linear-gradient(to bottom, transparent, #09090b)",
+          background: "linear-gradient(to bottom, transparent, var(--cs-bg))",
         }}
       />
     </section>

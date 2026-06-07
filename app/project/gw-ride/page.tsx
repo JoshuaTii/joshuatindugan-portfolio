@@ -1,4 +1,4 @@
-import { GWRideNavbar } from "./sections/GWRideNavbar";
+﻿import { GWRideNavbar } from "./sections/GWRideNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function GWRidePage() {
   return (
-    <main style={{ backgroundColor: "#09090b" }}>
+    <main style={{ backgroundColor: "var(--cs-bg)" }}>
       <GWRideNavbar />
       <Hero />
       <Overview />

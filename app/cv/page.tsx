@@ -270,6 +270,50 @@ const CSS = `
 
 /* ─── Content ────────────────────────────────────────────────── */
 
+const EXPERIENCE = [
+  {
+    title: "DDOT Workforce Stability Research Project",
+    meta: "UX Researcher + Graphic Designer · Washington, DC",
+    date: "Fall 2025 – Spring 2026",
+    bullets: [
+      "Collaborated with DDOT and The Lab@DC to research safety technician workforce stability, retention, and recruitment barriers.",
+      "Studied audience behavior and hiring pipeline gaps, identifying older job-seeking audiences as a stronger recruitment target.",
+      "Designed recruitment poster strategies using clear language, accessible visuals, and targeted messaging.",
+      "Contributed to interviews, site visits, systems mapping, research synthesis, and visual materials.",
+    ],
+  },
+  {
+    title: "National Gallery of Art Museum Experience Redesign",
+    meta: "UX Researcher + Graphic Designer · Washington, DC",
+    date: "Fall 2025",
+    bullets: [
+      "Partnered with the National Gallery of Art to improve the museum visitor experience.",
+      "Designed a pamphlet map and playful navigation concept inspired by treasure-hunt experiences for children, adults, and first-time visitors.",
+      "Supported research, concept development, prototyping, visual design, and presentations.",
+      "Focused on making the museum experience more approachable, engaging, and accessible.",
+    ],
+  },
+  {
+    title: "UI/UX Design Intern",
+    meta: "Mom n Tot Spot · Alexandria, VA",
+    date: "Nov – Dec 2023",
+    bullets: [
+      "Redesigned the website experience to improve navigation, clarity, and access to the booking flow.",
+      "Identified friction points in the user journey and simplified how parents could find key information and schedule services.",
+      "Created wireframes and visual designs aligned with the brand, refining direction through stakeholder feedback.",
+    ],
+  },
+  {
+    title: "Freelance Designer",
+    meta: "Graphic + UI/UX Design · Remote",
+    date: "2023 – Present",
+    bullets: [
+      "Provide graphic and UI/UX design services for clients on a remote, project basis.",
+      "Deliver brand, layout, and interface work that turns client goals into clear, usable visual systems.",
+    ],
+  },
+];
+
 const PROJECTS = [
   {
     title: "SAGE Financial Access",
@@ -318,28 +362,6 @@ const PROJECTS = [
       "Developed a distinct editorial identity connected to SAGE while giving the website its own trusted, community-centered voice.",
       "Focused on hierarchy, typography, content structure, and visual rhythm to make longer-form content easier to read and navigate.",
       "Used editorial design to make complex social and financial issues feel more human, accessible, and grounded.",
-    ],
-  },
-  {
-    title: "NGA Scavenger Pamphlet",
-    tags: "National Gallery of Art Partnership · Interaction Design · Museum Experience",
-    date: "",
-    bullets: [
-      "Designed a family-centered museum engagement concept for the National Gallery of Art's West Building.",
-      "Created a scavenger pamphlet experience that turns museum exploration into a more playful and accessible activity for children, families, and first-time visitors.",
-      "Used maps, clues, stamps, and collectible design elements to encourage active participation rather than passive viewing.",
-      "Focused on making museum interpretation more approachable through visual storytelling, low-barrier interaction, and playful learning.",
-    ],
-  },
-  {
-    title: "DDOT Safety Techs",
-    tags: "Public Sector Partnership · UX Research · Service Design",
-    date: "",
-    bullets: [
-      "Worked on a design project focused on improving the work experience and retention of DDOT Safety Technicians.",
-      "Synthesized research around worker safety, emotional sustainability, weather conditions, public disrespect, and unclear advancement expectations.",
-      "Developed system-level design concepts around reporting, communication, support, and recruitment messaging.",
-      "Focused on how design can improve both physical safety and emotional sustainability within public service roles.",
     ],
   },
 ];
@@ -419,11 +441,11 @@ export default function CVPage() {
               <p className="cv-profile-text">
                 UI/UX designer with a background in Interaction Design and Graphic Design,
                 focused on creating clear, accessible, and visually polished digital
-                experiences. Skilled in user research, interface design, prototyping, design
-                systems, and storytelling-driven problem solving. Experienced in designing
-                mobile apps, web platforms, editorial systems, and community-centered digital
-                products that translate complex user needs into intuitive flows and thoughtful
-                visual systems.
+                experiences. I combine user research, systems thinking, and visual design to
+                translate complex problems into intuitive user flows. My work centers on
+                community-centered design and financial accessibility, with experience
+                partnering with real stakeholders across the public sector and cultural
+                institutions, including DDOT, The Lab@DC, and the National Gallery of Art.
               </p>
             </section>
 
@@ -432,21 +454,22 @@ export default function CVPage() {
             {/* Experience */}
             <section>
               <span className="cv-label">Experience</span>
-
-              <div className="cv-entry">
-                <div className="cv-entry-top">
-                  <span className="cv-entry-title">UI/UX Design Intern</span>
-                  <span className="cv-entry-date">November 2023</span>
+              {EXPERIENCE.map((exp, idx) => (
+                <div
+                  key={exp.title}
+                  className="cv-entry"
+                  style={{ marginBottom: idx < EXPERIENCE.length - 1 ? 18 : 0 }}
+                >
+                  <div className="cv-entry-top">
+                    <span className="cv-entry-title">{exp.title}</span>
+                    <span className="cv-entry-date">{exp.date}</span>
+                  </div>
+                  <p className="cv-entry-meta">{exp.meta}</p>
+                  <ul className="cv-bullets">
+                    {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                  </ul>
                 </div>
-                <p className="cv-entry-meta">Mom n Tot Spot &nbsp;·&nbsp; Washington, DC</p>
-                <ul className="cv-bullets">
-                  <li>Redesigned the company&rsquo;s website experience with a focus on improving navigation, clarity, and access to the booking flow.</li>
-                  <li>Identified friction points in the user journey and simplified how parents could find key information and schedule services.</li>
-                  <li>Created wireframes and visual design concepts that aligned with the brand while making the site easier to understand and use.</li>
-                  <li>Collaborated with stakeholders and applied feedback to refine design direction, content structure, and usability.</li>
-                  <li>Strengthened practical experience in client communication, website redesign, and turning user needs into clearer digital experiences.</li>
-                </ul>
-              </div>
+              ))}
             </section>
 
           </main>
@@ -470,7 +493,7 @@ export default function CVPage() {
               UI/UX Design · Product Design · User Research · Wireframing · Prototyping ·
               Interaction Design · Visual Design · Design Systems · Information Architecture ·
               Usability Testing · Accessibility · Editorial &amp; Layout Design · Brand Identity ·
-              Storytelling &amp; Presentation Design
+              Storytelling &amp; Presentation Design · AI Prompt Engineering
             </p>
 
             <hr className="cv-sidebar-rule" />
@@ -491,7 +514,7 @@ export default function CVPage() {
             </div>
             <div className="cv-tool-group">
               <span className="cv-tool-label">Other</span>
-              <p className="cv-tool-items">Microsoft Office</p>
+              <p className="cv-tool-items">Notion · Microsoft Office</p>
             </div>
 
             <hr className="cv-sidebar-rule" />
@@ -510,6 +533,13 @@ export default function CVPage() {
               <p className="cv-edu-detail">High School Diploma</p>
               <p className="cv-edu-detail">June 2022 · Washington, DC</p>
             </div>
+
+            <hr className="cv-sidebar-rule" />
+
+            <span className="cv-sidebar-label">Certificate</span>
+            <ul className="cv-simple-list">
+              <li>Creative License</li>
+            </ul>
 
             <hr className="cv-sidebar-rule" />
 
@@ -538,23 +568,7 @@ export default function CVPage() {
             <h2 className="cv-section-title">Design work across product, community, and editorial</h2>
           </div>
 
-          {PROJECTS.slice(0, 4).map((p) => (
-            <div key={p.title} className="cv-project-entry">
-              <h3 className="cv-project-title">{p.title}</h3>
-              <div className="cv-project-meta">
-                <span className="cv-project-tags">{p.tags}</span>
-                {p.date && <span className="cv-project-date">{p.date}</span>}
-              </div>
-              <ul className="cv-bullets">
-                {p.bullets.map((b, i) => <li key={i}>{b}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* ── PAGE 3: PROJECTS 5-6 + ADDITIONAL ───────── */}
-        <div className="cv-projects-section">
-          {PROJECTS.slice(4).map((p) => (
+          {PROJECTS.map((p) => (
             <div key={p.title} className="cv-project-entry">
               <h3 className="cv-project-title">{p.title}</h3>
               <div className="cv-project-meta">

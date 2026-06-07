@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "./Lightbox";
 
-const ACCENT = "#60A5FA";
+const ACCENT = "var(--cs-accent-gw)";
 
 const FINDINGS = [
   {
@@ -90,7 +90,7 @@ export function Research() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               maxWidth: 640,
               marginBottom: 20,
@@ -98,7 +98,7 @@ export function Research() {
           >
             Understanding the gap between system and experience.
           </h2>
-          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
+          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 600 }}>
             We conducted student interviews across the GWU campus, focusing on daily commute
             behaviors, transit decision moments, and the specific friction points that push students
             toward rideshares instead of available campus shuttle options.
@@ -112,10 +112,10 @@ export function Research() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginBottom: 24 }}
         >
-          <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+          <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
             Key Findings
           </h3>
-          <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
+          <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)" }}>
             Five patterns that shaped the entire design direction.
           </p>
         </motion.div>
@@ -130,8 +130,8 @@ export function Research() {
               style={{
                 padding: "28px 24px",
                 borderRadius: 16,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 12,
@@ -140,7 +140,7 @@ export function Research() {
               <span style={{ fontSize: "0.78rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: ACCENT }}>
                 {f.stat}
               </span>
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.65)" }}>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                 {f.body}
               </p>
             </motion.div>
@@ -155,10 +155,10 @@ export function Research() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 24 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Persona
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)" }}>
               A design tool grounded in real student behavior and commute patterns.
             </p>
           </motion.div>
@@ -170,8 +170,8 @@ export function Research() {
             style={{
               padding: "40px 36px",
               borderRadius: 20,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               marginBottom: 96,
             }}
           >
@@ -182,13 +182,13 @@ export function Research() {
                   <p style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 12, fontWeight: 500 }}>
                     Primary Persona
                   </p>
-                  <h4 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 6 }}>
+                  <h4 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 6 }}>
                     Cameron Jones
                   </h4>
-                  <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.5)", marginBottom: 20 }}>
+                  <p style={{ fontSize: "0.88rem", color: "var(--cs-text-muted)", marginBottom: 20 }}>
                     Age 19 · Freshman · Exercise Science + Fine Arts
                   </p>
-                  <p style={{ fontSize: "0.93rem", lineHeight: 1.75, color: "rgba(242,237,232,0.6)" }}>
+                  <p style={{ fontSize: "0.93rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
                     Cameron is a first-year student living on the Mount Vernon Campus. Coming from
                     a suburban area with limited public transit experience, navigating GWU's two
                     campuses feels overwhelming. They rely on the Vex shuttle daily to get between
@@ -203,11 +203,11 @@ export function Research() {
                     { label: "Daily Route", items: ["Corcoran ↔ Milken", "via Vex shuttle"] },
                   ].map(({ label, items }) => (
                     <div key={label}>
-                      <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(242,237,232,0.3)", marginBottom: 8, fontWeight: 500 }}>
+                      <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.09em", color: "var(--cs-text-faint)", marginBottom: 8, fontWeight: 500 }}>
                         {label}
                       </p>
                       {items.map((item) => (
-                        <p key={item} style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.65)", lineHeight: 1.5 }}>{item}</p>
+                        <p key={item} style={{ fontSize: "0.88rem", color: "var(--cs-text-muted)", lineHeight: 1.5 }}>{item}</p>
                       ))}
                     </div>
                   ))}
@@ -243,14 +243,14 @@ export function Research() {
                   },
                 ].map(({ label, items, accent }) => (
                   <div key={label}>
-                    <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.09em", color: accent ? ACCENT : "rgba(242,237,232,0.3)", marginBottom: 10, fontWeight: 500 }}>
+                    <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.09em", color: accent ? ACCENT : "var(--cs-text-faint)", marginBottom: 10, fontWeight: 500 }}>
                       {label}
                     </p>
                     <div style={{ display: "flex", flexDirection: "column" as const, gap: 7 }}>
                       {items.map((item) => (
                         <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                          <span style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: accent ? ACCENT : "rgba(242,237,232,0.3)", flexShrink: 0, marginTop: 8 }} />
-                          <span style={{ fontSize: "0.88rem", color: accent ? "rgba(242,237,232,0.75)" : "rgba(242,237,232,0.6)", lineHeight: 1.6 }}>{item}</span>
+                          <span style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: accent ? ACCENT : "var(--cs-text-faint)", flexShrink: 0, marginTop: 8 }} />
+                          <span style={{ fontSize: "0.88rem", color: accent ? "var(--cs-text-muted)" : "var(--cs-text-muted)", lineHeight: 1.6 }}>{item}</span>
                         </div>
                       ))}
                     </div>
@@ -269,10 +269,10 @@ export function Research() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 24 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Storyboard
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", maxWidth: 600 }}>
               Following Nick, a GWU freshman who misses his shuttle due to lack of real-time
               information, and how GW Ride changes that moment.
             </p>
@@ -292,7 +292,7 @@ export function Research() {
                 top: 0,
                 bottom: 24,
                 width: 72,
-                background: "linear-gradient(to left, #09090b, transparent)",
+                background: "linear-gradient(to left, var(--cs-bg), transparent)",
                 zIndex: 2,
                 pointerEvents: "none",
               }}
@@ -327,7 +327,7 @@ export function Research() {
                       style={{
                         borderRadius: 12,
                         overflow: "hidden",
-                        border: "1px solid rgba(255,255,255,0.06)",
+                        border: "1px solid var(--cs-border)",
                         backgroundColor: "#1a1a1e",
                       }}
                     >
@@ -349,7 +349,7 @@ export function Research() {
                       <span style={{ fontSize: "0.7rem", color: ACCENT, fontWeight: 500 }}>
                         Frame {i + 1}
                       </span>
-                      <p style={{ fontSize: "0.78rem", color: "rgba(242,237,232,0.5)", lineHeight: 1.5 }}>
+                      <p style={{ fontSize: "0.78rem", color: "var(--cs-text-muted)", lineHeight: 1.5 }}>
                         {frame.caption}
                       </p>
                     </div>
@@ -367,8 +367,8 @@ export function Research() {
                   width: 40,
                   height: 40,
                   borderRadius: "50%",
-                  backgroundColor: "#111113",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  backgroundColor: "var(--cs-surface)",
+                  border: "1px solid var(--cs-border)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -380,11 +380,11 @@ export function Research() {
                   (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
-                  (e.currentTarget as HTMLElement).style.backgroundColor = "#111113";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--cs-border-strong)";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "var(--cs-surface)";
                 }}
               >
-                <ChevronLeft size={16} color="rgba(242,237,232,0.6)" />
+                <ChevronLeft size={16} color="var(--cs-text-muted)" />
               </button>
               <button
                 onClick={() => scrollCarousel(1)}
@@ -393,8 +393,8 @@ export function Research() {
                   width: 40,
                   height: 40,
                   borderRadius: "50%",
-                  backgroundColor: "#111113",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  backgroundColor: "var(--cs-surface)",
+                  border: "1px solid var(--cs-border)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -406,11 +406,11 @@ export function Research() {
                   (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
-                  (e.currentTarget as HTMLElement).style.backgroundColor = "#111113";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--cs-border-strong)";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "var(--cs-surface)";
                 }}
               >
-                <ChevronRight size={16} color="rgba(242,237,232,0.6)" />
+                <ChevronRight size={16} color="var(--cs-text-muted)" />
               </button>
             </div>
           </motion.div>

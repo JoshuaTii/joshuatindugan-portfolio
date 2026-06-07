@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Final",     href: "#final-design",     id: "final-design" },
 ];
 
-const ACCENT = "#9BE931";
+const ACCENT = "var(--cs-accent-sf)";
 
 export function SageNavbar() {
   const [scrolled, setScrolled]           = useState(false);
@@ -58,9 +58,9 @@ export function SageNavbar() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        backgroundColor: scrolled ? "rgba(9,9,11,0.92)" : "transparent",
+        backgroundColor: scrolled ? "var(--cs-nav-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+        borderBottom: scrolled ? "1px solid var(--cs-border)" : "1px solid transparent",
         transition: "background-color 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease",
       }}
     >
@@ -72,18 +72,18 @@ export function SageNavbar() {
             className="flex items-center gap-1.5"
             style={{
               textDecoration: "none",
-              color: "rgba(242,237,232,0.4)",
+              color: "var(--cs-text-faint)",
               fontSize: "0.75rem",
               letterSpacing: "0.06em",
               transition: "color 250ms ease",
             }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#f2ede8")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.4)")}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-text)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-text-faint)")}
           >
             <ArrowLeft size={13} />
             Portfolio
           </Link>
-          <span style={{ color: "rgba(255,255,255,0.1)", fontSize: "0.7rem" }}>/</span>
+          <span style={{ color: "var(--cs-border-strong)", fontSize: "0.7rem" }}>/</span>
           <img
             src="/sage/logo.png"
             alt="SAGE"
@@ -104,7 +104,7 @@ export function SageNavbar() {
                 style={{
                   letterSpacing: "0.1em",
                   textDecoration: "none",
-                  color: isActive ? ACCENT : "rgba(242,237,232,0.4)",
+                  color: isActive ? ACCENT : "var(--cs-text-faint)",
                   transition: "color 250ms ease",
                   paddingBottom: 4,
                   display: "flex",
@@ -113,10 +113,10 @@ export function SageNavbar() {
                   gap: 0,
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive) (e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.75)";
+                  if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--cs-text-muted)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = isActive ? ACCENT : "rgba(242,237,232,0.4)";
+                  (e.currentTarget as HTMLElement).style.color = isActive ? ACCENT : "var(--cs-text-faint)";
                 }}
               >
                 {link.label}
@@ -148,16 +148,16 @@ export function SageNavbar() {
           aria-label="Toggle menu"
         >
           <span
-            className="block bg-white/60"
-            style={{ width: 22, height: 1.5, transform: open ? "translateY(7.5px) rotate(45deg)" : "none", transition: "transform 200ms ease" }}
+            className="block"
+            style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(7.5px) rotate(45deg)" : "none", transition: "transform 200ms ease" }}
           />
           <span
-            className="block bg-white/60"
-            style={{ width: 22, height: 1.5, opacity: open ? 0 : 1, transition: "opacity 200ms ease" }}
+            className="block"
+            style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, opacity: open ? 0 : 1, transition: "opacity 200ms ease" }}
           />
           <span
-            className="block bg-white/60"
-            style={{ width: 22, height: 1.5, transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none", transition: "transform 200ms ease" }}
+            className="block"
+            style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none", transition: "transform 200ms ease" }}
           />
         </button>
       </div>
@@ -167,8 +167,8 @@ export function SageNavbar() {
         <div
           className="md:hidden"
           style={{
-            backgroundColor: "rgba(9,9,11,0.96)",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            backgroundColor: "var(--cs-menu-bg)",
+            borderTop: "1px solid var(--cs-border)",
             padding: "16px 32px 24px",
           }}
         >
@@ -180,8 +180,8 @@ export function SageNavbar() {
               className="block text-sm py-3"
               style={{
                 textDecoration: "none",
-                color: activeSection === link.id ? ACCENT : "rgba(242,237,232,0.5)",
-                borderBottom: "1px solid rgba(255,255,255,0.04)",
+                color: activeSection === link.id ? ACCENT : "var(--cs-text-muted)",
+                borderBottom: "1px solid var(--cs-border)",
                 transition: "color 250ms ease",
               }}
             >

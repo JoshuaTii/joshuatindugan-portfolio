@@ -104,7 +104,7 @@ function FeatureBlock({
             fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            color: "#f2ede8",
+            color: "var(--cs-text)",
             lineHeight: 1.1,
           }}
         >
@@ -115,13 +115,13 @@ function FeatureBlock({
             fontSize: "1rem",
             fontStyle: "italic",
             fontFamily: "var(--font-playfair), Georgia, serif",
-            color: "rgba(242,237,232,0.55)",
+            color: "var(--cs-text-muted)",
             lineHeight: 1.5,
           }}
         >
           {feature.subtitle}
         </p>
-        <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(242,237,232,0.6)" }}>
+        <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
           {feature.body}
         </p>
         <div className="flex flex-wrap" style={{ gap: 8 }}>
@@ -141,11 +141,11 @@ function FeatureBlock({
                   width: 34,
                   height: 34,
                   borderRadius: 8,
-                  border: `1px solid ${i === activeImg ? feature.color : "rgba(255,255,255,0.08)"}`,
+                  border: `1px solid ${i === activeImg ? feature.color : "var(--cs-border-strong)"}`,
                   backgroundColor: i === activeImg ? `${feature.color}1a` : "transparent",
                   cursor: "pointer",
                   fontSize: "0.7rem",
-                  color: i === activeImg ? feature.color : "rgba(242,237,232,0.35)",
+                  color: i === activeImg ? feature.color : "var(--cs-text-faint)",
                   fontWeight: 600,
                   transition: "all 250ms ease",
                 }}
@@ -207,7 +207,7 @@ export function Features() {
     <section
       id="features"
       className="!pt-[120px] !pb-[160px]"
-      style={{ backgroundColor: "rgba(17,17,19,0.5)" }}
+      style={{ backgroundColor: "var(--cs-bg-secondary)" }}
     >
       <div className="section-container">
         <motion.div
@@ -223,7 +223,7 @@ export function Features() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 640,
             }}
           >

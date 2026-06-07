@@ -58,8 +58,10 @@ export default function Nav() {
             ))}
             <Link
               href="/contact"
-              className="text-xs font-semibold px-4 py-2 rounded-full border transition-all duration-200 hover:bg-[var(--lime)] hover:text-black hover:border-[var(--lime)]"
-              style={{ borderColor: "var(--border)", color: "var(--text)" }}
+              className="text-xs font-semibold px-4 py-2 border transition-all duration-200"
+              style={{ borderColor: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.55)" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.88)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.24)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
             >
               Book a Call
             </Link>
@@ -120,8 +122,8 @@ export default function Nav() {
               ))}
               <Link
                 href="/contact"
-                className="text-sm font-semibold mt-2 px-4 py-2.5 rounded-full text-center"
-                style={{ background: "var(--lime)", color: "#000" }}
+                className="text-sm font-semibold mt-2 px-4 py-2.5 text-center border"
+                style={{ borderColor: "rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.65)" }}
               >
                 Book a Call
               </Link>

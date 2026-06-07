@@ -66,7 +66,7 @@ export function Research() {
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                color: "#f2ede8",
+                color: "var(--cs-text)",
                 maxWidth: 560,
               }}
             >
@@ -78,7 +78,7 @@ export function Research() {
               style={{
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.45)",
+                color: "var(--cs-text-faint)",
                 maxWidth: 380,
                 textAlign: "right" as const,
               }}
@@ -97,7 +97,7 @@ export function Research() {
           style={{
             borderRadius: 20,
             overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.06)",
+            border: "1px solid var(--cs-border)",
             marginBottom: 64,
           }}
         >
@@ -111,8 +111,8 @@ export function Research() {
           <div
             style={{
               padding: "14px 24px",
-              backgroundColor: "#111113",
-              borderTop: "1px solid rgba(255,255,255,0.06)",
+              backgroundColor: "var(--cs-surface)",
+              borderTop: "1px solid var(--cs-border)",
             }}
           >
             <p className="caption">
@@ -133,7 +133,7 @@ export function Research() {
             style={{
               fontSize: "1rem",
               fontWeight: 600,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               marginBottom: 24,
@@ -152,8 +152,8 @@ export function Research() {
                 style={{
                   padding: 28,
                   borderRadius: 16,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   display: "flex",
                   flexDirection: "column" as const,
                   gap: 14,
@@ -170,7 +170,7 @@ export function Research() {
                 >
                   {method}
                 </span>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.55)" }}>
+                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                   {desc}
                 </p>
               </motion.div>
@@ -188,7 +188,7 @@ export function Research() {
             style={{
               fontSize: "1rem",
               fontWeight: 600,
-              color: "rgba(242,237,232,0.5)",
+              color: "var(--cs-text-muted)",
               textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               marginBottom: 24,
@@ -230,8 +230,8 @@ export function Research() {
                     scrollSnapAlign: "start",
                     borderRadius: 16,
                     overflow: "hidden",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backgroundColor: "#111113",
+                    border: "1px solid var(--cs-border)",
+                    backgroundColor: "var(--cs-surface)",
                   }}
                 >
                   <img

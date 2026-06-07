@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#f59e0b";
+const ACCENT = "var(--cs-accent-it)";
 
 const WORKSHOP_PHOTOS = [
   "/intuition/workshop/photo-1.png",
@@ -74,7 +74,7 @@ export function Research() {
             fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            color: "#f2ede8",
+            color: "var(--cs-text)",
             lineHeight: 1.1,
             marginBottom: 64,
             maxWidth: 680,
@@ -97,7 +97,7 @@ export function Research() {
               fontSize: "0.75rem",
               textTransform: "uppercase",
               letterSpacing: "0.1em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 20,
             }}
           >
@@ -115,7 +115,7 @@ export function Research() {
                   borderRadius: 14,
                   overflow: "hidden",
                   cursor: "zoom-in",
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  border: "1px solid var(--cs-border)",
                 }}
               >
                 <img
@@ -142,7 +142,7 @@ export function Research() {
               fontSize: "0.75rem",
               textTransform: "uppercase",
               letterSpacing: "0.1em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 24,
             }}
           >
@@ -154,8 +154,8 @@ export function Research() {
             style={{
               padding: "32px 36px",
               borderRadius: 20,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               marginBottom: 24,
             }}
           >
@@ -165,7 +165,7 @@ export function Research() {
                 style={{
                   fontSize: "clamp(1.4rem, 3vw, 2rem)",
                   fontWeight: 700,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   letterSpacing: "-0.01em",
                   lineHeight: 1.1,
                   margin: 0,
@@ -203,14 +203,14 @@ export function Research() {
                   style={{
                     padding: "16px 18px",
                     borderRadius: 12,
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backgroundColor: "rgba(255,255,255,0.03)",
+                    border: "1px solid var(--cs-border)",
+                    backgroundColor: "var(--cs-border)",
                   }}
                 >
                   <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 6 }}>
                     {label}
                   </p>
-                  <p style={{ fontSize: "0.9rem", fontWeight: 500, color: "#f2ede8", lineHeight: 1.4 }}>
+                  <p style={{ fontSize: "0.9rem", fontWeight: 500, color: "var(--cs-text)", lineHeight: 1.4 }}>
                     {value}
                   </p>
                 </div>
@@ -220,7 +220,7 @@ export function Research() {
             {/* Goals & Pain points */}
             <div className="grid md:grid-cols-2" style={{ gap: 16 }}>
               <div>
-                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(242,237,232,0.35)", marginBottom: 12 }}>
+                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                   Goals
                 </p>
                 <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
@@ -229,15 +229,15 @@ export function Research() {
                     "Fund college without taking on overwhelming debt",
                     "Apply efficiently alongside her part-time work schedule",
                   ].map((g) => (
-                    <li key={g} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "rgba(242,237,232,0.6)", lineHeight: 1.55 }}>
-                      <span style={{ color: ACCENT, flexShrink: 0, marginTop: 3 }}>—</span>
+                    <li key={g} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "var(--cs-text-muted)", lineHeight: 1.55 }}>
+                      <span style={{ color: ACCENT, flexShrink: 0, marginTop: 3 }}>-</span>
                       {g}
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(242,237,232,0.35)", marginBottom: 12 }}>
+                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                   Pain Points
                 </p>
                 <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
@@ -246,8 +246,8 @@ export function Research() {
                     "No guidance as a first-generation college applicant",
                     "Limited time between school and work to search and apply",
                   ].map((p) => (
-                    <li key={p} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "rgba(242,237,232,0.6)", lineHeight: 1.55 }}>
-                      <span style={{ color: "rgba(242,237,232,0.3)", flexShrink: 0, marginTop: 3 }}>—</span>
+                    <li key={p} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "var(--cs-text-muted)", lineHeight: 1.55 }}>
+                      <span style={{ color: "var(--cs-text-faint)", flexShrink: 0, marginTop: 3 }}>-</span>
                       {p}
                     </li>
                   ))}
@@ -263,12 +263,12 @@ export function Research() {
               borderRadius: 16,
               overflow: "hidden",
               cursor: "zoom-in",
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid var(--cs-border)",
             }}
           >
             <img
               src="/intuition/persona.png"
-              alt="User persona — Rosa Sanchez full card"
+              alt="User persona, Rosa Sanchez full card"
               style={{ width: "100%", display: "block" }}
 
             loading="lazy"
@@ -288,7 +288,7 @@ export function Research() {
               fontSize: "0.75rem",
               textTransform: "uppercase",
               letterSpacing: "0.1em",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               marginBottom: 16,
             }}
           >
@@ -298,8 +298,8 @@ export function Research() {
             style={{
               padding: "32px 36px",
               borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
             }}
           >
             <p
@@ -336,7 +336,7 @@ export function Research() {
                     gap: 14,
                     fontSize: "0.95rem",
                     lineHeight: 1.6,
-                    color: "rgba(242,237,232,0.65)",
+                    color: "var(--cs-text-muted)",
                   }}
                 >
                   <span
@@ -365,7 +365,7 @@ export function Research() {
             fontSize: "0.75rem",
             textTransform: "uppercase",
             letterSpacing: "0.1em",
-            color: "rgba(242,237,232,0.35)",
+            color: "var(--cs-text-faint)",
             marginBottom: 24,
           }}
         >
@@ -382,8 +382,8 @@ export function Research() {
               style={{
                 padding: "28px 24px",
                 borderRadius: 16,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 12,
@@ -404,13 +404,13 @@ export function Research() {
                 style={{
                   fontSize: "1rem",
                   fontWeight: 600,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   lineHeight: 1.3,
                 }}
               >
                 {title}
               </h3>
-              <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(242,237,232,0.5)" }}>
+              <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
                 {body}
               </p>
             </motion.div>

@@ -25,7 +25,7 @@ export function Overview() {
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                color: "#f2ede8",
+                color: "var(--cs-text)",
               }}
             >
               A thesis project rooted in
@@ -36,7 +36,7 @@ export function Overview() {
               style={{
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.45)",
+                color: "var(--cs-text-faint)",
                 maxWidth: 380,
                 textAlign: "right" as const,
               }}
@@ -57,8 +57,8 @@ export function Overview() {
             style={{
               padding: "28px 24px",
               borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               display: "flex",
               flexDirection: "column" as const,
               gap: 14,
@@ -68,10 +68,10 @@ export function Overview() {
               Role
             </span>
             <div className="flex flex-col" style={{ gap: 8 }}>
-              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "#f2ede8" }}>
+              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--cs-text)" }}>
                 UX Designer
               </span>
-              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "#f2ede8" }}>
+              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--cs-text)" }}>
                 UX Researcher
               </span>
             </div>
@@ -85,8 +85,8 @@ export function Overview() {
             style={{
               padding: "28px 24px",
               borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               display: "flex",
               flexDirection: "column" as const,
               gap: 14,
@@ -96,10 +96,10 @@ export function Overview() {
               Timeline
             </span>
             <div className="flex flex-col" style={{ gap: 4 }}>
-              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "#f2ede8" }}>
+              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--cs-text)" }}>
                 Fall 2025 - Spring 2026
               </span>
-              <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.5)" }}>
+              <span style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)" }}>
                 Two semesters
               </span>
             </div>
@@ -113,8 +113,8 @@ export function Overview() {
             style={{
               padding: "28px 24px",
               borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               display: "flex",
               flexDirection: "column" as const,
               gap: 14,
@@ -124,10 +124,10 @@ export function Overview() {
               Platform
             </span>
             <div className="flex flex-col" style={{ gap: 4 }}>
-              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "#f2ede8" }}>
+              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--cs-text)" }}>
                 Mobile
               </span>
-              <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.5)" }}>
+              <span style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)" }}>
                 iOS + Android
               </span>
             </div>
@@ -141,8 +141,8 @@ export function Overview() {
             style={{
               padding: "28px 24px",
               borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               display: "flex",
               flexDirection: "column" as const,
               gap: 14,
@@ -152,10 +152,10 @@ export function Overview() {
               Tools
             </span>
             <div className="flex flex-col" style={{ gap: 4 }}>
-              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "#f2ede8" }}>
+              <span style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--cs-text)" }}>
                 Figma
               </span>
-              <span style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.5)" }}>
+              <span style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)" }}>
                 Photoshop · Illustrator
               </span>
             </div>
@@ -170,20 +170,20 @@ export function Overview() {
           style={{
             marginTop: 64,
             paddingTop: 64,
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--cs-border)",
             display: "grid",
             gridTemplateColumns: "1fr",
             gap: 28,
           }}
           className="md:grid-cols-2"
         >
-          <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
+          <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
             SAGE started as a question I couldn't stop asking: why does financial technology
             consistently ignore the communities that need it most? Ward 7 and Ward 8 in Washington
             D.C. have some of the lowest banking access rates in the country, despite being minutes
             from the nation's financial center.
           </p>
-          <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
+          <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
             I spent two semesters mapping the systems that create financial exclusion, talking to
             residents, and designing a platform that treats trust as infrastructure. SAGE is not
             just an app. It is a design argument: that access and dignity are not mutually exclusive.

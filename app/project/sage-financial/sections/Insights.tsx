@@ -28,7 +28,7 @@ export function Insights() {
     <section
       id="insights"
       className="!pt-[120px] !pb-[140px]"
-      style={{ backgroundColor: "rgba(17,17,19,0.5)" }}
+      style={{ backgroundColor: "var(--cs-bg-secondary)" }}
     >
       <div className="section-container">
         <motion.div
@@ -44,7 +44,7 @@ export function Insights() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 640,
             }}
           >
@@ -62,8 +62,8 @@ export function Insights() {
               style={{
                 padding: 32,
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 20,
@@ -92,7 +92,7 @@ export function Insights() {
                 style={{
                   fontSize: "1.1rem",
                   fontWeight: 600,
-                  color: "#f2ede8",
+                  color: "var(--cs-text)",
                   lineHeight: 1.3,
                   fontFamily: "var(--font-playfair), Georgia, serif",
                   fontStyle: "italic",
@@ -100,7 +100,7 @@ export function Insights() {
               >
                 {insight.title}
               </h3>
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(242,237,232,0.55)" }}>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
                 {insight.body}
               </p>
             </motion.div>

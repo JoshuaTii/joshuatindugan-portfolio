@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -11,7 +11,7 @@ export function GalleryIntro() {
       ref={ref}
       style={{
         paddingBlock: "80px 64px",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        borderTop: "1px solid var(--cs-border)",
       }}
     >
       <div className="section-container">
@@ -40,7 +40,7 @@ export function GalleryIntro() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               margin: 0,
             }}
@@ -59,7 +59,7 @@ export function GalleryIntro() {
               style={{
                 fontSize: "0.95rem",
                 lineHeight: 1.8,
-                color: "rgba(242,237,232,0.45)",
+                color: "var(--cs-text-faint)",
                 margin: 0,
               }}
             >

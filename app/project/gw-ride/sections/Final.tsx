@@ -3,7 +3,7 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Lightbox } from "./Lightbox";
 
-const ACCENT = "#60A5FA";
+const ACCENT = "var(--cs-accent-gw)";
 
 const HERO_SCREENS = [
   "/gwride/mockup-1.png",
@@ -65,7 +65,7 @@ export function Final() {
   const closeLightbox = useCallback(() => setLightbox(null), []);
 
   return (
-    <section id="final" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px", backgroundColor: "#0d0d10" }}>
+    <section id="final" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px", backgroundColor: "var(--cs-bg-secondary)" }}>
       <div className="section-container">
         {/* Header */}
         <motion.div
@@ -93,7 +93,7 @@ export function Final() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               lineHeight: 1.1,
               maxWidth: 640,
               marginBottom: 20,
@@ -101,7 +101,7 @@ export function Final() {
           >
             A polished transit experience built around student confidence.
           </h2>
-          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(242,237,232,0.55)", maxWidth: 600 }}>
+          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 600 }}>
             The final design brings the experience together as a campus transit tool built around
             confidence. It does not try to overload students with every possible transit detail.
             Instead, it gives them the right information at the right time: where the shuttle is,
@@ -132,11 +132,11 @@ export function Final() {
               style={{
                 padding: "18px 20px",
                 borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.07)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
-                color: "rgba(242,237,232,0.6)",
+                color: "var(--cs-text-muted)",
                 borderLeft: "2px solid rgba(96,165,250,0.4)",
               }}
             >
@@ -154,8 +154,8 @@ export function Final() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.65, delay: 0.07 * i, ease: [0.22, 1, 0.36, 1] }}
               style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
-              onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design — screen ${i + 1}`); } }}
+              onClick={() => openLightbox(src, `Final design, screen ${i + 1}`)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design, screen ${i + 1}`); } }}
               tabIndex={0}
               role="button"
               aria-label={`Expand final design screen ${i + 1}`}
@@ -168,7 +168,7 @@ export function Final() {
             >
               <img
                 src={src}
-                alt={`Final design — screen ${i + 1}`}
+                alt={`Final design, screen ${i + 1}`}
                 style={{
                   width: "100%",
                   objectFit: "contain",
@@ -182,7 +182,7 @@ export function Final() {
           ))}
         </div>
 
-        <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.25)", marginBottom: 72, textAlign: "center" as const }}>
+        <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)", marginBottom: 72, textAlign: "center" as const }}>
           Click any screen to expand
         </p>
 
@@ -198,8 +198,8 @@ export function Final() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
               style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
-              onClick={() => openLightbox(src, `Final design — screen ${i + 1}`)}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design — screen ${i + 1}`); } }}
+              onClick={() => openLightbox(src, `Final design, screen ${i + 1}`)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design, screen ${i + 1}`); } }}
               tabIndex={0}
               role="button"
               aria-label={`Expand final design screen ${i + 1}`}
@@ -212,7 +212,7 @@ export function Final() {
             >
               <img
                 src={src}
-                alt={`Final design — screen ${i + 1}`}
+                alt={`Final design, screen ${i + 1}`}
                 style={{
                   width: "100%",
                   objectFit: "contain",
@@ -238,14 +238,14 @@ export function Final() {
               style={{
                 fontSize: "1.05rem",
                 fontWeight: 600,
-                color: "#f2ede8",
+                color: "var(--cs-text)",
                 letterSpacing: "-0.01em",
                 marginBottom: 4,
               }}
             >
               Interactive Prototype
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", maxWidth: 600 }}>
               Explore the GW Ride prototype directly in the page. This interactive demo shows the
               core app flow, including onboarding, route discovery, shuttle information, and campus
               exploration.
@@ -265,8 +265,8 @@ export function Final() {
                 width: "100%",
                 borderRadius: 16,
                 overflow: "hidden",
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
               }}
             >
               <iframe
@@ -289,8 +289,8 @@ export function Final() {
               style={{
                 padding: "48px 32px",
                 borderRadius: 16,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -330,13 +330,13 @@ export function Final() {
                   style={{
                     fontSize: "0.95rem",
                     fontWeight: 600,
-                    color: "#f2ede8",
+                    color: "var(--cs-text)",
                     marginBottom: 8,
                   }}
                 >
                   Best viewed on desktop
                 </p>
-                <p style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.45)", lineHeight: 1.6 }}>
+                <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.6 }}>
                   Open the prototype in Figma to explore the full interactive flow on your device.
                 </p>
               </div>
@@ -393,7 +393,7 @@ export function Final() {
               <p
                 style={{
                   fontSize: "0.75rem",
-                  color: "rgba(242,237,232,0.28)",
+                  color: "var(--cs-text-faint)",
                   textAlign: "center",
                 }}
               >
@@ -449,10 +449,10 @@ export function Final() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 24 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Visual Guidelines
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)" }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)" }}>
               Typography and color system established for GW Ride.
             </p>
           </motion.div>
@@ -464,8 +464,8 @@ export function Final() {
             style={{
               padding: "40px 40px",
               borderRadius: 20,
-              border: "1px solid rgba(255,255,255,0.06)",
-              backgroundColor: "#111113",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
               marginBottom: 96,
             }}
           >
@@ -476,7 +476,7 @@ export function Final() {
                 fontWeight: 500,
                 textTransform: "uppercase",
                 letterSpacing: "0.12em",
-                color: "rgba(242,237,232,0.3)",
+                color: "var(--cs-text-faint)",
                 marginBottom: 24,
               }}
             >
@@ -488,8 +488,8 @@ export function Final() {
                 style={{
                   padding: "28px 28px",
                   borderRadius: 14,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#0d0d10",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-bg-secondary)",
                 }}
               >
                 <div
@@ -508,7 +508,7 @@ export function Final() {
                   style={{
                     fontSize: "clamp(2rem, 5vw, 3.2rem)",
                     fontWeight: 800,
-                    color: "#f2ede8",
+                    color: "var(--cs-text)",
                     lineHeight: 1,
                     letterSpacing: "-0.03em",
                     marginBottom: 12,
@@ -520,7 +520,7 @@ export function Final() {
                 <div
                   style={{
                     fontSize: "0.85rem",
-                    color: "rgba(242,237,232,0.4)",
+                    color: "var(--cs-text-faint)",
                     lineHeight: 1.5,
                     fontFamily: '"GW Liberated", Georgia, serif',
                   }}
@@ -535,8 +535,8 @@ export function Final() {
                 style={{
                   padding: "28px 28px",
                   borderRadius: 14,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#0d0d10",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-bg-secondary)",
                 }}
               >
                 <div
@@ -555,7 +555,7 @@ export function Final() {
                   style={{
                     fontSize: "clamp(2rem, 5vw, 3.2rem)",
                     fontWeight: 500,
-                    color: "#f2ede8",
+                    color: "var(--cs-text)",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                     marginBottom: 12,
@@ -563,7 +563,7 @@ export function Final() {
                 >
                   Basic Sans
                 </div>
-                <div style={{ fontSize: "0.85rem", color: "rgba(242,237,232,0.4)", lineHeight: 1.5 }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
                   a b c d e f g h i j k l m<br />
                   Used for labels, ETAs, stop names
                 </div>
@@ -577,7 +577,7 @@ export function Final() {
                 fontWeight: 500,
                 textTransform: "uppercase",
                 letterSpacing: "0.12em",
-                color: "rgba(242,237,232,0.3)",
+                color: "var(--cs-text-faint)",
                 marginBottom: 24,
               }}
             >
@@ -590,22 +590,22 @@ export function Final() {
                   style={{
                     borderRadius: 14,
                     overflow: "hidden",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    border: "1px solid var(--cs-border)",
                   }}
                 >
                   <div
                     style={{
                       height: 80,
                       backgroundColor: color.hex,
-                      borderBottom: "1px solid rgba(255,255,255,0.06)",
+                      borderBottom: "1px solid var(--cs-border)",
                     }}
                   />
-                  <div style={{ padding: "16px 18px", backgroundColor: "#0d0d10" }}>
-                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#f2ede8", marginBottom: 4, fontFamily: "monospace" }}>
+                  <div style={{ padding: "16px 18px", backgroundColor: "var(--cs-bg-secondary)" }}>
+                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "var(--cs-text)", marginBottom: 4, fontFamily: "monospace" }}>
                       {color.hex}
                     </p>
-                    <p style={{ fontSize: "0.82rem", color: "rgba(242,237,232,0.6)", marginBottom: 2 }}>{color.name}</p>
-                    <p style={{ fontSize: "0.75rem", color: "rgba(242,237,232,0.35)" }}>{color.usage}</p>
+                    <p style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)", marginBottom: 2 }}>{color.name}</p>
+                    <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>{color.usage}</p>
                   </div>
                 </div>
               ))}
@@ -621,10 +621,10 @@ export function Final() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 32 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               User Feedback
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", maxWidth: 600 }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", maxWidth: 600 }}>
               After sharing the prototype with GWU students, three clear themes emerged.
             </p>
           </motion.div>
@@ -639,8 +639,8 @@ export function Final() {
                 style={{
                   padding: "28px 24px",
                   borderRadius: 16,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  backgroundColor: "#111113",
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
                   display: "flex",
                   flexDirection: "column" as const,
                   gap: 12,
@@ -657,7 +657,7 @@ export function Final() {
                 >
                   {f.theme}
                 </span>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.65)" }}>
+                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                   {f.body}
                 </p>
               </motion.div>
@@ -671,18 +671,18 @@ export function Final() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 96 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               Next Steps
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(242,237,232,0.45)", marginBottom: 28, maxWidth: 600 }}>
+            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", marginBottom: 28, maxWidth: 600 }}>
               If development were to continue, the prioritized path forward would look like this.
             </p>
             <div
               style={{
                 padding: "32px 36px",
                 borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.06)",
-                backgroundColor: "#111113",
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 16,
@@ -715,7 +715,7 @@ export function Final() {
                   >
                     {i + 1}
                   </span>
-                  <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "rgba(242,237,232,0.65)" }}>
+                  <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                     {step}
                   </p>
                 </motion.div>
@@ -732,7 +732,7 @@ export function Final() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ marginBottom: 32 }}
           >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#f2ede8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
               What I Learned
             </h3>
           </motion.div>
@@ -745,17 +745,17 @@ export function Final() {
               display: "grid",
               gap: 28,
               paddingTop: 40,
-              borderTop: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid var(--cs-border)",
             }}
             className="md:grid-cols-2"
           >
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
               Designing GW Ride taught me that transportation UX is fundamentally about reducing anxiety,
               not adding features. Students don't want more information. They want the right information
               at the right moment. The most valuable insight was how much cognitive load unclear transit
               data creates. A three-second ETA check shouldn't require navigating three screens.
             </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(242,237,232,0.65)", maxWidth: 560 }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
               This project also showed me how visual hierarchy functions as a tool, not just an aesthetic
               choice. Every decision (type scale, information density, color contrast) was in direct
               service of helping someone make a faster, more confident decision in a genuinely

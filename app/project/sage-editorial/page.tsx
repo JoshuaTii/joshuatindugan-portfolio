@@ -19,7 +19,7 @@ export default function SAGEEditorialPage() {
   return (
     <>
       <SENavbar />
-      <main>
+      <main style={{ backgroundColor: "var(--cs-bg)" }}>
         <SEHero />
         <SEContext />
         <SEDirection />

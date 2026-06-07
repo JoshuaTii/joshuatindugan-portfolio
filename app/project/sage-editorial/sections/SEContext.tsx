@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "#4ade80";
+const ACCENT = "var(--cs-accent-se)";
 
 export function SEContext() {
   const ref = useRef(null);
@@ -14,8 +14,8 @@ export function SEContext() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "rgba(17,17,19,0.5)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        backgroundColor: "var(--cs-bg-secondary)",
+        borderTop: "1px solid var(--cs-border)",
       }}
     >
       <div className="section-container" ref={ref}>
@@ -42,7 +42,7 @@ export function SEContext() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#f2ede8",
+              color: "var(--cs-text)",
               maxWidth: 720,
               marginBottom: 28,
               lineHeight: 1.1,
@@ -54,7 +54,7 @@ export function SEContext() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
               marginBottom: 28,
             }}
@@ -67,7 +67,7 @@ export function SEContext() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.8,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
               maxWidth: 640,
             }}
           >
@@ -96,7 +96,7 @@ export function SEContext() {
             style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              color: "rgba(242,237,232,0.75)",
+              color: "var(--cs-text-muted)",
               fontFamily: "var(--font-playfair), Georgia, serif",
               fontStyle: "italic",
             }}
@@ -115,8 +115,8 @@ export function SEContext() {
           style={{
             padding: "32px 36px",
             borderRadius: 20,
-            border: "1px solid rgba(255,255,255,0.06)",
-            backgroundColor: "#111113",
+            border: "1px solid var(--cs-border)",
+            backgroundColor: "var(--cs-surface)",
             maxWidth: 720,
           }}
         >
@@ -136,7 +136,7 @@ export function SEContext() {
             style={{
               fontSize: "0.95rem",
               lineHeight: 1.75,
-              color: "rgba(242,237,232,0.6)",
+              color: "var(--cs-text-muted)",
             }}
           >
             The editorial course became a reason to ask a different question: what does SAGE look

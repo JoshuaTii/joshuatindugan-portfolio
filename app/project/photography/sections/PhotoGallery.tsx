@@ -10,32 +10,32 @@ interface Photo {
 }
 
 const PHOTOS: Photo[] = [
-  { src: "/photography/1.jpg",  alt: "Geometric architectural detail — intersecting lines and shadow" },
+  { src: "/photography/1.jpg",  alt: "Geometric architectural detail, intersecting lines and shadow" },
   { src: "/photography/4.jpg",  alt: "Architectural facade with repeating windows and structure" },
-  { src: "/photography/5.jpg",  alt: "Urban pattern — rhythmic forms against open sky" },
+  { src: "/photography/5.jpg",  alt: "Urban pattern, rhythmic forms against open sky" },
   { src: "/photography/6.jpg",  alt: "Building exterior with geometric texture and tone" },
   { src: "/photography/7.jpg",  alt: "Structural detail framed through perspective" },
-  { src: "/photography/8.jpg",  alt: "Minimal composition — form and negative space" },
+  { src: "/photography/8.jpg",  alt: "Minimal composition, form and negative space" },
   { src: "/photography/9.jpg",  alt: "Repeating architectural module in warm light" },
   { src: "/photography/10.jpg", alt: "Diagonal lines leading through a built environment" },
   { src: "/photography/11.jpg", alt: "Color and shadow on a textured surface" },
   { src: "/photography/12.jpg", alt: "Overhead perspective capturing pattern and depth" },
-  { src: "/photography/13.jpg", alt: "Urban detail — material, edge, and contrast" },
+  { src: "/photography/13.jpg", alt: "Urban detail, material, edge, and contrast" },
   { src: "/photography/14.jpg", alt: "Layered architectural planes receding into distance" },
   { src: "/photography/15.jpg", alt: "Light falling across a structured surface" },
   { src: "/photography/16.jpg", alt: "Quiet street moment framed with intention" },
   { src: "/photography/17.jpg", alt: "Monumental form against an open sky" },
-  { src: "/photography/18.jpg", alt: "Graphic silhouette — bold shape and minimal color" },
-  { src: "/photography/19.jpg", alt: "Close-up texture study — surface detail and grain" },
+  { src: "/photography/18.jpg", alt: "Graphic silhouette, bold shape and minimal color" },
+  { src: "/photography/19.jpg", alt: "Close-up texture study, surface detail and grain" },
   { src: "/photography/20.jpg", alt: "Symmetry and order in a built structure" },
-  { src: "/photography/21.jpg", alt: "Color mood — hue and atmosphere in context" },
+  { src: "/photography/21.jpg", alt: "Color mood, hue and atmosphere in context" },
   { src: "/photography/22.jpg", alt: "Rhythm of repeated elements across a frame" },
   { src: "/photography/23.jpg", alt: "Converging lines and depth in architectural space" },
-  { src: "/photography/24.jpg", alt: "Natural and built — material meeting material" },
-  { src: "/photography/25.jpg", alt: "Urban composition — scale, form, and stillness" },
-  { src: "/photography/26.jpg", alt: "Architectural moment — angle, edge, and light" },
-  { src: "/photography/29.jpg", alt: "Pattern study — grid, repetition, and surface" },
-  { src: "/photography/30.jpg", alt: "Detail shot — object and environment in frame" },
+  { src: "/photography/24.jpg", alt: "Natural and built, material meeting material" },
+  { src: "/photography/25.jpg", alt: "Urban composition, scale, form, and stillness" },
+  { src: "/photography/26.jpg", alt: "Architectural moment, angle, edge, and light" },
+  { src: "/photography/29.jpg", alt: "Pattern study, grid, repetition, and surface" },
+  { src: "/photography/30.jpg", alt: "Detail shot, object and environment in frame" },
 ];
 
 export function PhotoGallery() {
@@ -213,8 +213,8 @@ export function PhotoGallery() {
               position: "fixed",
               top: 20,
               right: 24,
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              background: "var(--cs-border-strong)",
+              border: "1px solid var(--cs-border-strong)",
               borderRadius: 100,
               width: 40,
               height: 40,
@@ -222,12 +222,12 @@ export function PhotoGallery() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              color: "rgba(242,237,232,0.7)",
+              color: "var(--cs-text-muted)",
               transition: "background 200ms ease, color 200ms ease",
               flexShrink: 0,
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLElement).style.color = "#f2ede8"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.7)"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cs-border-strong)"; (e.currentTarget as HTMLElement).style.color = "var(--cs-text)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cs-border-strong)"; (e.currentTarget as HTMLElement).style.color = "var(--cs-text-muted)"; }}
           >
             <X size={16} />
           </button>
@@ -241,8 +241,8 @@ export function PhotoGallery() {
               left: 20,
               top: "50%",
               transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              background: "var(--cs-border-strong)",
+              border: "1px solid var(--cs-border-strong)",
               borderRadius: 100,
               width: 44,
               height: 44,
@@ -250,11 +250,11 @@ export function PhotoGallery() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              color: "rgba(242,237,232,0.7)",
+              color: "var(--cs-text-muted)",
               transition: "background 200ms ease, color 200ms ease",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLElement).style.color = "#f2ede8"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.7)"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cs-border-strong)"; (e.currentTarget as HTMLElement).style.color = "var(--cs-text)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cs-border-strong)"; (e.currentTarget as HTMLElement).style.color = "var(--cs-text-muted)"; }}
           >
             <ChevronLeft size={20} />
           </button>
@@ -268,8 +268,8 @@ export function PhotoGallery() {
               right: 20,
               top: "50%",
               transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              background: "var(--cs-border-strong)",
+              border: "1px solid var(--cs-border-strong)",
               borderRadius: 100,
               width: 44,
               height: 44,
@@ -277,11 +277,11 @@ export function PhotoGallery() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              color: "rgba(242,237,232,0.7)",
+              color: "var(--cs-text-muted)",
               transition: "background 200ms ease, color 200ms ease",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLElement).style.color = "#f2ede8"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.color = "rgba(242,237,232,0.7)"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cs-border-strong)"; (e.currentTarget as HTMLElement).style.color = "var(--cs-text)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cs-border-strong)"; (e.currentTarget as HTMLElement).style.color = "var(--cs-text-muted)"; }}
           >
             <ChevronRight size={20} />
           </button>
@@ -294,7 +294,7 @@ export function PhotoGallery() {
               left: "50%",
               transform: "translateX(-50%)",
               fontSize: "0.75rem",
-              color: "rgba(242,237,232,0.35)",
+              color: "var(--cs-text-faint)",
               letterSpacing: "0.08em",
               pointerEvents: "none",
             }}

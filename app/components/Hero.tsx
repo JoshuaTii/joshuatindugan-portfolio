@@ -2,107 +2,126 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-export function Hero() {
-  const prefersReducedMotion = useReducedMotion();
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-  const scrollToWork = () => {
-    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
-  };
+export function Hero() {
+  const prefersReduced = useReducedMotion();
 
   return (
-    <section className="relative z-10 !pt-0 !pb-0 min-h-screen flex items-center justify-center overflow-hidden bg-[#090909]/40">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#4ade80]/5 blur-[140px]" />
-      </div>
-
-      {/* Center column, flex, all gaps explicit */}
-      <div className="relative z-10 section-container flex flex-col items-center text-center">
-
-        {/* Badge — padding 7px 20px, mb 22px */}
+    <section
+      id="hero"
+      style={{
+        position: "relative", zIndex: 1,
+        minHeight: "calc(100vh - 60px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 0,
+      }}
+    >
+      <div
+        className="section-container flex flex-col items-center text-center"
+        style={{ paddingTop: 116, paddingBottom: 80 }}
+      >
+        {/* Name — "Joshua" white, "Tindugan" green */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 22 }}
+          transition={{ duration: 0.85, delay: 0.18, ease: EASE }}
+          style={{ marginBottom: 28 }}
         >
-          <span
-            className="inline-flex items-center gap-2.5 rounded-full border border-[#4ade80]/20 bg-[#4ade80]/5 text-[#4ade80] text-xs tracking-widest uppercase"
-            style={{ padding: "9px 20px" }}
+          <h1
+            style={{
+              fontFamily: "var(--font-hand, 'Caveat', cursive)",
+              fontSize: "clamp(4.5rem, 12vw, 10rem)",
+              fontWeight: 700,
+              lineHeight: 0.95,
+              letterSpacing: "-0.01em",
+            }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
-            Available for work
-          </span>
+            <span style={{ color: "var(--text)" }}>Joshua</span>
+            <br />
+            <span style={{ color: "var(--green)" }}>Tindugan</span>
+          </h1>
         </motion.div>
 
-        {/* H1 — mb 28px */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="text-white"
-          style={{
-            fontSize: "clamp(3.5rem, 9vw, 8rem)",
-            fontWeight: 700,
-            lineHeight: 1.0,
-            letterSpacing: "-0.03em",
-            marginBottom: 28,
-          }}
-        >
-          Joshua <br />
-          <span className="text-[#4ade80]">Tindugan</span>
-        </motion.h1>
-
-        {/* Subtitle — max-width 580px, line-height 1.6 */}
+        {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-white/50"
+          transition={{ duration: 0.75, delay: 0.42, ease: EASE }}
           style={{
-            fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
-            lineHeight: 1.6,
-            maxWidth: 580,
+            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)",
+            fontWeight: 400,
+            lineHeight: 1.7,
+            color: "var(--text-2)",
+            maxWidth: 560,
+            marginBottom: 44,
           }}
         >
-          A UX/UI designer who cares about people, pixels, and making sure nobody gets lost on a screen.
+          A UX/UI designer focused on designing clear, accessible and visually thoughtful
+          products that help people move through digital experiences with less friction.
         </motion.p>
 
-        {/* Buttons — mt 44px, gap 18px, min-height 52px, padding 16px 32px */}
+        {/* CTA buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-center"
-          style={{ gap: 18, marginTop: 44 }}
+          transition={{ duration: 0.65, delay: 0.58, ease: EASE }}
+          style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", justifyContent: "center" }}
         >
           <button
-            onClick={scrollToWork}
-            className="inline-flex items-center justify-center bg-[#4ade80] text-[#090909] rounded-full text-sm tracking-widest uppercase hover:bg-[#86efac] transition-all duration-300 hover:scale-105 active:scale-95"
-            style={{ fontWeight: 700, minHeight: 52, padding: "16px 36px" }}
+            onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+            style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              background: "var(--green-btn)", color: "var(--btn-text)",
+              fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+              fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+              border: "none", borderRadius: 100, cursor: "pointer",
+              minHeight: 50, padding: "14px 36px",
+              transition: "opacity 220ms ease, transform 200ms ease",
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
           >
-            View Work
+            VIEW PROJECTS
           </button>
           <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center justify-center border border-white/15 text-white/60 rounded-full text-sm tracking-widest uppercase hover:border-[#4ade80]/40 hover:text-white transition-all duration-300"
-            style={{ minHeight: 52, padding: "16px 36px" }}
+            onClick={() => document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" })}
+            style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              background: "transparent", color: "var(--text)",
+              fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+              fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase",
+              border: "1px solid var(--text-3)", borderRadius: 100, cursor: "pointer",
+              minHeight: 50, padding: "14px 36px",
+              transition: "border-color 220ms ease, color 220ms ease",
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--green)"; (e.currentTarget as HTMLElement).style.color = "var(--green)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--text-3)"; (e.currentTarget as HTMLElement).style.color = "var(--text)"; }}
           >
-            Get in Touch
+            GET IN TOUCH
           </button>
         </motion.div>
       </div>
 
-      {/* Scroll indicator — absolute, does not affect layout flow */}
+      {/* Scroll indicator */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        onClick={scrollToWork}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 text-white/25 hover:text-[#4ade80] transition-colors duration-300"
+        transition={{ delay: 1.1, duration: 0.6 }}
+        onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+        style={{
+          position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
+          display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+          background: "none", border: "none", cursor: "pointer",
+          color: "var(--text-3)", transition: "color 220ms ease",
+        }}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text-2)")}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text-3)")}
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <motion.div animate={prefersReducedMotion ? {} : { y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ArrowDown size={16} />
+        <span style={{ fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>Scroll</span>
+        <motion.div animate={prefersReduced ? {} : { y: [0, 5, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}>
+          <ArrowDown size={14} strokeWidth={1.5} />
         </motion.div>
       </motion.button>
     </section>

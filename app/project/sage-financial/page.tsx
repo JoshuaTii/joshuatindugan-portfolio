@@ -1,4 +1,4 @@
-import { SageNavbar } from "./sections/SageNavbar";
+﻿import { SageNavbar } from "./sections/SageNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function SageFinancialPage() {
   return (
-    <main style={{ backgroundColor: "#09090b" }}>
+    <main style={{ backgroundColor: "var(--cs-bg)" }}>
       <SageNavbar />
       <Hero />
       <Overview />
