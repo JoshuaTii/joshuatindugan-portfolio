@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 const FEATURES = [
   {
@@ -37,9 +37,7 @@ export function Features() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "var(--cs-border)",
-        borderTop: "1px solid var(--cs-border)",
-        borderBottom: "1px solid var(--cs-border)",
+        backgroundColor: "var(--cs-bg-secondary)",
       }}
     >
       <div className="section-container" ref={ref}>

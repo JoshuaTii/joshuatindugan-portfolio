@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 const GALLERY_SCREENS = [
   { src: "/intuition/final/Login.png",    alt: "Login screen" },
@@ -42,29 +42,20 @@ function HoverScreen({ src, alt, onClick }: { src: string; alt: string; onClick:
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        cursor: "zoom-in",
-        overflow: "hidden",
-        borderRadius: 10,
-      }}
+      style={{ cursor: "zoom-in" }}
     >
       <img
         src={src}
         alt={alt}
         style={{
           width: "100%",
+          height: "auto",
           objectFit: "contain",
           display: "block",
-          maxHeight: 420,
-          transform: hovered ? "scale(1.03)" : "scale(1)",
-          boxShadow: hovered
-            ? "0 16px 40px rgba(0,0,0,0.4)"
-            : "0 4px 12px rgba(0,0,0,0.2)",
-          transition: "transform 250ms ease, box-shadow 250ms ease",
-          borderRadius: 10,
+          transform: hovered ? "scale(1.02) translateY(-4px)" : "scale(1)",
+          transition: "transform 250ms ease",
         }}
-
-      loading="lazy"
+        loading="lazy"
       />
     </div>
   );
@@ -178,7 +169,6 @@ export function Final() {
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
                 color: "var(--cs-text-muted)",
-                borderLeft: "2px solid rgba(245,158,11,0.4)",
               }}
             >
               {card}
@@ -193,8 +183,6 @@ export function Final() {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => openLightbox("/intuition/mockup.png", "InTuition final design mockup")}
           style={{
-            borderRadius: 20,
-            overflow: "hidden",
             cursor: "zoom-in",
             marginBottom: 80,
           }}

@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 const WORKSHOP_PHOTOS = [
   "/intuition/workshop/photo-1.png",
@@ -111,19 +111,13 @@ export function Research() {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.12 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => setLightboxSrc(src)}
-                style={{
-                  borderRadius: 14,
-                  overflow: "hidden",
-                  cursor: "zoom-in",
-                  border: "1px solid var(--cs-border)",
-                }}
+                style={{ cursor: "zoom-in" }}
               >
                 <img
                   src={src}
                   alt={`Workshop photo ${i + 1}`}
                   style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }}
-
-                loading="lazy"
+                  loading="lazy"
                 />
               </motion.div>
             ))}
@@ -204,7 +198,7 @@ export function Research() {
                     padding: "16px 18px",
                     borderRadius: 12,
                     border: "1px solid var(--cs-border)",
-                    backgroundColor: "var(--cs-border)",
+                    backgroundColor: "var(--cs-bg-secondary)",
                   }}
                 >
                   <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 6 }}>
@@ -259,19 +253,13 @@ export function Research() {
           {/* Existing persona image below */}
           <div
             onClick={() => setLightboxSrc("/intuition/persona.png")}
-            style={{
-              borderRadius: 16,
-              overflow: "hidden",
-              cursor: "zoom-in",
-              border: "1px solid var(--cs-border)",
-            }}
+            style={{ cursor: "zoom-in" }}
           >
             <img
               src="/intuition/persona.png"
               alt="User persona, Rosa Sanchez full card"
               style={{ width: "100%", display: "block" }}
-
-            loading="lazy"
+              loading="lazy"
             />
           </div>
         </motion.div>

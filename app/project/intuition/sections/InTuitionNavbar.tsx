@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Final",     href: "#final",     id: "final" },
 ];
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 export function InTuitionNavbar() {
   const [scrolled, setScrolled]           = useState(false);

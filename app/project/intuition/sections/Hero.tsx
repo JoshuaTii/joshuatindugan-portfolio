@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 export function Hero() {
   return (
@@ -14,7 +14,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(245,158,11,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(155,233,49,0.07) 0%, transparent 70%)",
         }}
       />
 
@@ -133,7 +133,7 @@ export function Hero() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(245,158,11,0.08) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(155,233,49,0.08) 0%, transparent 70%)",
                 filter: "blur(60px)",
               }}
             />

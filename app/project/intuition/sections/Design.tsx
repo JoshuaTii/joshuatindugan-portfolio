@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 const SKETCH_IMAGES = [
   { src: "/intuition/sketches/sketch-0.png", alt: "Lo-fi sketch, main layout" },
@@ -51,28 +51,19 @@ function PhaseGallery({ images, inView, baseDelay = 0, onOpen, cols = 4 }: Phase
       {images.map(({ src, alt }, i) => (
         <motion.div
           key={src}
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: baseDelay + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => onOpen(src, alt)}
-          style={{
-            borderRadius: 14,
-            overflow: "hidden",
-            cursor: "zoom-in",
-            border: "1px solid var(--cs-border)",
-          }}
+          style={{ cursor: "zoom-in", transition: "transform 250ms ease" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1.02)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "none"; }}
         >
           <img
             src={src}
             alt={alt}
-            style={{
-              width: "100%",
-              objectFit: "contain",
-              display: "block",
-              maxHeight: 360,
-            }}
-
-          loading="lazy"
+            style={{ width: "100%", height: "auto", objectFit: "contain", display: "block" }}
+            loading="lazy"
           />
         </motion.div>
       ))}
@@ -160,9 +151,7 @@ export function Design() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "var(--cs-border)",
-        borderTop: "1px solid var(--cs-border)",
-        borderBottom: "1px solid var(--cs-border)",
+        backgroundColor: "var(--cs-bg-secondary)",
       }}
     >
       <div className="section-container" ref={ref}>
@@ -258,7 +247,6 @@ export function Design() {
                       fontSize: "0.88rem",
                       lineHeight: 1.65,
                       color: "var(--cs-text-muted)",
-                      borderLeft: `2px solid rgba(245,158,11,0.4)`,
                     }}
                   >
                     {card}

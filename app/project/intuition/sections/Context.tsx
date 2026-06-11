@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-it)";
+const ACCENT = "var(--cs-accent-sf)";
 
 export function Context() {
   const ref = useRef(null);
@@ -14,9 +14,7 @@ export function Context() {
       style={{
         scrollMarginTop: 80,
         paddingBlock: "120px 140px",
-        backgroundColor: "var(--cs-border)",
-        borderTop: "1px solid var(--cs-border)",
-        borderBottom: "1px solid var(--cs-border)",
+        backgroundColor: "var(--cs-bg-secondary)",
       }}
     >
       <div className="section-container" ref={ref}>
@@ -77,8 +75,8 @@ export function Context() {
                   width: 36,
                   height: 36,
                   borderRadius: "50%",
-                  backgroundColor: "rgba(245,158,11,0.1)",
-                  border: "1px solid rgba(245,158,11,0.2)",
+                  backgroundColor: "rgba(155,233,49,0.1)",
+                  border: "1px solid rgba(155,233,49,0.2)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -153,8 +151,8 @@ export function Context() {
                   width: 36,
                   height: 36,
                   borderRadius: "50%",
-                  backgroundColor: "rgba(245,158,11,0.1)",
-                  border: "1px solid rgba(245,158,11,0.2)",
+                  backgroundColor: "rgba(155,233,49,0.1)",
+                  border: "1px solid rgba(155,233,49,0.2)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -222,7 +220,7 @@ export function Context() {
             maxWidth: 600,
           }}
         >
-          <span style={{ color: "var(--cs-accent-it)", fontWeight: 500 }}>Scope: </span>
+          <span style={{ color: ACCENT, fontWeight: 500 }}>Scope: </span>
           Two months from problem discovery through high-fidelity prototype delivery.
         </motion.p>
       </div>
