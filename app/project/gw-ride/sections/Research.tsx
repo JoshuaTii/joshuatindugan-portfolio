@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -230,6 +231,79 @@ export function Research() {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Observation in the Field */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.25, ease: EASE }}
+          style={{ marginTop: 72 }}
+        >
+          <h3
+            style={{
+              fontSize: "1rem",
+              fontWeight: 600,
+              color: "var(--cs-text-muted)",
+              textTransform: "uppercase" as const,
+              letterSpacing: "0.1em",
+              marginBottom: 8,
+            }}
+          >
+            Observation in the Field
+          </h3>
+          <p
+            style={{
+              fontSize: "0.9rem",
+              lineHeight: 1.65,
+              color: "var(--cs-text-faint)",
+              marginBottom: 28,
+              maxWidth: 560,
+            }}
+          >
+            Campus transit observation documented how students interact with
+            shuttle stops, make wait-or-walk decisions, and navigate GW&rsquo;s
+            transportation network in real conditions.
+          </p>
+          <div
+            className="grid grid-cols-2 md:grid-cols-4"
+            style={{ gap: 12 }}
+          >
+            {[
+              { src: "/gw-ride/observation/obs-01.jpg", alt: "Students waiting at a campus shuttle stop" },
+              { src: "/gw-ride/observation/obs-02.jpg", alt: "Observing transit behavior during peak commute hours" },
+              { src: "/gw-ride/observation/obs-03.jpg", alt: "Stop environment and signage on campus" },
+              { src: "/gw-ride/observation/obs-04.jpg", alt: "Students checking phones for transit information at a stop" },
+              { src: "/gw-ride/observation/obs-05.jpg", alt: "Pedestrian flow near Foggy Bottom and Kogan Plaza" },
+              { src: "/gw-ride/observation/obs-06.jpg", alt: "Shuttle arrival timing observed across campus routes" },
+              { src: "/gw-ride/observation/obs-07.jpg", alt: "Documenting how students choose between walking and waiting" },
+              { src: "/gw-ride/observation/obs-08.jpg", alt: "Field documentation and research notes from campus observation" },
+            ].map(({ src, alt }, i) => (
+              <motion.div
+                key={src}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.04, ease: EASE }}
+                style={{
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  border: "1px solid var(--cs-border)",
+                  aspectRatio: "4/3",
+                }}
+              >
+                <ClickableImage
+                  src={src}
+                  alt={alt}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
+          <p className="caption" style={{ marginTop: 12 }}>
+            Field documentation from the campus transit observation study. Photos capture student
+            behavior, stop conditions, and transportation patterns across GW&rsquo;s campus.
+          </p>
         </motion.div>
       </div>
     </section>

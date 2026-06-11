@@ -427,6 +427,65 @@ export function Research() {
             </p>
           </div>
         </motion.div>
+
+        {/* Team photos */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginTop: 72 }}
+        >
+          <h3
+            style={{
+              fontSize: "1rem",
+              fontWeight: 600,
+              color: "var(--cs-text-muted)",
+              textTransform: "uppercase" as const,
+              letterSpacing: "0.1em",
+              marginBottom: 8,
+            }}
+          >
+            Research &amp; Design Team
+          </h3>
+          <p
+            style={{
+              fontSize: "0.9rem",
+              lineHeight: 1.65,
+              color: "var(--cs-text-faint)",
+              marginBottom: 28,
+              maxWidth: 560,
+            }}
+          >
+            Documentation from community engagement, research sessions, and the design
+            process behind SAGE.
+          </p>
+          <div
+            className="grid grid-cols-2 md:grid-cols-3"
+            style={{ gap: 12 }}
+          >
+            {[1, 2, 3, 10, 5, 6].map((n, i) => (
+              <motion.div
+                key={n}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.45 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  border: "1px solid var(--cs-border)",
+                  aspectRatio: "4/5",
+                }}
+              >
+                <ClickableImage
+                  src={`/sage/team/sage-team-${String(n).padStart(2, "0")}.jpg`}
+                  alt={`SAGE research and design team photo ${n}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

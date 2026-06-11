@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -150,11 +151,15 @@ const COLOR_SWATCHES = [
 export function FinalDesign() {
   const ref = useRef(null);
   const protoRef = useRef(null);
+  const nextFestRef = useRef(null);
   const guidelinesRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const protoInView = useInView(protoRef, { once: true, margin: "-80px" });
+  const nextFestInView = useInView(nextFestRef, { once: true, margin: "-80px" });
   const guidelinesInView = useInView(guidelinesRef, { once: true, margin: "-80px" });
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [videoStarted, setVideoStarted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const openLightbox = useCallback((img: { src: string; alt: string }) => {
     setLightbox(img);
@@ -500,6 +505,157 @@ export function FinalDesign() {
               </a>
             </div>
           </motion.div>
+        </div>
+
+        {/* GWU NEXT Festival 2026 */}
+        <div ref={nextFestRef} style={{ marginTop: 120 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={nextFestInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease: EASE }}
+            style={{ marginBottom: 32 }}
+          >
+            <p className="kicker">GWU NEXT Festival 2026</p>
+            <h2
+              style={{
+                fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
+                color: "var(--cs-text)",
+                marginBottom: 16,
+              }}
+            >
+              Presented at GWU NEXT.
+            </h2>
+            <p
+              style={{
+                fontSize: "1rem",
+                lineHeight: 1.75,
+                color: "var(--cs-text-muted)",
+                maxWidth: 600,
+              }}
+            >
+              SAGE was presented at the GWU NEXT Festival 2026, where students, faculty, and
+              visitors explored thesis work focused on design, technology, and social impact.
+            </p>
+          </motion.div>
+
+          {/* Motion graphic video */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={nextFestInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+            style={{
+              borderRadius: 20,
+              overflow: "hidden",
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
+              marginBottom: 12,
+              position: "relative" as const,
+            }}
+          >
+            {/* TODO before deploy: replace local path with Vimeo/YouTube URL — 295 MB exceeds Vercel limits */}
+            <video
+              ref={videoRef}
+              src="/sage/sage-next-festival.mp4"
+              controls
+              playsInline
+              preload="none"
+              style={{ width: "100%", display: videoStarted ? "block" : "none" }}
+              aria-label="SAGE motion graphic — GWU NEXT Festival 2026 thesis demonstration"
+            />
+            {!videoStarted && (
+              <button
+                onClick={() => {
+                  setVideoStarted(true);
+                  setTimeout(() => videoRef.current?.play(), 50);
+                }}
+                aria-label="Play SAGE motion graphic video"
+                style={{
+                  width: "100%",
+                  aspectRatio: "16/9",
+                  display: "flex",
+                  flexDirection: "column" as const,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 16,
+                  background: "var(--cs-surface)",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                <div
+                  style={{
+                    width: 80,
+                    height: 80,
+                    borderRadius: "50%",
+                    border: "1px solid rgba(155,233,49,0.35)",
+                    backgroundColor: "rgba(155,233,49,0.08)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "background-color 200ms ease, border-color 200ms ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.15)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.6)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.08)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.35)";
+                  }}
+                >
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                    <path d="M8 5.5L21 13L8 20.5V5.5Z" fill="var(--cs-accent-sf)" />
+                  </svg>
+                </div>
+                <span
+                  style={{
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase" as const,
+                    color: "var(--cs-text-muted)",
+                  }}
+                >
+                  Watch Video
+                </span>
+              </button>
+            )}
+          </motion.div>
+          <p className="caption" style={{ marginBottom: 40 }}>
+            Motion graphic created as a visual thesis demonstration for the GWU NEXT Festival 2026
+            at the Corcoran School of Arts and Design. This piece is a conceptual showcase, not a
+            representation of the final product design.
+          </p>
+
+          {/* Festival photos — 07, 08, 09 */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-3"
+            style={{ gap: 12 }}
+          >
+            {[7, 8, 9].map((n, i) => (
+              <motion.div
+                key={n}
+                initial={{ opacity: 0, y: 12 }}
+                animate={nextFestInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.07, ease: EASE }}
+                style={{
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  border: "1px solid var(--cs-border)",
+                  aspectRatio: "4/5",
+                }}
+              >
+                <ClickableImage
+                  src={`/sage/team/sage-team-${String(n).padStart(2, "0")}.jpg`}
+                  alt={`GWU NEXT Festival 2026 — SAGE presentation, photo ${n - 6}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Visual Guidelines */}
