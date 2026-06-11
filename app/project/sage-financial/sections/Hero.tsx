@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
@@ -21,7 +21,7 @@ export function Hero() {
         style={{ paddingTop: 120, paddingBottom: 80 }}
       >
         <div className="grid md:grid-cols-2 flex-1" style={{ gap: "48px 80px", alignItems: "center" }}>
-          {/* Left - text */}
+          {/* Left — text */}
           <div className="flex flex-col" style={{ gap: 0 }}>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="kicker"
             >
-              UX Case Study
+              UX Case Study · GWU Thesis 2025–2026
             </motion.p>
 
             <motion.h1
@@ -75,24 +75,44 @@ export function Hero() {
                 lineHeight: 1.75,
                 color: "var(--cs-text-muted)",
                 maxWidth: 480,
+                marginBottom: 20,
+              }}
+            >
+              SAGE is a mobile financial empowerment platform designed for residents in Washington,
+              D.C.&rsquo;s Ward 7 and Ward 8, where banking deserts, distrust in financial
+              institutions, and predatory lending create barriers to safe financial access.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.47, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                fontSize: "0.93rem",
+                lineHeight: 1.75,
+                color: "var(--cs-text-faint)",
+                maxWidth: 480,
                 marginBottom: 48,
               }}
             >
-              A financial empowerment platform designed for Washington D.C.'s Ward 7 and Ward 8
-              communities, neighborhoods historically denied access to banking and capital, helping
-              residents navigate safer financial options and reduce reliance on predatory lenders.
+              The project explores how a mobile product can help underbanked residents find trusted
+              local resources, learn financial concepts without shame, track progress, and access
+              safer microloan options through community-based support. Developed as a two-semester
+              UX thesis at George Washington University, combining systems mapping, primary and
+              secondary research, resident conversations, competitive analysis, and mobile product
+              design.
             </motion.p>
 
             {/* Meta row */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-wrap"
               style={{ gap: "16px 36px" }}
             >
               {[
-                { label: "Role", value: "UX Designer + Researcher" },
+                { label: "Role", value: "UX Designer + UX Researcher" },
                 { label: "Timeline", value: "Fall 2025 – Spring 2026" },
                 { label: "Platform", value: "iOS / Android" },
               ].map(({ label, value }) => (
@@ -114,7 +134,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right - hero mockup */}
+          {/* Right — hero mockup */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -141,8 +161,7 @@ export function Hero() {
                 objectFit: "contain",
                 filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.6))",
               }}
-
-            loading="lazy"
+              loading="lazy"
             />
           </motion.div>
         </div>
@@ -172,4 +191,3 @@ export function Hero() {
     </section>
   );
 }
-

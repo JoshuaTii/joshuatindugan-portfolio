@@ -1,35 +1,40 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-gw)";
+const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Context() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="context" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px", backgroundColor: "var(--cs-bg-secondary)" }}>
+    <section
+      id="context"
+      style={{ scrollMarginTop: 80, paddingBlock: "120px 140px" }}
+    >
       <div className="section-container">
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 72 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          style={{ marginBottom: 64 }}
         >
           <p
             style={{
               display: "inline-block",
               fontSize: "0.75rem",
               fontWeight: 500,
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.12em",
               color: ACCENT,
               marginBottom: 16,
             }}
           >
-            Context
+            Problem / Context
           </p>
           <h2
             style={{
@@ -38,20 +43,33 @@ export function Context() {
               letterSpacing: "-0.02em",
               color: "var(--cs-text)",
               lineHeight: 1.1,
-              maxWidth: 640,
+              maxWidth: 680,
+              marginBottom: 24,
             }}
           >
-            A transit system that exists, but feels unreachable.
+            Campus Transit Should Feel Clear, Not Uncertain
           </h2>
+          <p
+            style={{
+              fontSize: "1rem",
+              lineHeight: 1.75,
+              color: "var(--cs-text-muted)",
+              maxWidth: 620,
+            }}
+          >
+            GW students often move between different parts of campus (classes, housing, dining,
+            study spaces, and nearby places). When shuttle locations, arrival times, and stops are
+            unclear, students have to guess whether to wait, walk, or find another option.
+          </p>
         </motion.div>
 
-        {/* Problem + Solution cards */}
-        <div className="grid md:grid-cols-2" style={{ gap: 24 }}>
-          {/* Problem */}
+        {/* Challenge cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 20 }}>
+          {/* What it wasn't */}
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, delay: 0.1, ease: EASE }}
             style={{
               padding: "40px 36px",
               borderRadius: 20,
@@ -59,187 +77,96 @@ export function Context() {
               backgroundColor: "var(--cs-surface)",
             }}
           >
-            <div
+            <p
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 36,
-                height: 36,
-                borderRadius: 10,
-                backgroundColor: "rgba(96,165,250,0.1)",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                textTransform: "uppercase" as const,
+                letterSpacing: "0.12em",
+                color: "var(--cs-text-faint)",
                 marginBottom: 20,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="6" stroke={ACCENT} strokeWidth="1.5" />
-                <path d="M8 5v4M8 11v.5" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </div>
-            <h3
-              style={{
-                fontSize: "1.1rem",
-                fontWeight: 600,
-                color: "var(--cs-text)",
-                marginBottom: 16,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              The Problem
-            </h3>
-            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
-              Students at George Washington University face real friction when navigating campus
-              shuttle transportation. Shuttle arrival times are unclear, stop locations lack context,
-              and route information is difficult to access quickly.
+              The question we avoided
             </p>
-            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)", marginTop: 12 }}>
-              When students can't trust transit information, they default to rideshares, adding cost,
-              stress, and environmental impact to their daily routine. The underlying problem isn't
-              shuttle availability. It's information confidence.
-            </p>
-
-            {/* HMW */}
             <div
               style={{
-                marginTop: 28,
-                padding: "16px 20px",
-                borderRadius: 12,
-                backgroundColor: "rgba(96,165,250,0.06)",
-                borderLeft: `3px solid ${ACCENT}`,
+                padding: "20px 24px",
+                borderRadius: 14,
+                backgroundColor: "var(--cs-bg-secondary)",
+                border: "1px solid var(--cs-border)",
+                marginBottom: 20,
               }}
             >
               <p
                 style={{
-                  fontSize: "0.78rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: ACCENT,
-                  marginBottom: 6,
-                  fontWeight: 500,
+                  fontSize: "1.05rem",
+                  fontStyle: "italic",
+                  color: "var(--cs-text-muted)",
+                  lineHeight: 1.65,
                 }}
               >
-                Design Challenge
-              </p>
-              <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "var(--cs-text-muted)", fontStyle: "italic" }}>
-                How might we give GWU students enough real-time information to confidently choose the shuttle over a rideshare?
+                &ldquo;How might we make another transit app?&rdquo;
               </p>
             </div>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
+              Generic transit features (maps, timetables, route lists) exist already. Building
+              another one wouldn&rsquo;t help students make better decisions on campus.
+            </p>
           </motion.div>
 
-          {/* Solution */}
+          {/* The real challenge */}
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, delay: 0.2, ease: EASE }}
             style={{
               padding: "40px 36px",
               borderRadius: 20,
-              border: "1px solid var(--cs-border)",
+              border: "1px solid rgba(155,233,49,0.2)",
               backgroundColor: "var(--cs-surface)",
+              background: "linear-gradient(135deg, rgba(155,233,49,0.04) 0%, transparent 60%)",
             }}
           >
-            <div
+            <p
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 36,
-                height: 36,
-                borderRadius: 10,
-                backgroundColor: "rgba(96,165,250,0.1)",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                textTransform: "uppercase" as const,
+                letterSpacing: "0.12em",
+                color: ACCENT,
                 marginBottom: 20,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8.5L6 11.5L13 4.5" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <h3
+              The real challenge
+            </p>
+            <div
               style={{
-                fontSize: "1.1rem",
-                fontWeight: 600,
-                color: "var(--cs-text)",
-                marginBottom: 16,
-                letterSpacing: "-0.01em",
+                padding: "20px 24px",
+                borderRadius: 14,
+                backgroundColor: "rgba(155,233,49,0.06)",
+                border: "1px solid rgba(155,233,49,0.14)",
+                marginBottom: 20,
               }}
             >
-              The Solution
-            </h3>
-            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
-              GW Ride is a mobile app centered on giving students the information confidence to
-              choose the shuttle. By surfacing live tracking, clear ETAs, route context, and stop
-              detail, the app makes the shuttle feel reliable before a student even leaves their building.
-            </p>
-            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)", marginTop: 12 }}>
-              The design focuses on speed and scannability: a student standing outside with ten minutes
-              before class should be able to open the app, find the nearest shuttle, and make a
-              decision in under fifteen seconds.
-            </p>
-
-            {/* Key features preview */}
-            <div style={{ marginTop: 28, display: "flex", flexDirection: "column", gap: 10 }}>
-              {[
-                "Live shuttle location on campus map",
-                "Real-time ETA per stop",
-                "Route cards with stop context",
-                "Explore view for discovering routes",
-              ].map((feat) => (
-                <div key={feat} className="flex items-center" style={{ gap: 10 }}>
-                  <span
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: "50%",
-                      backgroundColor: ACCENT,
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span style={{ fontSize: "0.88rem", color: "var(--cs-text-muted)" }}>{feat}</span>
-                </div>
-              ))}
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  fontStyle: "italic",
+                  color: "var(--cs-text)",
+                  lineHeight: 1.65,
+                }}
+              >
+                &ldquo;How might we help students quickly understand where the shuttle is, where
+                it goes, and what nearby places they can access around campus?&rdquo;
+              </p>
             </div>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
+              The design challenge was about clarity, confidence, and campus-connected mobility.
+              Giving students enough information to make a fast, low-stress decision.
+            </p>
           </motion.div>
         </div>
-
-        {/* Supporting mockup */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginTop: 56, display: "flex", justifyContent: "center" }}
-        >
-          <div style={{ position: "relative", display: "inline-flex", gap: 28 }}>
-            {["/gwride/final-main.png", "/gwride/final-main-2.png", "/gwride/final-main-3.png"].map(
-              (src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt={`GW Ride screen ${i + 1}`}
-                  style={{
-                    width: "clamp(180px, 28vw, 300px)",
-                    objectFit: "contain",
-                    borderRadius: 24,
-                    filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.55))",
-                    transform: i === 1 ? "translateY(-16px)" : "none",
-                  }}
-
-                loading="lazy"
-                />
-              )
-            )}
-          </div>
-        </motion.div>
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: 16,
-            fontSize: "0.78rem",
-            color: "var(--cs-text-faint)",
-            letterSpacing: "0.04em",
-          }}
-        >
-          Final design: main tracking and route views
-        </p>
       </div>
     </section>
   );

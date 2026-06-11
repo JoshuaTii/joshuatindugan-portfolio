@@ -3,76 +3,50 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Lightbox } from "./Lightbox";
 
-const ACCENT = "var(--cs-accent-gw)";
+const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-const HERO_SCREENS = [
-  "/gwride/mockup-1.png",
-  "/gwride/mockup-2.png",
-  "/gwride/mockup-3.png",
-  "/gwride/mockup-4.png",
-  "/gwride/mockup-5.png",
-];
-
-const FINAL_ORDER_SCREENS = [
-  "a", "b", "c", "d", "e", "f",
-  "g", "h", "i", "j", "k", "l",
-].map((letter) => `/gwride/final-order/${letter}.png`);
-
-const COLORS = [
-  { hex: "#AA9868", name: "GWU Buff", usage: "Primary brand · Accent" },
-  { hex: "#033C5A", name: "GWU Colonial Blue", usage: "Backgrounds · Structure" },
-  { hex: "#FFFFFF", name: "White", usage: "Text · Icons · UI" },
-];
-
-const FEEDBACK_THEMES = [
-  {
-    theme: "Intuitive Navigation",
-    body: "Students found the app easy to navigate without instruction. Core flows (checking a shuttle ETA, finding a stop) were completed without hesitation.",
-  },
-  {
-    theme: "Improved Confidence",
-    body: "Participants noted they felt more confident about choosing the shuttle when they could see live location data. The uncertainty that usually drove them to rideshares was gone.",
-  },
-  {
-    theme: "Information Hierarchy",
-    body: "The layout was praised for being scannable. Students could extract the key decision (is a shuttle close enough to wait for?) in under five seconds.",
-  },
-];
-
-const NEXT_STEPS = [
-  "Test with students during actual commute moments on campus",
-  "Partner with GW Transportation to access live shuttle data via API integration",
-  "Add push notifications and alerts for approaching shuttles at saved stops",
-  "Conduct a formal accessibility audit: screen reader support, color contrast, tap target size",
-  "Expand stop detail screens with campus building names and landmark references",
-  "Explore a commute scheduler mode for planning transit around class times",
+const SCREENS = [
+  { src: "/gwride/final-order/a.png", alt: "Onboarding, screen 1" },
+  { src: "/gwride/final-order/b.png", alt: "Onboarding, screen 2" },
+  { src: "/gwride/final-order/c.png", alt: "Onboarding, screen 3" },
+  { src: "/gwride/final-order/d.png", alt: "Onboarding, screen 4" },
+  { src: "/gwride/final-order/e.png", alt: "Onboarding, screen 5" },
+  { src: "/gwride/final-order/f.png", alt: "Onboarding, screen 6" },
+  { src: "/gwride/final-order/g.png", alt: "Shuttle tracking, screen 1" },
+  { src: "/gwride/final-order/h.png", alt: "Shuttle tracking, screen 2" },
+  { src: "/gwride/final-order/i.png", alt: "Route view, screen 1" },
+  { src: "/gwride/final-order/j.png", alt: "Route view, screen 2" },
+  { src: "/gwride/final-order/k.png", alt: "Explore, screen 1" },
+  { src: "/gwride/final-order/l.png", alt: "Explore, screen 2" },
 ];
 
 export function Final() {
   const ref = useRef(null);
   const protoRef = useRef(null);
-  const guidesRef = useRef(null);
-  const feedbackRef = useRef(null);
-  const reflectionRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const protoInView = useInView(protoRef, { once: true, margin: "-80px" });
-  const guidesInView = useInView(guidesRef, { once: true, margin: "-80px" });
-  const feedbackInView = useInView(feedbackRef, { once: true, margin: "-80px" });
-  const reflectionInView = useInView(reflectionRef, { once: true, margin: "-80px" });
 
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const openLightbox = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
   const closeLightbox = useCallback(() => setLightbox(null), []);
 
   return (
-    <section id="final" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px", backgroundColor: "var(--cs-bg-secondary)" }}>
+    <section
+      id="final"
+      style={{
+        scrollMarginTop: 80,
+        paddingBlock: "80px 120px",
+        backgroundColor: "var(--cs-bg-secondary)",
+      }}
+    >
       <div className="section-container">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
           style={{ marginBottom: 56 }}
         >
           <p
@@ -80,13 +54,13 @@ export function Final() {
               display: "inline-block",
               fontSize: "0.75rem",
               fontWeight: 500,
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.12em",
               color: ACCENT,
               marginBottom: 16,
             }}
           >
-            Final Design
+            Final Screens
           </p>
           <h2
             style={{
@@ -99,141 +73,89 @@ export function Final() {
               marginBottom: 20,
             }}
           >
-            A polished transit experience built around student confidence.
+            A polished campus transit experience built around student confidence.
           </h2>
-          <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 600 }}>
-            The final design brings the experience together as a campus transit tool built around
-            confidence. It does not try to overload students with every possible transit detail.
-            Instead, it gives them the right information at the right time: where the shuttle is,
-            when it arrives, what route it follows, and whether it is worth waiting for.
+          <p
+            style={{
+              fontSize: "1rem",
+              lineHeight: 1.75,
+              color: "var(--cs-text-muted)",
+              maxWidth: 620,
+            }}
+          >
+            The final design gives students the right information at the right time: where the
+            shuttle is, when it arrives, what route it follows, and what is nearby. Four core
+            flows, each designed to answer a specific question students have on campus.
           </p>
         </motion.div>
 
-        {/* Final design choice cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: 12, marginBottom: 48 }}
+        {/* Flat screen grid — no borders, no containers */}
+        <div
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          style={{ gap: 16, marginBottom: 16 }}
         >
-          {[
-            "Used GWU-inspired colors to make the app feel connected to the campus system.",
-            "Used Colonial Blue for structure and trust, with Buff as a warm branded accent.",
-            "Kept the map central because location is the foundation of the experience.",
-            "Made ETAs large and immediate so students can decide quickly.",
-            "Used route cards to turn complex transit data into simple choices.",
-            "Added stop detail screens so students know exactly where to go, not just which route exists.",
-            "Included campus exploration to connect transportation with everyday student life, like finding nearby buildings, food, or destinations.",
-            "Built the final experience around speed, scannability, and confidence.",
-          ].map((card, i) => (
-            <div
-              key={i}
-              style={{
-                padding: "18px 20px",
-                borderRadius: 12,
-                border: "1px solid var(--cs-border)",
-                backgroundColor: "var(--cs-surface)",
-                fontSize: "0.88rem",
-                lineHeight: 1.65,
-                color: "var(--cs-text-muted)",
-                borderLeft: "2px solid rgba(96,165,250,0.4)",
-              }}
-            >
-              {card}
-            </div>
-          ))}
-        </motion.div>
-
-        {/* ── Hero screens — 5 large mockups ── */}
-        <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 20, marginBottom: 16 }}>
-          {HERO_SCREENS.map((src, i) => (
+          {SCREENS.map((screen, i) => (
             <motion.div
-              key={src}
-              initial={{ opacity: 0, y: 28 }}
+              key={screen.src}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.65, delay: 0.07 * i, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.04 * i, ease: EASE }}
               style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
-              onClick={() => openLightbox(src, `Final design, screen ${i + 1}`)}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design, screen ${i + 1}`); } }}
-              tabIndex={0}
-              role="button"
-              aria-label={`Expand final design screen ${i + 1}`}
+              onClick={() => openLightbox(screen.src, screen.alt)}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-5px) scale(1.02)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.02)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "none";
               }}
             >
               <img
-                src={src}
-                alt={`Final design, screen ${i + 1}`}
+                src={screen.src}
+                alt={screen.alt}
                 style={{
                   width: "100%",
+                  height: "auto",
                   objectFit: "contain",
                   display: "block",
-                  maxHeight: 680,
                 }}
-
-              loading="lazy"
+                loading="lazy"
               />
             </motion.div>
           ))}
         </div>
 
-        <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)", marginBottom: 72, textAlign: "center" as const }}>
+        <p
+          style={{
+            fontSize: "0.75rem",
+            color: "var(--cs-text-faint)",
+            marginBottom: 80,
+            textAlign: "center" as const,
+          }}
+        >
           Click any screen to expand
         </p>
 
-        {/* ── Final design order gallery — 4 rows × 3 cols ── */}
-        <div
-          className="grid grid-cols-2 md:grid-cols-3"
-          style={{ columnGap: 40, rowGap: 52, marginBottom: 96 }}
-        >
-          {FINAL_ORDER_SCREENS.map((src: string, i: number) => (
-            <motion.div
-              key={src}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
-              style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
-              onClick={() => openLightbox(src, `Final design, screen ${i + 1}`)}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(src, `Final design, screen ${i + 1}`); } }}
-              tabIndex={0}
-              role="button"
-              aria-label={`Expand final design screen ${i + 1}`}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "none";
-              }}
-            >
-              <img
-                src={src}
-                alt={`Final design, screen ${i + 1}`}
-                style={{
-                  width: "100%",
-                  objectFit: "contain",
-                  display: "block",
-                  maxHeight: 400,
-                }}
-
-              loading="lazy"
-              />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ── Interactive Prototype ── */}
+        {/* Interactive Prototype */}
         <div ref={protoRef}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={protoInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: EASE }}
             style={{ marginBottom: 24 }}
           >
+            <p
+              style={{
+                display: "inline-block",
+                fontSize: "0.75rem",
+                fontWeight: 500,
+                textTransform: "uppercase" as const,
+                letterSpacing: "0.12em",
+                color: ACCENT,
+                marginBottom: 12,
+              }}
+            >
+              Interactive Prototype
+            </p>
             <h3
               style={{
                 fontSize: "1.05rem",
@@ -243,20 +165,18 @@ export function Final() {
                 marginBottom: 4,
               }}
             >
-              Interactive Prototype
+              Explore the full flow
             </h3>
             <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", maxWidth: 600 }}>
-              Explore the GW Ride prototype directly in the page. This interactive demo shows the
-              core app flow, including onboarding, route discovery, shuttle information, and campus
-              exploration.
+              This interactive demo shows the core app flow: onboarding, route discovery, shuttle
+              information, and campus exploration.
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={protoInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 96 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           >
             {/* Desktop/tablet iframe */}
             <div
@@ -283,7 +203,7 @@ export function Final() {
               />
             </div>
 
-            {/* Mobile fallback card */}
+            {/* Mobile fallback */}
             <div
               className="md:hidden"
               style={{
@@ -292,54 +212,25 @@ export function Final() {
                 border: "1px solid var(--cs-border)",
                 backgroundColor: "var(--cs-surface)",
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "column" as const,
                 alignItems: "center",
                 gap: 20,
-                textAlign: "center",
+                textAlign: "center" as const,
               }}
             >
-              <div
+              <p
                 style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: 12,
-                  backgroundColor: "rgba(96,165,250,0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  fontSize: "0.95rem",
+                  fontWeight: 600,
+                  color: "var(--cs-text)",
+                  marginBottom: 4,
                 }}
               >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 3L10 13M10 13L6 9M10 13L14 9"
-                    stroke={ACCENT}
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M3 15h14"
-                    stroke={ACCENT}
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontSize: "0.95rem",
-                    fontWeight: 600,
-                    color: "var(--cs-text)",
-                    marginBottom: 8,
-                  }}
-                >
-                  Best viewed on desktop
-                </p>
-                <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.6 }}>
-                  Open the prototype in Figma to explore the full interactive flow on your device.
-                </p>
-              </div>
+                Best viewed on desktop
+              </p>
+              <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.6 }}>
+                Open the prototype in Figma to explore the full interactive flow.
+              </p>
               <a
                 href="https://www.figma.com/proto/ezhpWQgVx2L0xAo2q8JGKj/GW-Ride?node-id=2251-993&p=f&viewport=-1738%2C-5681%2C0.43&t=hSqqHpGAWMdz0xjR-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2251%3A993&page-id=0%3A1"
                 target="_blank"
@@ -350,53 +241,24 @@ export function Final() {
                   gap: 8,
                   padding: "12px 24px",
                   borderRadius: 10,
-                  border: `1px solid rgba(96,165,250,0.3)`,
-                  backgroundColor: "rgba(96,165,250,0.08)",
+                  border: "1px solid rgba(155,233,49,0.3)",
+                  backgroundColor: "rgba(155,233,49,0.08)",
                   color: ACCENT,
                   fontSize: "0.88rem",
                   fontWeight: 500,
                   textDecoration: "none",
-                  transition: "background-color 200ms ease, border-color 200ms ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.14)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.5)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.08)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.3)";
                 }}
               >
                 Open prototype in Figma
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path
-                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
               </a>
             </div>
 
-            {/* Below-iframe: fallback note + CTA (desktop only) */}
+            {/* Below-iframe CTA — desktop only */}
             <div
               className="hidden md:flex"
-              style={{
-                marginTop: 20,
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 12,
-              }}
+              style={{ marginTop: 16, flexDirection: "column" as const, alignItems: "center", gap: 10 }}
             >
-              <p
-                style={{
-                  fontSize: "0.75rem",
-                  color: "var(--cs-text-faint)",
-                  textAlign: "center",
-                }}
-              >
+              <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)", textAlign: "center" as const }}>
                 If the prototype does not load, open it directly in Figma.
               </p>
               <a
@@ -409,21 +271,12 @@ export function Final() {
                   gap: 8,
                   padding: "10px 20px",
                   borderRadius: 9,
-                  border: `1px solid rgba(96,165,250,0.25)`,
-                  backgroundColor: "rgba(96,165,250,0.07)",
+                  border: "1px solid rgba(155,233,49,0.25)",
+                  backgroundColor: "rgba(155,233,49,0.07)",
                   color: ACCENT,
                   fontSize: "0.82rem",
                   fontWeight: 500,
                   textDecoration: "none",
-                  transition: "background-color 200ms ease, border-color 200ms ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.13)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.45)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(96,165,250,0.07)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(96,165,250,0.25)";
                 }}
               >
                 Open prototype in Figma
@@ -438,329 +291,6 @@ export function Final() {
                 </svg>
               </a>
             </div>
-          </motion.div>
-        </div>
-
-        {/* ── Visual Guidelines (HTML/CSS) ── */}
-        <div ref={guidesRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={guidesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 24 }}
-          >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
-              Visual Guidelines
-            </h3>
-            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)" }}>
-              Typography and color system established for GW Ride.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={guidesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              padding: "40px 40px",
-              borderRadius: 20,
-              border: "1px solid var(--cs-border)",
-              backgroundColor: "var(--cs-surface)",
-              marginBottom: 96,
-            }}
-          >
-            {/* Typography */}
-            <p
-              style={{
-                fontSize: "0.7rem",
-                fontWeight: 500,
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                color: "var(--cs-text-faint)",
-                marginBottom: 24,
-              }}
-            >
-              Typography
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 24, marginBottom: 48 }}>
-              {/* GW Liberated */}
-              <div
-                style={{
-                  padding: "28px 28px",
-                  borderRadius: 14,
-                  border: "1px solid var(--cs-border)",
-                  backgroundColor: "var(--cs-bg-secondary)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "0.68rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: ACCENT,
-                    marginBottom: 16,
-                    fontWeight: 500,
-                  }}
-                >
-                  Display · Headings
-                </div>
-                <div
-                  style={{
-                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
-                    fontWeight: 800,
-                    color: "var(--cs-text)",
-                    lineHeight: 1,
-                    letterSpacing: "-0.03em",
-                    marginBottom: 12,
-                    fontFamily: '"GW Liberated", Georgia, serif',
-                  }}
-                >
-                  GW Liberated
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.85rem",
-                    color: "var(--cs-text-faint)",
-                    lineHeight: 1.5,
-                    fontFamily: '"GW Liberated", Georgia, serif',
-                  }}
-                >
-                  A B C D E F G H I J K<br />
-                  1 2 3 4 5 6 7 8 9 0
-                </div>
-              </div>
-
-              {/* Basic Sans */}
-              <div
-                style={{
-                  padding: "28px 28px",
-                  borderRadius: 14,
-                  border: "1px solid var(--cs-border)",
-                  backgroundColor: "var(--cs-bg-secondary)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "0.68rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: ACCENT,
-                    marginBottom: 16,
-                    fontWeight: 500,
-                  }}
-                >
-                  Body · Interface
-                </div>
-                <div
-                  style={{
-                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
-                    fontWeight: 500,
-                    color: "var(--cs-text)",
-                    lineHeight: 1,
-                    letterSpacing: "-0.02em",
-                    marginBottom: 12,
-                  }}
-                >
-                  Basic Sans
-                </div>
-                <div style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
-                  a b c d e f g h i j k l m<br />
-                  Used for labels, ETAs, stop names
-                </div>
-              </div>
-            </div>
-
-            {/* Colors */}
-            <p
-              style={{
-                fontSize: "0.7rem",
-                fontWeight: 500,
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                color: "var(--cs-text-faint)",
-                marginBottom: 24,
-              }}
-            >
-              Color System
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 16 }}>
-              {COLORS.map((color) => (
-                <div
-                  key={color.hex}
-                  style={{
-                    borderRadius: 14,
-                    overflow: "hidden",
-                    border: "1px solid var(--cs-border)",
-                  }}
-                >
-                  <div
-                    style={{
-                      height: 80,
-                      backgroundColor: color.hex,
-                      borderBottom: "1px solid var(--cs-border)",
-                    }}
-                  />
-                  <div style={{ padding: "16px 18px", backgroundColor: "var(--cs-bg-secondary)" }}>
-                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "var(--cs-text)", marginBottom: 4, fontFamily: "monospace" }}>
-                      {color.hex}
-                    </p>
-                    <p style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)", marginBottom: 2 }}>{color.name}</p>
-                    <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>{color.usage}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── User Feedback ── */}
-        <div ref={feedbackRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={feedbackInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 32 }}
-          >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
-              User Feedback
-            </h3>
-            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", maxWidth: 600 }}>
-              After sharing the prototype with GWU students, three clear themes emerged.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3" style={{ gap: 16, marginBottom: 96 }}>
-            {FEEDBACK_THEMES.map((f, i) => (
-              <motion.div
-                key={f.theme}
-                initial={{ opacity: 0, y: 28 }}
-                animate={feedbackInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 * i, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  padding: "28px 24px",
-                  borderRadius: 16,
-                  border: "1px solid var(--cs-border)",
-                  backgroundColor: "var(--cs-surface)",
-                  display: "flex",
-                  flexDirection: "column" as const,
-                  gap: 12,
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "0.78rem",
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.08em",
-                    color: ACCENT,
-                  }}
-                >
-                  {f.theme}
-                </span>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
-                  {f.body}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Next Steps */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={feedbackInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 96 }}
-          >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
-              Next Steps
-            </h3>
-            <p style={{ fontSize: "0.88rem", color: "var(--cs-text-faint)", marginBottom: 28, maxWidth: 600 }}>
-              If development were to continue, the prioritized path forward would look like this.
-            </p>
-            <div
-              style={{
-                padding: "32px 36px",
-                borderRadius: 20,
-                border: "1px solid var(--cs-border)",
-                backgroundColor: "var(--cs-surface)",
-                display: "flex",
-                flexDirection: "column" as const,
-                gap: 16,
-              }}
-            >
-              {NEXT_STEPS.map((step, i) => (
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={feedbackInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.06 * i, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ display: "flex", gap: 16, alignItems: "flex-start" }}
-                >
-                  <span
-                    style={{
-                      minWidth: 24,
-                      height: 24,
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(96,165,250,0.12)",
-                      border: "1px solid rgba(96,165,250,0.2)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "0.68rem",
-                      fontWeight: 600,
-                      color: ACCENT,
-                      flexShrink: 0,
-                      marginTop: 1,
-                    }}
-                  >
-                    {i + 1}
-                  </span>
-                  <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
-                    {step}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── Reflection ── */}
-        <div ref={reflectionRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={reflectionInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 32 }}
-          >
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "-0.01em", marginBottom: 4 }}>
-              What I Learned
-            </h3>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={reflectionInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              display: "grid",
-              gap: 28,
-              paddingTop: 40,
-              borderTop: "1px solid var(--cs-border)",
-            }}
-            className="md:grid-cols-2"
-          >
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
-              Designing GW Ride taught me that transportation UX is fundamentally about reducing anxiety,
-              not adding features. Students don't want more information. They want the right information
-              at the right moment. The most valuable insight was how much cognitive load unclear transit
-              data creates. A three-second ETA check shouldn't require navigating three screens.
-            </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
-              This project also showed me how visual hierarchy functions as a tool, not just an aesthetic
-              choice. Every decision (type scale, information density, color contrast) was in direct
-              service of helping someone make a faster, more confident decision in a genuinely
-              pressure-filled moment. Designing for urgency is a distinct and valuable skill.
-            </p>
           </motion.div>
         </div>
       </div>

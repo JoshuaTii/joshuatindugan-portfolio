@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const ACCENT = "var(--cs-accent-gw)";
+const ACCENT = "var(--cs-accent-sf)";
 
 export function Hero() {
   return (
@@ -73,7 +73,7 @@ export function Hero() {
                 marginBottom: 36,
               }}
             >
-              Designing a clearer, more reliable campus shuttle experience for GW students
+              A mobile shuttle and campus discovery app for George Washington University students
             </motion.h2>
 
             <motion.p
@@ -88,8 +88,8 @@ export function Hero() {
                 marginBottom: 48,
               }}
             >
-              A mobile app concept designed to reduce the uncertainty students face around shuttle timing,
-              route visibility, and stop information, so navigating campus feels confident and low-stress.
+              Exploring how real-time shuttle tracking, clearer stop information, and nearby place discovery
+              can help students move around campus with more confidence and less confusion.
             </motion.p>
 
             <motion.div
@@ -102,7 +102,7 @@ export function Hero() {
               {[
                 { label: "Role", value: "UX Designer + Researcher" },
                 { label: "Timeline", value: "Spring 2024" },
-                { label: "Platform", value: "Mobile" },
+                { label: "Platform", value: "iOS / Android" },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col" style={{ gap: 5 }}>
                   <span

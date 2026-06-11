@@ -1,30 +1,18 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-gw)";
+const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-const META_CARDS = [
-  {
-    label: "Role",
-    items: ["UX Designer", "UX Researcher"],
-  },
-  {
-    label: "Timeline",
-    items: ["Spring 2024"],
-  },
-  {
-    label: "Team",
-    items: ["Collaborative Design Project"],
-  },
-  {
-    label: "Tools",
-    items: ["Figma", "Photoshop", "Illustrator"],
-  },
-  {
-    label: "Deliverables",
-    items: ["Mobile App Concept", "Research · Wireframes · Hi-Fi"],
-  },
+const SNAPSHOT_FIELDS = [
+  { label: "Role", value: "UX Designer + UX Researcher" },
+  { label: "Timeline", value: "Spring 2024" },
+  { label: "Platform", value: "Mobile" },
+  { label: "Tools", value: "Figma" },
+  { label: "Methods", value: "User research, competitive analysis, journey mapping, wireframing, prototyping" },
+  { label: "Focus", value: "Campus transportation, real-time tracking, wayfinding, student mobility, nearby discovery" },
+  { label: "Outcome", value: "Designed a mobile prototype with four core features: shuttle tracking, route visibility, stop information, and Explore." },
 ];
 
 export function Overview() {
@@ -32,122 +20,108 @@ export function Overview() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="overview" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px" }}>
+    <section
+      id="overview"
+      style={{ scrollMarginTop: 80, paddingBlock: "100px 120px", backgroundColor: "var(--cs-bg-secondary)" }}
+    >
       <div className="section-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
+          style={{ marginBottom: 56 }}
         >
           <p
             style={{
               display: "inline-block",
               fontSize: "0.75rem",
               fontWeight: 500,
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.12em",
               color: ACCENT,
               marginBottom: 16,
             }}
           >
-            Project Overview
+            Project Snapshot
           </p>
-          <div
-            className="flex flex-col md:flex-row md:items-end md:justify-between"
-            style={{ gap: "24px 64px", marginBottom: 72 }}
+          <h2
+            style={{
+              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "var(--cs-text)",
+              lineHeight: 1.15,
+              maxWidth: 560,
+            }}
           >
-            <h2
-              style={{
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                color: "var(--cs-text)",
-                lineHeight: 1.1,
-              }}
-            >
-              Rethinking how GW students
-              <br />
-              move across campus.
-            </h2>
-            <p
-              style={{
-                fontSize: "0.9rem",
-                lineHeight: 1.65,
-                color: "var(--cs-text-faint)",
-                maxWidth: 380,
-                textAlign: "right" as const,
-              }}
-            >
-              A semester-long UX project at George Washington University, exploring the transit
-              experience of students who rely on campus shuttles every day.
-            </p>
-          </div>
+            A campus transit experience built around student confidence.
+          </h2>
         </motion.div>
 
-        {/* Meta cards — equal item hierarchy */}
-        <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 16 }}>
-          {META_CARDS.map(({ label, items }, i) => (
+        {/* Snapshot grid */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 16, marginBottom: 56 }}
+        >
+          {SNAPSHOT_FIELDS.map((field, i) => (
             <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 24 }}
+              key={field.label}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.55, delay: 0.07 * i, ease: EASE }}
               style={{
-                padding: "24px 20px",
-                borderRadius: 14,
+                padding: "22px 24px",
+                borderRadius: 16,
                 border: "1px solid var(--cs-border)",
                 backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
-                gap: 12,
+                gap: 8,
               }}
             >
               <span
-                className="text-xs uppercase"
-                style={{ letterSpacing: "0.1em", color: ACCENT }}
+                style={{
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.1em",
+                  color: ACCENT,
+                }}
               >
-                {label}
+                {field.label}
               </span>
-              <div className="flex flex-col" style={{ gap: 6 }}>
-                {items.map((item) => (
-                  <span
-                    key={item}
-                    style={{ fontSize: "0.88rem", fontWeight: 500, color: "var(--cs-text)", lineHeight: 1.4 }}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.6, color: "var(--cs-text-muted)" }}>
+                {field.value}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Summary */}
+        {/* Summary prose */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.35, ease: EASE }}
           style={{
-            marginTop: 64,
-            paddingTop: 64,
-            borderTop: "1px solid var(--cs-border)",
-            display: "grid",
-            gap: 28,
+            padding: "36px 40px",
+            borderRadius: 20,
+            border: "1px solid var(--cs-border)",
+            backgroundColor: "var(--cs-surface)",
           }}
-          className="md:grid-cols-2"
         >
-          <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
-            GW Ride started with a simple observation: GWU has a shuttle network, but most students
-            don't use it. Not because the shuttles aren't there, but because students can't trust
-            the information available to them. Unclear ETAs, confusing routes, and zero real-time
-            visibility make the default choice a rideshare.
-          </p>
-          <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
-            By centering on live tracking, route clarity, and instant decision support, GW Ride is built
-            around one question: what&apos;s the minimum information a student needs to confidently choose
-            the shuttle over a rideshare? The answer shaped every screen.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "28px 48px" }}>
+            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
+              GW RIDE is a mobile shuttle and campus discovery app designed for George Washington
+              University students who rely on campus transportation to move between classes,
+              residence halls, and nearby campus areas.
+            </p>
+            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
+              The project explores how real-time shuttle tracking, clearer stop information, and
+              nearby place discovery can help students move around campus with more confidence
+              and less confusion.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
