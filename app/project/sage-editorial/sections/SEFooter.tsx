@@ -8,16 +8,11 @@ export function SEFooter() {
       <div className="section-container">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between" style={{ gap: 32 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <span
-              style={{
-                fontSize: "1.1rem",
-                fontWeight: 700,
-                letterSpacing: "-0.01em",
-                color: "var(--cs-text)",
-              }}
-            >
-              SAGE Editorial
-            </span>
+            <img
+              src="/sage-editorial/logo.png"
+              alt="SAGE Editorial"
+              style={{ height: 24, width: "auto", objectFit: "contain", objectPosition: "left" }}
+            />
             <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
               Editorial design project · Spring 2026
             </p>

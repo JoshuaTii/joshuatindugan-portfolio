@@ -84,9 +84,11 @@ export function GWRideNavbar() {
             Portfolio
           </Link>
           <span style={{ color: "var(--cs-border-strong)", fontSize: "0.7rem" }}>/</span>
-          <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--cs-text)", letterSpacing: "0.02em" }}>
-            GW Ride
-          </span>
+          <img
+            src="/gw-ride/logo.png"
+            alt="GW Ride"
+            style={{ height: 24, width: "auto", objectFit: "contain" }}
+          />
         </div>
 
         {/* Desktop nav */}

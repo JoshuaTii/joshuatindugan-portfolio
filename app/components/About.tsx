@@ -91,17 +91,17 @@ export function About() {
             Who is Joshua?
           </h2>
 
-          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.875rem", lineHeight: 1.78, color: "var(--text-2)" }}>
+          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "1rem", lineHeight: 1.78, color: "var(--text-2)" }}>
             My name is Joshua Uba Tindugan, a UX/UI designer shaped by art, curiosity, and the belief that design should feel human. Growing up on the small island of Camiguin in the Philippines, there was little access to technology, but drawing became my first way of exploring ideas, stories, and imagination. After moving to the United States, I discovered how art and technology could work together, which led me to pursue Interaction Design at George Washington University.
           </p>
-          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.875rem", lineHeight: 1.78, color: "var(--text-2)" }}>
+          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "1rem", lineHeight: 1.78, color: "var(--text-2)" }}>
             Through my time at GWU, I have been able to learn from design professors, receive feedback from established designers, and grow through projects that challenged me to think beyond the screen. My goal as a designer is to create transparent, accessible, and immersive experiences that feel simple, intuitive, and meaningful.
           </p>
 
           {/* Quote — same size as body text, subtle emphasis via font weight */}
           <p style={{
             fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
-            fontSize: "0.875rem",
+            fontSize: "1rem",
             fontWeight: 600,
             color: "var(--text-2)",
             lineHeight: 1.78,
@@ -156,7 +156,7 @@ export function About() {
                 <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.68rem", color: "var(--text-3)" }}>
                   {item.period}
                 </p>
-                <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.78rem", lineHeight: 1.65, color: "var(--text-2)", marginTop: 4 }}>
+                <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.875rem", lineHeight: 1.65, color: "var(--text-2)", marginTop: 4 }}>
                   {item.detail}
                 </p>
               </motion.div>

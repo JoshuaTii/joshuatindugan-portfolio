@@ -5,7 +5,7 @@ export function SiteFooter() {
         <p style={{ fontSize: "0.75rem", color: "var(--text-3)", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>
           © 2026 Joshua Uba Tindugan. All rights reserved.
         </p>
-        <p style={{ fontSize: "0.68rem", color: "var(--text-3)", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", letterSpacing: "0.06em" }}>
+        <p style={{ fontSize: "0.72rem", color: "var(--text-3)", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", letterSpacing: "0.06em" }}>
           UI/UX Designer · Washington, D.C.
         </p>
       </div>

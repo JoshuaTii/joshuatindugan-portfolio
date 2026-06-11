@@ -85,9 +85,11 @@ export function SENavbar() {
             Portfolio
           </Link>
           <span style={{ color: "var(--cs-border-strong)", fontSize: "0.7rem" }}>/</span>
-          <span style={{ fontSize: "0.75rem", color: "var(--cs-text-muted)", letterSpacing: "0.04em" }}>
-            SAGE Editorial
-          </span>
+          <img
+            src="/sage-editorial/logo.png"
+            alt="SAGE Editorial"
+            style={{ height: 24, width: "auto", objectFit: "contain" }}
+          />
         </div>
 
         {/* Desktop nav */}

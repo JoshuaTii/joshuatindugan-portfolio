@@ -1,11 +1,24 @@
 "use client";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const PROJECTS = [
+type Project = {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  image: string;
+  href: string;
+  btnLabel: string;
+  tags: string[];
+  description: string;
+  thumbLogo?: string;
+};
+
+const PROJECTS: Project[] = [
   {
     id:        "sage-financial",
     title:     "SAGE",
@@ -23,10 +36,23 @@ const PROJECTS = [
     category:  "EDITORIAL PRODUCT DESIGN",
     date:      "SPRING 2026",
     image:     "/sage-editorial.png",
+    thumbLogo: "/sage-editorial/logo.png",
     href:      "/project/sage-editorial",
     btnLabel:  "View Case Study",
     tags:      ["Editorial Design", "Typography", "Figma"],
     description: "SAGE Editorial expands the thesis project into a content-driven platform that explores the everyday realities, overlooked stories, and community context surrounding financial access in D.C.",
+  },
+  {
+    id:        "gw-ride",
+    title:     "GW RIDE",
+    category:  "PRODUCT DESIGN",
+    date:      "SPRING 2024",
+    image:     "/gw-ride.png",
+    thumbLogo: "/gw-ride/logo.png",
+    href:      "/project/gw-ride",
+    btnLabel:  "View Case Study",
+    tags:      ["Mobile Design", "Transit UX", "Figma"],
+    description: "A mobile app concept designed to reduce the uncertainty GWU students face around shuttle timing, route visibility, and stop coverage, so navigating campus feels low-stress.",
   },
   {
     id:        "intuition",
@@ -38,17 +64,6 @@ const PROJECTS = [
     btnLabel:  "View Case Study",
     tags:      ["EdTech", "Student Design", "UX Research", "Accessibility"],
     description: "A concept that replaces the fragmented scholarship search with a single smart platform. It matches students to opportunities based on their profile and allows streamline application.",
-  },
-  {
-    id:        "gw-ride",
-    title:     "GW RIDE",
-    category:  "PRODUCT DESIGN",
-    date:      "SPRING 2024",
-    image:     "/gw-ride.png",
-    href:      "/project/gw-ride",
-    btnLabel:  "View Case Study",
-    tags:      ["Mobile Design", "Transit UX", "Figma"],
-    description: "A mobile app concept designed to reduce the uncertainty GWU students face around shuttle timing, route visibility, and stop coverage, so navigating campus feels low-stress.",
   },
   {
     id:        "photography",
@@ -63,7 +78,7 @@ const PROJECTS = [
   },
 ];
 
-function ProjectCard({ project, index }: { project: typeof PROJECTS[0]; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const router = useRouter();
@@ -93,20 +108,33 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0]; index: n
       {/* Thumbnail */}
       <div
         onClick={() => router.push(project.href)}
-        style={{ position: "relative", height: 220, overflow: "hidden", background: "var(--bg-secondary)", flexShrink: 0 }}
+        style={{
+          position: "relative", height: 220, overflow: "hidden", flexShrink: 0,
+          background: project.thumbLogo ? "#ffffff" : "var(--bg-secondary)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}
       >
         <img
-          src={project.image}
+          src={project.thumbLogo ?? project.image}
           alt={project.title}
           loading={index === 0 ? "eager" : "lazy"}
-          style={{
+          style={project.thumbLogo ? {
+            maxWidth: "62%", maxHeight: "62%", objectFit: "contain", display: "block",
+            transform: hovered ? "scale(1.04)" : "scale(1)",
+            transition: "transform 480ms cubic-bezier(0.22,1,0.36,1)",
+            willChange: "transform",
+          } : {
             width: "100%", height: "100%", objectFit: "cover", display: "block",
             transform: hovered ? "scale(1.04)" : "scale(1)",
             transition: "transform 480ms cubic-bezier(0.22,1,0.36,1)",
             willChange: "transform",
           }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.22)", opacity: hovered ? 1 : 0, transition: "opacity 280ms ease", pointerEvents: "none" }} />
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: project.thumbLogo ? "rgba(0,0,0,0.04)" : "rgba(0,0,0,0.22)",
+          opacity: hovered ? 1 : 0, transition: "opacity 280ms ease",
+        }} />
       </div>
 
       {/* Card body */}
@@ -141,9 +169,9 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0]; index: n
         </h3>
 
         {/* Description */}
-        <p className="line-clamp-3" style={{
+        <p style={{
           fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
-          fontSize: "0.78rem", lineHeight: 1.65,
+          fontSize: "0.9rem", lineHeight: 1.6,
           color: "var(--text-2)", flexGrow: 1,
         }}>
           {project.description}
@@ -151,15 +179,31 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0]; index: n
 
         {/* Tags — dot-separated, below description */}
         {project.tags.length > 0 && (
-          <p style={{
-            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
-            fontSize: "0.62rem", fontWeight: 500,
-            letterSpacing: "0.06em",
-            color: "var(--text-3)",
-            lineHeight: 1.6,
+          <div style={{
+            display: "flex", flexWrap: "wrap", alignItems: "center",
+            rowGap: 4, marginTop: 12,
           }}>
-            {project.tags.join(" · ")}
-          </p>
+            {project.tags.map((tag, i) => (
+              <Fragment key={tag}>
+                {i > 0 && (
+                  <span style={{
+                    margin: "0 7px",
+                    fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+                    fontSize: "0.62rem", color: "var(--text-3)", opacity: 0.55,
+                    userSelect: "none",
+                  }}>·</span>
+                )}
+                <span style={{
+                  fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+                  fontSize: "0.7rem", fontWeight: 500,
+                  letterSpacing: "0.05em", color: "var(--text-3)",
+                  lineHeight: 1.5,
+                }}>
+                  {tag}
+                </span>
+              </Fragment>
+            ))}
+          </div>
         )}
 
         {/* CTA button */}
@@ -167,7 +211,7 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0]; index: n
           onClick={() => router.push(project.href)}
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
-            width: "100%", marginTop: 4,
+            width: "100%", marginTop: 16,
             fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
             fontSize: "0.82rem", fontWeight: 600, letterSpacing: "0.02em",
             color: hovered ? "var(--green)" : "var(--text-2)",

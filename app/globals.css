@@ -12,9 +12,9 @@
   --btn-text:     #0a0a0a;
 
   --text:         rgba(255,255,255,0.90);
-  --text-2:       rgba(255,255,255,0.55);
-  /* 0.45 → 4.8:1 on #0a0a0a, 4.3:1 on #141414 — passes WCAG UI component 3:1 */
-  --text-3:       rgba(255,255,255,0.45);
+  --text-2:       rgba(255,255,255,0.70);
+  /* 0.54 → 7.4:1 on #0a0a0a, 6.1:1 on #141414 — passes WCAG AA body text 4.5:1 */
+  --text-3:       rgba(255,255,255,0.54);
 
   --green:        #45c97c;
   --green-btn:    #45c97c;
@@ -36,7 +36,7 @@
   /* Legacy aliases */
   --lime:         #45c97c;
   --border:       rgba(255,255,255,0.08);
-  --muted:        rgba(255,255,255,0.40);
+  --muted:        rgba(255,255,255,0.50);
 
   /* ── Case Study tokens — dark mode ─────────────────────────────────────── */
   /* Warm cream text on dark editorial backgrounds */
@@ -45,8 +45,8 @@
   --cs-nav-bg:         rgba(9,9,11,0.93);
   --cs-menu-bg:        rgba(9,9,11,0.97);
   --cs-text:           #f2ede8;
-  --cs-text-muted:     rgba(242,237,232,0.58);
-  --cs-text-faint:     rgba(242,237,232,0.38);
+  --cs-text-muted:     rgba(242,237,232,0.72);
+  --cs-text-faint:     rgba(242,237,232,0.52);
   --cs-surface:        #111113;
   --cs-surface-2:      #161618;
   --cs-border:         rgba(255,255,255,0.07);
@@ -70,10 +70,10 @@ html[data-theme="light"] {
   --card-border:  rgba(0,0,0,0.10);
   --card-hover:   rgba(0,0,0,0.16);
 
-  /* text-2: 6.4:1 on #e8f2ec; text-3: 4.7:1 on white cards, 4.6:1 on light-green bg */
+  /* text-2: 7.5:1 on #e8f2ec; text-3: 5.4:1 on white cards, 5.3:1 on light-green bg — WCAG AA */
   --text:         rgba(0,0,0,0.88);
-  --text-2:       rgba(0,0,0,0.64);
-  --text-3:       rgba(0,0,0,0.55);
+  --text-2:       rgba(0,0,0,0.70);
+  --text-3:       rgba(0,0,0,0.62);
 
   /* green: #1d7a46 = 4.8:1 on #e8f2ec — passes 4.5:1 for small text */
   --green:        #1d7a46;
@@ -97,7 +97,7 @@ html[data-theme="light"] {
 
   --lime:         #1d7a46;
   --border:       rgba(0,0,0,0.10);
-  --muted:        rgba(0,0,0,0.50);
+  --muted:        rgba(0,0,0,0.58);
 
   /* ── Case Study tokens — light mode ─────────────────────────────────────
      STRICT two-color background system:
@@ -105,16 +105,16 @@ html[data-theme="light"] {
        --cs-bg-secondary  #E5F5EA  all secondary surfaces / cards / sections
      Text contrast (vs #F6F9FD, L≈0.94 / vs #E5F5EA, L≈0.90):
        --cs-text        rgba(17,24,28,0.92) → ~13:1 / ~12:1  ✓
-       --cs-text-muted  rgba(17,24,28,0.66) → ~6.4:1 / ~6:1  ✓ (body 4.5+)
-       --cs-text-faint  rgba(17,24,28,0.50) → ~4.0:1 / ~3.8:1 ✓ (UI/large 3+)
+       --cs-text-muted  rgba(17,24,28,0.72) → ~7.5:1 / ~7:1  ✓ (body 4.5+)
+       --cs-text-faint  rgba(17,24,28,0.68) → ~5.6:1 / ~5.2:1 ✓ (WCAG AA 4.5+)
      Per-project accents: all ≥ 4.5:1 on both surfaces ─────────────────── */
   --cs-bg:             #F6F9FD;
   --cs-bg-secondary:   #E5F5EA;
   --cs-nav-bg:         rgba(246,249,253,0.95);
   --cs-menu-bg:        rgba(246,249,253,0.99);
   --cs-text:           rgba(17,24,28,0.92);
-  --cs-text-muted:     rgba(17,24,28,0.66);
-  --cs-text-faint:     rgba(17,24,28,0.50);
+  --cs-text-muted:     rgba(17,24,28,0.72);
+  --cs-text-faint:     rgba(17,24,28,0.68);
   --cs-surface:        #E5F5EA;   /* cards / panels — secondary color */
   --cs-surface-2:      #E5F5EA;   /* keep the two-color rule          */
   --cs-border:         rgba(17,24,28,0.14);
@@ -200,12 +200,12 @@ section { padding-block: 100px; }
 }
 
 /* ─── Case study utilities (kept for sub-pages) ───────────────────────────── */
-.section-label   { display:inline-block; margin-bottom:14px; letter-spacing:.11em; font-size:.7rem; text-transform:uppercase; color:var(--text-3); }
+.section-label   { display:inline-block; margin-bottom:14px; letter-spacing:.11em; font-size:.72rem; text-transform:uppercase; color:var(--text-3); }
 .section-heading { display:flex; flex-direction:column; gap:18px; }
 .tag, .chip, .pill { display:inline-flex; align-items:center; justify-content:center; min-height:28px; padding:5px 12px; border-radius:4px; line-height:1; white-space:nowrap; font-size:.75rem; }
 .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-.kicker   { display:inline-block; font-size:.72rem; font-weight:500; text-transform:uppercase; letter-spacing:.11em; color:var(--green); margin-bottom:14px; }
-.caption  { font-size:.78rem; color:var(--text-3); line-height:1.55; }
+.kicker   { display:inline-block; font-size:.75rem; font-weight:500; text-transform:uppercase; letter-spacing:.11em; color:var(--green); margin-bottom:14px; }
+.caption  { font-size:.8125rem; color:var(--text-3); line-height:1.55; }
 
 .ideation-carousel { scrollbar-width:thin; scrollbar-color:rgba(69,201,124,.35) rgba(255,255,255,.05); }
 .ideation-carousel::-webkit-scrollbar { height:3px; }

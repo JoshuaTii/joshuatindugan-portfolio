@@ -93,7 +93,7 @@ export function Info() {
           className="flex flex-col"
           style={{ gap: 20, maxWidth: 680, marginBottom: 56 }}
         >
-          <p style={{ fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", color: GREEN }}>
+          <p style={{ fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--green)" }}>
             Info
           </p>
           <h2
@@ -102,12 +102,12 @@ export function Info() {
               fontWeight: 700,
               lineHeight: 1.06,
               letterSpacing: "-0.025em",
-              color: "rgba(255,255,255,0.88)",
+              color: "var(--text)",
             }}
           >
             The work, the tools,<br />the background.
           </h2>
-          <p style={{ lineHeight: 1.7, color: "rgba(255,255,255,0.44)", fontSize: "0.9rem" }}>
+          <p style={{ lineHeight: 1.7, color: "var(--text-2)", fontSize: "1rem" }}>
             D.C.-based interaction designer and photographer holding a B.F.A Interaction Design degree.
           </p>
         </motion.div>
@@ -134,10 +134,10 @@ export function Info() {
                 minHeight: 60,
               }}
             >
-              <span style={{ fontSize: "1.4rem", fontWeight: 700, lineHeight: 1, color: GREEN }}>
+              <span style={{ fontSize: "1.4rem", fontWeight: 700, lineHeight: 1, color: "var(--green)" }}>
                 {stat.value}
               </span>
-              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>{stat.label}</span>
+              <span style={{ fontSize: "0.8rem", color: "var(--text-3)" }}>{stat.label}</span>
             </div>
           ))}
         </motion.div>
@@ -225,7 +225,7 @@ export function Info() {
             className="flex flex-col"
             style={{ gap: 22 }}
           >
-            <p style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>
+            <p style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-3)" }}>
               Services
             </p>
             <div className="flex flex-col" style={{ gap: 12 }}>
@@ -260,11 +260,11 @@ export function Info() {
                     >
                       {s.number}
                     </span>
-                    <p style={{ fontWeight: 600, fontSize: "0.875rem", color: "rgba(255,255,255,0.82)" }}>
+                    <p style={{ fontWeight: 600, fontSize: "0.875rem", color: "var(--text)" }}>
                       {s.title}
                     </p>
                   </div>
-                  <p style={{ fontSize: "0.8rem", lineHeight: 1.62, color: "rgba(255,255,255,0.36)", paddingLeft: 22 }}>
+                  <p style={{ fontSize: "0.875rem", lineHeight: 1.62, color: "var(--text-3)", paddingLeft: 22 }}>
                     {s.desc}
                   </p>
                 </motion.div>
@@ -280,7 +280,7 @@ export function Info() {
             className="flex flex-col"
             style={{ gap: 22 }}
           >
-            <p style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>
+            <p style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-3)" }}>
               Software Stack
             </p>
             <div className="grid grid-cols-2" style={{ gap: 10 }}>
@@ -303,10 +303,10 @@ export function Info() {
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.13)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
                 >
-                  <p style={{ fontWeight: 600, fontSize: "0.85rem", lineHeight: 1, color: "rgba(255,255,255,0.80)" }}>
+                  <p style={{ fontWeight: 600, fontSize: "0.85rem", lineHeight: 1, color: "var(--text)" }}>
                     {tool.name}
                   </p>
-                  <p style={{ fontSize: "0.72rem", lineHeight: 1.4, color: "rgba(255,255,255,0.28)" }}>{tool.desc}</p>
+                  <p style={{ fontSize: "0.72rem", lineHeight: 1.4, color: "var(--text-3)" }}>{tool.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -320,7 +320,7 @@ export function Info() {
             className="flex flex-col"
             style={{ gap: 22 }}
           >
-            <p style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>
+            <p style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-3)" }}>
               Experience
             </p>
             <div className="flex flex-col" style={{ gap: 36 }}>
@@ -341,12 +341,12 @@ export function Info() {
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
                 >
-                  <p style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.28)" }}>{item.period}</p>
-                  <p style={{ fontWeight: 600, fontSize: "0.875rem", lineHeight: 1.2, color: "rgba(255,255,255,0.82)" }}>
+                  <p style={{ fontSize: "0.7rem", color: "var(--text-3)" }}>{item.period}</p>
+                  <p style={{ fontWeight: 600, fontSize: "0.875rem", lineHeight: 1.2, color: "var(--text)" }}>
                     {item.role}
                   </p>
-                  <p style={{ fontSize: "0.72rem", color: GREEN, opacity: 0.75 }}>{item.company}</p>
-                  <p style={{ fontSize: "0.8rem", lineHeight: 1.65, color: "rgba(255,255,255,0.34)", marginTop: 4 }}>
+                  <p style={{ fontSize: "0.72rem", color: "var(--green)" }}>{item.company}</p>
+                  <p style={{ fontSize: "0.875rem", lineHeight: 1.65, color: "var(--text-3)", marginTop: 4 }}>
                     {item.description}
                   </p>
                 </motion.div>
