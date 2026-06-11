@@ -1,8 +1,38 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const RESEARCH_METHODS = [
+  {
+    method: "Student Workshop",
+    participants: "15 participants",
+    goal: "Understand the emotional experience of scholarship searching and map pain points in the current process.",
+  },
+  {
+    method: "Student Interviews",
+    participants: "15 participants",
+    goal: "Hear individual stories about how students currently search, apply, and track scholarship opportunities.",
+  },
+  {
+    method: "Persona Development",
+    participants: "Synthesis",
+    goal: "Distill research into a primary persona representing the first-generation student most underserved by existing platforms.",
+  },
+  {
+    method: "Competitive Analysis",
+    participants: "6 platforms",
+    goal: "Audit existing scholarship sites for gaps in matching quality, application friction, and missing support features.",
+  },
+  {
+    method: "Prototype Feedback",
+    participants: "10 reviewers",
+    goal: "Gather qualitative feedback on the interactive prototype to guide final design decisions before delivery.",
+  },
+];
 
 const WORKSHOP_PHOTOS = [
   "/intuition/workshop/photo-1.png",
@@ -18,34 +48,9 @@ const USER_TESTING_OBSERVATIONS = [
   "Could add in what it would look like to view another user's profile",
 ];
 
-const INSIGHTS = [
-  {
-    number: "01",
-    title: "Overwhelm as a barrier",
-    body: "Students described the scholarship search as emotionally draining. Not from lack of effort, but from the sheer volume of disconnected information to track.",
-  },
-  {
-    number: "02",
-    title: "First-gen students are most at risk",
-    body: "Participants who were first-generation college students reported feeling especially lost. They lacked the institutional knowledge that peers with connected families take for granted.",
-  },
-  {
-    number: "03",
-    title: "Social proof matters",
-    body: "Students trusted scholarship information more when it came from peers who had successfully applied. Hearing real stories made the process feel achievable.",
-  },
-  {
-    number: "04",
-    title: "Deadline anxiety is universal",
-    body: "Almost every participant mentioned missing or nearly missing deadlines because information was spread across bookmarks, emails, and sticky notes. Never in one place.",
-  },
-];
-
 export function Research() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   return (
     <section id="research" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px" }}>
@@ -53,11 +58,11 @@ export function Research() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: EASE }}
           style={{
             fontSize: "0.75rem",
             fontWeight: 500,
-            textTransform: "uppercase",
+            textTransform: "uppercase" as const,
             letterSpacing: "0.12em",
             color: ACCENT,
             marginBottom: 16,
@@ -69,7 +74,7 @@ export function Research() {
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
           style={{
             fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight: 700,
@@ -85,17 +90,95 @@ export function Research() {
           through workshops and interviews.
         </motion.h2>
 
-        {/* Workshop photos */}
+        {/* Research methods table */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.07, ease: EASE }}
           style={{ marginBottom: 80 }}
         >
           <p
             style={{
               fontSize: "0.75rem",
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
+              letterSpacing: "0.1em",
+              color: "var(--cs-text-faint)",
+              marginBottom: 20,
+            }}
+          >
+            Research Methods
+          </p>
+          <div
+            style={{
+              borderRadius: 20,
+              border: "1px solid var(--cs-border)",
+              backgroundColor: "var(--cs-surface)",
+              overflow: "hidden",
+            }}
+          >
+            {/* Table header */}
+            <div
+              className="grid grid-cols-3"
+              style={{
+                padding: "14px 28px",
+                borderBottom: "1px solid var(--cs-border)",
+                backgroundColor: "rgba(155,233,49,0.04)",
+              }}
+            >
+              {["Method", "Participants", "Research Goal"].map((h) => (
+                <span
+                  key={h}
+                  style={{
+                    fontSize: "0.68rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase" as const,
+                    letterSpacing: "0.1em",
+                    color: ACCENT,
+                  }}
+                >
+                  {h}
+                </span>
+              ))}
+            </div>
+            {/* Table rows */}
+            {RESEARCH_METHODS.map(({ method, participants, goal }, i) => (
+              <motion.div
+                key={method}
+                initial={{ opacity: 0, x: -12 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.06, ease: EASE }}
+                className="grid grid-cols-3"
+                style={{
+                  padding: "18px 28px",
+                  borderBottom: i < RESEARCH_METHODS.length - 1 ? "1px solid var(--cs-border)" : "none",
+                  alignItems: "start",
+                }}
+              >
+                <span style={{ fontSize: "0.88rem", fontWeight: 600, color: "var(--cs-text)", lineHeight: 1.4 }}>
+                  {method}
+                </span>
+                <span style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)", lineHeight: 1.4 }}>
+                  {participants}
+                </span>
+                <span style={{ fontSize: "0.82rem", color: "var(--cs-text-muted)", lineHeight: 1.55 }}>
+                  {goal}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Workshop photos */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+          style={{ marginBottom: 80 }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               color: "var(--cs-text-faint)",
               marginBottom: 20,
@@ -103,20 +186,18 @@ export function Research() {
           >
             Student Workshop & Interviews
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 12 }}>
+          <div className="grid grid-cols-2" style={{ gap: 16 }}>
             {WORKSHOP_PHOTOS.map((src, i) => (
               <motion.div
                 key={src}
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.12 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => setLightboxSrc(src)}
-                style={{ cursor: "zoom-in" }}
+                transition={{ duration: 0.5, delay: 0.12 + i * 0.07, ease: EASE }}
               >
-                <img
+                <ClickableImage
                   src={src}
                   alt={`Workshop photo ${i + 1}`}
-                  style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }}
+                  style={{ aspectRatio: "4/3", objectFit: "cover" }}
                   loading="lazy"
                 />
               </motion.div>
@@ -124,17 +205,17 @@ export function Research() {
           </div>
         </motion.div>
 
-        {/* User Persona — full width */}
+        {/* User Persona */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
           style={{ marginBottom: 48 }}
         >
           <p
             style={{
               fontSize: "0.75rem",
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               color: "var(--cs-text-faint)",
               marginBottom: 24,
@@ -143,7 +224,6 @@ export function Research() {
             User Persona
           </p>
 
-          {/* Persona text block — extracted from persona card */}
           <div
             style={{
               padding: "32px 36px",
@@ -153,7 +233,6 @@ export function Research() {
               marginBottom: 24,
             }}
           >
-            {/* Name + archetype */}
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px 20px", marginBottom: 28 }}>
               <h3
                 style={{
@@ -183,7 +262,6 @@ export function Research() {
               </span>
             </div>
 
-            {/* Demographics grid */}
             <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: 16, marginBottom: 28 }}>
               {[
                 { label: "Age",        value: "18" },
@@ -201,7 +279,7 @@ export function Research() {
                     backgroundColor: "var(--cs-bg-secondary)",
                   }}
                 >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: ACCENT, marginBottom: 6 }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase" as const, letterSpacing: "0.1em", color: ACCENT, marginBottom: 6 }}>
                     {label}
                   </p>
                   <p style={{ fontSize: "0.9rem", fontWeight: 500, color: "var(--cs-text)", lineHeight: 1.4 }}>
@@ -211,13 +289,12 @@ export function Research() {
               ))}
             </div>
 
-            {/* Goals & Pain points */}
             <div className="grid md:grid-cols-2" style={{ gap: 16 }}>
               <div>
-                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
+                <p style={{ fontSize: "0.7rem", textTransform: "uppercase" as const, letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                   Goals
                 </p>
-                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column" as const, gap: 8 }}>
                   {[
                     "Find scholarships she actually qualifies for without hours of research",
                     "Fund college without taking on overwhelming debt",
@@ -231,10 +308,10 @@ export function Research() {
                 </ul>
               </div>
               <div>
-                <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
+                <p style={{ fontSize: "0.7rem", textTransform: "uppercase" as const, letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
                   Pain Points
                 </p>
-                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column" as const, gap: 8 }}>
                   {[
                     "Overwhelmed by scattered scholarship websites with conflicting information",
                     "No guidance as a first-generation college applicant",
@@ -250,31 +327,23 @@ export function Research() {
             </div>
           </div>
 
-          {/* Existing persona image below */}
-          <div
-            onClick={() => setLightboxSrc("/intuition/persona.png")}
-            style={{ cursor: "zoom-in" }}
-          >
-            <img
-              src="/intuition/persona.png"
-              alt="User persona, Rosa Sanchez full card"
-              style={{ width: "100%", display: "block" }}
-              loading="lazy"
-            />
-          </div>
+          <ClickableImage
+            src="/intuition/user-persona.png"
+            alt="User persona, Rosa Sanchez"
+            loading="lazy"
+          />
         </motion.div>
 
-        {/* User Feedback — live text below persona */}
+        {/* User Testing Observations */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 80 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
         >
           <p
             style={{
               fontSize: "0.75rem",
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               color: "var(--cs-text-faint)",
               marginBottom: 16,
@@ -293,7 +362,7 @@ export function Research() {
             <p
               style={{
                 fontSize: "0.8rem",
-                textTransform: "uppercase",
+                textTransform: "uppercase" as const,
                 letterSpacing: "0.1em",
                 color: ACCENT,
                 fontWeight: 600,
@@ -305,7 +374,7 @@ export function Research() {
             <ul
               style={{
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "column" as const,
                 gap: 14,
                 margin: 0,
                 paddingLeft: 0,
@@ -317,7 +386,7 @@ export function Research() {
                   key={i}
                   initial={{ opacity: 0, x: -12 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.25 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.5, delay: 0.25 + i * 0.06, ease: EASE }}
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
@@ -343,99 +412,8 @@ export function Research() {
             </ul>
           </div>
         </motion.div>
-
-        {/* Key insights */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            fontSize: "0.75rem",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            color: "var(--cs-text-faint)",
-            marginBottom: 24,
-          }}
-        >
-          Key Research Insights
-        </motion.p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 16 }}>
-          {INSIGHTS.map(({ number, title, body }, i) => (
-            <motion.div
-              key={number}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.35 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                padding: "28px 24px",
-                borderRadius: 16,
-                border: "1px solid var(--cs-border)",
-                backgroundColor: "var(--cs-surface)",
-                display: "flex",
-                flexDirection: "column" as const,
-                gap: 12,
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "0.7rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: ACCENT,
-                  fontWeight: 600,
-                }}
-              >
-                {number}
-              </span>
-              <h3
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  color: "var(--cs-text)",
-                  lineHeight: 1.3,
-                }}
-              >
-                {title}
-              </h3>
-              <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
-                {body}
-              </p>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
-      {/* Lightbox */}
-      {lightboxSrc && (
-        <div
-          onClick={() => setLightboxSrc(null)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 100,
-            backgroundColor: "rgba(0,0,0,0.9)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 24,
-            cursor: "zoom-out",
-          }}
-        >
-          <img
-            src={lightboxSrc}
-            alt="Expanded view"
-            style={{
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-              objectFit: "contain",
-              borderRadius: 12,
-            }}
-
-          loading="lazy"
-          />
-        </div>
-      )}
     </section>
   );
 }

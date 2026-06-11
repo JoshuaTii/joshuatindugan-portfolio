@@ -1,7 +1,7 @@
 "use client";
-import { useRef, useState, useCallback } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Lightbox } from "./Lightbox";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -26,10 +26,6 @@ export function Final() {
   const protoRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const protoInView = useInView(protoRef, { once: true, margin: "-80px" });
-
-  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
-  const openLightbox = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
-  const closeLightbox = useCallback(() => setLightbox(null), []);
 
   return (
     <section
@@ -100,26 +96,8 @@ export function Final() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.04 * i, ease: EASE }}
-              style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
-              onClick={() => openLightbox(screen.src, screen.alt)}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.02)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "none";
-              }}
             >
-              <img
-                src={screen.src}
-                alt={screen.alt}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  display: "block",
-                }}
-                loading="lazy"
-              />
+              <ClickableImage src={screen.src} alt={screen.alt} loading="lazy" />
             </motion.div>
           ))}
         </div>
@@ -295,7 +273,6 @@ export function Final() {
         </div>
       </div>
 
-      <Lightbox src={lightbox?.src ?? null} alt={lightbox?.alt ?? ""} onClose={closeLightbox} />
     </section>
   );
 }

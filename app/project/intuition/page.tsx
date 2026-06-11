@@ -1,11 +1,15 @@
-﻿import { InTuitionNavbar } from "./sections/InTuitionNavbar";
+import { InTuitionNavbar } from "./sections/InTuitionNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
+import { Principles } from "./sections/Principles";
 import { Research } from "./sections/Research";
+import { Insights } from "./sections/Insights";
 import { Features } from "./sections/Features";
+import { UserJourney } from "./sections/UserJourney";
 import { Design } from "./sections/Design";
 import { Final } from "./sections/Final";
+import { Reflection } from "./sections/Reflection";
 import { InTuitionFooter } from "./sections/InTuitionFooter";
 
 export const metadata = {
@@ -21,10 +25,14 @@ export default function InTuitionPage() {
       <Hero />
       <Overview />
       <Context />
+      <Principles />
       <Research />
+      <Insights />
       <Features />
+      <UserJourney />
       <Design />
       <Final />
+      <Reflection />
       <InTuitionFooter />
     </main>
   );

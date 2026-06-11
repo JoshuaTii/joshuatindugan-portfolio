@@ -1,15 +1,18 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-const META_CARDS = [
-  { label: "Role",         items: ["UX Designer"] },
-  { label: "Timeline",     items: ["Fall 2024"] },
-  { label: "Team",         items: ["Collaborative Student Project"] },
-  { label: "Tools",        items: ["Figma", "Illustrator", "Photoshop"] },
-  { label: "Deliverables", items: ["Website Prototype", "Hi-Fi"] },
+const SNAPSHOT = [
+  { label: "Role",      value: "UX Designer" },
+  { label: "Timeline",  value: "Fall 2024" },
+  { label: "Platform",  value: "Website" },
+  { label: "Tools",     value: "Figma, Illustrator, Photoshop" },
+  { label: "Methods",   value: "Student workshop, interviews, persona development, competitive analysis, wireframing, prototyping, usability feedback" },
+  { label: "Outcome",   value: "Designed a high-fidelity website prototype that helps students discover scholarships, manage applications, and reuse profile information across opportunities." },
+  { label: "Focus",     value: "Scholarship discovery, first-generation students, financial access, application tracking, reusable student profiles" },
 ];
 
 export function Overview() {
@@ -17,105 +20,95 @@ export function Overview() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="overview" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px" }}>
+    <section
+      id="overview"
+      style={{
+        scrollMarginTop: 80,
+        paddingBlock: "120px 140px",
+        backgroundColor: "var(--cs-bg-secondary)",
+      }}
+    >
       <div className="section-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
+          style={{ marginBottom: 56 }}
         >
           <p
             style={{
               display: "inline-block",
               fontSize: "0.75rem",
               fontWeight: 500,
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.12em",
               color: ACCENT,
               marginBottom: 16,
             }}
           >
-            Project Overview
+            Project Snapshot
           </p>
-          <div
-            className="flex flex-col md:flex-row md:items-end md:justify-between"
-            style={{ gap: "24px 64px", marginBottom: 72 }}
+          <h2
+            style={{
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "var(--cs-text)",
+              lineHeight: 1.1,
+              maxWidth: 640,
+            }}
           >
-            <h2
-              style={{
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                color: "var(--cs-text)",
-                lineHeight: 1.1,
-              }}
-            >
-              The scholarship process wastes the time
-              <br />
-              of the students who can least afford to lose it.
-            </h2>
-            <p
-              style={{
-                fontSize: "0.9rem",
-                lineHeight: 1.65,
-                color: "var(--cs-text-faint)",
-                maxWidth: 380,
-                textAlign: "right" as const,
-              }}
-            >
-              An 8-week collaborative UI/UX student project exploring how design can
-              remove the invisible barriers that prevent qualified students from finding and
-              applying for funding.
-            </p>
-          </div>
+            The scholarship process wastes the time of the students who can least afford to lose it.
+          </h2>
         </motion.div>
 
-        {/* Meta cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: 16 }}>
-          {META_CARDS.map(({ label, items }, i) => (
+        {/* Snapshot grid */}
+        <div
+          className="grid grid-cols-2 md:grid-cols-4"
+          style={{ gap: 12, marginBottom: 72 }}
+        >
+          {SNAPSHOT.map(({ label, value }, i) => (
             <motion.div
               key={label}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.06 * i, ease: EASE }}
               style={{
-                padding: "24px 20px",
+                padding: "20px 20px",
                 borderRadius: 14,
                 border: "1px solid var(--cs-border)",
                 backgroundColor: "var(--cs-surface)",
                 display: "flex",
                 flexDirection: "column" as const,
-                gap: 12,
+                gap: 10,
+                gridColumn: label === "Focus" ? "1 / -1" : (label === "Methods" || label === "Outcome") ? "span 2" : undefined,
               }}
             >
               <span
-                className="text-xs uppercase"
-                style={{ letterSpacing: "0.1em", color: ACCENT }}
+                style={{
+                  fontSize: "0.68rem",
+                  fontWeight: 500,
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.1em",
+                  color: ACCENT,
+                }}
               >
                 {label}
               </span>
-              <div className="flex flex-col" style={{ gap: 6 }}>
-                {items.map((item) => (
-                  <span
-                    key={item}
-                    style={{ fontSize: "0.88rem", fontWeight: 500, color: "var(--cs-text)", lineHeight: 1.4 }}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+              <span style={{ fontSize: "0.88rem", fontWeight: 500, color: "var(--cs-text)", lineHeight: 1.5 }}>
+                {value}
+              </span>
             </motion.div>
           ))}
         </div>
 
-        {/* Summary */}
+        {/* Summary prose */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.4, ease: EASE }}
           style={{
-            marginTop: 64,
             paddingTop: 64,
             borderTop: "1px solid var(--cs-border)",
             display: "grid",
@@ -124,15 +117,16 @@ export function Overview() {
           className="md:grid-cols-2"
         >
           <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
-            Applying for scholarships is broken. Students spend hours hunting across dozens of websites,
-            filling out redundant forms, and still miss opportunities they were qualified for. InTuition
-            reimagines this experience: a single, smart platform that does the matching work for you.
+            Applying for scholarships is broken. Students spend hours hunting across dozens of
+            websites, filling out redundant forms, and still miss opportunities they were qualified
+            for. InTuition reimagines this experience: a single, smart platform that does the
+            matching work for you.
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)", maxWidth: 560 }}>
-            We designed a profile-driven matching engine that surfaces relevant scholarships
-            the moment a student builds their profile. A single unified form applies that data
-            across multiple opportunities, eliminating the redundant work that causes most
-            students to give up halfway through.
+            We designed a profile-driven matching engine that surfaces relevant scholarships the
+            moment a student builds their profile. A unified form applies that data across multiple
+            opportunities, eliminating the redundant work that causes most students to give up
+            halfway through.
           </p>
         </motion.div>
       </div>

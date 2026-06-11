@@ -1,7 +1,7 @@
 "use client";
-import { useRef, useState, useCallback } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Lightbox } from "./Lightbox";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -52,10 +52,6 @@ const FEATURES = [
 export function Features() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
-  const openLightbox = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
-  const closeLightbox = useCallback(() => setLightbox(null), []);
 
   return (
     <section
@@ -191,27 +187,13 @@ export function Features() {
                     style={{
                       display: "flex",
                       justifyContent: "center",
-                      cursor: "zoom-in",
                     }}
-                    onClick={() => openLightbox(feature.screen, feature.title)}
                   >
-                    <img
+                    <ClickableImage
                       src={feature.screen}
                       alt={feature.title}
-                      style={{
-                        width: "100%",
-                        maxWidth: 320,
-                        height: "auto",
-                        objectFit: "contain",
-                        display: "block",
-                        transition: "transform 300ms ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.transform = "none";
-                      }}
+                      wrapperStyle={{ width: "100%", maxWidth: 320 }}
+                      style={{ objectFit: "contain" }}
                       loading="lazy"
                     />
                   </div>
@@ -222,7 +204,6 @@ export function Features() {
         </div>
       </div>
 
-      <Lightbox src={lightbox?.src ?? null} alt={lightbox?.alt ?? ""} onClose={closeLightbox} />
     </section>
   );
 }

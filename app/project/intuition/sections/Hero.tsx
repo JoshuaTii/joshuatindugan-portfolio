@@ -73,7 +73,7 @@ export function Hero() {
                 marginBottom: 36,
               }}
             >
-              Redesigning how students discover and apply for scholarships
+              A scholarship discovery platform for students who deserve better than the current process
             </motion.h2>
 
             <motion.p
@@ -85,12 +85,28 @@ export function Hero() {
                 lineHeight: 1.75,
                 color: "var(--cs-text-muted)",
                 maxWidth: 480,
+                marginBottom: 20,
+              }}
+            >
+              InTuition is a web-based scholarship discovery platform designed for students who
+              struggle to find, compare, and apply for scholarships across scattered websites.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                fontSize: "0.93rem",
+                lineHeight: 1.75,
+                color: "var(--cs-text-faint)",
+                maxWidth: 480,
                 marginBottom: 48,
               }}
             >
-              A web app concept that replaces the fragmented scholarship search with a single smart platform.
-              It matches students to opportunities based on their profile and lets them apply through one
-              unified form.
+              The project explores how profile-based matching, smart filters, reusable application
+              information, and peer support can make the scholarship process feel clearer, faster,
+              and less overwhelming.
             </motion.p>
 
             <motion.div
@@ -103,7 +119,7 @@ export function Hero() {
               {[
                 { label: "Role",     value: "UX Designer" },
                 { label: "Timeline", value: "Fall 2024" },
-                { label: "Platform", value: "Website" },
+                { label: "Platform", value: "Desktop / Web" },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col" style={{ gap: 5 }}>
                   <span

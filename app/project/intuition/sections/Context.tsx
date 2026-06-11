@@ -1,8 +1,34 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const CHALLENGE_CARDS = [
+  {
+    tag: "The Wrong Question",
+    heading: "What do students want from a scholarship platform?",
+    body: "Most platforms were built around browsability: more scholarships, better filters, cleaner layouts. They answered the wrong question. Students were not asking for more options. They were asking how to stop wasting time on options that did not fit.",
+    points: [
+      "Information scattered across dozens of unrelated websites",
+      "No way to know if you qualify before investing hours in an application",
+      "Redundant forms asked for the same data over and over again",
+      "No central place to track what was saved, in progress, or submitted",
+    ],
+  },
+  {
+    tag: "The Real Challenge",
+    heading: "Students need structure, not more scholarships.",
+    body: "First-generation students especially lacked the institutional knowledge their more-connected peers took for granted. They needed a platform built around their actual process: understand options, check fit, apply efficiently, track progress, and get guidance from peers who had been through it.",
+    points: [
+      "Profile-based matching surfaces what actually fits",
+      "Eligibility and requirements visible before applying",
+      "Reusable application data eliminates repeated form-filling",
+      "Peer support grounds the experience in real student outcomes",
+    ],
+  },
+];
 
 export function Context() {
   const ref = useRef(null);
@@ -21,11 +47,11 @@ export function Context() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: EASE }}
           style={{
             fontSize: "0.75rem",
             fontWeight: 500,
-            textTransform: "uppercase",
+            textTransform: "uppercase" as const,
             letterSpacing: "0.12em",
             color: ACCENT,
             marginBottom: 16,
@@ -37,7 +63,7 @@ export function Context() {
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
           style={{
             fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight: 700,
@@ -48,170 +74,100 @@ export function Context() {
             maxWidth: 680,
           }}
         >
-          The scholarship process is fragmented,
-          <br className="hidden md:block" />
-          exhausting, and inaccessible.
+          The Scholarship Search Should Not Feel Like a Second Job.
         </motion.h2>
 
-        <div className="grid md:grid-cols-2" style={{ gap: "40px 80px" }}>
-          {/* Problem */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              padding: "36px 32px",
-              borderRadius: 20,
-              border: "1px solid var(--cs-border)",
-              backgroundColor: "var(--cs-surface)",
-              display: "flex",
-              flexDirection: "column" as const,
-              gap: 20,
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(155,233,49,0.1)",
-                  border: "1px solid rgba(155,233,49,0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "0.75rem",
-                  color: ACCENT,
-                  fontWeight: 700,
-                }}
-              >
-                01
-              </div>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: ACCENT,
-                  fontWeight: 500,
-                }}
-              >
-                The Problem
-              </span>
-            </div>
-            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
-              First-generation college students especially face a structural wall when trying
-              to find financial support. Information is scattered across dozens of sites, each with
-              different requirements and redundant application forms. The process is so overwhelming
-              that many qualified students never apply at all.
-            </p>
-            <ul style={{ display: "flex", flexDirection: "column", gap: 10, margin: 0, paddingLeft: 0, listStyle: "none" }}>
-              {[
-                "Scholarship searches require hours across multiple sites",
-                "Duplicate application forms waste student time",
-                "Deadlines are easy to miss without a central dashboard",
-                "First-gen students lack institutional guidance",
-              ].map((point) => (
-                <li
-                  key={point}
+        <div className="grid md:grid-cols-2" style={{ gap: "32px 48px" }}>
+          {CHALLENGE_CARDS.map(({ tag, heading, body, points }, i) => (
+            <motion.div
+              key={tag}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.08 + i * 0.1, ease: EASE }}
+              style={{
+                padding: "36px 32px",
+                borderRadius: 20,
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
+                display: "flex",
+                flexDirection: "column" as const,
+                gap: 20,
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div
                   style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    backgroundColor: "rgba(155,233,49,0.1)",
+                    border: "1px solid rgba(155,233,49,0.2)",
                     display: "flex",
-                    alignItems: "flex-start",
-                    gap: 10,
-                    fontSize: "0.875rem",
-                    color: "var(--cs-text-muted)",
-                    lineHeight: 1.5,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "0.65rem",
+                    color: ACCENT,
+                    fontWeight: 700,
+                    flexShrink: 0,
                   }}
                 >
-                  <span style={{ color: ACCENT, marginTop: 3, flexShrink: 0 }}>-</span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <span
+                  style={{
+                    fontSize: "0.72rem",
+                    textTransform: "uppercase" as const,
+                    letterSpacing: "0.1em",
+                    color: ACCENT,
+                    fontWeight: 500,
+                  }}
+                >
+                  {tag}
+                </span>
+              </div>
 
-          {/* Solution */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              padding: "36px 32px",
-              borderRadius: 20,
-              border: "1px solid var(--cs-border)",
-              backgroundColor: "var(--cs-surface)",
-              display: "flex",
-              flexDirection: "column" as const,
-              gap: 20,
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div
+              <h3
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(155,233,49,0.1)",
-                  border: "1px solid rgba(155,233,49,0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "0.75rem",
-                  color: ACCENT,
+                  fontSize: "clamp(1rem, 2vw, 1.2rem)",
                   fontWeight: 700,
+                  color: "var(--cs-text)",
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.25,
                 }}
               >
-                02
-              </div>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: ACCENT,
-                  fontWeight: 500,
-                }}
-              >
-                Our Approach
-              </span>
-            </div>
-            <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
-              InTuition consolidates the entire scholarship journey into one cohesive platform.
-              Students build a profile once, and the system uses that data to surface personalized
-              matches, pre-fill applications, and track deadlines automatically. Less friction
-              at every step means more students reach the finish line.
-            </p>
-            <ul style={{ display: "flex", flexDirection: "column", gap: 10, margin: 0, paddingLeft: 0, listStyle: "none" }}>
-              {[
-                "Smart matching surfaces relevant scholarships instantly",
-                "One unified form applies to multiple opportunities",
-                "Progress tracking and deadline reminders built in",
-                "Social features let students share and learn from peers",
-              ].map((point) => (
-                <li
-                  key={point}
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: 10,
-                    fontSize: "0.875rem",
-                    color: "var(--cs-text-muted)",
-                    lineHeight: 1.5,
-                  }}
-                >
-                  <span style={{ color: ACCENT, marginTop: 3, flexShrink: 0 }}>-</span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+                {heading}
+              </h3>
+
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
+                {body}
+              </p>
+
+              <ul style={{ display: "flex", flexDirection: "column" as const, gap: 10, margin: 0, paddingLeft: 0, listStyle: "none" }}>
+                {points.map((point) => (
+                  <li
+                    key={point}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 10,
+                      fontSize: "0.875rem",
+                      color: "var(--cs-text-muted)",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    <span style={{ color: ACCENT, marginTop: 3, flexShrink: 0 }}>-</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Scope note */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
           style={{
             marginTop: 48,
             fontSize: "0.875rem",

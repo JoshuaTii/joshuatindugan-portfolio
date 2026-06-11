@@ -1,6 +1,7 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
 
@@ -40,31 +41,21 @@ interface PhaseGalleryProps {
   images: { src: string; alt: string }[];
   inView: boolean;
   baseDelay?: number;
-  onOpen: (src: string, alt: string) => void;
   cols?: 2 | 4;
 }
 
-function PhaseGallery({ images, inView, baseDelay = 0, onOpen, cols = 4 }: PhaseGalleryProps) {
-  const colClass = cols === 4 ? "grid grid-cols-2 md:grid-cols-4" : "grid grid-cols-2";
+function PhaseGallery({ images, inView, baseDelay = 0 }: PhaseGalleryProps) {
+  const colClass = "grid grid-cols-2";
   return (
-    <div className={colClass} style={{ gap: 12 }}>
+    <div className={colClass} style={{ gap: 16 }}>
       {images.map(({ src, alt }, i) => (
         <motion.div
           key={src}
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: baseDelay + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-          onClick={() => onOpen(src, alt)}
-          style={{ cursor: "zoom-in", transition: "transform 250ms ease" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1.02)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "none"; }}
         >
-          <img
-            src={src}
-            alt={alt}
-            style={{ width: "100%", height: "auto", objectFit: "contain", display: "block" }}
-            loading="lazy"
-          />
+          <ClickableImage src={src} alt={alt} loading="lazy" />
         </motion.div>
       ))}
     </div>
@@ -85,7 +76,7 @@ const PHASES = [
       "Kept the experience centered on reducing overwhelm, not simply showing more scholarships.",
     ],
     images: SKETCH_IMAGES,
-    cols: 4 as const,
+    cols: 2 as const,
   },
   {
     number: "02",
@@ -100,7 +91,7 @@ const PHASES = [
       "Started shaping the platform around the idea that students should enter information once and reuse it across opportunities.",
     ],
     images: LOFI_IMAGES,
-    cols: 4 as const,
+    cols: 2 as const,
   },
   {
     number: "03",
@@ -115,7 +106,7 @@ const PHASES = [
       "Used this phase to catch sections that felt too text-heavy before moving into the full prototype.",
     ],
     images: MEDIUM_IMAGES,
-    cols: 4 as const,
+    cols: 2 as const,
   },
   {
     number: "04",
@@ -130,21 +121,13 @@ const PHASES = [
       "Strengthened the connection between peer stories, user profiles, and scholarship confidence.",
     ],
     images: PROTO_IMAGES,
-    cols: 4 as const,
+    cols: 2 as const,
   },
 ];
 
 export function Design() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const [lightboxAlt, setLightboxAlt] = useState<string>("");
-
-  const openLightbox = (src: string, alt: string) => {
-    setLightboxSrc(src);
-    setLightboxAlt(alt);
-  };
-
   return (
     <section
       id="design"
@@ -242,8 +225,8 @@ export function Design() {
                     style={{
                       padding: "18px 20px",
                       borderRadius: 12,
-                      border: "1px solid var(--cs-border)",
-                      backgroundColor: "var(--cs-surface)",
+                      border: "1px solid rgba(155,233,49,0.14)",
+                      backgroundColor: "rgba(155,233,49,0.04)",
                       fontSize: "0.88rem",
                       lineHeight: 1.65,
                       color: "var(--cs-text-muted)",
@@ -258,7 +241,6 @@ export function Design() {
                 images={images}
                 inView={inView}
                 baseDelay={0.1 + phaseIdx * 0.04}
-                onOpen={openLightbox}
                 cols={cols}
               />
             </motion.div>
@@ -266,36 +248,6 @@ export function Design() {
         </div>
       </div>
 
-      {/* Lightbox */}
-      {lightboxSrc && (
-        <div
-          onClick={() => setLightboxSrc(null)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 100,
-            backgroundColor: "rgba(0,0,0,0.9)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 24,
-            cursor: "zoom-out",
-          }}
-        >
-          <img
-            src={lightboxSrc}
-            alt={lightboxAlt}
-            style={{
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-              objectFit: "contain",
-              borderRadius: 12,
-            }}
-
-          loading="lazy"
-          />
-        </div>
-      )}
     </section>
   );
 }

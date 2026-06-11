@@ -1,25 +1,55 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-const GALLERY_SCREENS = [
-  { src: "/intuition/final/Login.png",    alt: "Login screen" },
-  { src: "/intuition/final/sign-up.png",  alt: "Sign up screen" },
-  { src: "/intuition/final/Main.png",     alt: "Main dashboard" },
-  { src: "/intuition/final/Main-1.png",   alt: "Main, scholarships list" },
-  { src: "/intuition/final/Main-2.png",   alt: "Main, filtered view" },
-  { src: "/intuition/final/Main-3.png",   alt: "Main, detail panel" },
-  { src: "/intuition/final/Explore.png",  alt: "Explore scholarships" },
-  { src: "/intuition/final/Inbox.png",    alt: "Inbox" },
-  { src: "/intuition/final/Chat.png",     alt: "Chat" },
-  { src: "/intuition/final/Letter.png",   alt: "Letter template" },
-  { src: "/intuition/final/Chat-1.png",   alt: "Chat, conversation" },
-  { src: "/intuition/final/Letter-1.png", alt: "Letter, variation" },
+const SCREEN_GROUPS = [
+  {
+    label: "Onboarding",
+    desc: "Students create an account and build the profile that powers matching and reusable application data.",
+    screens: [
+      { src: "/intuition/final/Main.png",    alt: "Main dashboard" },
+      { src: "/intuition/final/Login.png",   alt: "Login screen" },
+      { src: "/intuition/final/sign-up.png", alt: "Sign up screen" },
+    ],
+  },
+  {
+    label: "Dashboard and Discover",
+    desc: "The main hub. Students see matched scholarships, manage saved opportunities, explore the catalog, and track what is in progress.",
+    screens: [
+      { src: "/intuition/final/Main-1.png", alt: "Main, scholarships list" },
+      { src: "/intuition/final/Main-2.png", alt: "Main, filtered view" },
+      { src: "/intuition/final/Main-3.png", alt: "Main, detail panel" },
+      { src: "/intuition/final/Main-4.png", alt: "Main, expanded view" },
+      { src: "/intuition/final/Main-5.png", alt: "Main, scholarship detail" },
+      { src: "/intuition/final/Main-6.png", alt: "Main, results" },
+    ],
+  },
+  {
+    label: "Profile and Application",
+    desc: "Saved profile data pre-fills applications. Students review, edit, and submit without starting from scratch.",
+    screens: [
+      { src: "/intuition/final/sign-up-1.png",      alt: "Sign up, continued" },
+      { src: "/intuition/final/Explore.png",         alt: "Explore scholarships" },
+      { src: "/intuition/final/Inbox.png",           alt: "Inbox" },
+      { src: "/intuition/final/Letter.png",          alt: "Letter template" },
+      { src: "/intuition/final/Letter_Minimize.png", alt: "Letter minimized" },
+    ],
+  },
+  {
+    label: "Peer Support",
+    desc: "Students connect with peers who have navigated the scholarship process. Community messaging and shared experience.",
+    screens: [
+      { src: "/intuition/final/Chat.png",   alt: "Chat" },
+      { src: "/intuition/final/Chat-1.png", alt: "Chat, conversation" },
+      { src: "/intuition/final/Chat-2.png", alt: "Chat, expanded" },
+    ],
+  },
 ];
 
-// Real InTuition brand colors from visual guideline
 const COLOR_SWATCHES = [
   { hex: "#504E76", label: "Muted Violet",  role: "Primary brand color" },
   { hex: "#CBCBE7", label: "Lavender",      role: "Secondary / surface" },
@@ -27,75 +57,76 @@ const COLOR_SWATCHES = [
   { hex: "#180727", label: "Deep Purple",   role: "Background / dark" },
 ];
 
-const NEXT_STEPS = [
-  "Test the platform with junior and senior high school first-generation students",
-  "Study how early college-planning students compare scholarship opportunities",
-  "Refine filters around eligibility, deadline, award amount, and education level",
-  "Improve guidance for students applying for scholarships for the first time",
-  "Expand support content around essays, deadlines, and financial aid preparation",
-];
+function ScreenGroup({
+  group,
+  index,
+}: {
+  group: (typeof SCREEN_GROUPS)[0];
+  index: number;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
-function HoverScreen({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
-  const [hovered, setHovered] = useState(false);
   return (
-    <div
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ cursor: "zoom-in" }}
-    >
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: "100%",
-          height: "auto",
-          objectFit: "contain",
-          display: "block",
-          transform: hovered ? "scale(1.02) translateY(-4px)" : "scale(1)",
-          transition: "transform 250ms ease",
-        }}
-        loading="lazy"
-      />
+    <div ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: EASE }}
+        style={{ marginBottom: 24 }}
+      >
+        <p
+          style={{
+            fontSize: "0.72rem",
+            textTransform: "uppercase" as const,
+            letterSpacing: "0.12em",
+            color: ACCENT,
+            fontWeight: 600,
+            marginBottom: 6,
+          }}
+        >
+          {String(index + 1).padStart(2, "0")}. {group.label}
+        </p>
+        <p style={{ fontSize: "0.88rem", lineHeight: 1.65, color: "var(--cs-text-muted)", maxWidth: 540 }}>
+          {group.desc}
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.08, ease: EASE }}
+        className="grid grid-cols-2"
+        style={{ gap: 24 }}
+      >
+        {group.screens.map(({ src, alt }) => (
+          <ClickableImage key={src} src={src} alt={alt} loading="lazy" />
+        ))}
+      </motion.div>
     </div>
   );
 }
 
 export function Final() {
-  const heroRef    = useRef(null);
-  const heroInView  = useInView(heroRef, { once: true, margin: "-80px" });
+  const heroRef   = useRef(null);
+  const heroInView = useInView(heroRef, { once: true, margin: "-80px" });
 
-  const galleryRef    = useRef(null);
-  const galleryInView  = useInView(galleryRef, { once: true, margin: "-80px" });
-
-  const guideRef    = useRef(null);
-  const guideInView  = useInView(guideRef, { once: true, margin: "-80px" });
-
-  const reflectRef    = useRef(null);
-  const reflectInView  = useInView(reflectRef, { once: true, margin: "-80px" });
-
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const [lightboxAlt, setLightboxAlt] = useState<string>("");
-
-  const openLightbox = (src: string, alt: string) => {
-    setLightboxSrc(src);
-    setLightboxAlt(alt);
-  };
+  const guideRef   = useRef(null);
+  const guideInView = useInView(guideRef, { once: true, margin: "-80px" });
 
   return (
     <section id="final" style={{ scrollMarginTop: 80, paddingBlock: "120px 140px" }}>
       <div className="section-container">
 
-        {/* ── Section header */}
         <motion.p
           ref={heroRef}
           initial={{ opacity: 0, y: 20 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: EASE }}
           style={{
             fontSize: "0.75rem",
             fontWeight: 500,
-            textTransform: "uppercase",
+            textTransform: "uppercase" as const,
             letterSpacing: "0.12em",
             color: ACCENT,
             marginBottom: 16,
@@ -107,7 +138,7 @@ export function Final() {
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
           style={{
             fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight: 700,
@@ -126,13 +157,13 @@ export function Final() {
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
           style={{
             fontSize: "1rem",
             lineHeight: 1.75,
             color: "var(--cs-text-muted)",
             maxWidth: 600,
-            marginBottom: 32,
+            marginBottom: 80,
           }}
         >
           The final design brought the experience together as one complete scholarship platform.
@@ -142,99 +173,15 @@ export function Final() {
           do next.
         </motion.p>
 
-        {/* Design choice cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: 12, marginBottom: 64 }}
-        >
-          {[
-            "Used a soft purple and lavender palette to make the experience feel academic, calm, and approachable.",
-            "Added amber gold as an accent to highlight important actions and moments of opportunity.",
-            "Used Albert Sans for body text so scholarship information stayed readable and practical.",
-            "Organized scholarships around smart filters like deadline, award amount, eligibility, major, year level, and required materials.",
-            "Made the reusable student profile a core feature to reduce repetitive form-filling.",
-            "Added tracking features so saved, in-progress, submitted, and upcoming applications stay in one place.",
-            "Kept peer/community features connected to confidence and social proof, not just social networking.",
-          ].map((card, i) => (
-            <div
-              key={i}
-              style={{
-                padding: "18px 20px",
-                borderRadius: 12,
-                border: "1px solid var(--cs-border)",
-                backgroundColor: "var(--cs-surface)",
-                fontSize: "0.88rem",
-                lineHeight: 1.65,
-                color: "var(--cs-text-muted)",
-              }}
-            >
-              {card}
-            </div>
+        {/* Screen groups */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 80 }}>
+          {SCREEN_GROUPS.map((group, gi) => (
+            <ScreenGroup key={group.label} group={group} index={gi} />
           ))}
-        </motion.div>
-
-        {/* ── Hero mockup */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          onClick={() => openLightbox("/intuition/mockup.png", "InTuition final design mockup")}
-          style={{
-            cursor: "zoom-in",
-            marginBottom: 80,
-          }}
-        >
-          <img
-            src="/intuition/mockup.png"
-            alt="InTuition final design mockup"
-            style={{ width: "100%", display: "block", maxHeight: 720, objectFit: "contain" }}
-
-          loading="lazy"
-          />
-        </motion.div>
-
-        {/* ── Final screen gallery with hover */}
-        <div ref={galleryRef}>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={galleryInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              fontSize: "0.75rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "var(--cs-text-faint)",
-              marginBottom: 20,
-            }}
-          >
-            All Screens
-          </motion.p>
-
-          <div
-            className="grid grid-cols-2 md:grid-cols-3"
-            style={{ columnGap: 40, rowGap: 52 }}
-          >
-            {GALLERY_SCREENS.map(({ src, alt }, i) => (
-              <motion.div
-                key={src}
-                initial={{ opacity: 0, y: 20 }}
-                animate={galleryInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <HoverScreen src={src} alt={alt} onClick={() => openLightbox(src, alt)} />
-              </motion.div>
-            ))}
-          </div>
         </div>
 
-        {/* ── Interactive Prototype */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={galleryInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        {/* Interactive Prototype */}
+        <div
           style={{
             marginTop: 100,
             paddingTop: 72,
@@ -245,7 +192,7 @@ export function Final() {
             style={{
               fontSize: "0.75rem",
               fontWeight: 500,
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.12em",
               color: ACCENT,
               marginBottom: 16,
@@ -277,14 +224,12 @@ export function Final() {
             Walk through the scholarship discovery and application flow.
           </p>
 
-          {/* Figma embed */}
           <div
             style={{
               borderRadius: 20,
               overflow: "hidden",
               border: "1px solid var(--cs-border)",
               backgroundColor: "var(--cs-surface)",
-              position: "relative",
             }}
           >
             <iframe
@@ -321,14 +266,14 @@ export function Final() {
           >
             Open prototype in Figma ↗
           </a>
-        </motion.div>
+        </div>
 
-        {/* ── Visual Guidelines — InTuition brand */}
+        {/* Visual Guidelines */}
         <motion.div
           ref={guideRef}
           initial={{ opacity: 0, y: 32 }}
           animate={guideInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: EASE }}
           style={{
             marginTop: 120,
             paddingTop: 80,
@@ -339,7 +284,7 @@ export function Final() {
             style={{
               fontSize: "0.75rem",
               fontWeight: 500,
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
               letterSpacing: "0.12em",
               color: ACCENT,
               marginBottom: 16,
@@ -362,99 +307,24 @@ export function Final() {
           </h2>
 
           <div className="grid md:grid-cols-2" style={{ gap: "48px 80px" }}>
-            {/* Typography */}
             <div>
-              <p
-                style={{
-                  fontSize: "0.75rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "var(--cs-text-faint)",
-                  marginBottom: 24,
-                }}
-              >
+              <p style={{ fontSize: "0.75rem", textTransform: "uppercase" as const, letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 24 }}>
                 Typography
               </p>
-
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                {/* Arima Medium — headings */}
-                <div
-                  style={{
-                    padding: "24px 28px",
-                    borderRadius: 16,
-                    border: "1px solid var(--cs-border)",
-                    backgroundColor: "var(--cs-surface)",
-                  }}
-                >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
-                    Header, Arima Medium
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontSize: "2.8rem",
-                      fontWeight: 500,
-                      color: "var(--cs-text)",
-                      lineHeight: 1.05,
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    Header
-                  </p>
-                  <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", marginTop: 10 }}>
-                    Arima-Medium · used for primary headings and display text
-                  </p>
+                <div style={{ padding: "24px 28px", borderRadius: 16, border: "1px solid var(--cs-border)", backgroundColor: "var(--cs-surface)" }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase" as const, letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>Header, Arima Medium</p>
+                  <p style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "2.8rem", fontWeight: 500, color: "var(--cs-text)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>Header</p>
+                  <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", marginTop: 10 }}>Arima-Medium · used for primary headings and display text</p>
                 </div>
-
-                {/* Arima Regular — subheadings */}
-                <div
-                  style={{
-                    padding: "24px 28px",
-                    borderRadius: 16,
-                    border: "1px solid var(--cs-border)",
-                    backgroundColor: "var(--cs-surface)",
-                  }}
-                >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
-                    Subheader, Arima Regular
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontSize: "1.75rem",
-                      fontWeight: 400,
-                      color: "var(--cs-text)",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    Subheader
-                  </p>
-                  <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", marginTop: 10 }}>
-                    Arima-regular · used for section subheadings and navigation
-                  </p>
+                <div style={{ padding: "24px 28px", borderRadius: 16, border: "1px solid var(--cs-border)", backgroundColor: "var(--cs-surface)" }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase" as const, letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>Subheader, Arima Regular</p>
+                  <p style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "1.75rem", fontWeight: 400, color: "var(--cs-text)", lineHeight: 1.2 }}>Subheader</p>
+                  <p style={{ fontSize: "0.8rem", color: "var(--cs-text-faint)", marginTop: 10 }}>Arima-regular · used for section subheadings and navigation</p>
                 </div>
-
-                {/* Albert Sans — body */}
-                <div
-                  style={{
-                    padding: "24px 28px",
-                    borderRadius: 16,
-                    border: "1px solid var(--cs-border)",
-                    backgroundColor: "var(--cs-surface)",
-                  }}
-                >
-                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>
-                    Body, Albert Sans
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "system-ui, -apple-system, sans-serif",
-                      fontSize: "1rem",
-                      fontWeight: 400,
-                      color: "var(--cs-text-muted)",
-                      lineHeight: 1.7,
-                    }}
-                  >
+                <div style={{ padding: "24px 28px", borderRadius: 16, border: "1px solid var(--cs-border)", backgroundColor: "var(--cs-surface)" }}>
+                  <p style={{ fontSize: "0.7rem", textTransform: "uppercase" as const, letterSpacing: "0.08em", color: "var(--cs-text-faint)", marginBottom: 12 }}>Body, Albert Sans</p>
+                  <p style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: "1rem", fontWeight: 400, color: "var(--cs-text-muted)", lineHeight: 1.7 }}>
                     Body · Albert Sans
                     <br />
                     Applied to paragraph text, labels, and UI copy throughout the platform.
@@ -463,20 +333,10 @@ export function Final() {
               </div>
             </div>
 
-            {/* Color palette */}
             <div>
-              <p
-                style={{
-                  fontSize: "0.75rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "var(--cs-text-faint)",
-                  marginBottom: 24,
-                }}
-              >
+              <p style={{ fontSize: "0.75rem", textTransform: "uppercase" as const, letterSpacing: "0.1em", color: "var(--cs-text-faint)", marginBottom: 24 }}>
                 Color Palette
               </p>
-
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {COLOR_SWATCHES.map(({ hex, label, role }) => (
                   <div
@@ -491,21 +351,10 @@ export function Final() {
                       backgroundColor: "var(--cs-surface)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: 10,
-                        backgroundColor: hex,
-                        flexShrink: 0,
-                        border: "1px solid var(--cs-border)",
-                      }}
-                    />
+                    <div style={{ width: 48, height: 48, borderRadius: 10, backgroundColor: hex, flexShrink: 0, border: "1px solid var(--cs-border)" }} />
                     <div>
                       <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--cs-text)" }}>{label}</p>
-                      <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>
-                        #{hex.replace("#", "")} · {role}
-                      </p>
+                      <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>{hex} · {role}</p>
                     </div>
                   </div>
                 ))}
@@ -513,184 +362,8 @@ export function Final() {
             </div>
           </div>
         </motion.div>
-
-        {/* ── Reflections */}
-        <motion.div
-          ref={reflectRef}
-          initial={{ opacity: 0, y: 32 }}
-          animate={reflectInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            marginTop: 120,
-            paddingTop: 80,
-            borderTop: "1px solid var(--cs-border)",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "0.75rem",
-              fontWeight: 500,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              color: ACCENT,
-              marginBottom: 16,
-            }}
-          >
-            Reflections
-          </p>
-
-          <h2
-            style={{
-              fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              color: "var(--cs-text)",
-              lineHeight: 1.1,
-              marginBottom: 48,
-            }}
-          >
-            What I learned.
-          </h2>
-
-          <div className="grid md:grid-cols-2" style={{ gap: "28px 80px" }}>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "var(--cs-text-muted)" }}>
-              The scholarship search is not a feature problem. It is a cognitive load problem.
-              Students already have access to scholarships. What they do not have is a way to
-              filter, track, and act on that information without it consuming time they cannot
-              spare. That framing kept the design focused on structure and clarity rather than
-              adding more discovery surfaces.
-            </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "var(--cs-text-muted)" }}>
-              The biggest design lesson was that students do not simply need more information. They
-              need information structured in a way that helps them act. Working collaboratively also
-              meant learning to defend design decisions in critique: articulating not just what we
-              built, but why a specific structural choice serves the user's actual moment of need.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* ── Next Steps */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={reflectInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            marginTop: 80,
-            paddingTop: 64,
-            borderTop: "1px solid var(--cs-border)",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "0.75rem",
-              fontWeight: 500,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              color: ACCENT,
-              marginBottom: 16,
-            }}
-          >
-            Next Steps
-          </p>
-
-          <h2
-            style={{
-              fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              color: "var(--cs-text)",
-              lineHeight: 1.1,
-              marginBottom: 20,
-            }}
-          >
-            If I continued.
-          </h2>
-
-          <p
-            style={{
-              fontSize: "1rem",
-              lineHeight: 1.75,
-              color: "var(--cs-text-muted)",
-              maxWidth: 640,
-              marginBottom: 40,
-            }}
-          >
-            If I continued developing InTuition, I would expand testing beyond college students
-            and focus more directly on junior and senior high school first-generation students
-            preparing to fund their higher education. This next phase would help me understand how
-            students earlier in the college-planning process search for scholarships, what language
-            or filters feel most useful to them, and where they need the most guidance before applying.
-          </p>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {NEXT_STEPS.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -16 }}
-                animate={reflectInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 16,
-                  padding: "18px 24px",
-                  borderRadius: 14,
-                  border: "1px solid var(--cs-border)",
-                  backgroundColor: "var(--cs-surface)",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "0.7rem",
-                    fontWeight: 700,
-                    color: ACCENT,
-                    letterSpacing: "0.06em",
-                    minWidth: 24,
-                    paddingTop: 2,
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.6, color: "var(--cs-text-muted)" }}>
-                  {step}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
       </div>
 
-      {/* Lightbox */}
-      {lightboxSrc && (
-        <div
-          onClick={() => setLightboxSrc(null)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 100,
-            backgroundColor: "rgba(0,0,0,0.9)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 24,
-            cursor: "zoom-out",
-          }}
-        >
-          <img
-            src={lightboxSrc}
-            alt={lightboxAlt}
-            style={{
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-              objectFit: "contain",
-              borderRadius: 12,
-            }}
-
-          loading="lazy"
-          />
-        </div>
-      )}
     </section>
   );
 }

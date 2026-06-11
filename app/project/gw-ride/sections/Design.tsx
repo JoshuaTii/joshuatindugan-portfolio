@@ -1,7 +1,7 @@
 "use client";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Lightbox } from "./Lightbox";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -133,12 +133,10 @@ const APP_COLORS = [
 function PhaseGallery({
   images,
   inView,
-  onOpen,
   cols,
 }: {
   images: { src: string; alt: string }[];
   inView: boolean;
-  onOpen: (src: string, alt: string) => void;
   cols: string;
 }) {
   return (
@@ -149,21 +147,8 @@ function PhaseGallery({
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.05 * i, ease: EASE }}
-          style={{ cursor: "zoom-in", transition: "transform 300ms ease" }}
-          onClick={() => onOpen(img.src, img.alt)}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.transform = "translateY(-4px) scale(1.01)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.transform = "none";
-          }}
         >
-          <img
-            src={img.src}
-            alt={img.alt}
-            style={{ width: "100%", height: "auto", objectFit: "contain", display: "block" }}
-            loading="lazy"
-          />
+          <ClickableImage src={img.src} alt={img.alt} loading="lazy" />
         </motion.div>
       ))}
     </div>
@@ -176,10 +161,6 @@ export function Design() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const vgInView = useInView(vgRef, { once: true, margin: "-80px" });
   const [activePhase, setActivePhase] = useState("early");
-
-  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
-  const openLightbox = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
-  const closeLightbox = useCallback(() => setLightbox(null), []);
 
   const phase = PHASES.find((p) => p.id === activePhase)!;
 
@@ -319,7 +300,6 @@ export function Design() {
           <PhaseGallery
             images={phase.images}
             inView={inView}
-            onOpen={openLightbox}
             cols={phase.cols}
           />
         </motion.div>
@@ -539,7 +519,6 @@ export function Design() {
         </div>
       </div>
 
-      <Lightbox src={lightbox?.src ?? null} alt={lightbox?.alt ?? ""} onClose={closeLightbox} />
     </section>
   );
 }
