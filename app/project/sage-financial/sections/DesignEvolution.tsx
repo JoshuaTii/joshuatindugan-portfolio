@@ -1,27 +1,30 @@
-﻿"use client";
+"use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "./ClickableImage";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 const LOGO_STAGES = [
   {
     src: "/sage/logo-sketch-1.jpg",
     label: "Sketch 01",
-    caption: "Early mark exploration: concepts of growth, financial movement, and community connection were explored through rough gesture forms.",
+    caption: "Early marks exploring growth, guidance, and community through rough gesture forms.",
   },
   {
     src: "/sage/logo-sketch-2.jpg",
     label: "Sketch 02",
-    caption: "Refining toward trustworthiness and accessibility, moving away from abstract forms toward something that felt grounded and legible at small sizes.",
+    caption: "Refining toward trustworthiness and accessibility, moving away from abstract forms.",
   },
   {
     src: "/sage/logo-initial-design.png",
     label: "Initial Design",
-    caption: "A formalized version that established the typographic relationship and tested the mark for clarity across app contexts: splash screens, icons, and headers.",
+    caption: "A formalized version that tested the mark for clarity across app contexts.",
   },
   {
     src: "/sage/logo-final-design.png",
     label: "Final Design",
-    caption: "The final mark balances geometric precision with warmth. The sage-green palette signals trust and empowerment without clinical coldness.",
+    caption: "The final mark expresses unity, growth, community, and security.",
   },
 ];
 
@@ -30,7 +33,7 @@ const PHASES = [
     id: "lofi",
     label: "Lo-fi Wireframes",
     description:
-      "At this stage, I kept the design simple on purpose. Before making anything look polished, I wanted to understand whether the basic structure made sense. The goal was to make sure users could quickly understand where to go, what to do, and how the main features connected.",
+      "The first wireframes focused on structure before visual design. At this stage, the main goal was to organize the experience around the user journey: learn, connect, take action, and track progress. Grayscale layouts helped test hierarchy without relying on color, while the card-based structure made complex financial information easier to scan.",
     cards: [
       "Focused on structure before visual design.",
       "Tested the core flows: payment status, learning, local support, and microloan progress.",
@@ -47,9 +50,9 @@ const PHASES = [
   },
   {
     id: "proto",
-    label: "Initial Prototype",
+    label: "Early Prototype",
     description:
-      "Once the structure felt solid, I started adding personality through color, type, real content, and imagery. This version helped me see what felt promising, but also what needed more restraint. It made the app feel more alive, but also showed that the visual tone had to feel more trustworthy for a financial product.",
+      "The early prototype helped explore the overall experience, but it felt too busy and leaned heavily into the visual language of traditional fintech apps. During feedback sessions, one user even asked, \"It looks like Cash App. Is this Cash App?\" That comment highlighted a larger issue: the design felt more transactional than supportive. To better reflect SAGE's focus on trust, community, and financial empowerment, the visual direction was refined to feel calmer, more approachable, and less centered on payments alone.",
     cards: [
       "Added color, typography, icons, real copy, and image-based lesson cards.",
       "Used bright green to suggest money, growth, and progress.",
@@ -66,9 +69,9 @@ const PHASES = [
   },
   {
     id: "final",
-    label: "Final Design",
+    label: "Final Design Direction",
     description:
-      "The final design became more focused, calm, and intentional. I wanted SAGE to feel supportive without feeling childish, and professional without feeling cold. Since the app deals with money, repayment, learning, and local resources, every visual decision needed to build trust quickly.",
+      "Early feedback suggested the first visual direction felt too bright and transactional for a trust-based financial product. The final direction uses darker surfaces, limited accent color, and clearer hierarchy to feel calmer, safer, and more credible.",
     cards: [
       "Shifted to a dark navy interface to create a calmer and more secure feeling.",
       "Used green as an accent for progress, success, and key actions instead of the main background.",
@@ -78,11 +81,34 @@ const PHASES = [
       "Made learning feel less intimidating through visual cards, progress bars, and clear next steps.",
     ],
     screens: [
-      { src: "/sage/de-final-2.png", caption: "Cross Section" },
-      { src: "/sage/de-final-3.png", caption: "Sage" },
-      { src: "/sage/de-final-4.png", caption: "Lessons" },
-      { src: "/sage/de-final-5.png", caption: "Microloan" },
+      { src: "/sage/fd-plain-1.png", caption: "Cross Section" },
+      { src: "/sage/fd-plain-2.png", caption: "Sage" },
+      { src: "/sage/fd-plain-3.png", caption: "Lessons" },
+      { src: "/sage/fd-plain-4.png", caption: "Microloan" },
     ],
+  },
+];
+
+const FEEDBACK_CHANGES = [
+  {
+    feedback: '"It looks like Cash App."',
+    change:
+      "Shifted the visual language away from transactional fintech patterns and toward a more supportive, community-centered experience.",
+  },
+  {
+    feedback: "Information felt overwhelming.",
+    change:
+      "Reduced content density and grouped information into smaller, scannable sections.",
+  },
+  {
+    feedback: "Users wanted clearer next steps.",
+    change:
+      "Added progress indicators, recommendations, and action-focused cards throughout the experience.",
+  },
+  {
+    feedback: "Community support was not obvious enough.",
+    change:
+      "Increased visibility of local resources, workshops, and neighborhood-based assistance.",
   },
 ];
 
@@ -94,14 +120,14 @@ export function DesignEvolution() {
   const phase = PHASES.find((p) => p.id === activePhase)!;
 
   return (
-    <section id="design-evolution" className="!pt-[120px] !pb-[140px]">
+    <section id="design" className="!pt-[120px] !pb-[140px]">
       <div className="section-container">
         {/* Section header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
           style={{ marginBottom: 72 }}
         >
           <p className="kicker">Design Evolution</p>
@@ -111,65 +137,74 @@ export function DesignEvolution() {
               fontWeight: 700,
               letterSpacing: "-0.02em",
               color: "var(--cs-text)",
-              maxWidth: 640,
+              maxWidth: 680,
               marginBottom: 16,
             }}
           >
-            From sketch to system.
+            How the product moved from rough structure to a calmer, more trusted experience.
           </h2>
           <p
             style={{
               fontSize: "1rem",
               lineHeight: 1.7,
               color: "var(--cs-text-muted)",
-              maxWidth: 520,
+              maxWidth: 560,
             }}
           >
-            The design went through three distinct phases. Select a phase to see the screens.
+            SAGE went through several visual and structural changes before reaching the final
+            design. The goal was to make the product feel less like a flashy fintech app and more
+            like a calm, trusted financial support tool.
           </p>
         </motion.div>
 
-        {/* Logo Evolution */}
+        {/* Logo Exploration */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
           style={{ marginBottom: 96 }}
         >
-          <p
-            className="kicker"
-            style={{ color: "rgba(122,182,136,0.7)", marginBottom: 12 }}
-          >
-            Logo Evolution
+          <p className="kicker" style={{ color: "var(--cs-accent-sf)", marginBottom: 12 }}>
+            Logo Exploration
           </p>
-          <div
-            className="flex flex-col md:flex-row md:items-end md:justify-between"
-            style={{ gap: "16px 64px", marginBottom: 40 }}
+          <h3
+            style={{
+              fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+              color: "var(--cs-text)",
+              lineHeight: 1.2,
+              maxWidth: 480,
+              marginBottom: 16,
+            }}
           >
-            <h3
-              style={{
-                fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)",
-                fontWeight: 600,
-                letterSpacing: "-0.02em",
-                color: "var(--cs-text)",
-                lineHeight: 1.1,
-              }}
-            >
-              A mark built on clarity, trust, and scale.
-            </h3>
-            <p
-              style={{
-                fontSize: "0.9rem",
-                lineHeight: 1.65,
-                color: "var(--cs-text-faint)",
-                maxWidth: 400,
-                flexShrink: 0,
-              }}
-            >
-              The SAGE wordmark went through four iterations, each time getting cleaner, more
-              scalable, and more aligned with what the platform stands for.
-            </p>
-          </div>
+            A mark built on clarity, trust, and scale.
+          </h3>
+          <p
+            style={{
+              fontSize: "0.93rem",
+              lineHeight: 1.7,
+              color: "var(--cs-text-muted)",
+              maxWidth: 560,
+              marginBottom: 12,
+            }}
+          >
+            The logo started with rough pencil sketches. I wanted to tailor it to D.C. itself,
+            which led to the leaf symbol. Realizing shields represent unity and security, I
+            combined both symbols. The final mark expresses unity, growth, community, and security.
+          </p>
+          <p
+            style={{
+              fontSize: "0.9rem",
+              lineHeight: 1.65,
+              color: "var(--cs-text-faint)",
+              maxWidth: 560,
+              marginBottom: 36,
+            }}
+          >
+            As the product direction became clearer, the final logo moved toward a simpler symbol
+            that felt more calm, trustworthy, and easier to recognize in a mobile app.
+          </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 20 }}>
             {LOGO_STAGES.map((stage, i) => (
@@ -177,7 +212,7 @@ export function DesignEvolution() {
                 key={stage.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.07, ease: EASE }}
                 style={{ display: "flex", flexDirection: "column" as const, gap: 12 }}
               >
                 <div
@@ -185,32 +220,22 @@ export function DesignEvolution() {
                     borderRadius: 14,
                     overflow: "hidden",
                     backgroundColor: "var(--cs-surface)",
-                    minHeight: 200,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 24,
+                    border: "1px solid var(--cs-border)",
                   }}
                 >
-                  <img
+                  <ClickableImage
                     src={stage.src}
                     alt={stage.label}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      display: "block",
-                    }}
-
-                  loading="lazy"
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                    loading="lazy"
                   />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column" as const, gap: 4 }}>
+                <div style={{ display: "flex", flexDirection: "column" as const, gap: 4, alignItems: "flex-start" }}>
                   <span
                     style={{
                       fontSize: "0.72rem",
                       fontWeight: 600,
-                      color: "#7ab688",
+                      color: "var(--cs-accent-sf)",
                       textTransform: "uppercase" as const,
                       letterSpacing: "0.1em",
                     }}
@@ -231,7 +256,7 @@ export function DesignEvolution() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
           className="flex flex-wrap"
           style={{ gap: 12, marginBottom: 32 }}
         >
@@ -242,9 +267,9 @@ export function DesignEvolution() {
               style={{
                 padding: "10px 22px",
                 borderRadius: 999,
-                border: `1px solid ${activePhase === p.id ? "#7ab688" : "var(--cs-border-strong)"}`,
-                backgroundColor: activePhase === p.id ? "rgba(122,182,136,0.1)" : "transparent",
-                color: activePhase === p.id ? "#7ab688" : "var(--cs-text-faint)",
+                border: `1px solid ${activePhase === p.id ? "var(--cs-accent-sf)" : "var(--cs-border-strong)"}`,
+                backgroundColor: activePhase === p.id ? "rgba(155,233,49,0.08)" : "transparent",
+                color: activePhase === p.id ? "var(--cs-accent-sf)" : "var(--cs-text-faint)",
                 fontSize: "0.8rem",
                 fontWeight: 500,
                 cursor: "pointer",
@@ -254,7 +279,7 @@ export function DesignEvolution() {
                 gap: 8,
               }}
             >
-              <span style={{ color: "rgba(122,182,136,0.5)", fontSize: "0.7rem" }}>
+              <span style={{ color: "var(--cs-accent-sf)", fontSize: "0.7rem", opacity: 0.6 }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               {p.label}
@@ -267,7 +292,7 @@ export function DesignEvolution() {
           key={activePhase + "-desc"}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.35, ease: EASE }}
           style={{
             fontSize: "0.95rem",
             lineHeight: 1.75,
@@ -284,7 +309,7 @@ export function DesignEvolution() {
           key={activePhase + "-cards"}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, ease: EASE }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: 12, marginBottom: 40 }}
         >
@@ -299,7 +324,6 @@ export function DesignEvolution() {
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
                 color: "var(--cs-text-muted)",
-                borderLeft: "2px solid rgba(122,182,136,0.4)",
               }}
             >
               {card}
@@ -312,79 +336,143 @@ export function DesignEvolution() {
           key={activePhase + "-grid"}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, ease: EASE }}
           className="grid grid-cols-2 md:grid-cols-4"
-          style={{ gap: 20 }}
+          style={{ gap: 20, marginBottom: 80 }}
         >
           {phase.screens.map((screen, i) => (
             <div key={i} style={{ display: "flex", flexDirection: "column" as const, gap: 10 }}>
-              <div
-                style={{
-                  borderRadius: 14,
-                  overflow: "hidden",
-                  aspectRatio: "9/16",
-                }}
-              >
-                <img
-                  src={screen.src}
-                  alt={screen.caption}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    display: "block",
-                  }}
-
+              <ClickableImage
+                src={screen.src}
+                alt={screen.caption}
+                style={{ width: "100%", height: "auto", display: "block" }}
                 loading="lazy"
-                />
-              </div>
+              />
               <p className="caption">{screen.caption}</p>
             </div>
           ))}
         </motion.div>
 
-        {/* Why the redesign is stronger */}
+        {/* Feedback → Design change table */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            marginTop: 72,
-            padding: "32px 36px",
-            borderRadius: 16,
-            border: "1px solid rgba(122,182,136,0.15)",
-            backgroundColor: "rgba(122,182,136,0.04)",
-          }}
+          transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
         >
-          <p
+          <h3
             style={{
-              fontSize: "0.72rem",
+              fontSize: "1rem",
               fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              color: "#7ab688",
-              marginBottom: 14,
-            }}
-          >
-            Why the redesign is stronger
-          </p>
-          <p
-            style={{
-              fontSize: "0.95rem",
-              lineHeight: 1.75,
               color: "var(--cs-text-muted)",
-              maxWidth: 680,
+              textTransform: "uppercase" as const,
+              letterSpacing: "0.1em",
+              marginBottom: 24,
             }}
           >
-            The redesign is stronger because it does more than make the app look better. Testing
-            showed that the earlier version felt too bright, almost too &ldquo;Cash App-y&rdquo; and
-            busy for a financial product, so I refined the experience to feel safer, clearer, and
-            more trustworthy. The final version uses color with purpose, simplifies financial
-            information, and helps users understand their next step without feeling overwhelmed.
-          </p>
+            Feedback → Design Changes
+          </h3>
+
+          {/* Desktop table */}
+          <div
+            className="hidden md:block"
+            style={{
+              borderRadius: 16,
+              border: "1px solid var(--cs-border)",
+              overflow: "hidden",
+              marginBottom: 40,
+            }}
+          >
+            <table style={{ width: "100%", borderCollapse: "collapse" as const }}>
+              <thead>
+                <tr style={{ backgroundColor: "var(--cs-surface)" }}>
+                  {["Feedback", "Design Change"].map((col) => (
+                    <th
+                      key={col}
+                      style={{
+                        padding: "16px 24px",
+                        textAlign: "left" as const,
+                        fontSize: "0.72rem",
+                        fontWeight: 600,
+                        textTransform: "uppercase" as const,
+                        letterSpacing: "0.1em",
+                        color: "var(--cs-accent-sf)",
+                        borderBottom: "1px solid var(--cs-border)",
+                      }}
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {FEEDBACK_CHANGES.map((row, i) => (
+                  <tr
+                    key={i}
+                    style={{
+                      borderBottom: i < FEEDBACK_CHANGES.length - 1 ? "1px solid var(--cs-border)" : "none",
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: "18px 24px",
+                        fontSize: "0.88rem",
+                        fontStyle: "italic",
+                        color: "var(--cs-text-muted)",
+                        verticalAlign: "top" as const,
+                        width: "40%",
+                      }}
+                    >
+                      {row.feedback}
+                    </td>
+                    <td
+                      style={{
+                        padding: "18px 24px",
+                        fontSize: "0.88rem",
+                        lineHeight: 1.65,
+                        color: "var(--cs-text-muted)",
+                        verticalAlign: "top" as const,
+                      }}
+                    >
+                      {row.change}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile stacked */}
+          <div className="md:hidden flex flex-col" style={{ gap: 12, marginBottom: 40 }}>
+            {FEEDBACK_CHANGES.map((row, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "18px 20px",
+                  borderRadius: 12,
+                  border: "1px solid var(--cs-border)",
+                  backgroundColor: "var(--cs-surface)",
+                  display: "flex",
+                  flexDirection: "column" as const,
+                  gap: 10,
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "0.85rem",
+                    fontStyle: "italic",
+                    color: "var(--cs-text-muted)",
+                  }}
+                >
+                  {row.feedback}
+                </p>
+                <p style={{ fontSize: "0.88rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
+                  {row.change}
+                </p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
-

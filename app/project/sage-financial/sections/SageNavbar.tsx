@@ -5,12 +5,12 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Overview",  href: "#overview",        id: "overview" },
-  { label: "Context",   href: "#context",          id: "context" },
-  { label: "Research",  href: "#research",         id: "research" },
-  { label: "Features",  href: "#features",         id: "features" },
-  { label: "Design",    href: "#design-evolution", id: "design-evolution" },
-  { label: "Final",     href: "#final-design",     id: "final-design" },
+  { label: "Overview",    href: "#overview",    id: "overview" },
+  { label: "Context",     href: "#context",     id: "context" },
+  { label: "Research",    href: "#research",    id: "research" },
+  { label: "Experience",  href: "#experience",  id: "experience" },
+  { label: "Design",      href: "#design",      id: "design" },
+  { label: "Reflection",  href: "#reflection",  id: "reflection" },
 ];
 
 const ACCENT = "var(--cs-accent-sf)";

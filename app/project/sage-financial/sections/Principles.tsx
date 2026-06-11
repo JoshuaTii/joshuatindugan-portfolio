@@ -82,7 +82,7 @@ export function Principles() {
                   style={{
                     fontSize: "clamp(1.1rem, 1.4vw, 1.5rem)",
                     fontWeight: 700,
-                    color: "rgba(122,182,136,0.6)",
+                    color: "var(--cs-accent-sf)",
                     letterSpacing: "-0.02em",
                     lineHeight: 1.2,
                     fontFamily: "var(--font-inter), system-ui, sans-serif",

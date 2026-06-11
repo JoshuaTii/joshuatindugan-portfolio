@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -7,16 +7,22 @@ const INSIGHTS = [
     number: "01",
     title: "Trust is infrastructure.",
     body: "Financial apps fail in Ward 7 and 8 not because of missing features, but because institutions burned trust for decades. Every design decision had to answer: why would someone believe this?",
+    response:
+      "Instead of focusing only on financial tools, SAGE puts trust first through clear language, local resources, and community-based support that feels approachable and familiar.",
   },
   {
     number: "02",
     title: "Complexity is a barrier.",
     body: "Dense financial language and multi-step onboarding excludes the people who need financial tools most. Simplicity is not a design preference here. It is a prerequisite for access.",
+    response:
+      "Financial topics were broken into simple lessons, guided steps, and easy-to-understand actions so users can learn without feeling overwhelmed.",
   },
   {
     number: "03",
     title: "Community is the platform.",
     body: "Peer networks are the primary mechanism for economic mobility in Ward 7 and 8. Residents already help each other with money. The right design amplifies that, rather than replacing it with an institution.",
+    response:
+      "SAGE connects users to local organizations, events, and support networks because financial growth is often easier when people do not have to navigate it alone.",
   },
 ];
 
@@ -80,7 +86,7 @@ export function Insights() {
                 style={{
                   fontSize: "2rem",
                   fontWeight: 700,
-                  color: "rgba(122,182,136,0.5)",
+                  color: "var(--cs-accent-sf)",
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
                   fontFamily: "var(--font-playfair), Georgia, serif",
@@ -103,6 +109,32 @@ export function Insights() {
               <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>
                 {insight.body}
               </p>
+
+              {/* Design response */}
+              <div
+                style={{
+                  paddingTop: 18,
+                  borderTop: "1px solid var(--cs-border)",
+                  display: "flex",
+                  flexDirection: "column" as const,
+                  gap: 6,
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "0.7rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase" as const,
+                    letterSpacing: "0.1em",
+                    color: "var(--cs-accent-sf)",
+                  }}
+                >
+                  Design Response
+                </span>
+                <p style={{ fontSize: "0.85rem", lineHeight: 1.65, color: "var(--cs-text-faint)" }}>
+                  {insight.response}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -110,4 +142,3 @@ export function Insights() {
     </section>
   );
 }
-

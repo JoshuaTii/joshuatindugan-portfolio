@@ -1,10 +1,11 @@
-﻿import { SageNavbar } from "./sections/SageNavbar";
+import { SageNavbar } from "./sections/SageNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
+import { Principles } from "./sections/Principles";
 import { Research } from "./sections/Research";
 import { Insights } from "./sections/Insights";
-import { Principles } from "./sections/Principles";
+import { UserJourney } from "./sections/UserJourney";
 import { Features } from "./sections/Features";
 import { DesignEvolution } from "./sections/DesignEvolution";
 import { FinalDesign } from "./sections/FinalDesign";
@@ -21,15 +22,22 @@ export default function SageFinancialPage() {
   return (
     <main style={{ backgroundColor: "var(--cs-bg)" }}>
       <SageNavbar />
+      {/* Overview nav group */}
       <Hero />
       <Overview />
+      {/* Context nav group */}
       <Context />
+      <Principles />
+      {/* Research nav group */}
       <Research />
       <Insights />
-      <Principles />
+      {/* Experience nav group */}
+      <UserJourney />
       <Features />
+      {/* Design nav group */}
       <DesignEvolution />
       <FinalDesign />
+      {/* Reflection nav group */}
       <Reflection />
       <SageFooter />
     </main>

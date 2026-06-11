@@ -1,20 +1,25 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "./ClickableImage";
 
 export function Context() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="context" className="!pt-[120px] !pb-[140px]" style={{ backgroundColor: "var(--cs-bg-secondary)" }}>
+    <section
+      id="context"
+      className="!pt-[120px] !pb-[140px]"
+      style={{ backgroundColor: "var(--cs-bg-secondary)" }}
+    >
       <div className="section-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 72 }}
+          style={{ marginBottom: 56 }}
         >
           <p className="kicker">The Problem</p>
           <h2
@@ -29,20 +34,71 @@ export function Context() {
           >
             The red lines still hold.
           </h2>
-          <p
+
+          {/* UX problem statement */}
+          <div
             style={{
-              fontSize: "1.05rem",
-              lineHeight: 1.75,
-              color: "var(--cs-text-muted)",
-              maxWidth: 640,
+              display: "flex",
+              flexDirection: "column" as const,
+              gap: 16,
+              maxWidth: 680,
             }}
           >
-            Redlining was officially banned in 1968. But in Ward 7 and Ward 8, its effects never left.
-            These are neighborhoods where a bank branch is harder to find than a payday lender, where
-            a credit score determines more than a person's ambition ever will. The name SAGE is
-            intentional. Beyond financial wisdom, it names the communities I designed for: people
-            who have been told, repeatedly, that the system was not built for them.
-          </p>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
+              Residents in Ward 7 and Ward 8 are not just missing financial apps. They are
+              navigating a system shaped by banking deserts, limited local financial services,
+              high-fee alternatives, and long-term distrust toward institutions.
+            </p>
+            <div
+              style={{
+                padding: "28px 32px",
+                borderRadius: 16,
+                border: "1px solid rgba(155,233,49,0.12)",
+                backgroundColor: "rgba(155,233,49,0.04)",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "0.88rem",
+                  color: "var(--cs-text-faint)",
+                  marginBottom: 12,
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.1em",
+                  fontWeight: 600,
+                }}
+              >
+                Design challenge
+              </p>
+              <p
+                style={{
+                  fontSize: "1rem",
+                  lineHeight: 1.75,
+                  color: "var(--cs-text-muted)",
+                  marginBottom: 12,
+                }}
+              >
+                Not: <em style={{ color: "var(--cs-text-faint)" }}>"How might we make another fintech app?"</em>
+              </p>
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  lineHeight: 1.75,
+                  color: "var(--cs-text)",
+                  fontStyle: "italic",
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                }}
+              >
+                "How might we design a financial tool that feels trustworthy, understandable, and
+                useful for people who have been repeatedly excluded from traditional banking?"
+              </p>
+            </div>
+            <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--cs-text-muted)" }}>
+              Redlining was officially banned in 1968. But in Ward 7 and Ward 8, its effects
+              never left. These are neighborhoods where a bank branch is harder to find than a
+              payday lender, where a credit score determines more than a person&rsquo;s ambition
+              ever will.
+            </p>
+          </div>
         </motion.div>
 
         {/* Systems map */}
@@ -57,12 +113,11 @@ export function Context() {
             marginBottom: 48,
           }}
         >
-          <img
+          <ClickableImage
             src="/sage/systems-map.png"
             alt="Systems map: structural barriers to financial access in Ward 7 and 8"
             style={{ width: "100%", height: "auto", display: "block" }}
-
-          loading="lazy"
+            loading="lazy"
           />
           <div
             style={{
@@ -73,12 +128,12 @@ export function Context() {
           >
             <p className="caption">
               Systems map: mapping the structural barriers that create financial exclusion in
-              D.C.'s eastern wards.
+              D.C.&rsquo;s eastern wards.
             </p>
           </div>
         </motion.div>
 
-        {/* Key context cards */}
+        {/* Key context callout cards */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -88,7 +143,7 @@ export function Context() {
         >
           {[
             {
-              stat: "Bank Desert",
+              stat: "Banking Desert",
               detail:
                 "Ward 7 and 8 have significantly fewer bank branches per capita than any other D.C. ward, classified as banking deserts by federal standards.",
             },
@@ -100,11 +155,14 @@ export function Context() {
             {
               stat: "Trust Deficit",
               detail:
-                "Residents I interviewed expressed deep distrust of financial institutions, shaped by generations of denial, exploitation, and broken promises.",
+                "Residents expressed deep distrust of financial institutions, shaped by generations of denial, exploitation, and broken promises.",
             },
-          ].map(({ stat, detail }) => (
-            <div
+          ].map(({ stat, detail }, i) => (
+            <motion.div
               key={stat}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 padding: 28,
                 borderRadius: 16,
@@ -113,13 +171,18 @@ export function Context() {
                 display: "flex",
                 flexDirection: "column" as const,
                 gap: 14,
+                transition: "border-color 300ms ease, box-shadow 300ms ease",
+              }}
+              whileHover={{
+                borderColor: "rgba(155,233,49,0.2)",
+                boxShadow: "0 0 28px rgba(155,233,49,0.06)",
               }}
             >
               <span
                 style={{
                   fontSize: "0.85rem",
                   fontWeight: 600,
-                  color: "#7ab688",
+                  color: "var(--cs-accent-sf)",
                   textTransform: "uppercase" as const,
                   letterSpacing: "0.08em",
                 }}
@@ -129,11 +192,10 @@ export function Context() {
               <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
                 {detail}
               </p>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
     </section>
   );
 }
-

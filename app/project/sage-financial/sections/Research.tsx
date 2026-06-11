@@ -1,19 +1,50 @@
-﻿"use client";
+"use client";
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "./ClickableImage";
 
-const METHODS = [
+const RESEARCH_METHODS = [
   {
-    method: "Systems Mapping",
-    desc: "Mapped the full ecosystem of financial exclusion: policy failures, institutional barriers, and community adaptations. This gave me a systems-level view before any design work started.",
-  },
-  {
-    method: "Contextual Inquiry",
-    desc: "Spoke with Ward 7 and 8 residents about their real financial behaviors, workarounds, and relationships with money. Listening came before designing.",
+    method: "Secondary Research",
+    purpose: "Understand financial access barriers in Wards 7 & 8.",
+    revealed:
+      "Residents face banking deserts, branch closures, transportation barriers, and greater reliance on alternative financial services.",
   },
   {
     method: "Competitive Analysis",
-    desc: "Audited existing fintech products against the actual needs of underbanked users. Most products failed before onboarding, revealing a fundamental mismatch.",
+    purpose: "Evaluate existing fintech, literacy, and community banking solutions.",
+    revealed:
+      "Most platforms focus on transactions and budgeting, but few address trust, local resources, and community support.",
+  },
+  {
+    method: "Systems Mapping",
+    purpose: "Understand relationships between residents, lenders, banks, nonprofits, and government programs.",
+    revealed:
+      "Financial exclusion is influenced by interconnected social, economic, and institutional factors rather than a single problem.",
+  },
+  {
+    method: "Stakeholder Mapping",
+    purpose: "Identify key groups involved in financial access.",
+    revealed:
+      "Residents, nonprofits, credit unions, community organizations, and financial educators all play important roles in support networks.",
+  },
+  {
+    method: "Resident Conversations",
+    purpose: "Learn about lived experiences and perceptions of financial services.",
+    revealed:
+      "Trust, accessibility, and clear guidance were more important than advanced financial tools.",
+  },
+  {
+    method: "Literature Review",
+    purpose: "Explore existing research on financial literacy and banking access.",
+    revealed:
+      "Financial education is most effective when paired with actionable resources and ongoing support.",
+  },
+  {
+    method: "Pain Point Analysis",
+    purpose: "Synthesize research findings into design opportunities.",
+    revealed:
+      "Users needed trusted guidance, simplified learning, local resources, and achievable financial goals.",
   },
 ];
 
@@ -37,8 +68,7 @@ export function Research() {
     if (!drag.current.active) return;
     const el = carouselRef.current;
     if (!el) return;
-    const delta = e.clientX - drag.current.startX;
-    el.scrollLeft = drag.current.scrollLeft - delta;
+    el.scrollLeft = drag.current.scrollLeft - (e.clientX - drag.current.startX);
   }, []);
 
   const onPointerUp = useCallback(() => {
@@ -49,6 +79,7 @@ export function Research() {
   return (
     <section id="research" className="!pt-[120px] !pb-[140px]">
       <div className="section-container">
+        {/* Section header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -56,7 +87,7 @@ export function Research() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginBottom: 72 }}
         >
-          <p className="kicker">Research</p>
+          <p className="kicker">Research Approach</p>
           <div
             className="flex flex-col md:flex-row md:items-end md:justify-between"
             style={{ gap: "24px 64px" }}
@@ -70,9 +101,9 @@ export function Research() {
                 maxWidth: 560,
               }}
             >
-              Starting with what's broken,
+              Starting with what&rsquo;s broken,
               <br />
-              not what's missing.
+              not what&rsquo;s missing.
             </h2>
             <p
               style={{
@@ -83,10 +114,66 @@ export function Research() {
                 textAlign: "right" as const,
               }}
             >
-              I used systems mapping, contextual inquiry, and secondary research to understand
-              the full landscape before designing anything.
+              Research combined 10 qualitative interviews, secondary data sources,
+              competitive analysis, and systems mapping to understand the full landscape
+              before any design work started.
             </p>
           </div>
+        </motion.div>
+
+        {/* Research scope callouts */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-1 md:grid-cols-3"
+          style={{ gap: 16, marginBottom: 72 }}
+        >
+          {[
+            {
+              label: "Primary Research",
+              desc: "10 qualitative interviews with Ward 7 and 8 residents exploring lived financial experiences, trust, and barriers.",
+            },
+            {
+              label: "Secondary Research",
+              desc: "Government and public data from FDIC, DC Government, Bank On DC, DC BizCAP, DC REACH, academic sources, and journalism.",
+            },
+            {
+              label: "Competitive Analysis",
+              desc: "Benchmarked Cash App, Chime, SoFi, Khan Academy, Zogo, Mission Asset Fund, MoCaFi, local credit unions, and DC financial initiatives.",
+            },
+          ].map(({ label, desc }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.15 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                padding: "24px 24px",
+                borderRadius: 16,
+                border: "1px solid var(--cs-border)",
+                backgroundColor: "var(--cs-surface)",
+                display: "flex",
+                flexDirection: "column" as const,
+                gap: 10,
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "0.82rem",
+                  fontWeight: 600,
+                  color: "var(--cs-accent-sf)",
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.08em",
+                }}
+              >
+                {label}
+              </span>
+              <p style={{ fontSize: "0.88rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
+                {desc}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Pain points map */}
@@ -98,15 +185,14 @@ export function Research() {
             borderRadius: 20,
             overflow: "hidden",
             border: "1px solid var(--cs-border)",
-            marginBottom: 64,
+            marginBottom: 72,
           }}
         >
-          <img
+          <ClickableImage
             src="/sage/pain-points.png"
             alt="Pain points map: barriers identified through resident research"
             style={{ width: "100%", height: "auto", display: "block" }}
-
-          loading="lazy"
+            loading="lazy"
           />
           <div
             style={{
@@ -122,7 +208,7 @@ export function Research() {
           </div>
         </motion.div>
 
-        {/* Research methods as cards */}
+        {/* Research methods table */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -137,41 +223,135 @@ export function Research() {
               textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               marginBottom: 24,
-              fontFamily: "var(--font-inter), system-ui, sans-serif",
             }}
           >
-            What I Did
+            Research Methods
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 24 }}>
-            {METHODS.map(({ method, desc }, i) => (
+
+          {/* Table — responsive: hidden on mobile, shown on md+ */}
+          <div
+            className="hidden md:block"
+            style={{
+              borderRadius: 16,
+              border: "1px solid var(--cs-border)",
+              overflow: "hidden",
+            }}
+          >
+            <table style={{ width: "100%", borderCollapse: "collapse" as const }}>
+              <thead>
+                <tr style={{ backgroundColor: "var(--cs-surface)" }}>
+                  {["Research Method", "Purpose", "What It Revealed"].map((col) => (
+                    <th
+                      key={col}
+                      style={{
+                        padding: "16px 24px",
+                        textAlign: "left" as const,
+                        fontSize: "0.72rem",
+                        fontWeight: 600,
+                        textTransform: "uppercase" as const,
+                        letterSpacing: "0.1em",
+                        color: "var(--cs-accent-sf)",
+                        borderBottom: "1px solid var(--cs-border)",
+                        whiteSpace: "nowrap" as const,
+                      }}
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {RESEARCH_METHODS.map((row, i) => (
+                  <motion.tr
+                    key={row.method}
+                    initial={{ opacity: 0 }}
+                    animate={inView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
+                    style={{
+                      borderBottom: i < RESEARCH_METHODS.length - 1 ? "1px solid var(--cs-border)" : "none",
+                      transition: "background-color 200ms ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.04)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: "18px 24px",
+                        fontSize: "0.88rem",
+                        fontWeight: 600,
+                        color: "var(--cs-text)",
+                        verticalAlign: "top" as const,
+                        whiteSpace: "nowrap" as const,
+                      }}
+                    >
+                      {row.method}
+                    </td>
+                    <td
+                      style={{
+                        padding: "18px 24px",
+                        fontSize: "0.88rem",
+                        lineHeight: 1.65,
+                        color: "var(--cs-text-muted)",
+                        verticalAlign: "top" as const,
+                      }}
+                    >
+                      {row.purpose}
+                    </td>
+                    <td
+                      style={{
+                        padding: "18px 24px",
+                        fontSize: "0.88rem",
+                        lineHeight: 1.65,
+                        color: "var(--cs-text-muted)",
+                        verticalAlign: "top" as const,
+                      }}
+                    >
+                      {row.revealed}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile: stacked cards */}
+          <div className="md:hidden flex flex-col" style={{ gap: 12 }}>
+            {RESEARCH_METHODS.map((row, i) => (
               <motion.div
-                key={method}
-                initial={{ opacity: 0, y: 20 }}
+                key={row.method}
+                initial={{ opacity: 0, y: 12 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.25 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, delay: 0.25 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  padding: 28,
-                  borderRadius: 16,
+                  padding: "20px 20px",
+                  borderRadius: 14,
                   border: "1px solid var(--cs-border)",
                   backgroundColor: "var(--cs-surface)",
                   display: "flex",
                   flexDirection: "column" as const,
-                  gap: 14,
+                  gap: 10,
                 }}
               >
                 <span
                   style={{
-                    fontSize: "0.85rem",
+                    fontSize: "0.82rem",
                     fontWeight: 600,
-                    color: "#7ab688",
+                    color: "var(--cs-accent-sf)",
                     textTransform: "uppercase" as const,
                     letterSpacing: "0.08em",
                   }}
                 >
-                  {method}
+                  {row.method}
                 </span>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.65, color: "var(--cs-text-muted)" }}>
-                  {desc}
+                <p style={{ fontSize: "0.85rem", lineHeight: 1.6, color: "var(--cs-text-muted)" }}>
+                  <strong style={{ color: "var(--cs-text-faint)" }}>Purpose:</strong> {row.purpose}
+                </p>
+                <p style={{ fontSize: "0.85rem", lineHeight: 1.6, color: "var(--cs-text-muted)" }}>
+                  <strong style={{ color: "var(--cs-text-faint)" }}>Revealed:</strong> {row.revealed}
                 </p>
               </motion.div>
             ))}
@@ -192,13 +372,11 @@ export function Research() {
               textTransform: "uppercase" as const,
               letterSpacing: "0.1em",
               marginBottom: 24,
-              fontFamily: "var(--font-inter), system-ui, sans-serif",
             }}
           >
             Early Ideation Sketches
           </h3>
 
-          {/* Carousel wrapper */}
           <div style={{ position: "relative" as const }}>
             <div
               ref={carouselRef}
@@ -226,7 +404,7 @@ export function Research() {
                   key={n}
                   style={{
                     flexShrink: 0,
-                    width: "min(520px, 85vw)",
+                    width: "min(900px, 88vw)",
                     scrollSnapAlign: "start",
                     borderRadius: 16,
                     overflow: "hidden",
@@ -234,28 +412,16 @@ export function Research() {
                     backgroundColor: "var(--cs-surface)",
                   }}
                 >
-                  <img
+                  <ClickableImage
                     src={`/sage/ideation-0${n}.png`}
                     alt={`Early ideation sketch ${n}`}
-                    draggable={false}
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      display: "block",
-                      objectFit: "contain",
-                    }}
-
-                  loading="lazy"
+                    style={{ width: "100%", height: "auto", display: "block", objectFit: "contain" as const }}
+                    loading="lazy"
                   />
                 </div>
               ))}
             </div>
-
-            {/* Scroll hint */}
-            <p
-              className="caption"
-              style={{ marginTop: 12 }}
-            >
+            <p className="caption" style={{ marginTop: 12 }}>
               Early ideation sketches: exploring interaction models and information flows before
               moving to digital tools. Drag or scroll to see all sketches.
             </p>
@@ -265,4 +431,3 @@ export function Research() {
     </section>
   );
 }
-
