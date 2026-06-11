@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ClickableImage } from "@/app/components/ClickableImage";
 
 const ACCENT = "var(--cs-accent-sf)";
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -64,6 +65,38 @@ export function UserJourney() {
             is the shuttle? When will it arrive? Where does it stop? What is nearby? The core flow
             was designed to answer all four with as few taps as possible.
           </p>
+        </motion.div>
+
+        {/* User flow diagram */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
+          style={{
+            borderRadius: 20,
+            overflow: "hidden",
+            border: "1px solid var(--cs-border)",
+            marginBottom: 64,
+          }}
+        >
+          <ClickableImage
+            src="/gw-ride/user-flow-diagram.png"
+            alt="GW Ride user flow diagram: core interaction steps from app open to destination"
+            style={{ width: "100%", height: "auto", display: "block" }}
+            loading="lazy"
+          />
+          <div
+            style={{
+              padding: "14px 24px",
+              backgroundColor: "var(--cs-surface)",
+              borderTop: "1px solid var(--cs-border)",
+            }}
+          >
+            <p className="caption">
+              Core user flow: the end-to-end interaction path students follow from opening the app
+              to making a confident commute decision.
+            </p>
+          </div>
         </motion.div>
 
         {/* Core flow steps */}
