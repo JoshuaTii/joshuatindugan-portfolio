@@ -4,12 +4,34 @@ import { useRef } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const EXPERIENCE = [
+type ExperienceItem = {
+  role:    string;
+  org:     string;
+  client?: string;
+  period:  string;
+  detail:  string;
+};
+
+const EXPERIENCE: ExperienceItem[] = [
   {
     role:   "Interaction Design Student",
     org:    "George Washington University",
     period: "2022 – 2026",
     detail: "B.F.A. in Interaction Design, Minor in Graphic Design. Corcoran School of the Arts and Design. Graduated May 2026.",
+  },
+  {
+    role:   "DDOT Workforce Stability Research Project",
+    org:    "Graphic Designer and UX Researcher",
+    client: "DDOT, Washington D.C.",
+    period: "2025 – 2026",
+    detail: "Designed accessible recruitment materials to support DDOT's workforce retention goals through research, targeted messaging, and visual communication.",
+  },
+  {
+    role:   "National Gallery of Art Museum Experience Redesign",
+    org:    "Graphic Designer and UX Researcher",
+    client: "National Gallery of Art, Washington D.C.",
+    period: "2025",
+    detail: "Created interactive museum print materials, map concepts, icons, and family-friendly visual artifacts to improve engagement for younger visitors.",
   },
   {
     role:   "Web Designer Intern",
@@ -126,6 +148,11 @@ export function About() {
                 <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.75rem", color: "var(--green)", fontWeight: 600 }}>
                   {item.org}
                 </p>
+                {item.client && (
+                  <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.68rem", color: "var(--text-3)" }}>
+                    {item.client}
+                  </p>
+                )}
                 <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.68rem", color: "var(--text-3)" }}>
                   {item.period}
                 </p>
