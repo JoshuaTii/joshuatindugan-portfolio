@@ -21,6 +21,7 @@
   --green-text:   #45c97c;
   --green-dim:    rgba(69,201,124,0.12);
   --green-border: rgba(69,201,124,0.25);
+  --badge-on-accent: #180727;    /* dark text for bright dark-mode accent badges */
 
   --input-bg:     rgba(255,255,255,0.04);
   --input-border: rgba(255,255,255,0.10);
@@ -75,13 +76,13 @@ html[data-theme="light"] {
   --text-2:       rgba(0,0,0,0.70);
   --text-3:       rgba(0,0,0,0.62);
 
-  /* green: #1d7a46 = 4.8:1 on #e8f2ec — passes 4.5:1 for small text */
-  --green:        #1d7a46;
-  /* green-btn: #2ea05a — bright enough for black text overlay (6.3:1) */
+  /* green: #1a6b3a = 5.7:1 on #e8f2ec — WCAG AA with comfortable margin for small text */
+  --green:        #1a6b3a;
+  /* green-btn: #2ea05a — bright enough for white text overlay (--btn-text) */
   --green-btn:    #2ea05a;
-  --green-text:   #1d7a46;
-  --green-dim:    rgba(29,122,70,0.10);
-  --green-border: rgba(29,122,70,0.28);
+  --green-text:   #1a6b3a;
+  --green-dim:    rgba(26,107,58,0.10);
+  --green-border: rgba(26,107,58,0.40);
 
   /* input-border: rgba(0,0,0,0.44) ≈ 3.3:1 on white — passes WCAG non-text contrast */
   --input-bg:     rgba(255,255,255,0.80);
@@ -91,11 +92,12 @@ html[data-theme="light"] {
   --contact-border: rgba(17,24,28,0.42);
   /* text on filled green buttons — white in light mode because --green-btn is dark */
   --btn-text:     #ffffff;
+  --badge-on-accent: #ffffff;    /* white text for dark light-mode accent badges */
 
   --nav-bg:       rgba(232,242,236,0.94);
   --nav-border:   rgba(0,0,0,0.10);
 
-  --lime:         #1d7a46;
+  --lime:         #1a6b3a;
   --border:       rgba(0,0,0,0.10);
   --muted:        rgba(0,0,0,0.58);
 
@@ -163,6 +165,7 @@ h1, h2, h3, h4 { line-height: 1.06; margin-block: 0; }
 ::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: rgba(69,201,124,0.25); border-radius: 2px; }
+html[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(26,107,58,0.30); border-radius: 2px; }
 
 /* ─── Focus ───────────────────────────────────────────────────────────────── */
 :focus-visible              { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
@@ -212,6 +215,10 @@ section { padding-block: 100px; }
 .ideation-carousel::-webkit-scrollbar-track { background:rgba(255,255,255,.05); border-radius:2px; }
 .ideation-carousel::-webkit-scrollbar-thumb { background:rgba(69,201,124,.35); border-radius:2px; }
 
+html[data-theme="light"] .ideation-carousel { scrollbar-color: rgba(26,107,58,0.35) rgba(0,0,0,0.06); }
+html[data-theme="light"] .ideation-carousel::-webkit-scrollbar-track { background: rgba(0,0,0,0.06); border-radius: 2px; }
+html[data-theme="light"] .ideation-carousel::-webkit-scrollbar-thumb { background: rgba(26,107,58,0.35); border-radius: 2px; }
+
 /* ─── Social icon hover — green tint ─────────────────────────────────────── */
 /* Converts any icon (white in dark-mode, black in light-mode) to green on hover */
 .social-icon { display: flex; opacity: 0.65; transition: opacity 200ms ease; }
@@ -222,7 +229,7 @@ section { padding-block: 100px; }
 
 /* ─── Clickable image (global lightbox trigger) ───────────────────────────── */
 .ci-trigger { cursor: zoom-in; display: block; background: none; border: none; padding: 0; }
-.ci-trigger:focus-visible { outline: 2px solid rgba(155,233,49,0.8); outline-offset: 2px; border-radius: 2px; }
+.ci-trigger:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; border-radius: 2px; }
 .ci-img { display: block; width: 100%; height: auto; transition: transform 220ms ease, filter 220ms ease; }
 .ci-trigger:hover .ci-img,
 .ci-trigger:focus-visible .ci-img { transform: scale(1.02); filter: brightness(1.04); }

@@ -133,7 +133,7 @@ export function UserJourney() {
                       transform: "translateY(-50%)",
                       zIndex: 2,
                       fontSize: "0.9rem",
-                      color: "rgba(155,233,49,0.4)",
+                      color: "var(--cs-border-strong)",
                       fontWeight: 600,
                     }}
                   >

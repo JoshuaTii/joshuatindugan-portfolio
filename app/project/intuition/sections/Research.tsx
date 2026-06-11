@@ -252,7 +252,7 @@ export function Research() {
                   padding: "4px 12px",
                   borderRadius: 6,
                   backgroundColor: ACCENT,
-                  color: "#180727",
+                  color: "var(--badge-on-accent)",
                   fontSize: "0.75rem",
                   fontWeight: 700,
                   letterSpacing: "0.04em",
