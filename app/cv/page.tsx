@@ -1,5 +1,5 @@
-/**
- * /cv — Joshua Tindugan · UI/UX Designer CV
+﻿/**
+ * /cv — Joshua Uba Tindugan · UI/UX Designer CV
  *
  * HOW TO EXPORT AS PDF
  * ────────────────────
@@ -17,9 +17,9 @@ import type { Metadata } from "next";
 import { PrintButton } from "./PrintButton";
 
 export const metadata: Metadata = {
-  title: "Joshua Tindugan CV · UI/UX Designer",
+  title: "Joshua Uba Tindugan CV · UI/UX Designer",
   description:
-    "Multi-page CV for Joshua Tindugan, a UI/UX designer focused on accessible, research-driven digital experiences.",
+    "Multi-page CV for Joshua Uba Tindugan, a UI/UX designer focused on accessible, research-driven digital experiences.",
 };
 
 /* ─── CV Styles ──────────────────────────────────────────────── */
@@ -641,7 +641,7 @@ export default function CVPage() {
 
         {/* Footer */}
         <footer className="cv-footer">
-          <span className="cv-footer-name">Joshua Tindugan &nbsp;·&nbsp; UI/UX Designer</span>
+          <span className="cv-footer-name">Joshua Uba Tindugan &nbsp;·&nbsp; UI/UX Designer</span>
           <a href="https://joshuaubatindugan.com" className="cv-footer-link" target="_blank" rel="noopener noreferrer">
             joshuaubatindugan.com
           </a>

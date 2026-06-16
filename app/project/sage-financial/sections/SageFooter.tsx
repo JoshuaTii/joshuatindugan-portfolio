@@ -14,7 +14,7 @@ export function SageFooter() {
               style={{ height: 24, width: "auto", objectFit: "contain", objectPosition: "left" }}
             />
             <p style={{ fontSize: "0.85rem", color: "var(--cs-text-faint)", lineHeight: 1.5 }}>
-              A UX thesis by Joshua Tindugan.
+              A UX thesis by Joshua Uba Tindugan.
               <br />
               George Washington University, 2025–2026.
             </p>
@@ -32,7 +32,7 @@ export function SageFooter() {
               Back to portfolio
             </Link>
             <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>
-              &copy; 2026 Joshua Tindugan
+              &copy; 2026 Joshua Uba Tindugan
             </p>
           </div>
         </div>

@@ -30,7 +30,7 @@ export function SEFooter() {
               Back to portfolio
             </Link>
             <p style={{ fontSize: "0.75rem", color: "var(--cs-text-faint)" }}>
-              &copy; 2026 Joshua Tindugan
+              &copy; 2026 Joshua Uba Tindugan
             </p>
           </div>
         </div>

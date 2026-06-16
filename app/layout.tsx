@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Caveat, Montserrat } from "next/font/google";
 import { ThemeProvider }       from "./providers/ThemeProvider";
 import { SmoothScrollProvider } from "./providers/SmoothScrollProvider";
@@ -21,23 +21,23 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Joshua Tindugan · Interaction Designer",
+  title: "Joshua Uba Tindugan · Interaction Designer",
   description:
     "Interaction designer, B.F.A. GWU. Designing for trust: financial access platforms, transit tools, and scholarship discovery.",
   keywords: ["UX Design", "UI Design", "Interaction Design", "Product Design", "Photography", "Washington DC", "Portfolio"],
   metadataBase: new URL("https://joshuaubatindugan.com"),
   alternates: { canonical: "/" },
   openGraph: {
-    title:       "Joshua Tindugan · Interaction Designer",
+    title:       "Joshua Uba Tindugan · Interaction Designer",
     description: "Interaction designer, B.F.A. GWU.",
     url:         "https://joshuaubatindugan.com",
-    siteName:    "Joshua Tindugan",
+    siteName:    "Joshua Uba Tindugan",
     type:        "website",
-    images: [{ url: "https://joshuaubatindugan.com/portrait.png", width: 1200, height: 630, alt: "Joshua Tindugan" }],
+    images: [{ url: "https://joshuaubatindugan.com/portrait.png", width: 1200, height: 630, alt: "Joshua Uba Tindugan" }],
   },
   twitter: {
     card:        "summary_large_image",
-    title:       "Joshua Tindugan · Interaction Designer",
+    title:       "Joshua Uba Tindugan · Interaction Designer",
     description: "Interaction designer, B.F.A. GWU.",
     images:      ["https://joshuaubatindugan.com/portrait.png"],
   },

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Download, FileText } from "lucide-react";
@@ -153,7 +153,7 @@ export function Info() {
           <a
             href="/documents/Joshua_Tindugan_Resume.pdf"
             download="Joshua_Tindugan_Resume.pdf"
-            aria-label="Download Joshua Tindugan Resume PDF"
+            aria-label="Download Joshua Uba Tindugan Resume PDF"
             className="group inline-flex items-center text-sm tracking-wide"
             style={{
               gap: 9,
@@ -183,7 +183,7 @@ export function Info() {
           <a
             href="/documents/Joshua_Tindugan_CV.pdf"
             download="Joshua_Tindugan_CV.pdf"
-            aria-label="Download Joshua Tindugan CV PDF"
+            aria-label="Download Joshua Uba Tindugan CV PDF"
             className="group inline-flex items-center text-sm tracking-wide"
             style={{
               gap: 9,

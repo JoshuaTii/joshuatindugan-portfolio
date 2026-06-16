@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -163,7 +163,7 @@ export function Navbar() {
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = GREEN)}
             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
           >
-            Joshua Tindugan
+            Joshua Uba Tindugan
           </button>
 
           {/* Desktop nav links */}

@@ -1,4 +1,4 @@
-import { SENavbar } from "./sections/SENavbar";
+﻿import { SENavbar } from "./sections/SENavbar";
 import { SEHero } from "./sections/SEHero";
 import { SEContext } from "./sections/SEContext";
 import { SEDirection } from "./sections/SEDirection";
@@ -10,7 +10,7 @@ import { SENextSteps } from "./sections/SENextSteps";
 import { SEFooter } from "./sections/SEFooter";
 
 export const metadata = {
-  title: "SAGE Editorial | Joshua Tindugan",
+  title: "SAGE Editorial | Joshua Uba Tindugan",
   description:
     "An editorial website extension of the SAGE financial empowerment platform, designed for Ward 7 and Ward 8 communities in Washington D.C.",
 };

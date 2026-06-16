@@ -1,4 +1,4 @@
-import { GWRideNavbar } from "./sections/GWRideNavbar";
+﻿import { GWRideNavbar } from "./sections/GWRideNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
@@ -13,9 +13,9 @@ import { Reflection } from "./sections/Reflection";
 import { GWRideFooter } from "./sections/GWRideFooter";
 
 export const metadata = {
-  title: "GW Ride: Campus Transit UX | Joshua Tindugan",
+  title: "GW Ride: Campus Transit UX | Joshua Uba Tindugan",
   description:
-    "A mobile app concept designed to improve how George Washington University students navigate campus shuttle transportation. UX case study by Joshua Tindugan.",
+    "A mobile app concept designed to improve how George Washington University students navigate campus shuttle transportation. UX case study by Joshua Uba Tindugan.",
 };
 
 export default function GWRidePage() {

@@ -1,4 +1,4 @@
-import { InTuitionNavbar } from "./sections/InTuitionNavbar";
+﻿import { InTuitionNavbar } from "./sections/InTuitionNavbar";
 import { Hero } from "./sections/Hero";
 import { Overview } from "./sections/Overview";
 import { Context } from "./sections/Context";
@@ -13,9 +13,9 @@ import { Reflection } from "./sections/Reflection";
 import { InTuitionFooter } from "./sections/InTuitionFooter";
 
 export const metadata = {
-  title: "InTuition: Scholarship Discovery UX | Joshua Tindugan",
+  title: "InTuition: Scholarship Discovery UX | Joshua Uba Tindugan",
   description:
-    "A scholarship discovery platform using smart filtering and unified applications to simplify how students find and apply for funding. UX case study by Joshua Tindugan.",
+    "A scholarship discovery platform using smart filtering and unified applications to simplify how students find and apply for funding. UX case study by Joshua Uba Tindugan.",
 };
 
 export default function InTuitionPage() {

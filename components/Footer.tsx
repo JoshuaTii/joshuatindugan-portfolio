@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-xs tracking-widest uppercase font-bold" style={{ color: "var(--lime)" }}>
-          Joshua Tindugan
+          Joshua Uba Tindugan
         </p>
         <nav className="flex gap-6">
           {[

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { skills, experience } from "../data";
 
@@ -66,7 +66,7 @@ export default function About() {
           <a
             href="/documents/Joshua_Tindugan_CV.pdf"
             download="Joshua_Tindugan_CV.pdf"
-            aria-label="Download Joshua Tindugan CV PDF"
+            aria-label="Download Joshua Uba Tindugan CV PDF"
             className="inline-flex items-center gap-2 mt-6 text-sm font-medium transition-colors hover:text-white"
             style={{ color: "var(--muted)" }}
           >
