@@ -257,38 +257,6 @@ export function Navbar() {
             className="section-container flex items-center justify-end"
             style={{ height: 48, gap: 24 }}
           >
-            <a
-              href="/documents/Joshua_Tindugan_Resume.pdf"
-              download
-              aria-label="Download Resume"
-              style={{
-                textDecoration: "none",
-                fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
-                fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.04em",
-                color: GREEN,
-                transition: "opacity 200ms ease",
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.65")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-            >
-              Resume
-            </a>
-            <a
-              href="/documents/Joshua_Tindugan_CV.pdf"
-              download
-              aria-label="Download CV"
-              style={{
-                textDecoration: "none",
-                fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
-                fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.04em",
-                color: GREEN,
-                transition: "opacity 200ms ease",
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.65")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-            >
-              CV
-            </a>
             <ThemeToggle theme={theme} onClick={toggle} />
           </div>
         </div>
@@ -330,14 +298,6 @@ export function Navbar() {
 
             {/* Secondary controls */}
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 8 }}>
-              <a href="/documents/Joshua_Tindugan_Resume.pdf" download
-                style={{ textDecoration: "none", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.04em", color: GREEN }}>
-                Resume
-              </a>
-              <a href="/documents/Joshua_Tindugan_CV.pdf" download
-                style={{ textDecoration: "none", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.04em", color: GREEN }}>
-                CV
-              </a>
               <ThemeToggle theme={theme} onClick={toggle} />
             </div>
           </motion.div>

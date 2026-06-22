@@ -21,7 +21,7 @@ export function Hero() {
         className="section-container flex flex-col items-center text-center"
         style={{ paddingTop: 116, paddingBottom: 80 }}
       >
-        {/* Name — "Joshua" white, "Tindugan" green */}
+        {/* Name — "Joshua" white, "Uba" white, "Tindugan" green */}
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export function Hero() {
           >
             <span style={{ color: "var(--text)" }}>Joshua</span>
             <br />
-            <span style={{ color: "var(--green)" }}>Tindugan</span>
+            <span style={{ color: "var(--text)" }}>Uba </span><span style={{ color: "var(--green)" }}>Tindugan</span>
           </h1>
         </motion.div>
 

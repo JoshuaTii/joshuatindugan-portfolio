@@ -1,7 +1,6 @@
 ﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Download, FileText } from "lucide-react";
 
 const GREEN = "#45c97c";
 const EASE  = [0.22, 1, 0.36, 1] as const;
@@ -142,80 +141,8 @@ export function Info() {
           ))}
         </motion.div>
 
-        {/* Download buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.16, ease: EASE }}
-          className="flex flex-wrap"
-          style={{ gap: 12, marginBottom: 80 }}
-        >
-          <a
-            href="/documents/Joshua_Tindugan_Resume.pdf"
-            download="Joshua_Tindugan_Resume.pdf"
-            aria-label="Download Joshua Uba Tindugan Resume PDF"
-            className="group inline-flex items-center text-sm tracking-wide"
-            style={{
-              gap: 9,
-              padding: "13px 22px",
-              minHeight: 48,
-              border: `1px solid ${GREEN}33`,
-              background: `${GREEN}0d`,
-              borderRadius: 100,
-              color: GREEN,
-              fontSize: "0.78rem",
-              letterSpacing: "0.06em",
-              textDecoration: "none",
-              transition: "background 250ms ease, border-color 250ms ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = `${GREEN}1a`;
-              (e.currentTarget as HTMLElement).style.borderColor = `${GREEN}55`;
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = `${GREEN}0d`;
-              (e.currentTarget as HTMLElement).style.borderColor = `${GREEN}33`;
-            }}
-          >
-            <Download size={14} className="group-hover:-translate-y-0.5 transition-transform duration-250" />
-            Download Résumé
-          </a>
-          <a
-            href="/documents/Joshua_Tindugan_CV.pdf"
-            download="Joshua_Tindugan_CV.pdf"
-            aria-label="Download Joshua Uba Tindugan CV PDF"
-            className="group inline-flex items-center text-sm tracking-wide"
-            style={{
-              gap: 9,
-              padding: "13px 22px",
-              minHeight: 48,
-              border: "1px solid rgba(255,255,255,0.09)",
-              background: "rgba(255,255,255,0.025)",
-              borderRadius: 100,
-              color: "rgba(255,255,255,0.52)",
-              fontSize: "0.78rem",
-              letterSpacing: "0.06em",
-              textDecoration: "none",
-              transition: "border-color 250ms ease, color 250ms ease, background 250ms ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)";
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.78)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.09)";
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.52)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.025)";
-            }}
-          >
-            <FileText size={14} className="group-hover:-translate-y-0.5 transition-transform duration-250" />
-            Download CV
-          </a>
-        </motion.div>
-
         {/* Three columns */}
-        <div className="grid lg:grid-cols-3" style={{ gap: 64, alignItems: "start" }}>
+        <div className="grid lg:grid-cols-3" style={{ gap: 64, alignItems: "start", marginTop: 80 }}>
 
           {/* Services */}
           <motion.div
