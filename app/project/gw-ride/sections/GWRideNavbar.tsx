@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { SiteControls } from "../../../components/SiteControls";
 
 const NAV_LINKS = [
   { label: "Overview", href: "#overview", id: "overview" },
@@ -13,7 +14,7 @@ const NAV_LINKS = [
   { label: "Reflection", href: "#reflection", id: "reflection" },
 ];
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 
 export function GWRideNavbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -140,13 +141,17 @@ export function GWRideNavbar() {
           })}
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center"
-          style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
+        {/* Right side - desktop controls + mobile hamburger */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="hidden md:flex">
+            <SiteControls />
+          </div>
+          <button
+            className="md:hidden flex flex-col justify-center items-center"
+            style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
           <span
             className="block"
             style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(7.5px) rotate(45deg)" : "none", transition: "transform 200ms ease" }}
@@ -159,7 +164,8 @@ export function GWRideNavbar() {
             className="block"
             style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none", transition: "transform 200ms ease" }}
           />
-        </button>
+          </button>
+        </div>
       </div>
 
       {open && (

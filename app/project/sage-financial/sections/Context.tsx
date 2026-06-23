@@ -53,8 +53,8 @@ export function Context() {
               style={{
                 padding: "28px 32px",
                 borderRadius: 16,
-                border: "1px solid rgba(155,233,49,0.12)",
-                backgroundColor: "rgba(155,233,49,0.04)",
+                border: "1px solid var(--accent-border)",
+                backgroundColor: "var(--accent-interactive-bg)",
               }}
             >
               <p
@@ -174,8 +174,8 @@ export function Context() {
                 transition: "border-color 300ms ease, box-shadow 300ms ease",
               }}
               whileHover={{
-                borderColor: "rgba(155,233,49,0.2)",
-                boxShadow: "0 0 28px rgba(155,233,49,0.06)",
+                borderColor: "var(--accent-border-strong)",
+                boxShadow: "0 0 28px var(--glow)",
               }}
             >
               <span

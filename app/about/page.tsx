@@ -52,8 +52,8 @@ export default function About() {
 
           <div className="flex flex-wrap gap-3 mt-8">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ borderColor: "var(--border)" }}>
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#10b981", boxShadow: "0 0 6px #10b981" }} />
-              <span className="text-xs font-medium" style={{ color: "#10b981" }}>Open for work</span>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--green)", boxShadow: "0 0 6px var(--green)" }} />
+              <span className="text-xs font-medium" style={{ color: "var(--green)" }}>Open for work</span>
             </div>
             <span className="text-xs px-3 py-1.5 rounded-full border" style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
               GWU &apos;26

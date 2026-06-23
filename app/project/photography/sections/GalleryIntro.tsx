@@ -21,10 +21,10 @@ export function GalleryIntro() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontSize: "0.75rem",
-            fontWeight: 500,
+            fontWeight: 600,
             textTransform: "uppercase",
             letterSpacing: "0.16em",
-            color: "#fb7185",
+            color: "var(--cs-accent-ph)",
             marginBottom: 20,
           }}
         >

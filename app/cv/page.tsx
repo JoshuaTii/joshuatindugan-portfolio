@@ -1,5 +1,5 @@
-﻿/**
- * /cv — Joshua Uba Tindugan · UI/UX Designer CV
+/**
+ * /cv - Joshua Uba Tindugan · UI/UX Designer CV
  *
  * HOW TO EXPORT AS PDF
  * ────────────────────

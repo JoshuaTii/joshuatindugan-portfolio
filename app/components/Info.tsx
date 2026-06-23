@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const GREEN = "#45c97c";
+const GREEN = "var(--green)";
 const EASE  = [0.22, 1, 0.36, 1] as const;
 
 const experience = [
@@ -78,7 +78,7 @@ export function Info() {
         aria-hidden="true"
         style={{
           position: "absolute", top: 0, left: 40, right: 40,
-          height: 1, background: "rgba(255,255,255,0.06)",
+          height: 1, background: "var(--border)",
         }}
       />
 
@@ -126,7 +126,7 @@ export function Info() {
                 display: "flex",
                 alignItems: "center",
                 gap: 14,
-                border: "1px solid rgba(255,255,255,0.07)",
+                border: "1px solid var(--card-border)",
                 background: "var(--surface)",
                 borderRadius: 12,
                 padding: "16px 22px",
@@ -164,7 +164,7 @@ export function Info() {
                   transition={{ duration: 0.5, delay: 0.22 + i * 0.08, ease: EASE }}
                   style={{
                     background: "var(--surface)",
-                    border: "1px solid rgba(255,255,255,0.07)",
+                    border: "1px solid var(--card-border)",
                     borderRadius: 14,
                     padding: 24,
                     display: "flex",
@@ -172,8 +172,8 @@ export function Info() {
                     gap: 10,
                     transition: "border-color 250ms ease",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.13)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--card-border)"; }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <span
@@ -219,7 +219,7 @@ export function Info() {
                   transition={{ duration: 0.4, delay: 0.30 + i * 0.05 }}
                   style={{
                     background: "var(--surface)",
-                    border: "1px solid rgba(255,255,255,0.07)",
+                    border: "1px solid var(--card-border)",
                     borderRadius: 12,
                     padding: 20,
                     display: "flex",
@@ -227,8 +227,8 @@ export function Info() {
                     gap: 6,
                     transition: "border-color 250ms ease",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.13)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--card-border)"; }}
                 >
                   <p style={{ fontWeight: 600, fontSize: "0.85rem", lineHeight: 1, color: "var(--text)" }}>
                     {tool.name}
@@ -258,15 +258,15 @@ export function Info() {
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.36 + i * 0.08, ease: EASE }}
                   style={{
-                    borderLeft: "1px solid rgba(255,255,255,0.07)",
+                    borderLeft: "1px solid var(--card-border)",
                     paddingLeft: 18,
                     display: "flex",
                     flexDirection: "column" as const,
                     gap: 5,
                     transition: "border-color 250ms ease",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--card-border)"; }}
                 >
                   <p style={{ fontSize: "0.7rem", color: "var(--text-3)" }}>{item.period}</p>
                   <p style={{ fontWeight: 600, fontSize: "0.875rem", lineHeight: 1.2, color: "var(--text)" }}>

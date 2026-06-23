@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-it)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const RESEARCH_METHODS = [
@@ -122,7 +122,7 @@ export function Research() {
               style={{
                 padding: "14px 28px",
                 borderBottom: "1px solid var(--cs-border)",
-                backgroundColor: "rgba(155,233,49,0.04)",
+                backgroundColor: "var(--accent-interactive-bg)",
               }}
             >
               {["Method", "Participants", "Research Goal"].map((h) => (

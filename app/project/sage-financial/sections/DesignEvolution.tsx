@@ -268,7 +268,7 @@ export function DesignEvolution() {
                 padding: "10px 22px",
                 borderRadius: 999,
                 border: `1px solid ${activePhase === p.id ? "var(--cs-accent-sf)" : "var(--cs-border-strong)"}`,
-                backgroundColor: activePhase === p.id ? "rgba(155,233,49,0.08)" : "transparent",
+                backgroundColor: activePhase === p.id ? "var(--accent-interactive-bg)" : "transparent",
                 color: activePhase === p.id ? "var(--cs-accent-sf)" : "var(--cs-text-faint)",
                 fontSize: "0.8rem",
                 fontWeight: 500,

@@ -14,7 +14,7 @@ export function PhotoHero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 30% 50%, rgba(251,113,133,0.06) 0%, transparent 65%)",
+            "radial-gradient(ellipse 70% 60% at 30% 50%, var(--glow) 0%, transparent 65%)",
         }}
       />
 
@@ -51,10 +51,10 @@ export function PhotoHero() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontSize: "0.75rem",
-              fontWeight: 500,
+              fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.16em",
-              color: "#fb7185",
+              color: "var(--cs-accent-ph)",
               marginBottom: 24,
             }}
           >
@@ -133,14 +133,14 @@ export function PhotoHero() {
                 gap: 8,
                 padding: "8px 16px",
                 borderRadius: 100,
-                border: "1px solid rgba(251,113,133,0.2)",
-                backgroundColor: "rgba(251,113,133,0.05)",
+                border: "1px solid var(--accent-border)",
+                backgroundColor: "var(--accent-interactive-bg)",
                 fontSize: "0.75rem",
-                color: "rgba(251,113,133,0.8)",
+                color: "var(--cs-accent-ph)",
                 letterSpacing: "0.04em",
               }}
             >
-              <span style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: "#fb7185", display: "inline-block", flexShrink: 0 }} />
+              <span style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: "var(--cs-accent-ph)", display: "inline-block", flexShrink: 0 }} />
               Shot on Canon EOS R50 · RF-S 18-45mm F4.5-6.3 IS STM Lens
             </span>
           </motion.div>

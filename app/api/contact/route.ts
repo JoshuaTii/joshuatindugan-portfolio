@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, email, message, _honeypot } = body;
 
-    // Honeypot — bots fill hidden fields, humans don't
+    // Honeypot - bots fill hidden fields, humans don't
     if (_honeypot) {
       return NextResponse.json({ error: "Blocked." }, { status: 400 });
     }
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Input exceeds maximum length." }, { status: 400 });
     }
 
-    // Sanitize for plain-text email — no HTML rendering, so no injection risk
+    // Sanitize for plain-text email - no HTML rendering, so no injection risk
     const safeName    = name.trim();
     const safeEmail   = email.trim();
     const safeMessage = message.trim();

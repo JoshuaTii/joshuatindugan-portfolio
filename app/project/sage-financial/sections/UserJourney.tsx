@@ -83,8 +83,8 @@ export function UserJourney() {
           style={{
             padding: "36px 40px",
             borderRadius: 20,
-            border: "1px solid rgba(155,233,49,0.14)",
-            background: "linear-gradient(135deg, rgba(155,233,49,0.04) 0%, transparent 60%)",
+            border: "1px solid var(--accent-border)",
+            background: "linear-gradient(135deg, var(--accent-interactive-bg) 0%, transparent 60%)",
           }}
         >
           <p

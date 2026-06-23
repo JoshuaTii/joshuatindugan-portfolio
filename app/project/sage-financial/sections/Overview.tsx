@@ -70,7 +70,7 @@ export function Overview() {
           </h2>
         </motion.div>
 
-        {/* Snapshot grid — 2 cols on mobile, 3-4 on desktop */}
+        {/* Snapshot grid - 2 cols on mobile, 3-4 on desktop */}
         <div
           className="grid grid-cols-2 md:grid-cols-4"
           style={{ gap: 16, marginBottom: 64 }}

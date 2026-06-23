@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const FEATURES = [
@@ -131,7 +131,7 @@ export function Features() {
                           padding: "5px 14px",
                           borderRadius: 999,
                           border: `1px solid ${ACCENT}`,
-                          backgroundColor: "rgba(155,233,49,0.06)",
+                          backgroundColor: "var(--accent-interactive-bg)",
                           fontSize: "0.72rem",
                           fontWeight: 600,
                           textTransform: "uppercase" as const,
@@ -181,7 +181,7 @@ export function Features() {
                     ))}
                   </div>
 
-                  {/* Image column — single phone, no container or border */}
+                  {/* Image column - single phone, no container or border */}
                   <div
                     className={isReversed ? "md:order-1" : "md:order-2"}
                     style={{

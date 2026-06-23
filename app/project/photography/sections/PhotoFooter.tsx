@@ -28,7 +28,7 @@ export function PhotoFooter() {
               href="/#work"
               className="flex items-center gap-2 text-sm"
               style={{ textDecoration: "none", color: "var(--cs-text-faint)", transition: "color 250ms ease" }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#fb7185")}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-accent-ph)")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--cs-text-faint)")}
             >
               <ArrowLeft size={14} />

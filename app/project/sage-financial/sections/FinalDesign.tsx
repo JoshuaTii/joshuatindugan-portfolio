@@ -142,7 +142,7 @@ const SCREEN_GROUPS = [
 
 const COLOR_SWATCHES = [
   { name: "White", hex: "#FFFFFF", desc: "Primary text: clean contrast for maximum readability." },
-  { name: "Lime Green", hex: "var(--cs-accent-sf)", desc: "Primary accent: energy, growth, and financial empowerment." },
+  { name: "Lime Green", hex: "#9BE931", desc: "Primary accent: energy, growth, and financial empowerment." },
   { name: "Light Lime", hex: "#D1FEAE", desc: "Secondary tint: soft highlights and background accent states." },
   { name: "Dark Navy", hex: "#011521", desc: "Primary background: grounded depth that anchors trust." },
   { name: "Navy", hex: "#10203D", desc: "Surface background: card and panel elevation." },
@@ -250,7 +250,7 @@ export function FinalDesign() {
                   padding: "4px 12px",
                   borderRadius: 999,
                   border: "1px solid var(--cs-accent-sf)",
-                  backgroundColor: "rgba(155,233,49,0.05)",
+                  backgroundColor: "var(--accent-interactive-bg)",
                 }}
               >
                 {group.kicker}
@@ -298,7 +298,7 @@ export function FinalDesign() {
                     overflow: "hidden",
                   }}
                   whileHover={{
-                    boxShadow: "0 0 40px rgba(155,233,49,0.094)",
+                    boxShadow: "0 0 40px var(--glow)",
                     scale: 1.02,
                     zIndex: 10,
                     transition: { duration: 0.25, ease: EASE },
@@ -455,8 +455,8 @@ export function FinalDesign() {
                   gap: 8,
                   padding: "12px 24px",
                   borderRadius: 10,
-                  border: "1px solid rgba(155,233,49,0.3)",
-                  backgroundColor: "rgba(155,233,49,0.08)",
+                  border: "1px solid var(--accent-border-strong)",
+                  backgroundColor: "var(--accent-interactive-bg)",
                   color: "var(--cs-accent-sf)",
                   fontSize: "0.88rem",
                   fontWeight: 500,
@@ -489,8 +489,8 @@ export function FinalDesign() {
                   gap: 8,
                   padding: "10px 20px",
                   borderRadius: 9,
-                  border: "1px solid rgba(155,233,49,0.25)",
-                  backgroundColor: "rgba(155,233,49,0.07)",
+                  border: "1px solid var(--accent-border-strong)",
+                  backgroundColor: "var(--accent-interactive-bg)",
                   color: "var(--cs-accent-sf)",
                   fontSize: "0.82rem",
                   fontWeight: 500,
@@ -554,7 +554,7 @@ export function FinalDesign() {
               position: "relative" as const,
             }}
           >
-            {/* TODO before deploy: replace local path with Vimeo/YouTube URL — 295 MB exceeds Vercel limits */}
+            {/* TODO before deploy: replace local path with Vimeo/YouTube URL - 295 MB exceeds Vercel limits */}
             <video
               ref={videoRef}
               src="/sage/sage-next-festival.mp4"
@@ -562,7 +562,7 @@ export function FinalDesign() {
               playsInline
               preload="none"
               style={{ width: "100%", display: videoStarted ? "block" : "none" }}
-              aria-label="SAGE motion graphic — GWU NEXT Festival 2026 thesis demonstration"
+              aria-label="SAGE motion graphic - GWU NEXT Festival 2026 thesis demonstration"
             />
             {!videoStarted && (
               <button
@@ -589,20 +589,20 @@ export function FinalDesign() {
                     width: 80,
                     height: 80,
                     borderRadius: "50%",
-                    border: "1px solid rgba(155,233,49,0.35)",
-                    backgroundColor: "rgba(155,233,49,0.08)",
+                    border: "1px solid var(--accent-border-strong)",
+                    backgroundColor: "var(--accent-interactive-bg)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     transition: "background-color 200ms ease, border-color 200ms ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.15)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.6)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--accent-interactive-bg)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border-glow)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.08)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.35)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--accent-interactive-bg)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border-strong)";
                   }}
                 >
                   <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
@@ -629,7 +629,7 @@ export function FinalDesign() {
             representation of the final product design.
           </p>
 
-          {/* Festival photos — 07, 08, 09 */}
+          {/* Festival photos - 07, 08, 09 */}
           <div
             className="grid grid-cols-1 md:grid-cols-3"
             style={{ gap: 12 }}
@@ -649,7 +649,7 @@ export function FinalDesign() {
               >
                 <ClickableImage
                   src={`/sage/team/sage-team-${String(n).padStart(2, "0")}.jpg`}
-                  alt={`GWU NEXT Festival 2026 — SAGE presentation, photo ${n - 6}`}
+                  alt={`GWU NEXT Festival 2026 - SAGE presentation, photo ${n - 6}`}
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   loading="lazy"
                 />

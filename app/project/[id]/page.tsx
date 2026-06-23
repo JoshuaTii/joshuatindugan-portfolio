@@ -17,7 +17,7 @@ export default function ProjectPage() {
     return (
       <div className="min-h-screen flex items-center justify-center text-white/40 bg-[#090909]">
         Project not found.{" "}
-        <Link href="/" className="text-[#4ade80] ml-2 underline">
+        <Link href="/" className="text-[#95fbff] ml-2 underline">
           Go back
         </Link>
       </div>
@@ -43,7 +43,7 @@ export default function ProjectPage() {
         </div>
       </div>
 
-      {/* Hero image — full width */}
+      {/* Hero image - full width */}
       <section className="relative pt-16 md:pt-[72px]">
         <div className="relative h-[55vh] md:h-[65vh] overflow-hidden">
           <img
@@ -53,7 +53,7 @@ export default function ProjectPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-[#090909]/30 to-transparent" />
 
-          {/* Title overlay — centered container */}
+          {/* Title overlay - centered container */}
           <div className="absolute bottom-0 left-0 right-0">
             <div className="section-container pb-14 md:pb-20">
               <motion.div

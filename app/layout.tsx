@@ -1,6 +1,8 @@
 ﻿import type { Metadata } from "next";
-import { Caveat, Montserrat } from "next/font/google";
+import { Caveat, Sora } from "next/font/google";
 import { ThemeProvider }       from "./providers/ThemeProvider";
+import { SketchProvider }      from "./providers/SketchProvider";
+import { SketchCanvas }        from "./components/SketchCanvas";
 import { SmoothScrollProvider } from "./providers/SmoothScrollProvider";
 import "./globals.css";
 
@@ -13,10 +15,10 @@ const caveat = Caveat({
 });
 
 /* ── Primary sans-serif body font ── */
-const montserrat = Montserrat({
+const sora = Sora({
   variable: "--font-sans",
   subsets:  ["latin"],
-  weight:   ["300", "400", "500", "600", "700"],
+  weight:   ["300", "400", "500", "600", "700", "800"],
   display:  "swap",
 });
 
@@ -47,12 +49,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${caveat.variable} ${montserrat.variable}`}
+      className={`${caveat.variable} ${sora.variable}`}
       suppressHydrationWarning
     >
-      <body style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>
+      <body style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>
         <ThemeProvider>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <SketchProvider>
+            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+            <SketchCanvas />
+          </SketchProvider>
         </ThemeProvider>
       </body>
     </html>

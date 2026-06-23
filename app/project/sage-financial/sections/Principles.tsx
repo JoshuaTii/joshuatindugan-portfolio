@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -72,9 +72,9 @@ export function Principles() {
                 transition: "border-color 300ms ease, box-shadow 300ms ease, background-color 300ms ease",
               }}
               whileHover={{
-                borderColor: "rgba(122,182,136,0.35)",
-                boxShadow: "0 0 32px rgba(122,182,136,0.08)",
-                backgroundColor: "rgba(122,182,136,0.04)",
+                borderColor: "var(--accent-border-strong)",
+                boxShadow: "0 0 32px var(--glow)",
+                backgroundColor: "var(--accent-interactive-bg)",
               }}
             >
               <div className="flex items-baseline" style={{ gap: 16 }}>

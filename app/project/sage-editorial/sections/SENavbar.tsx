@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { SiteControls } from "../../../components/SiteControls";
 
 const NAV_LINKS = [
   { label: "Overview",   href: "#overview",     id: "overview" },
@@ -66,7 +67,7 @@ export function SENavbar() {
       }}
     >
       <div className="section-container flex items-center justify-between" style={{ height: 68 }}>
-        {/* Left — back link + project label */}
+        {/* Left - back link + project label */}
         <div className="flex items-center" style={{ gap: 20 }}>
           <Link
             href="/#work"
@@ -140,32 +141,26 @@ export function SENavbar() {
           })}
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center"
-          style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {[
-            open ? "translateY(7.5px) rotate(45deg)"  : "none",
-            "none",
-            open ? "translateY(-7.5px) rotate(-45deg)" : "none",
-          ].map((transform, i) => (
-            <span
-              key={i}
-              style={{
-                display: "block",
-                width: 22,
-                height: 1.5,
-                backgroundColor: "var(--cs-hamburger)",
-                transform,
-                opacity: i === 1 && open ? 0 : 1,
-                transition: "transform 200ms ease, opacity 200ms ease",
-              }}
-            />
-          ))}
-        </button>
+        {/* Right side - desktop controls + mobile hamburger */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="hidden md:flex">
+            <SiteControls />
+          </div>
+          <button
+            className="md:hidden flex flex-col justify-center items-center"
+            style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {[
+              open ? "translateY(7.5px) rotate(45deg)"  : "none",
+              "none",
+              open ? "translateY(-7.5px) rotate(-45deg)" : "none",
+            ].map((transform, i) => (
+              <span key={i} style={{ display: "block", width: 22, height: 1.5, backgroundColor: "var(--cs-hamburger)", transform, opacity: i === 1 && open ? 0 : 1, transition: "transform 200ms ease, opacity 200ms ease" }} />
+            ))}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

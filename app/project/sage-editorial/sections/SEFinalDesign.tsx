@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -85,7 +85,7 @@ export function SEFinalDesign() {
           </p>
         </motion.div>
 
-        {/* Main mockup — Group 637 */}
+        {/* Main mockup - Group 637 */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

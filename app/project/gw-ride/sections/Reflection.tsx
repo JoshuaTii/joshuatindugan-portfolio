@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const VALIDATION_CHANGES = [
@@ -124,8 +124,8 @@ export function Reflection() {
                     minWidth: 24,
                     height: 24,
                     borderRadius: "50%",
-                    backgroundColor: "rgba(155,233,49,0.12)",
-                    border: "1px solid rgba(155,233,49,0.2)",
+                    backgroundColor: "var(--accent-dim)",
+                    border: "1px solid var(--accent-border-strong)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -306,8 +306,8 @@ export function Reflection() {
                     minWidth: 24,
                     height: 24,
                     borderRadius: "50%",
-                    backgroundColor: "rgba(155,233,49,0.12)",
-                    border: "1px solid rgba(155,233,49,0.2)",
+                    backgroundColor: "var(--accent-dim)",
+                    border: "1px solid var(--accent-border-strong)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

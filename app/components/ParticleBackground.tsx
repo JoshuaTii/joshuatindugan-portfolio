@@ -55,11 +55,11 @@ export function ParticleBackground() {
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
       const dark = themeRef.current === "dark";
-      // Dark: #45c97c (bright green, subtle on black)
-      // Light: #14502d (deep forest green, visible against #F6F9FD / #e8f2ec)
-      const r = dark ? 69  : 20;
-      const g = dark ? 201 : 80;
-      const b = dark ? 124 : 45;
+      // Dark: #95fbff (electric cyan, subtle on black)
+      // Light: #00696c (deep teal, visible against light bg)
+      const r = dark ? 149 : 0;
+      const g = dark ? 251 : 105;
+      const b = dark ? 255 : 108;
       // Light particles need more weight to read against a pale background
       const alphaMul = dark ? 1 : 1.7;
       const mx = mouse.current.x;

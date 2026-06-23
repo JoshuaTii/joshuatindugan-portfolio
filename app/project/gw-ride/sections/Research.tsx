@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const RESEARCH_METHODS = [
@@ -145,7 +145,7 @@ export function Research() {
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.backgroundColor =
-                        "rgba(155,233,49,0.04)";
+                        "var(--accent-interactive-bg)";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";

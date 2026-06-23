@@ -8,7 +8,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Opens native mail client as fallback — replace with a form service like Resend or Formspree
+    // Opens native mail client as fallback - replace with a form service like Resend or Formspree
     window.location.href = `mailto:jtindugan16@gmail.com?subject=Portfolio Inquiry from ${form.name}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${form.email}`;
     setSent(true);
   };

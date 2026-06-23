@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 
 export function Hero() {
   return (
@@ -23,7 +23,7 @@ export function Hero() {
         style={{ paddingTop: 120, paddingBottom: 80 }}
       >
         <div className="grid md:grid-cols-2 flex-1" style={{ gap: "48px 80px", alignItems: "center" }}>
-          {/* Left — text */}
+          {/* Left - text */}
           <div className="flex flex-col" style={{ gap: 0 }}>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -119,7 +119,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — hero mockup cluster with clear visual hierarchy */}
+          {/* Right - hero mockup cluster with clear visual hierarchy */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,7 +137,7 @@ export function Hero() {
               }}
             />
 
-            {/* Right screen — lowest, smallest, back */}
+            {/* Right screen - lowest, smallest, back */}
             <motion.img
               src="/gwride/final-explore.png"
               alt="GW Ride explore screen"
@@ -158,7 +158,7 @@ export function Hero() {
               }}
             />
 
-            {/* Left screen — mid-height, medium */}
+            {/* Left screen - mid-height, medium */}
             <motion.img
               src="/gwride/final-main.png"
               alt="GW Ride main tracking screen"
@@ -179,7 +179,7 @@ export function Hero() {
               }}
             />
 
-            {/* Center screen — top, largest, front */}
+            {/* Center screen - top, largest, front */}
             <motion.img
               src="/gwride/final-opening.png"
               alt="GW Ride opening screen"

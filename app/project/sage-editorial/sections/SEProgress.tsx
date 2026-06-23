@@ -131,7 +131,6 @@ export function SEProgress() {
                   fontSize: "0.88rem",
                   lineHeight: 1.65,
                   color: "var(--cs-text-muted)",
-                  borderLeft: "2px solid rgba(74,222,128,0.35)",
                 }}
               >
                 {card}
@@ -234,8 +233,8 @@ export function SEProgress() {
           style={{
             padding: "32px 36px",
             borderRadius: 20,
-            border: "1px solid rgba(74,222,128,0.1)",
-            backgroundColor: "rgba(74,222,128,0.03)",
+            border: "1px solid var(--accent-border)",
+            backgroundColor: "var(--accent-interactive-bg)",
             maxWidth: 720,
           }}
         >

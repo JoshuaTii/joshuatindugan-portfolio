@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ import { ParticleBackground } from "../components/ParticleBackground";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /*
-  FigmaEmbed — clips Figma's top and bottom toolbars so only the prototype
+  FigmaEmbed â€” clips Figma's top and bottom toolbars so only the prototype
   canvas is visible. The container height drives what the user sees;
   the iframe is rendered taller and shifted up.
 
@@ -59,7 +59,7 @@ function FigmaEmbed({
           height: iframeH,
           marginTop: -TOP_BAR,
           display: "block",
-          /* Ensure pointer events work — user must be able to click/scroll */
+          /* Ensure pointer events work â€” user must be able to click/scroll */
           pointerEvents: "auto",
         }}
         allowFullScreen
@@ -71,7 +71,7 @@ function FigmaEmbed({
   );
 }
 
-/* ── VIEW PROJECT button ──────────────────────────────────────────────────── */
+/* â”€â”€ VIEW PROJECT button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ViewProjectBtn({ href }: { href: string }) {
   const router = useRouter();
   const [hov, setHov] = useState(false);
@@ -82,7 +82,7 @@ function ViewProjectBtn({ href }: { href: string }) {
       onMouseLeave={() => setHov(false)}
       style={{
         display: "inline-flex", alignItems: "center", justifyContent: "center",
-        fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+        fontFamily: "var(--font-sans, 'Sora', sans-serif)",
         fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
         color: hov ? "var(--green)" : "var(--text)",
         background: "transparent",
@@ -98,10 +98,10 @@ function ViewProjectBtn({ href }: { href: string }) {
   );
 }
 
-/* ── Shared prototype section layout ─────────────────────────────────────────
+/* â”€â”€ Shared prototype section layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Each section: full-width embed at top, then title + description + button below.
    This gives the prototype maximum screen real-estate to interact with.
-────────────────────────────────────────────────────────────────────────────── */
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ProtoSection({
   title,
   description,
@@ -140,14 +140,14 @@ function ProtoSection({
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 32, flexWrap: "wrap" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 600, flex: 1 }}>
           <h3 style={{
-            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontFamily: "var(--font-sans, 'Sora', sans-serif)",
             fontSize: "1.5rem", fontWeight: 800,
             color: "var(--text)", letterSpacing: "-0.01em",
           }}>
             {title}
           </h3>
           <p style={{
-            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontFamily: "var(--font-sans, 'Sora', sans-serif)",
             fontSize: "0.85rem", lineHeight: 1.75, color: "var(--text-2)",
           }}>
             {description}
@@ -161,7 +161,7 @@ function ProtoSection({
   );
 }
 
-/* ── Page ─────────────────────────────────────────────────────────────────── */
+/* â”€â”€ Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function PrototypesPage() {
   const headerRef = useRef(null);
   const inView    = useInView(headerRef, { once: true, margin: "-60px" });
@@ -175,7 +175,7 @@ export default function PrototypesPage() {
         <section style={{ paddingTop: 128, paddingBottom: 40 }}>
           <div className="section-container">
 
-            {/* Page header — title left, load warning right */}
+            {/* Page header â€” title left, load warning right */}
             <motion.div
               ref={headerRef}
               initial={{ opacity: 0, y: 24 }}
@@ -192,7 +192,7 @@ export default function PrototypesPage() {
             >
               <div>
                 <p style={{
-                  fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+                  fontFamily: "var(--font-sans, 'Sora', sans-serif)",
                   fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.2em",
                   textTransform: "uppercase", color: "var(--text-3)", marginBottom: 14,
                 }}>
@@ -207,9 +207,9 @@ export default function PrototypesPage() {
                 </h1>
               </div>
 
-              {/* Subtle load-time notice — right-aligned at same level */}
+              {/* Subtle load-time notice â€” right-aligned at same level */}
               <p style={{
-                fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+                fontFamily: "var(--font-sans, 'Sora', sans-serif)",
                 fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.06em",
                 color: "var(--text-3)",
                 textAlign: "right",
@@ -262,3 +262,4 @@ export default function PrototypesPage() {
     </div>
   );
 }
+

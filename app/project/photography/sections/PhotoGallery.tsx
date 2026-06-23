@@ -152,7 +152,7 @@ export function PhotoGallery() {
           transform: scale(1.04);
         }
         .photo-item:focus-visible {
-          outline: 2px solid rgba(251,113,133,0.7);
+          outline: 2px solid var(--cs-accent-ph);
           outline-offset: 2px;
         }
       `}</style>
@@ -175,7 +175,7 @@ export function PhotoGallery() {
           }}
           onClick={closeLightbox}
         >
-          {/* Image container — stops propagation so clicking image doesn't close */}
+          {/* Image container - stops propagation so clicking image doesn't close */}
           <div
             style={{
               position: "relative",

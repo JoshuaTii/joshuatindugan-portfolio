@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -155,8 +155,8 @@ export function SEReflection() {
           style={{
             padding: "32px 40px",
             borderRadius: 20,
-            borderLeft: `3px solid ${ACCENT}`,
-            backgroundColor: "rgba(74,222,128,0.04)",
+            border: "1px solid var(--accent-border)",
+            backgroundColor: "var(--accent-interactive-bg)",
             maxWidth: 720,
           }}
         >

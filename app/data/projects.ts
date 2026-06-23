@@ -8,7 +8,7 @@ export const projects = [
     description:
       "An editorial publication extending SAGE: local stories, financial guides, and community updates for Ward 7 and 8 residents.",
     tags: ["Editorial Design", "UI/UX", "Community"],
-    color: "#4ade80",
+    color: "#95fbff",
     image: "/sage-editorial.png",
     logo: "/logo-sage-editorial.png",
     feature:

@@ -84,7 +84,7 @@ export default function CaseStudy({ slug }: Props) {
         }}
       >
         <p className="text-xs font-mono tracking-widest uppercase" style={{ color: project.color, opacity: 0.5 }}>
-          Project Mockup — {project.title}
+          Project Mockup - {project.title}
         </p>
       </motion.div>
 

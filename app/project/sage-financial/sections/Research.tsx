@@ -228,7 +228,7 @@ export function Research() {
             Research Methods
           </h3>
 
-          {/* Table — responsive: hidden on mobile, shown on md+ */}
+          {/* Table - responsive: hidden on mobile, shown on md+ */}
           <div
             className="hidden md:block"
             style={{
@@ -272,7 +272,7 @@ export function Research() {
                       transition: "background-color 200ms ease",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(155,233,49,0.04)";
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "var(--accent-interactive-bg)";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";

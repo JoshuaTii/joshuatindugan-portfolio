@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-it)";
 
 const SKETCH_IMAGES = [
   { src: "/intuition/sketches/sketch-0.png", alt: "Lo-fi sketch, main layout" },
@@ -225,8 +225,8 @@ export function Design() {
                     style={{
                       padding: "18px 20px",
                       borderRadius: 12,
-                      border: "1px solid rgba(155,233,49,0.14)",
-                      backgroundColor: "rgba(155,233,49,0.04)",
+                      border: "1px solid var(--accent-border)",
+                      backgroundColor: "var(--accent-interactive-bg)",
                       fontSize: "0.88rem",
                       lineHeight: 1.65,
                       color: "var(--cs-text-muted)",

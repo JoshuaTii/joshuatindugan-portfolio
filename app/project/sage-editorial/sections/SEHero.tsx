@@ -25,7 +25,7 @@ export function SEHero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 20% 40%, rgba(74,222,128,0.05) 0%, transparent 65%)",
+            "radial-gradient(ellipse 70% 60% at 20% 40%, var(--glow) 0%, transparent 65%)",
         }}
       />
 
@@ -38,7 +38,7 @@ export function SEHero() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontSize: "0.75rem",
-              fontWeight: 500,
+              fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.16em",
               color: ACCENT,
@@ -148,8 +148,8 @@ export function SEHero() {
                   alignItems: "center",
                   padding: "7px 14px",
                   borderRadius: 100,
-                  border: `1px solid rgba(74,222,128,0.18)`,
-                  backgroundColor: `rgba(74,222,128,0.05)`,
+                  border: "1px solid var(--accent-border-strong)",
+                  backgroundColor: "var(--accent-interactive-bg)",
                   fontSize: "0.75rem",
                   color: "var(--cs-accent-se)",
                   letterSpacing: "0.04em",

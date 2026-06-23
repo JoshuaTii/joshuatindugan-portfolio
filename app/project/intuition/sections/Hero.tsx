@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-it)";
 
 export function Hero() {
   return (
@@ -14,7 +14,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(155,233,49,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 60% 40%, var(--glow) 0%, transparent 70%)",
         }}
       />
 
@@ -23,7 +23,7 @@ export function Hero() {
         style={{ paddingTop: 120, paddingBottom: 80 }}
       >
         <div className="grid md:grid-cols-2 flex-1" style={{ gap: "48px 80px", alignItems: "center" }}>
-          {/* Left — text */}
+          {/* Left - text */}
           <div className="flex flex-col" style={{ gap: 0 }}>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export function Hero() {
               style={{
                 display: "inline-block",
                 fontSize: "0.75rem",
-                fontWeight: 500,
+                fontWeight: 600,
                 textTransform: "uppercase",
                 letterSpacing: "0.12em",
                 color: ACCENT,
@@ -136,7 +136,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — InTuition logo */}
+          {/* Right - InTuition logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -149,7 +149,7 @@ export function Hero() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(155,233,49,0.08) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 80% 80% at 50% 50%, var(--glow) 0%, transparent 70%)",
                 filter: "blur(60px)",
               }}
             />

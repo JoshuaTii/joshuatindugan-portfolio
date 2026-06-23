@@ -10,7 +10,7 @@ const Ctx = createContext<ThemeCtx>({ theme: "dark", toggle: () => {} });
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
-  // Sync from localStorage on mount — runs client-side only
+  // Sync from localStorage on mount - runs client-side only
   useEffect(() => {
     const saved = (localStorage.getItem("theme") as Theme | null) ?? "dark";
     setTheme(saved);

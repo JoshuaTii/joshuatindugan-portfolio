@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink } from "lucide-react";
@@ -6,12 +6,12 @@ import Link from "next/link";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/* ─── Prototype data ──────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Prototype data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const PROTOTYPES = [
   {
     id: "sage",
     title: "SAGE",
-    category: "Fintech · Product Design",
+    category: "Fintech Â· Product Design",
     description: "An equitable financial access platform for underserved D.C. neighborhoods. Transparent loan management, budgeting tools, and guided financial learning built around community trust.",
     device: "phone" as const,
     figmaUrl: "https://www.figma.com/proto/TPDwOcOuNh3hqxroJa6ycm/Sage?node-id=922-2083&p=f&viewport=439%2C-3800%2C0.27&t=7exmeErv2KqeWoET-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=922%3A1952&page-id=0%3A1",
@@ -20,7 +20,7 @@ const PROTOTYPES = [
   {
     id: "sage-editorial",
     title: "SAGE EDITORIAL",
-    category: "Editorial Design · Web",
+    category: "Editorial Design Â· Web",
     description: "A community-centered publication extending the SAGE platform with local stories, financial guides, and resource access for Ward 7 and 8 residents of Washington D.C.",
     device: "macbook" as const,
     figmaUrl: "https://www.figma.com/proto/0ymuy0VQlIhUR7PuUn7OwG/Editorial-Sage?node-id=1-574&p=f&viewport=-7613%2C-35%2C0.57&t=6LM5l5L7MS771u0o-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A574&page-id=0%3A1",
@@ -29,7 +29,7 @@ const PROTOTYPES = [
   {
     id: "gw-ride",
     title: "GW RIDE",
-    category: "Mobile Design · Transit",
+    category: "Mobile Design Â· Transit",
     description: "Real-time shuttle tracking for GWU campuses with live locations, crowd-level indicators, and estimated arrival times to make the daily commute less of a gamble.",
     device: "phone" as const,
     figmaUrl: "https://www.figma.com/proto/ezhpWQgVx2L0xAo2q8JGKj/GW-Ride?node-id=2251-993&p=f&viewport=-8975%2C2581%2C0.57&t=sh8Qx16eKDjNu1a0-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2251%3A993&page-id=0%3A1",
@@ -38,7 +38,7 @@ const PROTOTYPES = [
   {
     id: "intuition",
     title: "INTUITION",
-    category: "Product Design · EdTech",
+    category: "Product Design Â· EdTech",
     description: "A scholarship discovery platform that matches students to funding through smart filtering and a unified application, removing friction from a broken, fragmented process.",
     device: "macbook" as const,
     figmaUrl: "https://www.figma.com/proto/ZFpuwcRXS8LhFZibl83SUQ/InTuition-2.0?page-id=0%3A1&node-id=1-233&viewport=-1406%2C-374%2C0.33&t=ehlpwFrXPa0p9rhf-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A233",
@@ -46,7 +46,7 @@ const PROTOTYPES = [
   },
 ];
 
-/* ─── Phone mockup ────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Phone mockup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function PhoneMockup({ src }: { src: string }) {
   const FRAME_W = 280;
   const FRAME_H = 560;
@@ -84,7 +84,7 @@ function PhoneMockup({ src }: { src: string }) {
   );
 }
 
-/* ─── MacBook mockup ──────────────────────────────────────────────────────── */
+/* â”€â”€â”€ MacBook mockup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function MacbookMockup({ src }: { src: string }) {
   return (
     <div style={{ flexShrink: 0, width: "min(540px, 100%)" }}>
@@ -127,7 +127,7 @@ function MacbookMockup({ src }: { src: string }) {
   );
 }
 
-/* ─── Single prototype row ────────────────────────────────────────────────── */
+/* â”€â”€â”€ Single prototype row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function PrototypeRow({ item, index }: { item: typeof PROTOTYPES[0]; index: number }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -149,15 +149,15 @@ function PrototypeRow({ item, index }: { item: typeof PROTOTYPES[0]; index: numb
       }}
       className="flex-col md:flex-row"
     >
-      {/* Left — info */}
+      {/* Left â€” info */}
       <div style={{ flex: "0 0 auto", maxWidth: 340, display: "flex", flexDirection: "column", gap: 16 }}>
-        <p style={{ fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--green)", fontWeight: 600, fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>
+        <p style={{ fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--green)", fontWeight: 600, fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>
           {item.category}
         </p>
-        <h3 style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "1.35rem", fontWeight: 800, letterSpacing: "-0.01em", color: "var(--text)" }}>
+        <h3 style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "1.35rem", fontWeight: 800, letterSpacing: "-0.01em", color: "var(--text)" }}>
           {item.title}
         </h3>
-        <p style={{ fontSize: "0.82rem", lineHeight: 1.72, color: "var(--text-2)", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>
+        <p style={{ fontSize: "0.82rem", lineHeight: 1.72, color: "var(--text-2)", fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>
           {item.description}
         </p>
         <Link
@@ -168,7 +168,7 @@ function PrototypeRow({ item, index }: { item: typeof PROTOTYPES[0]; index: numb
             display: "inline-flex", alignItems: "center", gap: 6, textDecoration: "none",
             alignSelf: "flex-start",
             fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
-            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontFamily: "var(--font-sans, 'Sora', sans-serif)",
             color: hovBtn ? "#fff" : "var(--text)",
             background: hovBtn ? "var(--green)" : "transparent",
             border: `1px solid ${hovBtn ? "var(--green)" : "var(--card-hover)"}`,
@@ -181,7 +181,7 @@ function PrototypeRow({ item, index }: { item: typeof PROTOTYPES[0]; index: numb
         </Link>
       </div>
 
-      {/* Right — device mockup */}
+      {/* Right â€” device mockup */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
         {item.device === "phone"
           ? <PhoneMockup src={item.figmaUrl} />
@@ -191,7 +191,7 @@ function PrototypeRow({ item, index }: { item: typeof PROTOTYPES[0]; index: numb
   );
 }
 
-/* ─── Section ─────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export function Prototype() {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -208,7 +208,7 @@ export function Prototype() {
           transition={{ duration: 0.7, ease: EASE }}
           style={{ marginBottom: 16 }}
         >
-          <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text-3)", fontWeight: 600, marginBottom: 14, fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text-3)", fontWeight: 600, marginBottom: 14, fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>
             Interactive Prototypes
           </p>
           <h2 style={{ fontFamily: "var(--font-hand, 'Caveat', cursive)", fontSize: "clamp(2rem, 5vw, 3.6rem)", fontWeight: 700, color: "var(--green)", lineHeight: 1.05 }}>
@@ -224,3 +224,4 @@ export function Prototype() {
     </section>
   );
 }
+

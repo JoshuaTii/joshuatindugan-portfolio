@@ -118,7 +118,7 @@ export function Reflection() {
                   color: "var(--cs-text-muted)",
                   lineHeight: 1.4,
                   textAlign: "center" as const,
-                  borderTop: "2px solid rgba(155,233,49,0.3)",
+                  borderTop: "2px solid var(--accent-border-strong)",
                 }}
               >
                 {item}
@@ -238,9 +238,9 @@ export function Reflection() {
                 transition: "border-color 300ms ease, box-shadow 300ms ease, background-color 300ms ease",
               }}
               whileHover={{
-                borderColor: "rgba(122,182,136,0.25)",
-                boxShadow: "0 0 28px rgba(122,182,136,0.07)",
-                backgroundColor: "rgba(122,182,136,0.03)",
+                borderColor: "var(--accent-border-strong)",
+                boxShadow: "0 0 28px var(--glow)",
+                backgroundColor: "var(--accent-interactive-bg)",
               }}
             >
               <h3
@@ -270,8 +270,8 @@ export function Reflection() {
           style={{
             padding: "48px 56px",
             borderRadius: 24,
-            border: "1px solid rgba(122,182,136,0.15)",
-            background: "linear-gradient(135deg, rgba(122,182,136,0.06) 0%, rgba(9,9,11,0) 60%)",
+            border: "1px solid var(--accent-border)",
+            background: "linear-gradient(135deg, var(--accent-interactive-bg) 0%, transparent 60%)",
             display: "flex",
             flexDirection: "column" as const,
             gap: 20,

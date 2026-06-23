@@ -237,7 +237,7 @@ function FeatureBlock({
             ))}
           </div>
 
-          {/* Image nav — only when more than 1 screen */}
+          {/* Image nav - only when more than 1 screen */}
           {feature.images.length > 1 && (
             <div className="flex flex-wrap" style={{ gap: 8 }}>
               {feature.images.map((_, i) => (
@@ -249,7 +249,7 @@ function FeatureBlock({
                     height: 34,
                     borderRadius: 8,
                     border: `1px solid ${i === activeImg ? "var(--cs-accent-sf)" : "var(--cs-border-strong)"}`,
-                    backgroundColor: i === activeImg ? "rgba(155,233,49,0.1)" : "transparent",
+                    backgroundColor: i === activeImg ? "var(--accent-interactive-bg)" : "transparent",
                     cursor: "pointer",
                     fontSize: "0.7rem",
                     color: i === activeImg ? "var(--cs-accent-sf)" : "var(--cs-text-faint)",
@@ -281,7 +281,7 @@ function FeatureBlock({
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(155,233,49,0.086) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse 80% 80% at 50% 50%, var(--glow) 0%, transparent 70%)",
               filter: "blur(40px)",
               borderRadius: 24,
             }}

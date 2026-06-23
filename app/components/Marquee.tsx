@@ -36,7 +36,7 @@ function Track() {
             marginRight: 10,
             border: "1px solid var(--card-border)",
             padding: "8px 18px",
-            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontFamily: "var(--font-sans, 'Sora', sans-serif)",
             fontSize: "0.78rem",
             fontWeight: 500,
             letterSpacing: "0.04em",

@@ -3,7 +3,7 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Lightbox } from "./Lightbox";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const INSIGHTS = [
@@ -106,7 +106,7 @@ export function Insights() {
                 style={{
                   fontSize: "2rem",
                   fontWeight: 700,
-                  color: "rgba(155,233,49,0.18)",
+                  color: "var(--accent-dim)",
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
                 }}
@@ -215,7 +215,7 @@ export function Insights() {
                   }}
                   onClick={() => openLightbox(map.src, map.caption)}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(155,233,49,0.3)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border-strong)";
                     (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
                   }}
                   onMouseLeave={(e) => {

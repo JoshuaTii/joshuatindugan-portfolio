@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { SiteControls } from "../../../components/SiteControls";
 
 const NAV_LINKS = [
   { label: "Overview",    href: "#overview",    id: "overview" },
@@ -13,7 +14,7 @@ const NAV_LINKS = [
   { label: "Reflection",  href: "#reflection",  id: "reflection" },
 ];
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-it)";
 
 export function InTuitionNavbar() {
   const [scrolled, setScrolled]           = useState(false);
@@ -65,7 +66,7 @@ export function InTuitionNavbar() {
       }}
     >
       <div className="section-container flex items-center justify-between" style={{ height: 68 }}>
-        {/* Left — back link + logo */}
+        {/* Left - back link + logo */}
         <div className="flex items-center" style={{ gap: 20 }}>
           <Link
             href="/#work"
@@ -140,26 +141,22 @@ export function InTuitionNavbar() {
           })}
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center"
-          style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          <span
-            className="block"
-            style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(7.5px) rotate(45deg)" : "none", transition: "transform 200ms ease" }}
-          />
-          <span
-            className="block"
-            style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, opacity: open ? 0 : 1, transition: "opacity 200ms ease" }}
-          />
-          <span
-            className="block"
-            style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none", transition: "transform 200ms ease" }}
-          />
-        </button>
+        {/* Right side - desktop controls + mobile hamburger */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="hidden md:flex">
+            <SiteControls />
+          </div>
+          <button
+            className="md:hidden flex flex-col justify-center items-center"
+            style={{ width: 36, height: 36, gap: 6, background: "none", border: "none", cursor: "pointer" }}
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            <span className="block" style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(7.5px) rotate(45deg)" : "none", transition: "transform 200ms ease" }} />
+            <span className="block" style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, opacity: open ? 0 : 1, transition: "opacity 200ms ease" }} />
+            <span className="block" style={{ backgroundColor: "var(--cs-hamburger)", width: 22, height: 1.5, transform: open ? "translateY(-7.5px) rotate(-45deg)" : "none", transition: "transform 200ms ease" }} />
+          </button>
+        </div>
       </div>
 
       {open && (

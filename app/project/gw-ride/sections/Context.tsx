@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Context() {
@@ -123,9 +123,9 @@ export function Context() {
             style={{
               padding: "40px 36px",
               borderRadius: 20,
-              border: "1px solid rgba(155,233,49,0.2)",
+              border: "1px solid var(--accent-border-strong)",
               backgroundColor: "var(--cs-surface)",
-              background: "linear-gradient(135deg, rgba(155,233,49,0.04) 0%, transparent 60%)",
+              background: "linear-gradient(135deg, var(--accent-interactive-bg) 0%, transparent 60%)",
             }}
           >
             <p
@@ -144,8 +144,8 @@ export function Context() {
               style={{
                 padding: "20px 24px",
                 borderRadius: 14,
-                backgroundColor: "rgba(155,233,49,0.06)",
-                border: "1px solid rgba(155,233,49,0.14)",
+                backgroundColor: "var(--accent-interactive-bg)",
+                border: "1px solid var(--accent-border)",
                 marginBottom: 20,
               }}
             >

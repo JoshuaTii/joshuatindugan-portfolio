@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "../providers/ThemeProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -13,6 +14,7 @@ const SOCIALS = [
 ];
 
 export function Contact() {
+  const { theme } = useTheme();
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -46,7 +48,7 @@ export function Contact() {
     borderRadius: 10,
     background: "var(--input-bg)",
     color: "var(--text)",
-    fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+    fontFamily: "var(--font-sans, 'Sora', sans-serif)",
     fontSize: "0.875rem",
     outline: "none",
     transition: "border-color 250ms ease, background 250ms ease",
@@ -65,7 +67,7 @@ export function Contact() {
           style={{ marginBottom: 56 }}
         >
           <p style={{
-            fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+            fontFamily: "var(--font-sans, 'Sora', sans-serif)",
             fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.2em",
             textTransform: "uppercase", color: "var(--text-3)", marginBottom: 14,
           }}>
@@ -78,7 +80,7 @@ export function Contact() {
           }}>
             Let&apos;s start something great together!
           </h2>
-          <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.9rem", lineHeight: 1.7, color: "var(--text-2)", maxWidth: 520 }}>
+          <p style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "0.9rem", lineHeight: 1.7, color: "var(--text-2)", maxWidth: 520 }}>
             I&apos;m open to full-time roles, freelance, and collaboration.<br />Let&apos;s talk!
           </p>
         </motion.div>
@@ -101,8 +103,8 @@ export function Contact() {
                 <div style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--green-dim)", border: "1px solid var(--green-border)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <CheckCircle size={24} color="var(--green)" strokeWidth={1.8} />
                 </div>
-                <p style={{ fontWeight: 700, fontSize: "1.1rem", color: "var(--text)", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>Message sent.</p>
-                <p style={{ fontSize: "0.82rem", color: "var(--text-2)", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>I&apos;ll get back to you soon.</p>
+                <p style={{ fontWeight: 700, fontSize: "1.1rem", color: "var(--text)", fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>Message sent.</p>
+                <p style={{ fontSize: "0.82rem", color: "var(--text-2)", fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>I&apos;ll get back to you soon.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -113,7 +115,7 @@ export function Contact() {
                   { id: "email", label: "EMAIL", type: "email", placeholder: "your@email.com" },
                 ].map((f) => (
                   <div key={f.id} style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                    <label htmlFor={`c-${f.id}`} style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontWeight: 700 }}>
+                    <label htmlFor={`c-${f.id}`} style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontWeight: 700 }}>
                       {f.label}
                     </label>
                     <input id={`c-${f.id}`} type={f.type} placeholder={f.placeholder} required disabled={status === "loading"}
@@ -126,7 +128,7 @@ export function Contact() {
                 ))}
 
                 <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <label htmlFor="c-message" style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontWeight: 700 }}>
+                  <label htmlFor="c-message" style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontWeight: 700 }}>
                     MESSAGE
                   </label>
                   <textarea id="c-message" placeholder="Tell me about your project..." required rows={6} disabled={status === "loading"}
@@ -136,9 +138,9 @@ export function Contact() {
                     style={{ ...fieldStyle("message"), minHeight: 150 }} />
                 </div>
 
-                {status === "error" && <p role="alert" style={{ fontSize: "0.8rem", color: "#f87171", fontFamily: "var(--font-sans, 'Montserrat', sans-serif)" }}>{errorMsg}</p>}
+                {status === "error" && <p role="alert" style={{ fontSize: "0.8rem", color: "#f87171", fontFamily: "var(--font-sans, 'Sora', sans-serif)" }}>{errorMsg}</p>}
 
-                {/* Send button — green bg, BLACK text, no arrow */}
+                {/* Send button - green bg, BLACK text, no arrow */}
                 <button
                   type="submit"
                   disabled={status === "loading"}
@@ -149,7 +151,7 @@ export function Contact() {
                     color: "var(--btn-text)",
                     border: "none", borderRadius: 100,
                     cursor: status === "loading" ? "not-allowed" : "pointer",
-                    fontFamily: "var(--font-sans, 'Montserrat', sans-serif)",
+                    fontFamily: "var(--font-sans, 'Sora', sans-serif)",
                     fontSize: "0.75rem", fontWeight: 800, letterSpacing: "0.16em", textTransform: "uppercase",
                     minHeight: 52, padding: "16px 28px",
                     opacity: status === "loading" ? 0.6 : 1,
@@ -164,14 +166,14 @@ export function Contact() {
             )}
           </motion.div>
 
-          {/* Social cards — green icons, no right arrows */}
+          {/* Social cards - green icons, no right arrows */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.2, ease: EASE }}
             style={{ display: "flex", flexDirection: "column", gap: 24 }}
           >
-            <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-3)" }}>
+            <p style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-3)" }}>
               REACH OUT DIRECTLY
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -200,15 +202,17 @@ export function Contact() {
                     display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                   }}>
                     <Image src={s.icon} alt={s.label} width={16} height={16}
-                      style={{ filter: "brightness(0) saturate(100%) invert(55%) sepia(60%) saturate(400%) hue-rotate(100deg) brightness(95%)" }} />
+                      style={{ filter: theme === "dark"
+                        ? "brightness(0) saturate(100%) invert(88%) sepia(28%) saturate(700%) hue-rotate(152deg) brightness(106%)"
+                        : "brightness(0) saturate(100%) invert(22%) sepia(80%) saturate(2000%) hue-rotate(155deg) brightness(96%)" }} />
                   </div>
                   <div style={{ minWidth: 0, display: "flex", flexDirection: "column", gap: 3 }}>
-                    <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.65rem", color: "var(--text-3)", letterSpacing: "0.08em" }}>{s.label}</p>
-                    <p style={{ fontFamily: "var(--font-sans, 'Montserrat', sans-serif)", fontSize: "0.82rem", color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    <p style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "0.65rem", color: "var(--text-3)", letterSpacing: "0.08em" }}>{s.label}</p>
+                    <p style={{ fontFamily: "var(--font-sans, 'Sora', sans-serif)", fontSize: "0.82rem", color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                       {s.value}
                     </p>
                   </div>
-                  {/* No right arrow — removed per reference */}
+                  {/* No right arrow - removed per reference */}
                 </motion.a>
               ))}
             </div>

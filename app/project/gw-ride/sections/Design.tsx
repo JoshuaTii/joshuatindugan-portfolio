@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const PHASES = [
@@ -227,7 +227,7 @@ export function Design() {
                 padding: "10px 22px",
                 borderRadius: 999,
                 border: `1px solid ${activePhase === p.id ? ACCENT : "var(--cs-border-strong)"}`,
-                backgroundColor: activePhase === p.id ? "rgba(155,233,49,0.08)" : "transparent",
+                backgroundColor: activePhase === p.id ? "var(--accent-interactive-bg)" : "transparent",
                 color: activePhase === p.id ? ACCENT : "var(--cs-text-faint)",
                 fontSize: "0.8rem",
                 fontWeight: 500,
@@ -263,7 +263,7 @@ export function Design() {
           {phase.description}
         </motion.p>
 
-        {/* Design choice cards — no colored left borders */}
+        {/* Design choice cards - no colored left borders */}
         <motion.div
           key={activePhase + "-cards"}
           initial={{ opacity: 0, y: 12 }}
@@ -314,8 +314,8 @@ export function Design() {
             marginBottom: 96,
             padding: "24px 28px",
             borderRadius: 14,
-            backgroundColor: "rgba(155,233,49,0.05)",
-            border: "1px solid rgba(155,233,49,0.12)",
+            backgroundColor: "var(--accent-interactive-bg)",
+            border: "1px solid var(--accent-border)",
           }}
         >
           <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--cs-text-muted)" }}>

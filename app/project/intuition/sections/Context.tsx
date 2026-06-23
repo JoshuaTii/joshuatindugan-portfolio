@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-it)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const CHALLENGE_CARDS = [
@@ -100,8 +100,8 @@ export function Context() {
                     width: 36,
                     height: 36,
                     borderRadius: "50%",
-                    backgroundColor: "rgba(155,233,49,0.1)",
-                    border: "1px solid rgba(155,233,49,0.2)",
+                    backgroundColor: "var(--accent-interactive-bg)",
+                    border: "1px solid var(--accent-border-strong)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

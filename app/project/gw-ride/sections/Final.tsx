@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const SCREENS = [
@@ -85,7 +85,7 @@ export function Final() {
           </p>
         </motion.div>
 
-        {/* Flat screen grid — no borders, no containers */}
+        {/* Flat screen grid - no borders, no containers */}
         <div
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
           style={{ gap: 16, marginBottom: 16 }}
@@ -219,8 +219,8 @@ export function Final() {
                   gap: 8,
                   padding: "12px 24px",
                   borderRadius: 10,
-                  border: "1px solid rgba(155,233,49,0.3)",
-                  backgroundColor: "rgba(155,233,49,0.08)",
+                  border: "1px solid var(--accent-border-strong)",
+                  backgroundColor: "var(--accent-interactive-bg)",
                   color: ACCENT,
                   fontSize: "0.88rem",
                   fontWeight: 500,
@@ -231,7 +231,7 @@ export function Final() {
               </a>
             </div>
 
-            {/* Below-iframe CTA — desktop only */}
+            {/* Below-iframe CTA - desktop only */}
             <div
               className="hidden md:flex"
               style={{ marginTop: 16, flexDirection: "column" as const, alignItems: "center", gap: 10 }}
@@ -249,8 +249,8 @@ export function Final() {
                   gap: 8,
                   padding: "10px 20px",
                   borderRadius: 9,
-                  border: "1px solid rgba(155,233,49,0.25)",
-                  backgroundColor: "rgba(155,233,49,0.07)",
+                  border: "1px solid var(--accent-border-strong)",
+                  backgroundColor: "var(--accent-interactive-bg)",
                   color: ACCENT,
                   fontSize: "0.82rem",
                   fontWeight: 500,

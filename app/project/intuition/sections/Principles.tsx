@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-it)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const PRINCIPLES = [
@@ -89,7 +89,7 @@ export function Principles() {
                 style={{
                   fontSize: "1.6rem",
                   fontWeight: 700,
-                  color: "rgba(155,233,49,0.18)",
+                  color: "var(--accent-dim)",
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
                 }}

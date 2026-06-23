@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ClickableImage } from "@/app/components/ClickableImage";
 
-const ACCENT = "var(--cs-accent-sf)";
+const ACCENT = "var(--cs-accent-gw)";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const FLOW_STEPS = [
@@ -122,7 +122,7 @@ export function UserJourney() {
                   position: "relative" as const,
                 }}
               >
-                {/* Arrow connector — hidden on mobile, shown on md+ */}
+                {/* Arrow connector - hidden on mobile, shown on md+ */}
                 {i < FLOW_STEPS.length - 1 && (
                   <div
                     className="hidden md:block"
@@ -144,7 +144,7 @@ export function UserJourney() {
                   style={{
                     fontSize: "1.4rem",
                     fontWeight: 700,
-                    color: "rgba(155,233,49,0.18)",
+                    color: "var(--accent-dim)",
                     letterSpacing: "-0.03em",
                     lineHeight: 1,
                   }}
@@ -177,8 +177,8 @@ export function UserJourney() {
             style={{
               padding: "36px 40px",
               borderRadius: 20,
-              border: "1px solid rgba(155,233,49,0.14)",
-              background: "linear-gradient(135deg, rgba(155,233,49,0.04) 0%, transparent 60%)",
+              border: "1px solid var(--accent-border)",
+              background: "linear-gradient(135deg, var(--accent-interactive-bg) 0%, transparent 60%)",
             }}
           >
             <p
