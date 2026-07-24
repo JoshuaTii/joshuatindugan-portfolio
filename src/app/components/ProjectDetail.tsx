@@ -16,6 +16,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
   const [lightbox, setLightbox] = useState<{
     images: ProjectImage[];
     index: number;
+    square?: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -109,17 +110,17 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
           type="button"
           onClick={() =>
             setLightbox({
-              images: [{ src: project.heroLogo, alt: `${project.title} logo` }],
+              images: [{ src: project.heroLogo, alt: project.heroAlt ?? `${project.title} logo` }],
               index: 0,
             })
           }
-          aria-label={`View larger: ${project.title} logo`}
-          className="group/hero flex aspect-[16/8] w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-[2.5rem] bg-muted p-6 focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)] sm:p-10 md:p-12"
+          aria-label={`View larger: ${project.heroAlt ?? `${project.title} logo`}`}
+          className="group/hero block aspect-[16/8] w-full cursor-zoom-in overflow-hidden rounded-[2.5rem] bg-muted focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
         >
           <ImageWithFallback
             src={project.heroLogo}
-            alt={`${project.title} logo`}
-            className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-[900ms] ease-out group-hover/hero:scale-[1.02]"
+            alt={project.heroAlt ?? `${project.title} logo`}
+            className="size-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover/hero:scale-[1.02]"
           />
         </button>
       </motion.div>
@@ -200,7 +201,9 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
                         <CaseBlock
                           block={block}
                           tone={tone}
-                          onImage={(images, index) => setLightbox({ images, index })}
+                          onImage={(images, index, options) =>
+                            setLightbox({ images, index, square: options?.square })
+                          }
                         />
                       </div>
                     );
@@ -240,6 +243,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
         <Lightbox
           images={lightbox.images}
           index={lightbox.index}
+          square={lightbox.square}
           onClose={() => setLightbox(null)}
           onNavigate={(index) => setLightbox({ ...lightbox, index })}
         />

@@ -74,7 +74,9 @@ export type Project = {
   summary: string;
   tags: string[];
   cover: string;
-  /** Case-study opening hero: the project's logo, shown centered via object-contain. */
+  /** Case-study opening hero: a full-bleed brand display image, filling the hero via object-cover. */
   heroLogo: string;
+  /** Accurate alt text for heroLogo. Falls back to "{title} logo" when omitted. */
+  heroAlt?: string;
   sections: CaseSection[];
 };

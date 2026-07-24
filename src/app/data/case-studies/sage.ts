@@ -14,6 +14,7 @@ export const sage: Project = {
   tags: ["Fintech", "UX Research", "Equity Design"],
   cover: "/logos/sage.png",
   heroLogo: "/logos/hero/sage.png",
+  heroAlt: "SAGE logo mark on a lime green background",
   sections: [
     {
       key: "overview",

@@ -15,6 +15,7 @@ export const photography: Project = {
   tags: ["Photography", "Art Direction", "Lightroom"],
   cover: "/logos/photography.png",
   heroLogo: "/logos/hero/photography.png",
+  heroAlt: "Joshua's Studio photography brand imagery over the GWU dome",
   sections: [
     {
       key: "overview",

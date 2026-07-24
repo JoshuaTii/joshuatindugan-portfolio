@@ -26,3 +26,6 @@ yarn-error.log*
 # Local AI tooling (not part of the site)
 .claude
 .impeccable
+
+.vercel
+.env*

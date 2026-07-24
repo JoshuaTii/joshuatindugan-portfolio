@@ -15,6 +15,7 @@ export const intuition: Project = {
   tags: ["EdTech", "UX Research", "Accessibility"],
   cover: "/logos/intuition.png",
   heroLogo: "/logos/hero/intuition.png",
+  heroAlt: "InTuition wordmark on a purple gradient background",
   sections: [
     {
       key: "overview",

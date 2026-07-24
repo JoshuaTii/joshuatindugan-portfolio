@@ -9,10 +9,12 @@ import { type Block, type MediaImage } from "../../data/case-types";
  */
 type Tone = "plain" | "card";
 
+type ImageViewerOptions = { square?: boolean };
+
 type BlockProps = {
   block: Block;
   tone: Tone;
-  onImage: (images: MediaImage[], index: number) => void;
+  onImage: (images: MediaImage[], index: number, options?: ImageViewerOptions) => void;
 };
 
 const surface = (tone: Tone) =>
@@ -33,18 +35,20 @@ function MediaButton({
   index,
   radius,
   onImage,
+  viewerOptions,
 }: {
   img: MediaImage;
   images: MediaImage[];
   index: number;
   radius: string;
   onImage: BlockProps["onImage"];
+  viewerOptions?: ImageViewerOptions;
 }) {
   return (
     <figure className="flex flex-col">
       <button
         type="button"
-        onClick={() => onImage(images, index)}
+        onClick={() => onImage(images, index, viewerOptions)}
         aria-label={`View larger: ${img.alt}`}
         className={`group/img cursor-zoom-in overflow-hidden ${radius} text-left focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]`}
       >
@@ -481,7 +485,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
 
     case "masonry":
       return (
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
           {block.images.map((img, i) => (
             <div key={img.src} className="mb-4 break-inside-avoid">
               <MediaButton
@@ -490,6 +494,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
                 index={i}
                 radius="rounded-none"
                 onImage={onImage}
+                viewerOptions={{ square: true }}
               />
             </div>
           ))}

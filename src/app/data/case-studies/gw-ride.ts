@@ -15,6 +15,7 @@ export const gwRide: Project = {
   tags: ["Mobile", "Transit UX", "Figma"],
   cover: "/logos/gw-ride.png",
   heroLogo: "/logos/hero/gw-ride.png",
+  heroAlt: "GW Ride logo mark with a celebratory illustration",
   sections: [
     {
       key: "overview",

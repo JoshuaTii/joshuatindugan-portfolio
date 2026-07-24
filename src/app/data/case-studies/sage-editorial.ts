@@ -15,6 +15,7 @@ export const sageEditorial: Project = {
   tags: ["Editorial Design", "Typography", "Visual System"],
   cover: "/logos/sage-editorial.png",
   heroLogo: "/logos/hero/sage-editorial.png",
+  heroAlt: "SAGE Editorial logo and wordmark",
   sections: [
     {
       key: "overview",
