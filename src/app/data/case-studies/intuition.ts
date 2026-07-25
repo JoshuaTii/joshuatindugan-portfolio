@@ -14,7 +14,7 @@ export const intuition: Project = {
     "A concept that replaces the fragmented scholarship search with a single smart platform, matching students to opportunities based on their profile and streamlining the application.",
   tags: ["EdTech", "UX Research", "Accessibility"],
   cover: "/logos/intuition.png",
-  heroLogo: "/logos/hero/intuition.png",
+  heroLogo: "/logos/hero/intuition-v2.png",
   heroAlt: "InTuition wordmark on a purple gradient background",
   sections: [
     {

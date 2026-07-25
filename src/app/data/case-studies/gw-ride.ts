@@ -14,7 +14,7 @@ export const gwRide: Project = {
     "A mobile app concept designed to reduce the uncertainty GWU students face around shuttle timing, route visibility, and stop coverage, so navigating campus feels low-stress.",
   tags: ["Mobile", "Transit UX", "Figma"],
   cover: "/logos/gw-ride.png",
-  heroLogo: "/logos/hero/gw-ride.png",
+  heroLogo: "/logos/hero/gw-ride-v2.png",
   heroAlt: "GW Ride logo mark with a celebratory illustration",
   sections: [
     {

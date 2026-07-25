@@ -13,7 +13,7 @@ export const sage: Project = {
     "A financial empowerment platform designed for Washington D.C.'s Ward 7 and Ward 8 communities, helping residents navigate safer financial options and reduce reliance on predatory lenders.",
   tags: ["Fintech", "UX Research", "Equity Design"],
   cover: "/logos/sage.png",
-  heroLogo: "/logos/hero/sage.png",
+  heroLogo: "/logos/hero/sage-v2.png",
   heroAlt: "SAGE logo mark on a lime green background",
   sections: [
     {

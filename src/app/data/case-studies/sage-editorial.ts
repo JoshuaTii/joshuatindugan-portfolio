@@ -14,7 +14,7 @@ export const sageEditorial: Project = {
     "An editorial website extending SAGE into stories, updates, and lived experiences from Washington, D.C.'s Ward 7 and Ward 8 communities.",
   tags: ["Editorial Design", "Typography", "Visual System"],
   cover: "/logos/sage-editorial.png",
-  heroLogo: "/logos/hero/sage-editorial.png",
+  heroLogo: "/logos/hero/sage-editorial-v2.png",
   heroAlt: "SAGE Editorial logo and wordmark",
   sections: [
     {

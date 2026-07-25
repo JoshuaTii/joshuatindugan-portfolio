@@ -13,8 +13,8 @@ export const photography: Project = {
   summary:
     "A visual archive of lifestyle, editorial, and brand photography, studying color, composition, and perspective beyond the technical.",
   tags: ["Photography", "Art Direction", "Lightroom"],
-  cover: "/logos/photography.png",
-  heroLogo: "/logos/hero/photography.png",
+  cover: "/logos/photography-v2.png",
+  heroLogo: "/logos/hero/photography-v2.png",
   heroAlt: "Joshua's Studio photography brand imagery over the GWU dome",
   sections: [
     {
