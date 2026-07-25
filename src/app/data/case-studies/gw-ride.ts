@@ -111,7 +111,7 @@ export const gwRide: Project = {
             {
               label: "01",
               title: "Reduce Waiting Uncertainty",
-              body: "Students should know where the shuttle is and when it is expected to arrive. Uncertainty about timing is the main reason students choose rideshares instead.",
+              body: "Students should know where the shuttle is and when it is expected to arrive, without guessing whether it's worth the wait.",
             },
             {
               label: "02",
@@ -138,10 +138,10 @@ export const gwRide: Project = {
       blocks: [
         {
           type: "text",
-          title: "Understanding what students actually need at the moment of decision.",
+          title: "Understanding what informal research suggested students needed.",
           body: [
-            "Research focused on understanding how students navigate GW's campus transportation, what makes the shuttle experience frustrating, and what information students need before deciding to wait or walk.",
-            "This was informal, qualitative research for a solo capstone project: casual student conversations and campus observation, not a formally recruited study with a documented sample size.",
+            "Research focused on how students navigate GW's campus transportation, what makes the shuttle experience frustrating, and what information students need before deciding to wait or walk.",
+            "This was informal, qualitative research for a solo capstone project: casual student conversations and campus observation, not a formally recruited study with a documented sample size. I treat the findings as directional, not conclusive.",
           ],
         },
         {
@@ -201,7 +201,7 @@ export const gwRide: Project = {
       blocks: [
         {
           type: "text",
-          title: "Three patterns that shaped the design direction.",
+          title: "Two transit findings shaped the core flow. Explore stayed a separate hypothesis.",
         },
         {
           type: "cards",
@@ -219,16 +219,16 @@ export const gwRide: Project = {
             },
             {
               label: "03",
-              title: "Campus Movement Is Also Campus Discovery",
-              body: "Design response: the Explore feature helps students find nearby places around campus, making the app useful even beyond shuttle tracking.",
+              title: "Campus Movement Is Also Campus Discovery (unvalidated)",
+              body: "The Explore feature, surfacing nearby food and study spots, was not supported by the same transit research as findings 01 and 02. I added it once the core flow felt solid, as a hypothesis worth testing on its own, not a validated need.",
             },
           ],
         },
         {
           type: "text",
-          title: "Expanding coverage to better serve students.",
+          title: "Exploring broader route coverage.",
           body: [
-            "The revised route proposal expanded coverage so it became more convenient for students and more efficient for getting from point A to point B on campus. The maps below show the difference between the existing routes and the proposed improvement.",
+            "The route map below explores broader stop coverage for students. It has not been evaluated by GW Transportation for operational feasibility, fleet capacity, or timing, so I don't describe it as more efficient without that review.",
           ],
         },
         {
@@ -242,7 +242,7 @@ export const gwRide: Project = {
             alt: "Proposed route expansion with improved coverage and student-centered stop placement",
           },
           caption:
-            "Before: existing campus shuttle routes and stop coverage. After: proposed route expansion with improved coverage and student-centered stop placement.",
+            "Before: existing campus shuttle routes and stop coverage. After: a broader-coverage route map that would need operational review before implementation.",
         },
       ],
     },
@@ -444,7 +444,7 @@ export const gwRide: Project = {
           type: "text",
           title: "03 · Initial Prototype",
           body: [
-            "Once the structure felt clear, we moved into a more realistic prototype with color, type, route cards, stop names, and ETA details. This phase helped test whether the interface still worked once real content was added. The main question: could a student immediately find the information they needed without hesitation? Timing was made the strongest visual element, route colors helped students distinguish options faster, and testing showed that ETA should appear first, route name second, and stop detail last.",
+            "Once the structure felt clear, I moved into a more realistic prototype with color, type, route cards, stop names, and ETA details, to test whether the interface still worked once real content was added. In peer walkthroughs, reviewers scanned for the ETA first, so I made timing the strongest visual element and let route colors help distinguish options faster.",
           ],
         },
         {
@@ -527,7 +527,7 @@ export const gwRide: Project = {
           type: "text",
           title: "A polished campus transit experience built around student confidence.",
           body: [
-            "The final design gives students the right information at the right time: where the shuttle is, when it arrives, what route it follows, and what is nearby. Four core flows, each designed to answer a specific question students have on campus.",
+            "The final design gives students the right information at the right time: where the shuttle is, when it arrives, and what route it follows. Three core transit flows, plus the separate Explore concept, each designed to answer a specific question students have on campus.",
           ],
         },
         {
@@ -535,6 +535,13 @@ export const gwRide: Project = {
           layout: "grid-4",
           images: [
             { src: "/gwride/final-order/a.png", alt: "Onboarding, opening screen" },
+            { src: "/gwride/final-order/b.png", alt: "Sign-in screen with GW email and password fields" },
+            { src: "/gwride/final-order/c.png", alt: "Email verification prompt after sign-in" },
+            { src: "/gwride/final-order/d.png", alt: "Email verified confirmation screen" },
+            { src: "/gwride/final-order/e.png", alt: "Location permission prompt for nearby stops and live ETAs" },
+            { src: "/gwride/final-order/f.png", alt: "GW Ride onboarding, campus selection screen" },
+            { src: "/gwride/final-order/g.png", alt: "GW Ride home screen with live shuttle search" },
+            { src: "/gwride/final-order/h.png", alt: "GW Ride shuttle tracking screen with live arrival times" },
             { src: "/gwride/final-order/i.png", alt: "Route view, screen 1" },
             { src: "/gwride/final-order/j.png", alt: "Route view, screen 2" },
             { src: "/gwride/final-order/k.png", alt: "Explore, screen 1" },

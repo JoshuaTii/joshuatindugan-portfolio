@@ -4,14 +4,13 @@ export const sageEditorial: Project = {
   id: "sage-editorial",
   index: "02",
   title: "SAGE Editorial",
-  tagline:
-    "An editorial website extending SAGE into stories, updates, and lived experiences from Washington, D.C.'s Ward 7 and Ward 8 communities.",
+  tagline: "Extending a financial-access concept from tools to public information.",
   discipline: "Editorial Design · Digital Publication",
   year: "2026",
   role: "UI/UX Designer",
   duration: "One semester",
   summary:
-    "An editorial website extending SAGE into stories, updates, and lived experiences from Washington, D.C.'s Ward 7 and Ward 8 communities.",
+    "A second entry point into the SAGE mission: local stories, updates, and lived experiences from Washington, D.C.'s Ward 7 and Ward 8, built as a distinct editorial system rather than a copy of the app.",
   tags: ["Editorial Design", "Typography", "Visual System"],
   cover: "/logos/sage-editorial.png",
   heroLogo: "/logos/hero/sage-editorial-v2.png",
@@ -25,7 +24,7 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Editorial Design · SAGE Extension",
           body: [
-            "SAGE Editorial expands my thesis project into a content-driven platform that explores the everyday realities, overlooked stories, and community context surrounding financial access in D.C. Rather than presenting SAGE only as a product, this editorial extension creates space for narrative, local updates, cultural texture, and community-centered storytelling.",
+            "The original SAGE concept focused on actions: learn, find support, track progress, review lending options. Its interface couldn't carry the context behind those actions, including local stories, community updates, and the everyday realities that shape financial access. SAGE Editorial tests a second entry point into the same mission, helping readers understand an issue and find local context instead of completing a financial task.",
           ],
         },
         {
@@ -56,18 +55,13 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Why an Editorial Extension?",
           body: [
-            "SAGE started as a banking access tool for D.C.'s Ward 7 and Ward 8, designed around the communities that predatory lenders had targeted for decades. For this editorial project, I wanted to extend that system beyond product features and into storytelling.",
-            "The editorial site became a space for local stories, daily decisions, community updates, and the financial realities that shape life in Ward 7 and Ward 8. It creates a more familiar entry point into the same themes SAGE addresses: trust, access, and the kind of financial knowledge that doesn't travel through bank brochures.",
+            "For this course project, I wanted to extend SAGE beyond product features and into storytelling: local stories, community updates, and the financial realities that shape life in Ward 7 and Ward 8, without reading like a corporate resource hub.",
           ],
         },
         {
           type: "callout",
-          text: "The goal was not to make the site feel like a corporate resource hub. The goal was to make it feel like a familiar publication: with structure, warmth, and a clear editorial voice.",
-        },
-        {
-          type: "callout",
           label: "Assignment Frame",
-          text: "The editorial course became a reason to ask a different question: what does SAGE look like when it's not selling something? The deliverable was a multi-page digital publication. The real challenge was making financial life feel human enough that someone would actually read it. Grid systems, typesetting, hierarchy, and editorial voice all in service of that.",
+          text: "The deliverable was a multi-page digital publication. The real challenge was making financial life feel human enough that someone would actually read it, using grid systems, typesetting, hierarchy, and editorial voice in service of that goal.",
         },
       ],
     },
@@ -79,8 +73,8 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Research Foundation and Editorial Direction",
           body: [
-            "SAGE Editorial does not repeat its own resident research. It draws directly on the systems mapping, contextual inquiry, and resident conversations conducted for the SAGE Financial platform, then asks a design question specific to this extension: how should that research read as a publication rather than a product?",
-            "I focused on making the site feel familiar by borrowing cues from newspaper and magazine layouts while still keeping the experience clear, structured, and trustworthy. Since SAGE deals with serious topics like financial access, trust, and community resources, the editorial direction needed to balance warmth with credibility.",
+            "This project reused discovery research from SAGE, including systems mapping and resident conversations. It did not run a separate resident study. I treated that as a starting point, not proof that the editorial voice would feel trustworthy to its intended readers.",
+            "I focused on making the site feel familiar by borrowing cues from newspaper and magazine layouts while keeping the experience clear and structured, since financial-access content needs to balance warmth with credibility.",
           ],
         },
         {
@@ -113,7 +107,7 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Moodboard and Visual References",
           body: [
-            "The moodboard helped define the editorial tone of the site: structured, calm, readable, and publication-driven. I looked at newspaper layouts, fashion editorials, magazine-style grids, muted color systems, and expressive typography to shape a site that felt familiar but still distinct from the main SAGE app.",
+            "I referenced newspaper layouts, magazine-style grids, muted color systems, and expressive typography to shape a site that felt familiar but distinct from the main SAGE app.",
           ],
         },
         {
@@ -194,28 +188,30 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Lo-fi Sketches and Layout Exploration",
           body: [
-            "For SAGE Editorial, the lo-fi stage is less about app functionality and more about building a reading system. Since this project extends SAGE into stories, updates, and community context, the early sketches needed to answer a different question: not “what can users do here?” but “how should people move through information in a way that feels trustworthy, local, and easy to read?” The goal was to shape a publication experience that could carry serious topics like financial access, community resources, and Ward 7 and Ward 8 stories without feeling like a corporate resource page.",
-            "At this stage, I focused on creating the structure of the editorial site before making visual decisions. I treated the page like a publication system, not a landing page. That meant thinking about rhythm, section order, article hierarchy, and how different types of content could sit together without overwhelming the reader.",
+            "The early sketches asked a different question than a typical app flow: not only “what can a reader do here?” but “what should they understand next?” I treated the page as a publication system, thinking about rhythm, section order, and article hierarchy before any visual decisions.",
           ],
         },
         {
           type: "cards",
           columns: 2,
           items: [
-            { body: "Explored newspaper and magazine-inspired layouts to make the site feel familiar and readable." },
-            { body: "Used early grids to test how headlines, article cards, feature stories, and resource sections could work together." },
-            { body: "Prioritized reading flow so the page could move from big-picture context into more specific community stories and updates." },
-            { body: "Treated spacing as a trust-building tool, giving serious content enough room to breathe instead of feeling dense or promotional." },
-            { body: "Designed the hierarchy around scanning first, then deeper reading, because users may not read every article immediately." },
-            { body: "Considered how the editorial site could feel connected to SAGE without copying the app interface directly." },
-            { body: "Focused on making financial access feel human through structure, not just through visuals or copy." },
-            { body: "Used the lo-fi phase to test whether the site felt like a real publication with a point of view, rather than a collection of disconnected content blocks." },
+            { body: "Tested newspaper and magazine-inspired layouts for headlines, article cards, and resource sections." },
+            { body: "Prioritized reading flow from big-picture context into specific community stories and updates." },
+            { body: "Used spacing to give serious content room to breathe instead of feeling dense or promotional." },
+            { body: "Designed hierarchy around scanning first, since readers may not read every article immediately." },
           ],
         },
         {
+          type: "embed",
+          src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F0ymuy0VQlIhUR7PuUn7OwG%2FEditorial-Sage%3Fnode-id%3D1-4646%26t%3DfRYSpte5coYq1SkJ-1",
+          title: "SAGE Editorial Figma design",
+          href: "https://www.figma.com/design/0ymuy0VQlIhUR7PuUn7OwG/Editorial-Sage?node-id=1-4646&t=fRYSpte5coYq1SkJ-1",
+          linkLabel: "Open design in Figma",
+        },
+        {
           type: "callout",
-          label: "What this phase validated",
-          text: "The main validation for this phase is that the sketches gave the project an editorial backbone. They helped define how SAGE could expand beyond a financial tool and become a storytelling platform. Before color, typography, or polished mockups, the structure needed to prove that the content could feel organized, credible, and community-centered.",
+          label: "What the sketches established",
+          text: "This phase established an editorial backbone: how SAGE could expand beyond a financial tool into a storytelling platform. It did not validate that structure with readers. Before color or typography, the structure needed to prove the content could feel organized and credible.",
         },
       ],
     },
@@ -227,7 +223,7 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Final Design",
           body: [
-            "The final design resolves every direction decision into concrete editorial choices. Structured article sections establish reading rhythm and signal to users that content is organized, not overwhelming. The muted sage palette deliberately steps back from the app's brighter accent: a publication earns trust through restraint, not energy. Expressive serif headlines carry the warmth and credibility that SAGE's communities need to feel like this publication was made for them, not distributed to them.",
+            "The final design translates the direction into reusable editorial patterns. Structured article sections establish reading rhythm and signal that content is organized, not overwhelming. The muted sage palette steps back from the app's brighter accent, since a publication earns trust through restraint rather than energy. Expressive serif headlines aim for a balance of warmth and credibility, though that balance still needs testing with readers before I'd call it proven.",
           ],
         },
         {
@@ -246,7 +242,7 @@ export const sageEditorial: Project = {
         },
         {
           type: "media",
-          layout: "full",
+          layout: "framed",
           images: [
             {
               src: "/sage-editorial/article-393.png",
@@ -295,8 +291,8 @@ export const sageEditorial: Project = {
           type: "text",
           title: "Reflection",
           body: [
-            "This project helped me think about SAGE beyond the boundaries of an app interface. Designing an editorial extension meant stepping into a different kind of design problem: the primary challenge was not feature layout or interaction state, but rather how to make content feel trustworthy, readable, and genuinely connected to a community.",
-            "Working within an existing design system while developing a separate publication identity required careful judgment about what to borrow, what to soften, and what to leave behind. The editorial site needed to feel like it belonged to the same world as SAGE without feeling like a duplicate of it.",
+            "This project is a high-fidelity prototype that demonstrates information architecture, visual hierarchy, and brand adaptation. It does not yet prove readability, trust, or accessibility outcomes, those claims need direct testing with readers and a real content operation behind them.",
+            "Working within SAGE's existing design system while developing a separate publication identity required judgment about what to borrow, what to soften, and what to leave behind, so the editorial site felt connected to SAGE without duplicating it.",
           ],
         },
         {

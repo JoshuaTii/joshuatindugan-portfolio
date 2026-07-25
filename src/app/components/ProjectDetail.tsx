@@ -16,7 +16,6 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
   const [lightbox, setLightbox] = useState<{
     images: ProjectImage[];
     index: number;
-    square?: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -63,7 +62,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <span className="font-bold text-[0.85rem] uppercase tracking-[0.25em] text-accent">
-          Case Study {project.index} / 05
+          {project.kicker ?? `Case Study ${project.index} / 04`}
         </span>
         <h1
           style={{ fontFamily: "var(--font-sans)" }}
@@ -201,9 +200,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
                         <CaseBlock
                           block={block}
                           tone={tone}
-                          onImage={(images, index, options) =>
-                            setLightbox({ images, index, square: options?.square })
-                          }
+                          onImage={(images, index) => setLightbox({ images, index })}
                         />
                       </div>
                     );
@@ -243,7 +240,6 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
         <Lightbox
           images={lightbox.images}
           index={lightbox.index}
-          square={lightbox.square}
           onClose={() => setLightbox(null)}
           onNavigate={(index) => setLightbox({ ...lightbox, index })}
         />

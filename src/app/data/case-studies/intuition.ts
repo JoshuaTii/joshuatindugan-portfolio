@@ -4,14 +4,13 @@ export const intuition: Project = {
   id: "intuition",
   index: "04",
   title: "InTuition",
-  tagline:
-    "A scholarship discovery platform for students who deserve better than the current process",
+  tagline: "A unified scholarship workflow concept for students short on time",
   discipline: "Product Design · EdTech",
   year: "2024",
-  role: "UX Designer & Researcher",
+  role: "UX Designer & Researcher, collaborative team",
   duration: "Two months",
   summary:
-    "A concept that replaces the fragmented scholarship search with a single smart platform, matching students to opportunities based on their profile and streamlining the application.",
+    "A concept exploring a unified scholarship workflow: profile-based matching, reusable application data, and peer guidance in place of the fragmented current search.",
   tags: ["EdTech", "UX Research", "Accessibility"],
   cover: "/logos/intuition.png",
   heroLogo: "/logos/hero/intuition-v2.png",
@@ -26,8 +25,8 @@ export const intuition: Project = {
           title:
             "The scholarship process wastes the time of the students who can least afford to lose it.",
           body: [
-            "InTuition is a web-based scholarship discovery platform designed for students who struggle to find, compare, and apply for scholarships across scattered websites.",
-            "The project explores how profile-based matching, smart filters, reusable application information, and peer support can make the scholarship process feel clearer, faster, and less overwhelming.",
+            "InTuition is a web-based scholarship concept for students who struggle to find, compare, and apply for scholarships across scattered websites.",
+            "We reframed the question from “How might we show more scholarships?” to “How might we help students identify a good-fit opportunity, act on it, and track progress without starting over each time?” The prototype explores profile-based matching, smart filters, reusable application data, and peer support toward that goal.",
           ],
         },
         {
@@ -55,8 +54,8 @@ export const intuition: Project = {
         {
           type: "text",
           body: [
-            "Applying for scholarships is broken. Students spend hours hunting across dozens of websites, filling out redundant forms, and still miss opportunities they were qualified for. InTuition reimagines this experience: a single, smart platform that does the matching work for you.",
-            "We designed a profile-driven matching engine that surfaces relevant scholarships the moment a student builds their profile. A unified form applies that data across multiple opportunities, eliminating the redundant work that causes most students to give up halfway through.",
+            "Applying for scholarships is broken. Students spend hours hunting across dozens of websites, filling out redundant forms, and still miss opportunities they were qualified for. InTuition explores a unified workflow concept instead of another scholarship listing site.",
+            "The prototype centers on a profile-based matching concept that surfaces relevant scholarships once a student builds their profile, and explores reusing common profile fields across applications. It does not implement a live matching algorithm or submit real applications to providers.",
           ],
         },
         {
@@ -141,6 +140,9 @@ export const intuition: Project = {
         {
           type: "text",
           title: "Understanding the student experience through workshops and interviews.",
+          body: [
+            "It is not documented whether the 15 workshop participants and 15 interview participants were the same students or separate groups, so I treat this as up to 30 distinct voices rather than a confirmed count.",
+          ],
         },
         {
           type: "table",
@@ -191,7 +193,7 @@ export const intuition: Project = {
           type: "text",
           title: "User Persona: Rosa Sanchez, “The Cool Nerd”",
           body: [
-            "Age 18 · High school student · Maryland · Lower-class income · Part-time waitress.",
+            "Age 18 · High school student · Maryland · From a low-income household · Part-time waitress.",
             "Goals: find scholarships she actually qualifies for without hours of research, fund college without taking on overwhelming debt, and apply efficiently alongside her part-time work schedule.",
             "Pain points: overwhelmed by scattered scholarship websites with conflicting information, no guidance as a first-generation college applicant, and limited time between school and work to search and apply.",
           ],
@@ -245,7 +247,7 @@ export const intuition: Project = {
             {
               label: "03",
               title: "Repeated Forms Create Drop-Off",
-              body: "Most participants mentioned abandoning applications mid-way because they had already submitted the same information elsewhere and did not want to fill it out again. Design response: the reusable student profile stores key information once and applies it across multiple scholarship opportunities, reducing the repetitive work that makes people give up.",
+              body: "Several participants described abandoning applications mid-way because they had already submitted the same information elsewhere. Design response: the reusable student profile stores key information once and applies it across multiple scholarship opportunities, reducing repeated work.",
             },
             {
               label: "04",
@@ -275,9 +277,9 @@ export const intuition: Project = {
             },
           ],
           bullets: [
-            "Profile-driven matching runs automatically on setup",
+            "Profile-based matching runs automatically on setup",
             "Filters by deadline, amount, eligibility, and major",
-            "Reduces time from search to qualified opportunity",
+            "Aims to cut time from search to a qualified opportunity",
           ],
           image: {
             src: "/intuition/final/Explore.png",
@@ -316,9 +318,9 @@ export const intuition: Project = {
             },
           ],
           bullets: [
-            "Single profile powers the full platform experience",
+            "Single profile powers the full concept experience",
             "Academic data, goals, and materials stored in one place",
-            "Profile grows stronger the more the student uses it",
+            "Profile becomes more complete as students add verified information and materials",
           ],
           image: {
             src: "/intuition/final/Main.png",

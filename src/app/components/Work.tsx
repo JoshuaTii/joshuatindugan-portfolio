@@ -29,7 +29,7 @@ export function Work({ onOpen }: WorkProps) {
             style={{ fontFamily: "var(--font-serif)" }}
             className="mt-3 text-[2.4rem] md:text-[3rem]"
           >
-            Five stories in five scrolls
+            Four case studies, one ongoing practice
           </h2>
         </div>
         <div className="hidden shrink-0 gap-3 md:flex">
@@ -78,7 +78,7 @@ export function Work({ onOpen }: WorkProps) {
                 className="size-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
               />
               <span className="absolute left-5 top-5 rounded-full bg-primary/85 px-3.5 py-1.5 text-[0.8rem] text-primary-foreground backdrop-blur-sm">
-                {project.index} / 05
+                {project.kicker ?? `${project.index} / 04`}
               </span>
               <span className="absolute right-5 top-5 flex size-11 items-center justify-center rounded-full bg-[var(--accent-bright)] text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-0.5">
                 <ArrowUpRight size={20} />

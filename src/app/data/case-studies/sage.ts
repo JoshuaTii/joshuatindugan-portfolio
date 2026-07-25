@@ -10,7 +10,7 @@ export const sage: Project = {
   role: "UX Designer + UX Researcher",
   duration: "Two semesters",
   summary:
-    "A financial empowerment platform designed for Washington D.C.'s Ward 7 and Ward 8 communities, helping residents navigate safer financial options and reduce reliance on predatory lenders.",
+    "A community-centered financial concept for Washington, D.C.'s Ward 7 and Ward 8, helping residents find trusted local support and understand their options before committing to one.",
   tags: ["Fintech", "UX Research", "Equity Design"],
   cover: "/logos/sage.png",
   heroLogo: "/logos/hero/sage-v2.png",
@@ -22,10 +22,10 @@ export const sage: Project = {
       blocks: [
         {
           type: "text",
-          title: "A thesis project rooted in lived experience and real data.",
+          title: "A community-centered concept for Washington, D.C.'s Ward 7 and Ward 8.",
           body: [
-            "SAGE is a mobile financial empowerment platform designed for residents in Washington, D.C.'s Ward 7 and Ward 8, where banking deserts, distrust in financial institutions, and predatory lending create barriers to safe financial access.",
-            "The project explores how a mobile product can help underbanked residents find trusted local resources, learn financial concepts without shame, track progress, and access safer microloan options through community-based support. Developed as a two-semester UX thesis at George Washington University, combining systems mapping, primary and secondary research, resident conversations, competitive analysis, and mobile product design.",
+            "I developed SAGE as a two-semester UX thesis at George Washington University, combining systems mapping, resident conversations, secondary research, competitive analysis, and mobile product design.",
+            "In 10 informally recruited interviews, residents described a harder problem than wanting another finance app: financial help is fragmented, institutional language is hard to trust, and the cost of choosing the wrong option can be high. That reframed the question I was designing for: how might a mobile tool help residents understand their options, find trusted local support, and take a next step, without pretending an app can solve financial exclusion on its own?",
           ],
         },
         {
@@ -55,13 +55,6 @@ export const sage: Project = {
             },
           ],
         },
-        {
-          type: "text",
-          body: [
-            "SAGE started as a question I couldn't stop asking: why does financial technology consistently ignore the communities that need it most? Ward 7 and Ward 8 in Washington D.C. have some of the lowest banking access rates in the country, despite being minutes from the nation's financial center.",
-            "I spent two semesters mapping the systems that create financial exclusion and talking to residents about what would actually make a financial tool feel safe to use. SAGE is the platform that came out of that research, not a finished product.",
-          ],
-        },
       ],
     },
     {
@@ -72,7 +65,7 @@ export const sage: Project = {
           type: "text",
           title: "The red lines still hold.",
           body: [
-            "Residents in Ward 7 and Ward 8 are not just missing financial apps. They are navigating a system shaped by banking deserts, limited local financial services, high-fee alternatives, and long-term distrust toward institutions.",
+            "Wards 7 and 8 are not just missing financial apps. Residents are navigating a system shaped by banking deserts, limited local financial services, high-fee alternatives, and distrust toward institutions built up over decades.",
           ],
         },
         {
@@ -83,7 +76,7 @@ export const sage: Project = {
         {
           type: "text",
           body: [
-            "Redlining was officially banned in 1968. But in Ward 7 and Ward 8, its effects never left. These are neighborhoods where a bank branch is harder to find than a payday lender, where a credit score determines more than a person's ambition ever will.",
+            "Redlining was officially banned in 1968, but in Wards 7 and 8 its effects never fully left. These are neighborhoods with fewer bank branches than wealthier parts of the city, where a credit score can shape more of a person's options than their effort or ambition.",
           ],
         },
         {
@@ -104,11 +97,11 @@ export const sage: Project = {
           items: [
             {
               title: "Banking Desert",
-              body: "Ward 7 and 8 have significantly fewer bank branches per capita than any other D.C. ward, classified as banking deserts by federal standards.",
+              body: "Wards 7 and 8 have fewer bank branches per capita than wealthier D.C. wards, a pattern commonly described as a banking desert.",
             },
             {
-              title: "Predatory Lending",
-              body: "Payday lenders and check-cashing services cluster in these wards, charging effective APRs that trap residents in cycles of debt.",
+              title: "Alternative Financial Services",
+              body: "Check-cashing and other high-fee alternative financial services are more visible in these wards than traditional banking. D.C.'s 24% effective-interest cap limits traditional payday lending, but high-fee alternatives still shape how residents access cash.",
             },
             {
               title: "Trust Deficit",
@@ -233,18 +226,18 @@ export const sage: Project = {
           items: [
             {
               label: "01",
-              title: "Trust has to be earned before features matter.",
-              body: "Financial apps fail in Ward 7 and 8 not because of missing features, but because institutions burned trust for decades. Every design decision had to answer: why would someone believe this? Design response: instead of focusing only on financial tools, SAGE puts trust first through clear language, local resources, and community-based support that feels approachable and familiar.",
+              title: "Trust has to come before feature depth.",
+              body: "Every design decision had to answer why someone would believe it, before it could answer what it does. Design response: lead with clear language and local resources, not financial tools, so trust is established first.",
             },
             {
               label: "02",
-              title: "Simplicity isn't a preference here, it's a requirement.",
-              body: "Dense financial language and multi-step onboarding excludes the people who need financial tools most. Simplicity is not a design preference here. It is a prerequisite for access. Design response: financial topics were broken into simple lessons, guided steps, and easy-to-understand actions so users can learn without feeling overwhelmed.",
+              title: "Complex information needs a clear next action.",
+              body: "Dense financial language excludes the people who need it most. Design response: break financial topics into short lessons and guided steps so people can act without feeling overwhelmed.",
             },
             {
               label: "03",
-              title: "Community support already exists; the app should route to it.",
-              body: "Peer networks are the primary mechanism for economic mobility in Ward 7 and 8. Residents already help each other with money. The right design amplifies that, rather than replacing it with an institution. Design response: SAGE connects users to local organizations, events, and support networks because financial growth is often easier when people do not have to navigate it alone.",
+              title: "Route people toward support that already exists.",
+              body: "Residents already help each other with money through local organizations. Design response: connect users to that existing network instead of positioning SAGE as a replacement for it.",
             },
           ],
         },
@@ -323,8 +316,8 @@ export const sage: Project = {
               text: "Less room for feature-specific depth on that first screen.",
             },
             {
-              label: "Result",
-              text: "Users get a starting point without hunting through the app.",
+              label: "Design intent",
+              text: "Give people a clear starting point without asking them to hunt through the app.",
             },
           ],
           image: { src: "/sage/feat4-1.png", alt: "SAGE dashboard screen" },
@@ -348,8 +341,8 @@ export const sage: Project = {
               text: "Content depends on partner information staying current, which the prototype doesn't solve.",
             },
             {
-              label: "Result",
-              text: "Support feels like it's coming from the neighborhood, not a corporate app.",
+              label: "Design intent",
+              text: "Make support feel like it's coming from the neighborhood, not a corporate app.",
             },
           ],
           image: { src: "/sage/feat1-1.png", alt: "SAGE Community Hub screen" },
@@ -374,8 +367,8 @@ export const sage: Project = {
               text: "Simpler to compare, but the prototype doesn't model real underwriting or credit checks.",
             },
             {
-              label: "Result",
-              text: "Users can see what they're agreeing to before they commit.",
+              label: "Design intent",
+              text: "Let people see what they're agreeing to before they commit.",
             },
           ],
           image: { src: "/sage/feat3-1.png", alt: "SAGE loan marketplace screen" },
@@ -389,18 +382,9 @@ export const sage: Project = {
       blocks: [
         {
           type: "text",
-          title:
-            "How the product moved from rough structure to a calmer, more trusted experience.",
-          body: [
-            "SAGE went through several visual and structural changes before reaching the final design. The goal was to make the product feel less like a flashy fintech app and more like a calm, trusted financial support tool.",
-          ],
-        },
-        {
-          type: "text",
           title: "A mark built on clarity, trust, and scale.",
           body: [
-            "The logo started with rough pencil sketches. I wanted to tailor it to D.C. itself, which led to the leaf symbol. Realizing shields represent unity and security, I combined both symbols. The final mark expresses unity, growth, community, and security.",
-            "As the product direction became clearer, the final logo moved toward a simpler symbol that felt more calm, trustworthy, and easier to recognize in a mobile app.",
+            "The logo started with rough pencil sketches. I wanted to tailor it to D.C. itself, which led to the leaf symbol. Realizing shields represent unity and security, I combined both symbols. As the product direction became clearer, the mark simplified into something calmer, more trustworthy, and easier to recognize in a mobile app.",
           ],
         },
         {
@@ -430,7 +414,7 @@ export const sage: Project = {
           type: "text",
           title: "Lo-fi wireframes",
           body: [
-            "The first wireframes focused on structure before visual design. At this stage, the main goal was to organize the experience around the user journey: learn, connect, take action, and track progress. Grayscale layouts helped test hierarchy without relying on color, while the card-based structure made complex financial information easier to scan.",
+            "The first wireframes focused on structure before visual design, organizing the experience around learn, connect, take action, and track progress. Grayscale layouts tested hierarchy without relying on color.",
           ],
         },
         {
@@ -447,7 +431,7 @@ export const sage: Project = {
           type: "text",
           title: "Early prototype",
           body: [
-            "The early prototype helped explore the overall experience, but it felt too busy and leaned heavily into the visual language of traditional fintech apps. During feedback sessions, one user even asked, “It looks like Cash App. Is this Cash App?” That comment highlighted a larger issue: the design felt more transactional than supportive. To better reflect SAGE's focus on trust, community, and financial empowerment, the visual direction was refined to feel calmer, more approachable, and less centered on payments alone.",
+            "The early prototype leaned heavily into the visual language of traditional fintech apps. During a critique, one reviewer asked, “It looks like Cash App. Is this Cash App?” That exposed a mismatch between SAGE's mission and its interface, so the visual direction was refined to feel calmer and less centered on payments alone.",
           ],
         },
         {
@@ -464,7 +448,7 @@ export const sage: Project = {
           type: "text",
           title: "Final design direction",
           body: [
-            "Early feedback suggested the first visual direction felt too bright and transactional for a trust-based financial product. The final direction uses darker surfaces, limited accent color, and clearer hierarchy to feel calmer, safer, and more credible. The design shifted to a dark navy interface, used green as an accent for progress, success, and key actions instead of the main background, made repayment feel more encouraging with language like “60% paid” and “You're on track,” and organized local help around real user needs like debt, food, rent, and emergencies.",
+            "The final direction moved to a dark navy interface with green reserved for progress and key actions, not the main background. Repayment language became more encouraging (“60% paid,” “You're on track”), and local help was organized around real needs like debt, food, rent, and emergencies.",
           ],
         },
         {
@@ -528,11 +512,11 @@ export const sage: Project = {
           items: [
             {
               title: "Personalized Financial Snapshot",
-              body: "The dashboard surfaces payments, goals, lessons, and nearby support in one view, so users get a starting point without searching the whole app.",
+              body: "Payments, goals, lessons, and nearby support surface in one view instead of five separate tabs.",
             },
             {
               title: "Clear Next Actions",
-              body: "Each card gives one clear action (view, resume, or pay), reducing the number of decisions needed to move forward.",
+              body: "Each card gives one clear action, view, resume, or pay, to reduce decision fatigue.",
             },
           ],
         },
@@ -603,6 +587,29 @@ export const sage: Project = {
               title: "Positive Reinforcement",
               body: "Messages like “You're on track” keep the tone supportive rather than punitive when money is tight.",
             },
+          ],
+        },
+        {
+          type: "media",
+          layout: "grid-3-responsive",
+          images: [
+            { src: "/sage/final-design/community-hub.png", alt: "SAGE Community Hub final screen 1" },
+            { src: "/sage/final-design/community-hub-1.png", alt: "SAGE Community Hub final screen 2" },
+            { src: "/sage/final-design/community-hub-2.png", alt: "SAGE Community Hub final screen 3" },
+            { src: "/sage/final-design/community-hub-3.png", alt: "SAGE Community Hub final screen 4" },
+            { src: "/sage/final-design/cross-screen-page.png", alt: "SAGE Cross Section final screen 1" },
+            { src: "/sage/final-design/cross-screen-page-1.png", alt: "SAGE Cross Section final screen 2" },
+            { src: "/sage/final-design/cross-screen-page-2.png", alt: "SAGE Cross Section final screen 3" },
+            { src: "/sage/final-design/lessons.png", alt: "SAGE Lessons final screen 1" },
+            { src: "/sage/final-design/lessons-1.png", alt: "SAGE Lessons final screen 2" },
+            { src: "/sage/final-design/lessons-2.png", alt: "SAGE Lessons final screen 3" },
+            { src: "/sage/final-design/microloan.png", alt: "SAGE Microloan final screen 1" },
+            { src: "/sage/final-design/microloan-1.png", alt: "SAGE Microloan final screen 2" },
+            { src: "/sage/final-design/microloan-2.png", alt: "SAGE Microloan final screen 3" },
+            { src: "/sage/final-design/microloan-3.png", alt: "SAGE Microloan final screen 4" },
+            { src: "/sage/final-design/microloan-4.png", alt: "SAGE Microloan final screen 5" },
+            { src: "/sage/final-design/microloan-5.png", alt: "SAGE Microloan final screen 6" },
+            { src: "/sage/final-design/microloan-6.png", alt: "SAGE Microloan final screen 7" },
           ],
         },
         {

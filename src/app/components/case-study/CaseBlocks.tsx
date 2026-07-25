@@ -9,12 +9,10 @@ import { type Block, type MediaImage } from "../../data/case-types";
  */
 type Tone = "plain" | "card";
 
-type ImageViewerOptions = { square?: boolean };
-
 type BlockProps = {
   block: Block;
   tone: Tone;
-  onImage: (images: MediaImage[], index: number, options?: ImageViewerOptions) => void;
+  onImage: (images: MediaImage[], index: number) => void;
 };
 
 const surface = (tone: Tone) =>
@@ -35,20 +33,18 @@ function MediaButton({
   index,
   radius,
   onImage,
-  viewerOptions,
 }: {
   img: MediaImage;
   images: MediaImage[];
   index: number;
   radius: string;
   onImage: BlockProps["onImage"];
-  viewerOptions?: ImageViewerOptions;
 }) {
   return (
     <figure className="flex flex-col">
       <button
         type="button"
-        onClick={() => onImage(images, index, viewerOptions)}
+        onClick={() => onImage(images, index)}
         aria-label={`View larger: ${img.alt}`}
         className={`group/img cursor-zoom-in overflow-hidden ${radius} text-left focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]`}
       >
@@ -215,6 +211,27 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
       );
 
     case "media": {
+      if (block.layout === "framed") {
+        const img = block.images[0];
+        return (
+          <div className="flex flex-col">
+            <div className={`mx-auto w-full max-w-[640px] rounded-[2rem] p-4 md:p-6 ${surface(tone)}`}>
+              <MediaButton
+                img={img}
+                images={block.images}
+                index={0}
+                radius="rounded-[1.5rem]"
+                onImage={onImage}
+              />
+            </div>
+            {block.caption && (
+              <p className="mx-auto mt-4 max-w-3xl text-center text-[0.95rem] leading-relaxed text-muted-foreground">
+                {block.caption}
+              </p>
+            )}
+          </div>
+        );
+      }
       const cols =
         block.layout === "full"
           ? ""
@@ -222,7 +239,9 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
             ? "sm:grid-cols-2"
             : block.layout === "grid-3"
               ? "grid-cols-2 md:grid-cols-3"
-              : "grid-cols-2 md:grid-cols-4";
+              : block.layout === "grid-3-responsive"
+                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                : "grid-cols-2 md:grid-cols-4";
       const radius =
         block.layout === "full" || block.layout === "grid-2"
           ? "rounded-[2rem]"
@@ -494,7 +513,6 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
                 index={i}
                 radius="rounded-none"
                 onImage={onImage}
-                viewerOptions={{ square: true }}
               />
             </div>
           ))}

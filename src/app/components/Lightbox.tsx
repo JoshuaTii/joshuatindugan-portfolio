@@ -6,13 +6,11 @@ import { type ProjectImage } from "../data/projects";
 type LightboxProps = {
   images: ProjectImage[];
   index: number;
-  /** Square corners instead of the default rounded frame (used for Photography). */
-  square?: boolean;
   onClose: () => void;
   onNavigate: (index: number) => void;
 };
 
-export function Lightbox({ images, index, square, onClose, onNavigate }: LightboxProps) {
+export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
@@ -88,7 +86,7 @@ export function Lightbox({ images, index, square, onClose, onNavigate }: Lightbo
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className={`max-h-[86vh] max-w-[92vw] object-contain ${square ? "" : "rounded-[2rem]"}`}
+        className="max-h-[86vh] max-w-[92vw] rounded-none object-contain"
       />
 
       <button

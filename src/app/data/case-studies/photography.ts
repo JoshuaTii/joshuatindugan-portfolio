@@ -3,18 +3,18 @@ import { type Project } from "../case-types";
 export const photography: Project = {
   id: "photography",
   index: "05",
-  title: "Photography Archive",
-  tagline:
-    "A visual study of architecture, patterns, color, composition, and the quiet moments that often go unnoticed.",
-  discipline: "Photography · Art Direction",
+  kicker: "Creative Practice",
+  title: "Photography Practice",
+  tagline: "Observation through light, structure, and framing.",
+  discipline: "Photography · Visual Study",
   year: "2023–Present",
   role: "Photographer",
   duration: "Ongoing",
   summary:
-    "A visual archive of lifestyle, editorial, and brand photography, studying color, composition, and perspective beyond the technical.",
-  tags: ["Photography", "Art Direction", "Lightroom"],
-  cover: "/logos/photography-v2.png",
-  heroLogo: "/logos/hero/photography-v2.png",
+    "An ongoing personal archive exploring architecture, pattern, and composition, separate from my product design work.",
+  tags: ["Photography", "Composition", "Visual Study"],
+  cover: "/logos/photography-v4.png",
+  heroLogo: "/logos/hero/photography-v3.png",
   heroAlt: "Joshua's Studio photography brand imagery over the GWU dome",
   sections: [
     {
@@ -23,9 +23,9 @@ export const photography: Project = {
       blocks: [
         {
           type: "text",
-          title: "Freezing Time Through Light, Form, and Perspective",
+          title: "Observation through light, structure, and framing",
           body: [
-            "Photography allows me to slow down and hold onto moments before they disappear. My work focuses on the beauty of architecture, the rhythm of patterns, the drama of angles, and the emotion created through color and composition. Through framing and perspective, I aim to capture ordinary scenes with more stillness, intention, and care.",
+            "Photography sharpens how I notice hierarchy, rhythm, contrast, and the details people pass without seeing. Those habits carry into my product work, especially how I compose information and direct attention.",
             "Shot on Canon EOS R50 · RF-S 18-45mm F4.5-6.3 IS STM Lens.",
           ],
         },
@@ -33,13 +33,12 @@ export const photography: Project = {
     },
     {
       key: "frames",
-      label: "Selected Frames",
+      label: "Selected Work",
       blocks: [
         {
           type: "text",
-          title: "Moments, Structures, and Details in Focus",
           body: [
-            "A curated collection of photographs exploring architecture, patterns, color, perspective, and composition. Each image captures a moment of observation: through the geometry of a building, the quiet rhythm of repeated forms, the mood of color, or the way light changes a scene.",
+            "This archive brings together studies of architecture, repeated forms, color, and quiet everyday moments. It is organized around what each frame is investigating, not when it was taken.",
           ],
         },
         {

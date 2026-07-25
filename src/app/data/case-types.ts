@@ -19,7 +19,7 @@ export type Block =
   | { type: "table"; title?: string; columns: string[]; rows: string[][] }
   | {
       type: "media";
-      layout: "full" | "grid-2" | "grid-3" | "grid-4";
+      layout: "full" | "grid-2" | "grid-3" | "grid-4" | "grid-3-responsive" | "framed";
       images: MediaImage[];
       caption?: string;
     }
@@ -65,6 +65,8 @@ export type CaseSection = {
 export type Project = {
   id: string;
   index: string;
+  /** Overrides the default "Case Study {index} / 04" kicker, e.g. for work that sits outside the numbered case-study sequence. */
+  kicker?: string;
   title: string;
   tagline?: string;
   discipline: string;
