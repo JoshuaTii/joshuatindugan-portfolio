@@ -9,9 +9,11 @@ import { projects, type Project, type ProjectImage } from "../data/projects";
 type ProjectDetailProps = {
   project: Project;
   onOpen: (project: Project) => void;
+  /** Only true on a fresh page load (e.g. a refresh) — restores the last-read section instead of starting at the top. */
+  restoreScroll?: boolean;
 };
 
-export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
+export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailProps) {
   const [activeSection, setActiveSection] = useState(project.sections[0].key);
   const [lightbox, setLightbox] = useState<{
     images: ProjectImage[];
@@ -37,6 +39,32 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [project]);
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(`scrollSection:${project.id}`, activeSection);
+    } catch {
+      // ignore storage errors (e.g. private browsing)
+    }
+  }, [project.id, activeSection]);
+
+  useEffect(() => {
+    if (!restoreScroll) return;
+    let saved: string | null = null;
+    try {
+      saved = sessionStorage.getItem(`scrollSection:${project.id}`);
+    } catch {
+      saved = null;
+    }
+    if (!saved || !project.sections.some((s) => s.key === saved)) return;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(`sec-${saved}`)?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
+    });
+    // Restore only once, right after this fresh mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const scrollTo = (key: string) => {
     document

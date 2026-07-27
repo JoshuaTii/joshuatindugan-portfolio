@@ -8,6 +8,8 @@ import { type Project } from "../data/projects";
 type HomeProps = {
   onOpen: (project: Project) => void;
   onSectionChange: (id: string) => void;
+  /** Only true on a fresh page load (e.g. a refresh) — restores the last-viewed section instead of starting at the top. */
+  restoreScroll?: boolean;
 };
 
 const capabilities = [
@@ -28,7 +30,7 @@ const capabilities = [
   },
 ];
 
-export function Home({ onOpen, onSectionChange }: HomeProps) {
+export function Home({ onOpen, onSectionChange, restoreScroll }: HomeProps) {
   useEffect(() => {
     const ids = ["home", "about", "work", "connect"];
     const els = ids
@@ -46,6 +48,24 @@ export function Home({ onOpen, onSectionChange }: HomeProps) {
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [onSectionChange]);
+
+  useEffect(() => {
+    if (!restoreScroll) return;
+    let saved: string | null = null;
+    try {
+      saved = sessionStorage.getItem("scrollSection:home");
+    } catch {
+      saved = null;
+    }
+    if (!saved || saved === "home") return;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(saved!)?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
+    });
+    // Restore only once, right after this fresh mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="mx-auto max-w-[1400px] px-6 md:px-10">

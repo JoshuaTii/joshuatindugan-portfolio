@@ -287,7 +287,7 @@ const socials = [
 - Do **not** import `AnimatePresence` outside of `App.tsx` — it is already there.
 - Do **not** modify files in `src/app/components/ui/` — these are shadcn primitives.
 - Do **not** modify `src/styles/index.css` — the Tailwind token contract must stay intact.
-- Do **not** create new pages or routes — this is a single-page scroll app with in-memory project routing.
+- Do **not** create new pages, route components, or add a router library — this is still a single in-memory-rendered app (one `index.html`, no code-splitting by route). The only URL awareness is `App.tsx` syncing `activeProject` to `/case/{id}` via the native History API (`pushState`/`popstate`), purely so refresh and back/forward restore the right view instead of dropping to home — see §23.
 
 ---
 
@@ -366,4 +366,13 @@ Multi-image hero compositions (e.g. GW Ride's three-mockup cluster) are a `Proje
 - **Motion:** continuous ambient motion (rotation, cursor-follow, jiggle) runs via direct ref/DOM style mutation inside `requestAnimationFrame` — never through React state on every frame. A photo's own decorative tilt is a small constant, never tied to the ambient rotation, so image content stays upright while only its orbital position moves.
 - **Reduced motion:** `prefers-reduced-motion` fully disables rotation, cursor-follow, and jiggle, falling back to the same structured resting layout with a simple CSS hover only.
 - **Keyboard / touch:** every interactive tile is a native `<button>` (free keyboard activation + focus ring); the gallery container uses `touchAction: "pan-y"` so it never blocks page scroll.
+
+---
+
+## 23. URL Sync & Scroll Restoration
+
+- `App.tsx` pushes `/case/{project.id}` via `window.history.pushState` whenever a project opens, and `/` on back/home-nav. `popstate` is handled so browser back/forward works. This is native History API only — no router library, no new route components/pages (see §17).
+- `vercel.json` has a catch-all `rewrites` entry (`/(.*)` → `/index.html`) so a hard refresh or direct link to `/case/{id}` is served by the SPA instead of 404ing. Existing static files (assets, images, `/api/*`) are matched first and are unaffected.
+- `window.history.scrollRestoration` is set to `"manual"` on mount so the browser never fights the app's own scroll handling with its native (often wrong) restore-on-reload behavior.
+- Both `ProjectDetail` and `Home` persist the currently-visible section to `sessionStorage` (`scrollSection:{project.id}` / `scrollSection:home`) every time their existing IntersectionObserver-driven `activeSection` changes, and restore it via `scrollIntoView` on mount — but **only** when a `restoreScroll` prop is `true`. That prop reflects `App.tsx`'s `allowInitialRestore` ref, which is `true` only for whatever renders before the app's first effect flush (i.e. a genuine page load/refresh), and `false` for every subsequent in-app navigation. Without that distinction, clicking into a project you'd previously scrolled through earlier this session would incorrectly jump you back into the middle of it instead of starting at the top.
 - Don't add an external animation or 3D library for this — `motion/react` (already a dependency) or plain `requestAnimationFrame` + CSS transforms is sufficient.
