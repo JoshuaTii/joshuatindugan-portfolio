@@ -430,7 +430,7 @@ export const gwRide: Project = {
         },
         {
           type: "media",
-          layout: "grid-3",
+          layout: "grid-4",
           images: [
             { src: "/gwride/lofi-sketch-1.png", alt: "Lo-fi onboarding, residency verification" },
             { src: "/gwride/lofi-sketch-2.png", alt: "Lo-fi explore, location search" },
