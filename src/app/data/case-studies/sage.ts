@@ -438,10 +438,10 @@ export const sage: Project = {
           type: "media",
           layout: "grid-4",
           images: [
-            { src: "/sage/de-proto-1.png", alt: "Early prototype, Cross Section", caption: "Cross Section" },
-            { src: "/sage/de-proto-2.png", alt: "Early prototype, Sage", caption: "Sage" },
-            { src: "/sage/de-proto-3.png", alt: "Early prototype, Lessons", caption: "Lessons" },
-            { src: "/sage/de-proto-4.png", alt: "Early prototype, Microloan", caption: "Microloan" },
+            { src: "/sage/de-proto-1-v2.png", alt: "Early prototype, Cross Section", caption: "Cross Section" },
+            { src: "/sage/de-proto-2-v2.png", alt: "Early prototype, Sage", caption: "Sage" },
+            { src: "/sage/de-proto-3-v2.png", alt: "Early prototype, Lessons", caption: "Lessons" },
+            { src: "/sage/de-proto-4-v2.png", alt: "Early prototype, Microloan", caption: "Microloan" },
           ],
         },
         {
