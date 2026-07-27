@@ -215,12 +215,12 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
         const img = block.images[0];
         return (
           <div className="flex flex-col">
-            <div className={`mx-auto w-full max-w-[640px] rounded-[2rem] p-4 md:p-6 ${surface(tone)}`}>
+            <div className={`mx-auto w-full max-w-[640px] rounded-[10px] p-4 md:p-6 ${surface(tone)}`}>
               <MediaButton
                 img={img}
                 images={block.images}
                 index={0}
-                radius="rounded-[1.5rem]"
+                radius="rounded-[10px]"
                 onImage={onImage}
               />
             </div>
@@ -242,10 +242,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
               : block.layout === "grid-3-responsive"
                 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                 : "grid-cols-2 md:grid-cols-4";
-      const radius =
-        block.layout === "full" || block.layout === "grid-2"
-          ? "rounded-[2rem]"
-          : "rounded-[1.5rem]";
+      const radius = "rounded-[10px]";
       return (
         <div className="flex flex-col">
           <div className={`grid items-start gap-5 ${cols}`}>
@@ -285,7 +282,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
                   img={img}
                   images={images}
                   index={i}
-                  radius="rounded-[2rem]"
+                  radius="rounded-[10px]"
                   onImage={onImage}
                 />
               </div>
@@ -345,7 +342,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
               img={block.image}
               images={[block.image]}
               index={0}
-              radius="rounded-[2rem]"
+              radius="rounded-[10px]"
               onImage={onImage}
             />
           </div>

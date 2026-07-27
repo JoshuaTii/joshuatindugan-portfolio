@@ -114,7 +114,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
             })
           }
           aria-label={`View larger: ${project.heroAlt ?? `${project.title} logo`}`}
-          className="group/hero block aspect-[16/8] w-full cursor-zoom-in overflow-hidden rounded-[2.5rem] bg-muted focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
+          className="group/hero block aspect-[16/8] w-full cursor-zoom-in overflow-hidden rounded-[10px] bg-muted focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
         >
           <ImageWithFallback
             src={project.heroLogo}

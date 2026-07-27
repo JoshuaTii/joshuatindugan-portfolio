@@ -69,7 +69,7 @@ export function Work({ onOpen }: WorkProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-[2rem] bg-card text-left sm:w-[420px]"
+            className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-[10px] bg-card text-left sm:w-[420px]"
           >
             <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
               <ImageWithFallback

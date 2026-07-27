@@ -56,11 +56,11 @@ Letter spacing: `-0.01em` on all headings. Never use a serif typeface — there 
   - Navbar pill: `rounded-full`
   - Section cards / about cards / connect rows: `rounded-[2rem]` or `rounded-[1.75rem]`
   - Case study sections: `rounded-[2rem]`
-  - Hero cover image (case study): `rounded-[2.5rem]`
   - Icon circles: `rounded-full`
   - Input fields: `rounded-2xl`
   - Tags: `rounded-full`
   - Meta cards (case study header): `rounded-[1.5rem]`
+  - **Images (all of them): `rounded-[10px]`.** This covers the case-study hero, the homepage Work card (image + card share one clip boundary), and every case-study image display rendered through `MediaButton` (`media` full/grid-2/grid-3/grid-4/grid-3-responsive/framed, `compare`, `feature`). Set once via the shared `radius` prop / hero className, not per project. Deliberately-square treatments (the shared `Lightbox` enlarged view, Photography's `masonry` thumbnails) stay at `rounded-none` — this rule only *reduces* existing rounding, it doesn't add rounding where corners were intentionally square.
 
 ---
 
@@ -282,7 +282,7 @@ const socials = [
 - Do **not** add gradients, drop shadows, or glass morphism effects.
 - Do **not** add strokes or borders to cards, sections, or layout containers.
 - Do **not** add a dark mode toggle — the dark tokens in theme.css exist structurally but the site is light-only.
-- Do **not** change border-radius to sharp corners anywhere.
+- Do **not** change border-radius to sharp corners anywhere, except images, which use `rounded-[10px]` (see §3). Non-image cards, callouts, sections, and inputs keep their existing rem-based radii.
 - Do **not** use `framer-motion` — always import from `motion/react`.
 - Do **not** import `AnimatePresence` outside of `App.tsx` — it is already there.
 - Do **not** modify files in `src/app/components/ui/` — these are shadcn primitives.
@@ -355,7 +355,7 @@ Multi-image hero compositions (e.g. GW Ride's three-mockup cluster) are a `Proje
 
 - Every block inside a section shares **one column width** — the section's own content column (`md:pl-10` inside `ProjectDetail.tsx`). Never wrap a card, callout, or media block in an extra `max-w-*` that sits inside a sequence of otherwise full-width blocks (this was the "Design Challenge card doesn't line up with the systems map" bug — fixed by never constraining callouts/cards).
 - The only sanctioned narrower measure is prose: `text` block bodies, `quote`, and `steps` (`layout: "list"`) use `max-w-3xl` for readability. That's a deliberate, limited exception — not license to narrow other block types.
-- Card radii follow the existing scale (§3): `rounded-[1.5rem]` for meta cells / table mobile rows / steps-grid cards, `rounded-[1.75rem]` for callouts / cards / feature images, `rounded-[2rem]` for full-width media and case-study sections, `rounded-[2.5rem]` for the case-study hero.
+- Card radii follow the existing scale (§3): `rounded-[1.5rem]` for meta cells / table mobile rows / steps-grid cards, `rounded-[1.75rem]` for callouts / cards, `rounded-[2rem]` for case-study sections. Every *image* (full-width media, feature images, the case-study hero) is `rounded-[10px]`, not a card radius — see §3.
 - Block spacing is `gap-9 md:gap-12` between every block in a section; any `text` block that starts a new named subsection (has a `title`, isn't the section's first block) additionally gets `mt-4 md:mt-6`. This is handled once in `ProjectDetail.tsx`'s block-mapping loop — don't hand-tune spacing per block in a data file.
 
 ---
