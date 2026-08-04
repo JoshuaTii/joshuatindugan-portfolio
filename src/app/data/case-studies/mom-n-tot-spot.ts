@@ -111,23 +111,26 @@ export const momNTotSpot: Project = {
         {
           type: "text",
           title: "Two navigation systems, on one site",
-        },
-        {
-          type: "media",
-          layout: "full",
-          images: [
-            {
-              src: "/momntotspot/original/old-home.jpg",
-              alt: "Original homepage showing an eight-item yellow navigation bar with a small gray Log In link",
-              caption: "Home and Contact navigation: eight items in a row, with a small gray Login link that's easy to miss.",
-            },
-            {
-              src: "/momntotspot/original/old-open-play.jpg",
-              alt: "Original Open Play page showing a different cream navigation bar with a magenta Login pill and a different set of menu items",
-              caption: "Open Play navigation: fewer items, different colors, and a bright pink Login button in place of a text link.",
-            },
+          body: [
+            "The old site didn't have one navigation bar. It had two, and which one a visitor saw depended entirely on which page they landed on first.",
           ],
         },
+        {
+          type: "text",
+          title: "Home & Contact",
+          body: [
+            "These two pages share an eight-item navigation bar. Logging in is a small grey text link, easy to overlook against the cream background it sits on.",
+          ],
+        },
+        { type: "media", layout: "full", images: [{ src: "/momntotspot/original/old-home.jpg", alt: "Original homepage showing an eight-item yellow navigation bar with a small gray Log In link" }] },
+        {
+          type: "text",
+          title: "Open Play",
+          body: [
+            "This page uses a shorter, differently colored navigation bar instead, and logging in is now a solid pink button. Same site, same login action, presented two different ways depending on which page you're on.",
+          ],
+        },
+        { type: "media", layout: "full", images: [{ src: "/momntotspot/original/old-open-play.jpg", alt: "Original Open Play page showing a different cream navigation bar with a magenta Login pill and a different set of menu items" }] },
       ],
     },
     {
