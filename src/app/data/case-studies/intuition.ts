@@ -2,7 +2,7 @@ import { type Project } from "../case-types";
 
 export const intuition: Project = {
   id: "intuition",
-  index: "04",
+  index: "06",
   title: "InTuition",
   tagline: "A unified scholarship workflow concept for students short on time",
   discipline: "Product Design · EdTech",

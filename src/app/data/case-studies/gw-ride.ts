@@ -2,7 +2,7 @@ import { type Project } from "../case-types";
 
 export const gwRide: Project = {
   id: "gw-ride",
-  index: "03",
+  index: "05",
   title: "GW Ride",
   tagline:
     "A mobile shuttle and campus discovery app for George Washington University students",

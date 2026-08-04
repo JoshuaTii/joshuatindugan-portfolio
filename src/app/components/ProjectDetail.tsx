@@ -90,7 +90,7 @@ export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailP
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <span className="font-bold text-[0.85rem] uppercase tracking-[0.25em] text-accent">
-          {project.kicker ?? `Case Study ${project.index} / 04`}
+          {project.kicker ?? `Case Study ${project.index} / 06`}
         </span>
         <h1
           style={{ fontFamily: "var(--font-sans)" }}

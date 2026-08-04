@@ -2,7 +2,7 @@ import { type Project } from "../case-types";
 
 export const photography: Project = {
   id: "photography",
-  index: "05",
+  index: "07",
   kicker: "Creative Practice",
   title: "Photography Practice",
   tagline: "Observation through light, structure, and framing.",
