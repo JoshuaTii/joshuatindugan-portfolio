@@ -22,6 +22,12 @@ export type Block =
       layout: "full" | "grid-2" | "grid-3" | "grid-4" | "grid-3-responsive" | "framed";
       images: MediaImage[];
       caption?: string;
+      /** Portrait images are auto-capped to a phone-sized width (they're
+       * usually mobile screenshots) — set false when a grid's portrait
+       * images are something else (e.g. a photographed sketch or poster),
+       * where that cap just leaves an oversized gap between images instead
+       * of framing a screen. Defaults to true. */
+      capMobile?: boolean;
     }
   | {
       type: "compare";
@@ -37,7 +43,10 @@ export type Block =
       title: string;
       details?: { label: string; text: string }[];
       bullets?: string[];
-      image: MediaImage;
+      /** A single image, or an ordered set shown as a small dot/arrow
+       * gallery when there's more than one (e.g. several screens for the
+       * same decision). */
+      image: MediaImage | MediaImage[];
       imageLeft?: boolean;
       phone?: boolean;
     }
@@ -81,4 +90,13 @@ export type Project = {
   /** Accurate alt text for heroLogo. Falls back to "{title} logo" when omitted. */
   heroAlt?: string;
   sections: CaseSection[];
+  /** Temporarily pulled from public view (still being worked on): the Work
+   * card shows a "still working on this" message on hover instead of the
+   * normal preview, clicking it does nothing, direct navigation to its
+   * /case/{id} URL falls back to the homepage, and it's skipped when
+   * cycling to "next project" from another case study's reader. */
+  unavailable?: boolean;
+  /** Shown on hover when `unavailable` is true. Falls back to a generic
+   * message when omitted. */
+  unavailableMessage?: string;
 };

@@ -15,6 +15,8 @@ export const intuition: Project = {
   cover: "/logos/intuition.png",
   heroLogo: "/logos/hero/intuition-v2.png",
   heroAlt: "InTuition wordmark on a purple gradient background",
+  unavailable: true,
+  unavailableMessage: "Still fixing this case study up — check back soon.",
   sections: [
     {
       key: "overview",

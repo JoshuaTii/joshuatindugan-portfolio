@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { press } from "../../lib/interactions";
 import { type Block, type MediaImage } from "../../data/case-types";
@@ -82,6 +83,75 @@ function MediaButton({
         </figcaption>
       )}
     </figure>
+  );
+}
+
+/** A "feature" block with more than one image for the same decision —
+ * arrow buttons step through, dots show position (the active one morphs
+ * into a short pill, same dot-to-line language as the case-study reader's
+ * Contents sidebar). Sits below the image, not overlaid on it, so it
+ * never competes with the image's own click-to-zoom target. */
+function FeatureGallery({
+  images,
+  radius,
+  onImage,
+}: {
+  images: MediaImage[];
+  radius: string;
+  onImage: BlockProps["onImage"];
+}) {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <MediaButton
+        key={images[active].src}
+        img={images[active]}
+        images={images}
+        index={active}
+        radius={radius}
+        onImage={onImage}
+      />
+      <div className="flex items-center gap-3">
+        <motion.button
+          type="button"
+          onClick={() => setActive((a) => (a - 1 + images.length) % images.length)}
+          whileTap={press}
+          aria-label="Previous image"
+          className="flex size-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200 hover:text-accent"
+          style={{ color: "var(--ink-dim)" }}
+        >
+          <ChevronLeft size={18} />
+        </motion.button>
+        <div className="flex items-center gap-2">
+          {images.map((img, i) => (
+            <button
+              key={img.src}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`Show image ${i + 1} of ${images.length}`}
+              aria-current={i === active}
+              className="shrink-0 rounded-full transition-all duration-300 ease-[cubic-bezier(0.65,0,0.35,1)]"
+              style={{
+                width: i === active ? "1.25rem" : "0.375rem",
+                height: "0.375rem",
+                background: i === active ? "var(--accent)" : "var(--border)",
+              }}
+            />
+          ))}
+        </div>
+        <motion.button
+          type="button"
+          onClick={() => setActive((a) => (a + 1) % images.length)}
+          whileTap={press}
+          aria-label="Next image"
+          className="flex size-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200 hover:text-accent"
+          style={{ color: "var(--ink-dim)" }}
+        >
+          <ChevronRight size={18} />
+        </motion.button>
+      </div>
+    </div>
   );
 }
 
@@ -269,7 +339,7 @@ export function CaseBlock({ block, onImage }: BlockProps) {
                 index={i}
                 radius={radius}
                 onImage={onImage}
-                capMobile
+                capMobile={block.capMobile !== false}
               />
             ))}
           </div>
@@ -350,18 +420,23 @@ export function CaseBlock({ block, onImage }: BlockProps) {
           )}
         </div>
       );
+      const images = Array.isArray(block.image) ? block.image : [block.image];
       const imageCol = (
         <div
           className={`flex justify-center ${block.phone ? "" : "w-full"}`}
         >
           <div className={block.phone ? "w-full max-w-[320px]" : "w-full"}>
-            <MediaButton
-              img={block.image}
-              images={[block.image]}
-              index={0}
-              radius="rounded-[10px]"
-              onImage={onImage}
-            />
+            {images.length > 1 ? (
+              <FeatureGallery images={images} radius="rounded-[10px]" onImage={onImage} />
+            ) : (
+              <MediaButton
+                img={images[0]}
+                images={images}
+                index={0}
+                radius="rounded-[10px]"
+                onImage={onImage}
+              />
+            )}
           </div>
         </div>
       );

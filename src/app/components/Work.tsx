@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "motion/react";
-import { ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, Clock, Construction } from "lucide-react";
 import { projects, type Project } from "../data/projects";
 import { Eyebrow } from "./Eyebrow";
 import { readingTimeLabel, shortYear } from "../lib/readingTime";
@@ -64,14 +64,18 @@ function CaseCard({
     <motion.a
       ref={cardRef}
       href="#"
+      aria-disabled={project.unavailable}
       onClick={(e) => {
         e.preventDefault();
+        if (project.unavailable) return;
         onOpen();
       }}
       onFocus={onFocus}
       onBlur={onBlur}
       style={{ transform, zIndex, borderColor: "var(--g3)" }}
-      className="group absolute inset-0 overflow-hidden rounded-[24px] border no-underline outline-none transition-colors duration-150 hover:!border-[var(--accent)] focus-visible:!border-[var(--accent)]"
+      className={`group absolute inset-0 overflow-hidden rounded-[24px] border no-underline outline-none transition-colors duration-150 hover:!border-[var(--accent)] focus-visible:!border-[var(--accent)] ${
+        project.unavailable ? "cursor-not-allowed" : ""
+      }`}
     >
       <div className="absolute inset-0 rounded-[inherit]" style={{ background: "var(--g1)" }} />
       <motion.div
@@ -80,24 +84,43 @@ function CaseCard({
         style={{ background: "var(--g0)", opacity: scrim }}
       />
 
-      {/* Curtain blind + inverted content, revealed together on hover/focus */}
+      {/* Curtain blind + inverted content, revealed together on hover/focus.
+          For an unavailable project this reveal shows a "still working on
+          it" message instead of the normal duplicate content — real
+          information, not a repeat of the base layer, so it's not
+          aria-hidden here. */}
       <div
         aria-hidden
         className="absolute inset-0 z-[1] origin-top scale-y-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100"
         style={{ background: "var(--accent)" }}
       />
       <div
-        aria-hidden
+        aria-hidden={!project.unavailable}
         className="absolute inset-0 z-[2] flex flex-col gap-7 p-8 pointer-events-none [clip-path:inset(0_0_100%_0)] transition-[clip-path] duration-[380ms] ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0%_0)] group-focus-visible:[clip-path:inset(0_0_0%_0)]"
         style={{ color: "var(--accent-ink)" }}
       >
-        <CaseBody project={project} index={index} inverted />
+        {project.unavailable ? (
+          <UnavailableMessage message={project.unavailableMessage} />
+        ) : (
+          <CaseBody project={project} index={index} inverted />
+        )}
       </div>
 
       <div className="relative z-0 flex h-full flex-col gap-7 p-8" style={{ color: "var(--ink)" }}>
         <CaseBody project={project} index={index} />
       </div>
     </motion.a>
+  );
+}
+
+function UnavailableMessage({ message }: { message?: string }) {
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+      <Construction size={24} />
+      <p className="max-w-[24ch] text-[1.05rem] font-medium leading-snug">
+        {message ?? "This case study isn't public yet — check back soon."}
+      </p>
+    </div>
   );
 }
 
@@ -187,11 +210,21 @@ export function Work({ onOpen }: WorkProps) {
           {projects.map((project) => (
             <button
               key={project.id}
-              onClick={() => onOpen(project)}
-              className="flex min-h-[260px] flex-col gap-7 rounded-[24px] border p-8 text-left"
+              disabled={project.unavailable}
+              onClick={() => {
+                if (project.unavailable) return;
+                onOpen(project);
+              }}
+              className={`flex min-h-[260px] flex-col gap-7 rounded-[24px] border p-8 text-left ${
+                project.unavailable ? "cursor-not-allowed" : ""
+              }`}
               style={{ borderColor: "var(--g3)", background: "var(--g1)" }}
             >
-              <CaseBody project={project} index={0} />
+              {project.unavailable ? (
+                <UnavailableMessage message={project.unavailableMessage} />
+              ) : (
+                <CaseBody project={project} index={0} />
+              )}
             </button>
           ))}
         </div>

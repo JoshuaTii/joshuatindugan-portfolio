@@ -9,7 +9,11 @@ import { projects, type Project } from "./data/projects";
 function projectFromPath(pathname: string): Project | null {
   const match = pathname.match(/^\/case\/([^/]+)\/?$/);
   if (!match) return null;
-  return projects.find((p) => p.id === match[1]) ?? null;
+  // Unavailable projects have no real route — direct/bookmarked navigation
+  // to their /case/{id} URL falls back to the homepage instead of
+  // rendering the reader, matching the Work card's blocked click.
+  const project = projects.find((p) => p.id === match[1]);
+  return project && !project.unavailable ? project : null;
 }
 
 export default function App() {
@@ -28,6 +32,16 @@ export default function App() {
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
+
+  // A /case/{id} URL that doesn't resolve to an available project (direct
+  // nav, a stale bookmark, or an unavailable project's link) falls back to
+  // rendering Home above, but the address bar would otherwise keep showing
+  // that dead URL — clean it up so a refresh or share doesn't carry it forward.
+  useEffect(() => {
+    if (!activeProject && /^\/case\/[^/]+\/?$/.test(window.location.pathname)) {
+      window.history.replaceState({}, "", "/");
+    }
+  }, [activeProject]);
 
   // Persist the exact scroll offset per path (not "which section was
   // active"), so a refresh — including mid-case-study — puts the reader

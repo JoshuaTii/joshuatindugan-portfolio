@@ -173,6 +173,11 @@ export const ddot: Project = {
         {
           type: "media",
           layout: "grid-2",
+          // These are photographed paper sketches, not app screens — happen
+          // to be portrait, which would otherwise trigger the phone-width
+          // cap meant for mobile screenshots and leave a big gap between
+          // the two images instead of them filling their grid columns.
+          capMobile: false,
           images: [
             {
               src: "/ddot/codesign-sketch-1.jpg",

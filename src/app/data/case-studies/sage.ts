@@ -293,9 +293,9 @@ export const sage: Project = {
       blocks: [
         {
           type: "text",
-          title: "Three decisions that shaped the product.",
+          title: "Four decisions that shaped the product.",
           body: [
-            "Every feature in SAGE traces back to a specific piece of evidence from research, not a generic best practice. These are the three decisions with the biggest tradeoffs.",
+            "Every feature in SAGE traces back to a specific piece of evidence from research, not a generic best practice. These are the four decisions with the biggest tradeoffs.",
           ],
         },
         {
@@ -345,13 +345,57 @@ export const sage: Project = {
               text: "Make support feel like it's coming from the neighborhood, not a corporate app.",
             },
           ],
-          image: { src: "/sage/feat1-1.png", alt: "SAGE Community Hub screen" },
+          image: [
+            { src: "/sage/feat1-1.png", alt: "SAGE Community Hub screen" },
+            {
+              src: "/sage/feat-d2-2.png",
+              alt: "SAGE map screen showing nearby community financial-support organizations and resources",
+            },
+          ],
           imageLeft: true,
           phone: true,
         },
         {
           type: "feature",
           kicker: "Decision 03",
+          title: "Teach through lessons, workshops, and real stories, not just a features list",
+          details: [
+            {
+              label: "Evidence",
+              text: "Residents wanted to build confidence with money, not just get a tool that assumes they already know the basics.",
+            },
+            {
+              label: "Decision",
+              text: "The Learn tab pairs short lessons and in-person workshops with first-person stories from other residents who've been through it.",
+            },
+            {
+              label: "Tradeoff",
+              text: "Content needs ongoing curation to stay current and doesn't scale as easily as a self-serve tool.",
+            },
+            {
+              label: "Design intent",
+              text: "Make learning feel like something the community is doing together, not homework handed down by an app.",
+            },
+          ],
+          image: [
+            {
+              src: "/sage/feat-d3-1.png",
+              alt: "SAGE Learn tab showing completed lessons, workshops attended, and suggested lessons",
+            },
+            {
+              src: "/sage/feat-d3-2.png",
+              alt: "SAGE workshop registration screen and a preview of resident community stories",
+            },
+            {
+              src: "/sage/feat-d3-3.png",
+              alt: "SAGE community stories screen listing first-person resident financial journeys",
+            },
+          ],
+          phone: true,
+        },
+        {
+          type: "feature",
+          kicker: "Decision 04",
           title: "Make lending terms visible before commitment",
           details: [
             {
@@ -371,7 +415,26 @@ export const sage: Project = {
               text: "Let people see what they're agreeing to before they commit.",
             },
           ],
-          image: { src: "/sage/feat3-1.png", alt: "SAGE loan marketplace screen" },
+          image: [
+            { src: "/sage/feat3-1.png", alt: "SAGE loan marketplace screen" },
+            {
+              src: "/sage/feat-d4-2.png",
+              alt: "SAGE loan screen normalizing common small borrowing amounts before applying",
+            },
+            {
+              src: "/sage/feat-d4-3.png",
+              alt: "SAGE loan screen prompting the user to reflect before committing to a loan",
+            },
+            {
+              src: "/sage/feat-d4-4.png",
+              alt: "SAGE loan repayment dashboard showing payment due, progress, and next payment date",
+            },
+            {
+              src: "/sage/feat-d4-5.png",
+              alt: "SAGE spending dashboard showing a monthly breakdown by category and a help/resources section",
+            },
+          ],
+          imageLeft: true,
           phone: true,
         },
       ],

@@ -45,8 +45,17 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const nextProject =
-    projects[(projects.findIndex((p) => p.id === project.id) + 1) % projects.length];
+  // Steps forward until it finds an available project, so "next" never
+  // lands on one that's temporarily pulled from public view.
+  const startIndex = projects.findIndex((p) => p.id === project.id);
+  let nextProject = project;
+  for (let step = 1; step <= projects.length; step++) {
+    const candidate = projects[(startIndex + step) % projects.length];
+    if (!candidate.unavailable) {
+      nextProject = candidate;
+      break;
+    }
+  }
 
   const meta = [
     { Icon: User, label: "Role", value: project.role },
