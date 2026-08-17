@@ -1,188 +1,237 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  type MotionValue,
+} from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { projects, type Project } from "../data/projects";
+import { Eyebrow } from "./Eyebrow";
 
 type WorkProps = {
   onOpen: (project: Project) => void;
 };
 
-export function Work({ onOpen }: WorkProps) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const scrollBy = (dir: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const amount = Math.min(el.clientWidth * 0.8, 520);
-    el.scrollBy({ left: amount * dir, behavior: "smooth" });
-  };
-
-  const updateEdges = () => {
-    const el = trackRef.current;
-    if (!el) return;
-    setAtStart(el.scrollLeft <= 4);
-    // The trailing snap-comfort spacer keeps scrollWidth a few px past the
-    // last real card, so the edge tolerance has to clear that gap too.
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 16);
-  };
-
-  useEffect(() => {
-    updateEdges();
-  }, []);
-
-  useEffect(() => {
-    const root = trackRef.current;
-    if (!root) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-            const idx = Number((entry.target as HTMLElement).dataset.index);
-            setActiveIndex(idx);
-          }
-        });
-      },
-      { root, threshold: [0.6] },
-    );
-    cardRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+// Ported from the Motion Portfolio build: vertical page scroll alone reveals
+// every case — no sideways scrolling needed. Each card's position is a
+// smooth function of its signed distance from a continuous "deck position"
+// (scroll progress × card count), so there's no index to floor and no
+// branch boundary to jump across; scrolling back up unstacks the same way
+// in reverse. Only KEYBOARD focus pins a card to front regardless of scroll
+// position (matches the reference: its `focusedIndex` is set from a real
+// focus event, never from mouseenter) — mouse hover intentionally does NOT
+// touch refPos, only the curtain-blind reveal and border color below, both
+// pure CSS :hover. Freezing the stack position on hover was tried earlier
+// and made the scroll-driven stacking feel "stuck" under the cursor.
+function CaseCard({
+  project,
+  index,
+  count,
+  refPos,
+  onFocus,
+  onBlur,
+  onOpen,
+  cardRef,
+}: {
+  project: Project;
+  index: number;
+  count: number;
+  refPos: MotionValue<number>;
+  onFocus: () => void;
+  onBlur: () => void;
+  onOpen: () => void;
+  cardRef: (el: HTMLAnchorElement | null) => void;
+}) {
+  const d = useTransform(refPos, (rp) => index - rp);
+  const x = useTransform(d, (dv) => (dv >= 0 ? dv * 90 : dv * 62));
+  const scale = useTransform(d, (dv) => {
+    if (dv >= 0) return Math.max(0.85, Math.min(1, 1 - dv * 0.08));
+    const ad = Math.abs(dv);
+    return Math.max(0.6, Math.min(1, 1 - ad * 0.07));
+  });
+  const scrim = useTransform(d, (dv) => {
+    if (dv >= 0) return Math.max(0, Math.min(0.85, dv * 0.35));
+    return Math.max(0, Math.min(0.8, Math.abs(dv) * 0.16));
+  });
+  const zIndex = useTransform(d, (dv) => Math.round(100 - Math.abs(dv) * 10));
+  const transform = useTransform([x, scale], ([xv, sv]) => `translateX(${xv}px) scale(${sv})`);
 
   return (
-    <div>
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div>
-          <span className="font-bold text-[0.85rem] uppercase tracking-[0.25em] text-accent">
-            Selected Work
-          </span>
-          <h2
-            style={{ fontFamily: "var(--font-serif)" }}
-            className="mt-3 text-[2.4rem] md:text-[3rem]"
-          >
-            Six case studies, one ongoing practice
+    <motion.a
+      ref={cardRef}
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        onOpen();
+      }}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      style={{ transform, zIndex, borderColor: "var(--g3)" }}
+      className="group absolute inset-0 overflow-hidden rounded-[24px] border no-underline outline-none transition-colors duration-150 hover:!border-[var(--accent)] focus-visible:!border-[var(--accent)]"
+    >
+      <div className="absolute inset-0 rounded-[inherit]" style={{ background: "var(--g1)" }} />
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none rounded-[inherit]"
+        style={{ background: "var(--g0)", opacity: scrim }}
+      />
+
+      {/* Curtain blind + inverted content, revealed together on hover/focus */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-[1] origin-top scale-y-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100"
+        style={{ background: "var(--accent)" }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 z-[2] flex flex-col gap-7 p-8 pointer-events-none [clip-path:inset(0_0_100%_0)] transition-[clip-path] duration-[380ms] ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0%_0)] group-focus-visible:[clip-path:inset(0_0_0%_0)]"
+        style={{ color: "var(--accent-ink)" }}
+      >
+        <CaseBody project={project} index={index} inverted />
+      </div>
+
+      <div className="relative z-0 flex h-full flex-col gap-7 p-8" style={{ color: "var(--ink)" }}>
+        <CaseBody project={project} index={index} />
+      </div>
+    </motion.a>
+  );
+}
+
+function CaseBody({ project, index, inverted }: { project: Project; index: number; inverted?: boolean }) {
+  return (
+    <>
+      <div className="flex items-start justify-between gap-4">
+        <span className="text-[0.78rem]" style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}>
+          {project.index || String(index + 1).padStart(2, "0")}
+        </span>
+        <span className="text-[0.78rem]" style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}>
+          {project.year}
+        </span>
+      </div>
+      <div>
+        <h3 className="text-[1.5rem] font-medium" style={{ fontFamily: "var(--font-serif)" }}>
+          {project.title}
+        </h3>
+        <p
+          className="mt-2.5 max-w-[42ch] text-[0.94rem]"
+          style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}
+        >
+          {project.summary}
+        </p>
+        <p
+          className="mt-2.5 text-[0.76rem] tracking-[0.02em]"
+          style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}
+        >
+          {project.discipline}
+        </p>
+      </div>
+      <div
+        className="mt-auto flex items-center gap-2 text-[0.85rem] font-medium"
+        style={{ color: inverted ? "var(--accent-ink)" : "var(--accent)" }}
+      >
+        <span>See Case Study</span>
+        <ArrowUpRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </div>
+    </>
+  );
+}
+
+export function Work({ onOpen }: WorkProps) {
+  const pinRef = useRef<HTMLDivElement>(null);
+  const cardEls = useRef<(HTMLAnchorElement | null)[]>([]);
+  const reduceMotion = useReducedMotion();
+  const count = projects.length;
+
+  const { scrollYProgress } = useScroll({ target: pinRef, offset: ["start start", "end end"] });
+  const scrollPos = useTransform(scrollYProgress, (p) => Math.max(0, Math.min(count - 1, p * count)));
+  // Only keyboard focus writes here (see CaseCard's comment) — mouse hover
+  // never touches this, so the scroll-driven stack keeps animating under
+  // the cursor in either scroll direction.
+  const focusedMV = useMotionValue(-1);
+  const refPos = useTransform([scrollPos, focusedMV], ([sp, f]) => ((f as number) >= 0 ? (f as number) : (sp as number)));
+
+  const progressWidth = useTransform(refPos, (rp) => `${8 + Math.max(0, Math.min(1, rp / (count - 1))) * 92}%`);
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    const idx = cardEls.current.findIndex((el) => el === document.activeElement);
+    if (idx === -1) return;
+    if (e.key === "ArrowRight" && idx < count - 1) {
+      e.preventDefault();
+      cardEls.current[idx + 1]?.focus();
+    } else if (e.key === "ArrowLeft" && idx > 0) {
+      e.preventDefault();
+      cardEls.current[idx - 1]?.focus();
+    }
+  }
+
+  if (reduceMotion) {
+    return (
+      <div>
+        <div className="mb-13 flex flex-col items-center text-center">
+          <Eyebrow>Selected work</Eyebrow>
+          <h2 style={{ fontFamily: "var(--font-serif)" }} className="mx-auto mt-4 max-w-[22ch] text-[2.4rem] leading-tight md:text-[3.4rem]">
+            Case studies, one ongoing practice.
           </h2>
         </div>
-        <div className="flex shrink-0 gap-3 self-end sm:self-auto">
-          <button
-            onClick={() => scrollBy(-1)}
-            disabled={atStart}
-            aria-label="Previous project"
-            className="group flex size-12 items-center justify-center rounded-full bg-card transition-colors duration-300 hover:enabled:bg-primary hover:enabled:text-primary-foreground disabled:opacity-35"
-          >
-            <ArrowLeft
-              size={20}
-              className="transition-transform duration-300 group-enabled:group-hover:-translate-x-1"
-            />
-          </button>
-          <button
-            onClick={() => scrollBy(1)}
-            disabled={atEnd}
-            aria-label="Next project"
-            className="group flex size-12 items-center justify-center rounded-full bg-card transition-colors duration-300 hover:enabled:bg-primary hover:enabled:text-primary-foreground disabled:opacity-35"
-          >
-            <ArrowRight
-              size={20}
-              className="transition-transform duration-300 group-enabled:group-hover:translate-x-1"
-            />
-          </button>
+        <div className="grid gap-5 sm:grid-cols-2">
+          {projects.map((project) => (
+            <button
+              key={project.id}
+              onClick={() => onOpen(project)}
+              className="flex min-h-[260px] flex-col gap-7 rounded-[24px] border p-8 text-left"
+              style={{ borderColor: "var(--g3)", background: "var(--g1)" }}
+            >
+              <CaseBody project={project} index={0} />
+            </button>
+          ))}
         </div>
       </div>
+    );
+  }
 
-      <div
-        ref={trackRef}
-        onScroll={updateEdges}
-        className="scrollbar-hide mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
-        style={{ scrollPaddingLeft: "0px" }}
-      >
-        {projects.map((project, i) => (
-          <motion.button
-            key={project.id}
-            ref={(el) => {
-              cardRefs.current[i] = el;
-            }}
-            data-index={i}
-            onClick={() => onOpen(project)}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-[10px] bg-card text-left sm:w-[420px]"
-          >
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
-              <ImageWithFallback
-                src={project.cover}
-                alt={`${project.title}, ${project.discipline}`}
-                className="size-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
-              />
-              <span className="absolute left-5 top-5 rounded-full bg-primary/85 px-3.5 py-1.5 text-[0.8rem] text-primary-foreground backdrop-blur-sm">
-                {project.kicker ?? `${project.index} / 06`}
-              </span>
-              <span className="absolute right-5 top-5 flex size-11 items-center justify-center rounded-full bg-[var(--accent-bright)] text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-0.5">
-                <ArrowUpRight size={20} />
-              </span>
-            </div>
+  return (
+    <div ref={pinRef} style={{ height: `${count * 76}vh` }}>
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center">
+        <div className="mb-13 flex flex-col items-center text-center">
+          <Eyebrow>Selected work</Eyebrow>
+          <h2 style={{ fontFamily: "var(--font-serif)" }} className="mx-auto mt-4 max-w-[22ch] text-[2.4rem] leading-tight md:text-[3.4rem]">
+            Case studies, one ongoing practice.
+          </h2>
+        </div>
 
-            <div className="flex flex-1 flex-col p-6 texture-grain">
-              <span className="text-[0.82rem] uppercase tracking-[0.16em] text-muted-foreground">
-                {project.discipline}
-              </span>
-              <h3
-                style={{ fontFamily: "var(--font-serif)" }}
-                className="mt-2 text-[1.6rem]"
-              >
-                {project.title}
-              </h3>
-              <p className="mt-3 text-[1.15rem] leading-relaxed text-muted-foreground">
-                {project.summary}
-              </p>
-              <div className="scrollbar-hide mt-auto flex gap-2 overflow-x-auto pt-5">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-[0.8rem] text-foreground/70"
-                    style={{ borderColor: "rgba(15,15,15,0.22)" }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.button>
-        ))}
-
-        {/* trailing spacer for snap comfort */}
-        <div className="w-2 shrink-0" aria-hidden />
-      </div>
-
-      <div className="mt-2 flex items-center justify-center gap-1 md:hidden">
-        {projects.map((project, i) => (
-          <button
-            key={project.id}
-            onClick={() =>
-              cardRefs.current[i]?.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-                inline: "start",
-              })
-            }
-            aria-label={`Go to ${project.title}`}
-            aria-current={activeIndex === i}
-            className="flex h-11 w-8 items-center justify-center"
-          >
-            <span
-              className="h-1.5 rounded-full transition-all duration-300"
-              style={{
-                width: activeIndex === i ? "1.5rem" : "0.4rem",
-                background: activeIndex === i ? "var(--accent-bright)" : "var(--border)",
+        <div
+          role="group"
+          aria-label="Case studies. Tab or use arrow keys to move between them."
+          onKeyDown={handleKeyDown}
+          className="relative"
+          style={{ width: "min(460px, 84vw)", height: "420px" }}
+        >
+          {projects.map((project, i) => (
+            <CaseCard
+              key={project.id}
+              project={project}
+              index={i}
+              count={count}
+              refPos={refPos}
+              cardRef={(el) => {
+                cardEls.current[i] = el;
               }}
+              onFocus={() => focusedMV.set(i)}
+              onBlur={() => focusedMV.set(-1)}
+              onOpen={() => onOpen(project)}
             />
-          </button>
-        ))}
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-full" style={{ width: "min(460px, 84vw)", height: "2px", background: "var(--g3)" }}>
+          <motion.div className="h-full rounded-full" style={{ width: progressWidth, background: "var(--accent)" }} />
+        </div>
+        <div className="mt-3.5 text-center text-[0.72rem]" style={{ color: "var(--ink-dim)" }}>
+          ← → or Tab to browse
+        </div>
       </div>
     </div>
   );

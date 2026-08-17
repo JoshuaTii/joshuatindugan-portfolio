@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Instagram, Linkedin, Mail, Send, ArrowUpRight, Check } from "lucide-react";
+import { Send, ArrowUpRight, Check } from "lucide-react";
 import { toast } from "sonner";
 
 const socials = [
@@ -9,27 +9,80 @@ const socials = [
     label: "Instagram",
     handle: "@JoshuaTi_",
     href: "https://www.instagram.com/JoshuaTi_",
-    Icon: Instagram,
   },
   {
     id: "linkedin",
     label: "LinkedIn",
     handle: "in/joshua-tindugan",
     href: "https://www.linkedin.com/in/joshua-tindugan",
-    Icon: Linkedin,
   },
   {
     id: "email",
     label: "Email",
     handle: "jtindugan16@gmail.com",
     href: "mailto:jtindugan16@gmail.com",
-    Icon: Mail,
   },
 ];
 
+// Two separate full-width blocks, matching the reference build's #connect
+// (this list) and #contact (ContactForm below) — not one merged two-column
+// card, which is what the first port pass had done.
+export function ConnectLinks() {
+  return (
+    <div className="flex flex-col border-t" style={{ borderColor: "var(--g3)" }}>
+      {socials.map(({ id, label, handle, href }, i) => (
+        <motion.a
+          key={id}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: i * 0.08 }}
+          className="group relative block overflow-hidden border-b no-underline transition-transform duration-[420ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.012] focus-visible:scale-[1.012]"
+          style={{ borderColor: "var(--g3)" }}
+        >
+          <span
+            aria-hidden
+            className="absolute inset-0 z-[1] origin-top scale-y-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100"
+            style={{ background: "var(--accent)" }}
+          />
+
+          <span
+            aria-hidden
+            className="absolute inset-0 z-[2] flex items-center gap-4 py-6 pointer-events-none [clip-path:inset(0_0_100%_0)] transition-[clip-path] duration-[380ms] ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0%_0)] group-focus-visible:[clip-path:inset(0_0_0%_0)]"
+            style={{ color: "var(--accent-ink)" }}
+          >
+            <span style={{ fontFamily: "var(--font-serif)" }} className="text-[1.25rem] font-medium">
+              {label}
+            </span>
+            <span className="ml-auto text-[0.8rem] opacity-75">{handle}</span>
+            <ArrowUpRight size={18} className="shrink-0" />
+          </span>
+
+          <span className="relative z-0 flex items-center gap-4 py-6" style={{ color: "var(--ink)" }}>
+            <span style={{ fontFamily: "var(--font-serif)" }} className="text-[1.25rem] font-medium">
+              {label}
+            </span>
+            <span className="ml-auto text-[0.8rem]" style={{ color: "var(--ink-dim)" }}>
+              {handle}
+            </span>
+            <ArrowUpRight
+              size={18}
+              className="shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              style={{ color: "var(--ink-dim)" }}
+            />
+          </span>
+        </motion.a>
+      ))}
+    </div>
+  );
+}
+
 type Status = "idle" | "loading" | "success" | "error";
 
-export function Connect() {
+export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -70,73 +123,34 @@ export function Connect() {
   };
 
   return (
-    <div className="grid items-stretch gap-6 lg:grid-cols-2">
-      {/* Social links */}
-      <div className="flex flex-col gap-6">
-        {socials.map(({ id, label, handle, href, Icon }, i) => (
-          <motion.a
-            key={id}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group flex flex-1 items-center justify-between rounded-[2rem] bg-card px-7 py-6 texture-grain"
-          >
-            <div className="flex items-center gap-5">
-              <span className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors duration-300 group-hover:bg-accent">
-                <Icon
-                  size={22}
-                  className="transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-                />
-              </span>
-              <span className="flex flex-col">
-                <span style={{ fontFamily: "var(--font-serif)" }} className="text-[1.35rem]">
-                  {label}
-                </span>
-                <span className="text-muted-foreground text-[0.95rem]">{handle}</span>
-              </span>
-            </div>
-            <ArrowUpRight
-              size={24}
-              className="text-muted-foreground transition-all duration-300 group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1"
-            />
-          </motion.a>
-        ))}
-      </div>
-
-      {/* Message card */}
-      <motion.form
+    <motion.form
         onSubmit={handleSend}
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="flex h-full flex-col rounded-[2rem] bg-primary p-8 text-primary-foreground texture-grain texture-grain-light"
+        className="flex flex-col rounded-[2rem] p-8 texture-grain"
+        style={{ background: "var(--g1)", color: "var(--ink)" }}
         noValidate
       >
-        <h3 style={{ fontFamily: "var(--font-serif)" }} className="text-[1.6rem]">
-          Leave a quick note
-        </h3>
-        <p className="mt-2 text-[1.12rem] text-white/60">
-          A thought, a project, or just hello. I read every one.
-        </p>
-
         {status === "success" ? (
-          <div className="mt-7 flex flex-1 flex-col items-center justify-center gap-4 text-center">
-            <span className="flex size-14 items-center justify-center rounded-full bg-[var(--accent-bright)] text-primary">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 py-10 text-center">
+            <span
+              className="flex size-14 items-center justify-center rounded-full"
+              style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
+            >
               <Check size={26} />
             </span>
             <span style={{ fontFamily: "var(--font-serif)" }} className="text-[1.3rem]">
               Message sent.
             </span>
-            <p className="text-[1rem] text-white/60">I'll get back to you soon.</p>
+            <p className="text-[1rem]" style={{ color: "var(--ink-dim)" }}>
+              I'll get back to you soon.
+            </p>
           </div>
         ) : (
           <>
-            <div className="mt-7 flex flex-1 flex-col gap-4">
+            <div className="flex flex-1 flex-col gap-4">
               {/* Honeypot: hidden from real visitors, bots tend to fill every field */}
               <input
                 type="text"
@@ -155,7 +169,8 @@ export function Connect() {
                 aria-label="Your name"
                 required
                 disabled={status === "loading"}
-                className="rounded-2xl bg-white/10 px-5 py-3.5 text-white placeholder:text-white/40 outline-none transition-shadow duration-300 focus:ring-2 focus:ring-[var(--accent-bright)] disabled:opacity-60"
+                className="rounded-2xl px-5 py-3.5 outline-none placeholder:text-[var(--ink-dim)] transition-shadow duration-300 focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-60"
+                style={{ background: "var(--g2)", color: "var(--ink)" }}
               />
               <input
                 type="email"
@@ -165,7 +180,8 @@ export function Connect() {
                 aria-label="Your email"
                 required
                 disabled={status === "loading"}
-                className="rounded-2xl bg-white/10 px-5 py-3.5 text-white placeholder:text-white/40 outline-none transition-shadow duration-300 focus:ring-2 focus:ring-[var(--accent-bright)] disabled:opacity-60"
+                className="rounded-2xl px-5 py-3.5 outline-none placeholder:text-[var(--ink-dim)] transition-shadow duration-300 focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-60"
+                style={{ background: "var(--g2)", color: "var(--ink)" }}
               />
               <textarea
                 value={message}
@@ -174,14 +190,16 @@ export function Connect() {
                 aria-label="Your note"
                 required
                 disabled={status === "loading"}
-                className="min-h-[140px] flex-1 resize-none rounded-2xl bg-white/10 px-5 py-3.5 text-white placeholder:text-white/40 outline-none transition-shadow duration-300 focus:ring-2 focus:ring-[var(--accent-bright)] disabled:opacity-60"
+                className="min-h-[140px] flex-1 resize-none rounded-2xl px-5 py-3.5 outline-none placeholder:text-[var(--ink-dim)] transition-shadow duration-300 focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-60"
+                style={{ background: "var(--g2)", color: "var(--ink)" }}
               />
             </div>
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="group mt-6 flex items-center justify-center gap-2 self-start rounded-full bg-[var(--accent-bright)] px-7 py-3.5 text-primary transition-transform duration-300 hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+              className="group mt-6 flex items-center justify-center gap-2 self-start rounded-full px-7 py-3.5 transition-transform duration-300 hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+              style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
             >
               <span>{status === "loading" ? "Sending…" : "Send note"}</span>
               <Send
@@ -192,6 +210,5 @@ export function Connect() {
           </>
         )}
       </motion.form>
-    </div>
   );
 }

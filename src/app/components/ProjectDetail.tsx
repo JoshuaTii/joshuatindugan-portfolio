@@ -9,11 +9,9 @@ import { projects, type Project, type ProjectImage } from "../data/projects";
 type ProjectDetailProps = {
   project: Project;
   onOpen: (project: Project) => void;
-  /** Only true on a fresh page load (e.g. a refresh) — restores the last-read section instead of starting at the top. */
-  restoreScroll?: boolean;
 };
 
-export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailProps) {
+export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
   const [activeSection, setActiveSection] = useState(project.sections[0].key);
   const [lightbox, setLightbox] = useState<{
     images: ProjectImage[];
@@ -39,32 +37,6 @@ export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailP
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [project]);
-
-  useEffect(() => {
-    try {
-      sessionStorage.setItem(`scrollSection:${project.id}`, activeSection);
-    } catch {
-      // ignore storage errors (e.g. private browsing)
-    }
-  }, [project.id, activeSection]);
-
-  useEffect(() => {
-    if (!restoreScroll) return;
-    let saved: string | null = null;
-    try {
-      saved = sessionStorage.getItem(`scrollSection:${project.id}`);
-    } catch {
-      saved = null;
-    }
-    if (!saved || !project.sections.some((s) => s.key === saved)) return;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.getElementById(`sec-${saved}`)?.scrollIntoView({ behavior: "auto", block: "start" });
-      });
-    });
-    // Restore only once, right after this fresh mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const scrollTo = (key: string) => {
     document
@@ -113,7 +85,10 @@ export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailP
               key={label}
               className="flex items-center gap-4 rounded-[1.5rem] bg-card px-6 py-5 texture-grain"
             >
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+              <span
+                className="flex size-11 shrink-0 items-center justify-center rounded-full"
+                style={{ background: "var(--g2)", color: "var(--accent)" }}
+              >
                 <Icon size={19} />
               </span>
               <span className="flex flex-col">
@@ -167,11 +142,15 @@ export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailP
                   onClick={() => scrollTo(s.key)}
                   className="group flex items-center gap-3 rounded-full py-2 pl-3 pr-4 text-left transition-colors duration-300 hover:bg-card"
                 >
+                  {/* Dot at rest, morphs into the active line/pill shape —
+                      both states share the same accent color and rounded-full
+                      radius, so only width/height actually animate. */}
                   <span
-                    className="h-px w-6 transition-all duration-300"
+                    className="shrink-0 rounded-full transition-all duration-300 ease-[cubic-bezier(0.65,0,0.35,1)]"
                     style={{
-                      background: isActive ? "var(--accent)" : "var(--border)",
-                      width: isActive ? "1.75rem" : "1rem",
+                      background: "var(--accent)",
+                      width: isActive ? "1.75rem" : "0.375rem",
+                      height: isActive ? "2px" : "0.375rem",
                     }}
                   />
                   <span
@@ -246,10 +225,11 @@ export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailP
           onOpen(nextProject);
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
-        className="group mt-24 flex w-full items-center justify-between gap-6 rounded-[2.5rem] bg-primary p-8 text-primary-foreground texture-grain texture-grain-light md:p-12"
+        className="group mt-24 flex w-full items-center justify-between gap-6 rounded-[2.5rem] p-8 texture-grain md:p-12"
+        style={{ background: "var(--g1)", color: "var(--ink)" }}
       >
         <div className="flex flex-col text-left">
-          <span className="font-bold text-[0.85rem] uppercase tracking-[0.2em] text-white/50">
+          <span className="font-bold text-[0.85rem] uppercase tracking-[0.2em]" style={{ color: "var(--ink-dim)" }}>
             Next project
           </span>
           <span
@@ -259,7 +239,10 @@ export function ProjectDetail({ project, onOpen, restoreScroll }: ProjectDetailP
             {nextProject.title}
           </span>
         </div>
-        <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-[var(--accent-bright)] text-primary transition-transform duration-300 group-hover:translate-x-2">
+        <span
+          className="flex size-16 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-2"
+          style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
+        >
           <ArrowRight size={26} />
         </span>
       </button>

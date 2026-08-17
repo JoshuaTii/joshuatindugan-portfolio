@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { type Block, type MediaImage } from "../../data/case-types";
 
@@ -33,26 +34,46 @@ function MediaButton({
   index,
   radius,
   onImage,
+  capMobile,
 }: {
   img: MediaImage;
   images: MediaImage[];
   index: number;
   radius: string;
   onImage: BlockProps["onImage"];
+  /** Cap portrait (mobile-screen) images to a phone-sized width instead of
+   * stretching them to fill a wide grid column — matches the size Sage's
+   * "06 Features" phone shots already use. Detected from the image's own
+   * loaded dimensions, not guessed from context, so it applies correctly
+   * regardless of how any given case study's grid is laid out. */
+  capMobile?: boolean;
 }) {
+  const [isPortrait, setIsPortrait] = useState(false);
   return (
-    <figure className="flex flex-col">
+    <figure
+      className={`flex flex-col ${capMobile && isPortrait ? "mx-auto w-full max-w-[320px]" : ""}`}
+    >
       <button
         type="button"
         onClick={() => onImage(images, index)}
         aria-label={`View larger: ${img.alt}`}
-        className={`group/img cursor-zoom-in overflow-hidden ${radius} text-left focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]`}
+        className="group/img block cursor-zoom-in text-left focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
       >
+        {/* No overflow-hidden wrapper — the border radius lives on the img
+            itself (a replaced element clips its own content to its own
+            radius natively), so the hover scale-up never gets clipped
+            against a smaller ancestor box. */}
         <ImageWithFallback
           src={img.src}
           alt={img.alt}
           loading="lazy"
-          className="w-full transition-transform duration-[900ms] ease-out group-hover/img:scale-[1.03]"
+          onLoad={(e) => {
+            const el = e.currentTarget;
+            if (el.naturalWidth && el.naturalHeight) {
+              setIsPortrait(el.naturalHeight / el.naturalWidth > 1.35);
+            }
+          }}
+          className={`w-full ${radius} transition-transform duration-[900ms] ease-out group-hover/img:scale-[1.03]`}
         />
       </button>
       {img.caption && (
@@ -254,6 +275,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
                 index={i}
                 radius={radius}
                 onImage={onImage}
+                capMobile
               />
             ))}
           </div>
@@ -284,6 +306,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
                   index={i}
                   radius="rounded-[10px]"
                   onImage={onImage}
+                  capMobile
                 />
               </div>
             ))}

@@ -1,1 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@300..700&display=swap');
+/* Homepage now uses system font stacks only (see theme.css --font-display/
+   --font-sans), matching the Motion Portfolio build this was ported from —
+   no web font request, nothing to flash-of-unstyled-text against. */

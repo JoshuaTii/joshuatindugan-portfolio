@@ -2,32 +2,47 @@
 
 :root {
   --font-size: 16px;
-  --font-serif: 'Afacad Flux', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Afacad Flux', ui-sans-serif, system-ui, sans-serif;
-  --background: #faf9f6;
-  --foreground: #0f0f0f;
-  --card: #f4f3ef;
-  --card-foreground: #0f0f0f;
-  --popover: #ffffff;
-  --popover-foreground: #0f0f0f;
-  --primary: #0f0f0f;
-  --primary-foreground: #ffffff;
-  --secondary: #f2f1ec;
-  --secondary-foreground: #0f0f0f;
-  --muted: #efeee9;
-  --muted-foreground: #575757;
-  --accent: #1c7d3f;
-  --accent-foreground: #ffffff;
-  --accent-bright: #4ade80;
+  /* Ported from the Motion Portfolio build: system font stacks only, no
+     web font request. --font-serif is kept as a token name (existing
+     components reference it for headings) but now points at the same
+     monospace "display" stack Motion Portfolio uses for its own headings —
+     there's no separate serif role in that build's type system. */
+  --font-serif: 'SF Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --background: #0e0f12;
+  --foreground: #edeff3;
+  --card: #1e2128;
+  --card-foreground: #edeff3;
+  --popover: #16181d;
+  --popover-foreground: #edeff3;
+  --primary: #edeff3;
+  --primary-foreground: #0e0f12;
+  --secondary: #16181d;
+  --secondary-foreground: #edeff3;
+  --muted: #1e2128;
+  --muted-foreground: #8b909c;
+  --accent: #e8a23d;
+  --accent-foreground: #16110a;
+  --accent-bright: #e8a23d;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(15, 15, 15, 0.08);
+  --border: #262a32;
   --input: transparent;
-  --input-background: #f2f1ec;
-  --switch-background: #cbced4;
+  --input-background: #1e2128;
+  --switch-background: #262a32;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #1c7d3f;
+  --ring: #e8a23d;
+  /* Motion Portfolio's own graphite scale, for anything that wants a step
+     finer than card/background/border (raised panels, hover elevation). */
+  --g0: #0e0f12;
+  --g1: #16181d;
+  --g2: #1e2128;
+  --g3: #262a32;
+  --ink: #edeff3;
+  --ink-dim: #8b909c;
+  --accent-dim: #b97d22;
+  --accent-ink: #16110a;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -138,6 +153,30 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Ported from the Motion Portfolio build: one global focus ring so every
+     interactive surface gets the same strength by default. Components with
+     a richer, hand-tuned focus treatment (e.g. Work's card border + curtain
+     reveal) layer on top of this rather than replacing it. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Respect the OS-level motion preference for the plain CSS transitions
+     that MotionConfig's reducedMotion="user" doesn't reach (hover/focus
+     curtain-blind reveals, border-color, scale micro-interactions). Kept
+     short rather than fully off so state changes (hover, focus, disabled)
+     are still perceivable, just not animated. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   h1 {

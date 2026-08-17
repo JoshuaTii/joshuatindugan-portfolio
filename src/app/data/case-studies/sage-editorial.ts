@@ -238,22 +238,6 @@ export const sageEditorial: Project = {
         },
         {
           type: "text",
-          title: "Article Template · Local Updates",
-        },
-        {
-          type: "media",
-          layout: "framed",
-          images: [
-            {
-              src: "/sage-editorial/article-393.png",
-              alt: "SAGE Editorial article page shown under the Local Updates category, with the same reading template used across categories",
-            },
-          ],
-          caption:
-            "The same article template carries every category: Insights, Local Updates, Community Guide, Stories, Resources, and Stay Connected. Readers learn the layout once and reuse it everywhere.",
-        },
-        {
-          type: "text",
           title: "Stay Connected",
           body: [
             "A dedicated subscribe screen keeps the newsletter separate from the reading experience, so it never interrupts an article in progress.",

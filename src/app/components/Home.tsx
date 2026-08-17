@@ -1,38 +1,40 @@
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { ArrowDown, Sparkles, Compass, PenTool } from "lucide-react";
+import { Hero } from "./Hero";
 import { Work } from "./Work";
-import { Connect } from "./Connect";
+import { Process } from "./Process";
+import { ConnectLinks, ContactForm } from "./Connect";
+import { Eyebrow } from "./Eyebrow";
 import { type Project } from "../data/projects";
 
 type HomeProps = {
   onOpen: (project: Project) => void;
   onSectionChange: (id: string) => void;
-  /** Only true on a fresh page load (e.g. a refresh) — restores the last-viewed section instead of starting at the top. */
-  restoreScroll?: boolean;
 };
 
+// Numbered, amber-numeral treatment — matches Process's 01/02/03 pattern
+// instead of a generic icon-in-circle card grid.
 const capabilities = [
   {
-    Icon: Compass,
+    num: "01",
     title: "UX Research",
     body: "Interviews, synthesis, and iteration grounded in real constraints, turning lived experience into clear design direction.",
   },
   {
-    Icon: PenTool,
+    num: "02",
     title: "Product Design",
     body: "End-to-end interfaces across fintech, transit, and edtech, from systems mapping to high-fidelity prototypes.",
   },
   {
-    Icon: Sparkles,
+    num: "03",
     title: "Systems & Accessibility",
     body: "Equity-minded, WCAG-aware decisions from structure to screen, so experiences feel simple, transparent, and human.",
   },
 ];
 
-export function Home({ onOpen, onSectionChange, restoreScroll }: HomeProps) {
+export function Home({ onOpen, onSectionChange }: HomeProps) {
   useEffect(() => {
-    const ids = ["home", "about", "work", "connect"];
+    const ids = ["home", "about", "work", "process", "connect", "contact"];
     const els = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -49,96 +51,20 @@ export function Home({ onOpen, onSectionChange, restoreScroll }: HomeProps) {
     return () => observer.disconnect();
   }, [onSectionChange]);
 
-  useEffect(() => {
-    if (!restoreScroll) return;
-    let saved: string | null = null;
-    try {
-      saved = sessionStorage.getItem("scrollSection:home");
-    } catch {
-      saved = null;
-    }
-    if (!saved || saved === "home") return;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.getElementById(saved!)?.scrollIntoView({ behavior: "auto", block: "start" });
-      });
-    });
-    // Restore only once, right after this fresh mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-      {/* Hero */}
-      <section
-        id="home"
-        className="flex min-h-screen flex-col justify-center pt-28 pb-16"
-      >
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 font-bold text-[0.9rem] uppercase tracking-[0.25em] text-accent"
-        >
-          <span className="inline-block h-px w-10" style={{ background: "var(--accent)" }} />
-          Product Designer · Washington, D.C.
-        </motion.span>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          style={{ fontFamily: "var(--font-sans)" }}
-          className="mt-6 max-w-5xl text-[3.2rem] leading-[1.02] md:text-[6rem]"
-        >
-          Product design for people navigating{" "}
-          <span style={{ color: "var(--accent)" }}>broken</span> systems.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-8 max-w-2xl text-[1.37rem] leading-relaxed text-muted-foreground"
-        >
-          I'm Joshua Uba Tindugan, a designer focused on research, structure,
-          and turning complex systems and workflows into simple, accessible
-          digital products. My work is driven by community impact, breaking down
-          barriers, and helping people move forward. I currently lead product
-          design at COMPETE bePlayFuel.
-        </motion.p>
-
-        <motion.a
-          href="#work"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="group mt-12 flex w-fit items-center gap-3 rounded-full bg-primary px-7 py-4 text-primary-foreground transition-transform duration-300 hover:scale-[1.03]"
-        >
-          <span>View selected work</span>
-          <ArrowDown
-            size={20}
-            className="transition-transform duration-300 group-hover:translate-y-1"
-          />
-        </motion.a>
-      </section>
-
+    <div>
+      <Hero />
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
       {/* About */}
       <section id="about" className="scroll-mt-24 py-24">
         <div className="grid gap-14 lg:grid-cols-[0.7fr_1.5fr]">
           <div>
-            <span className="font-bold text-[0.85rem] uppercase tracking-[0.25em] text-accent">
-              About
-            </span>
+            <Eyebrow>About</Eyebrow>
             <h2
               style={{ fontFamily: "var(--font-serif)" }}
               className="mt-4 text-[2.4rem] leading-tight md:text-[3.4rem]"
             >
-              Who is Joshua?
+              About me
             </h2>
           </div>
           <div className="flex flex-col gap-6">
@@ -157,31 +83,31 @@ export function Home({ onOpen, onSectionChange, restoreScroll }: HomeProps) {
               and shoot photography, the same practice in a different medium.
             </p>
 
-            <div className="mt-4 grid gap-4 sm:grid-cols-3">
-              {capabilities.map(({ Icon, title, body }) => (
+            <div className="mt-4 flex flex-col border-t" style={{ borderColor: "var(--border)" }}>
+              {capabilities.map(({ num, title, body }, i) => (
                 <motion.div
-                  key={title}
+                  key={num}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5 }}
-                  className="group flex flex-col rounded-[1.75rem] bg-card p-6 texture-grain"
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  className="grid grid-cols-[56px_1fr] items-baseline gap-5 border-b py-6"
+                  style={{ borderColor: "var(--border)" }}
                 >
-                  <span className="flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors duration-300 group-hover:bg-accent">
-                    <Icon
-                      size={22}
-                      className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
-                    />
+                  <span style={{ fontFamily: "var(--font-serif)" }} className="text-[1.4rem] text-accent">
+                    {num}
                   </span>
-                  <span
-                    style={{ fontFamily: "var(--font-serif)" }}
-                    className="mt-5 font-semibold text-[1.2rem]"
-                  >
-                    {title}
-                  </span>
-                  <span className="mt-2 text-[1.12rem] leading-relaxed text-muted-foreground">
-                    {body}
-                  </span>
+                  <div>
+                    <span
+                      style={{ fontFamily: "var(--font-serif)" }}
+                      className="block font-semibold text-[1.2rem]"
+                    >
+                      {title}
+                    </span>
+                    <span className="mt-2 block text-[1.12rem] leading-relaxed text-muted-foreground">
+                      {body}
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -193,21 +119,44 @@ export function Home({ onOpen, onSectionChange, restoreScroll }: HomeProps) {
       <section id="work" className="scroll-mt-24 py-24">
         <Work onOpen={onOpen} />
       </section>
+      </div>
 
+      <Process />
+
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
       {/* Connect */}
       <section id="connect" className="scroll-mt-24 py-24">
         <div className="mb-12 max-w-2xl">
-          <span className="font-bold text-[0.85rem] uppercase tracking-[0.25em] text-accent">
-            Connect
-          </span>
+          <Eyebrow>Connect</Eyebrow>
           <h2
             style={{ fontFamily: "var(--font-serif)" }}
             className="mt-4 text-[2.4rem] leading-tight md:text-[3.4rem]"
           >
-            Let's start something great together!
+            Find the work elsewhere.
           </h2>
         </div>
-        <Connect />
+        <ConnectLinks />
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="scroll-mt-24 py-24">
+        <div className="mx-auto mb-10 max-w-xl text-center">
+          <div className="flex justify-center">
+            <Eyebrow>Contact</Eyebrow>
+          </div>
+          <h2
+            style={{ fontFamily: "var(--font-serif)" }}
+            className="mt-4 text-[2.4rem] leading-tight md:text-[3.4rem]"
+          >
+            Get in touch.
+          </h2>
+          <p className="mt-3 text-[1.05rem]" style={{ color: "var(--ink-dim)" }}>
+            Usually replies within a few days.
+          </p>
+        </div>
+        <div className="mx-auto max-w-xl">
+          <ContactForm />
+        </div>
       </section>
 
       <footer className="flex flex-col items-center gap-2 border-t border-border py-12 text-center text-muted-foreground">
@@ -218,6 +167,7 @@ export function Home({ onOpen, onSectionChange, restoreScroll }: HomeProps) {
           UI/UX Design · Washington, D.C. · {new Date().getFullYear()}
         </span>
       </footer>
+      </div>
     </div>
   );
 }

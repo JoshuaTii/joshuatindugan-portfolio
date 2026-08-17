@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Toaster } from "sonner";
 import { Navbar } from "./components/Navbar";
@@ -17,11 +17,6 @@ export default function App() {
     projectFromPath(window.location.pathname),
   );
   const [activeSection, setActiveSection] = useState("home");
-  // True only for whatever renders before the app's first effect flush, i.e. a
-  // fresh page load. Lets ProjectDetail/Home tell "refreshed on this page"
-  // apart from "user clicked here in-app", so scroll restoration only kicks
-  // in on refresh, not every time a project is opened normally.
-  const allowInitialRestore = useRef(true);
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -31,17 +26,63 @@ export default function App() {
       setActiveProject(projectFromPath(window.location.pathname));
     };
     window.addEventListener("popstate", onPopState);
-    allowInitialRestore.current = false;
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
+  // Persist the exact scroll offset per path (not "which section was
+  // active"), so a refresh — including mid-case-study — puts the reader
+  // back exactly where they were, not at the top of the nearest section or
+  // back on the homepage. Save continuously while scrolling...
   useEffect(() => {
+    let queued = false;
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        try {
+          sessionStorage.setItem(`scrollY:${window.location.pathname}`, String(window.scrollY));
+        } catch {
+          // ignore storage errors (e.g. private browsing)
+        }
+        queued = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // ...and restore it once, only on a genuine fresh load (this effect runs
+  // exactly once for the lifetime of the app — in-app navigation changes
+  // `activeProject`/the URL via pushState without remounting App). Layout
+  // can still be settling right after mount (images, the Process section's
+  // measured-height pass), so the same target position is (harmlessly)
+  // re-applied a few times rather than trusting one early attempt.
+  useEffect(() => {
+    let saved: number | null = null;
     try {
-      sessionStorage.setItem("scrollSection:home", activeSection);
+      const raw = sessionStorage.getItem(`scrollY:${window.location.pathname}`);
+      saved = raw ? Number(raw) : null;
     } catch {
-      // ignore storage errors (e.g. private browsing)
+      saved = null;
     }
-  }, [activeSection]);
+    if (saved === null || Number.isNaN(saved)) return;
+    // "auto" defers to the global `scroll-behavior: smooth` CSS rule (it
+    // does not mean instant) — a full-page smooth-scroll animation on every
+    // refresh is itself a jarring "change of view", so force a true instant
+    // jump here regardless of that CSS rule.
+    const restore = () => window.scrollTo({ top: saved!, behavior: "instant" });
+    restore();
+    const raf = requestAnimationFrame(restore);
+    const t1 = setTimeout(restore, 150);
+    const t2 = setTimeout(restore, 500);
+    window.addEventListener("load", restore);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener("load", restore);
+    };
+  }, []);
 
   const handleOpen = useCallback((project: Project) => {
     setActiveProject(project);
@@ -96,7 +137,6 @@ export default function App() {
             <ProjectDetail
               project={activeProject}
               onOpen={handleOpen}
-              restoreScroll={allowInitialRestore.current}
             />
           </motion.main>
         ) : (
@@ -110,7 +150,6 @@ export default function App() {
             <Home
               onOpen={handleOpen}
               onSectionChange={setActiveSection}
-              restoreScroll={allowInitialRestore.current}
             />
           </motion.main>
         )}

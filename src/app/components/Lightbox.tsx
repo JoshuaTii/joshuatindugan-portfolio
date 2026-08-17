@@ -76,7 +76,8 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
       transition={{ duration: 0.25 }}
       onClick={onClose}
       onKeyDown={trapFocus}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/95 p-5 md:p-12"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-5 md:p-12"
+      style={{ background: "rgba(14,15,18,0.95)" }}
     >
       <motion.img
         key={image.src}
