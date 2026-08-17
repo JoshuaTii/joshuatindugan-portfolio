@@ -4,6 +4,7 @@ import { ArrowRight, Clock, User, Calendar } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Lightbox } from "./Lightbox";
 import { CaseBlock } from "./case-study/CaseBlocks";
+import { press } from "../lib/interactions";
 import { projects, type Project, type ProjectImage } from "../data/projects";
 
 type ProjectDetailProps = {
@@ -79,18 +80,13 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
           {project.summary}
         </p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        {/* Flat divided row — icon + label/value directly on the page,
+            separated by a hairline top border, instead of an icon-in-a-
+            circle sitting inside its own filled card. */}
+        <div className="mt-10 grid gap-x-8 gap-y-4 border-t border-border sm:grid-cols-3">
           {meta.map(({ Icon, label, value }) => (
-            <div
-              key={label}
-              className="flex items-center gap-4 rounded-[1.5rem] bg-card px-6 py-5 texture-grain"
-            >
-              <span
-                className="flex size-11 shrink-0 items-center justify-center rounded-full"
-                style={{ background: "var(--g2)", color: "var(--accent)" }}
-              >
-                <Icon size={19} />
-              </span>
+            <div key={label} className="flex items-center gap-3 pt-5">
+              <Icon size={18} style={{ color: "var(--accent)" }} className="shrink-0" />
               <span className="flex flex-col">
                 <span className="text-[0.8rem] uppercase tracking-[0.14em] text-muted-foreground">
                   {label}
@@ -108,7 +104,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
         transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         className="mt-12"
       >
-        <button
+        <motion.button
           type="button"
           onClick={() =>
             setLightbox({
@@ -116,6 +112,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
               index: 0,
             })
           }
+          whileTap={press}
           aria-label={`View larger: ${project.heroAlt ?? `${project.title} logo`}`}
           className="group/hero block aspect-[16/8] w-full cursor-zoom-in overflow-hidden rounded-[10px] bg-muted focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
         >
@@ -124,7 +121,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
             alt={project.heroAlt ?? `${project.title} logo`}
             className="size-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover/hero:scale-[1.02]"
           />
-        </button>
+        </motion.button>
       </motion.div>
 
       {/* Body with sticky index */}
@@ -137,9 +134,10 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
             {project.sections.map((s) => {
               const isActive = activeSection === s.key;
               return (
-                <button
+                <motion.button
                   key={s.key}
                   onClick={() => scrollTo(s.key)}
+                  whileTap={press}
                   className="group flex items-center gap-3 rounded-full py-2 pl-3 pr-4 text-left transition-colors duration-300 hover:bg-card"
                 >
                   {/* Dot at rest, morphs into the active line/pill shape —
@@ -159,72 +157,70 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
                   >
                     {s.label}
                   </span>
-                </button>
+                </motion.button>
               );
             })}
           </div>
         </aside>
 
+        {/* Sections sit directly on the page background, separated by a
+            hairline rule (matching Process's step dividers) instead of
+            alternating filled card panels — one flat surface throughout,
+            not a card inside a differently-toned card. */}
         <div className="flex min-w-0 flex-col gap-16">
-          {project.sections.map((s, i) => {
-            const tone = i % 2 === 1 ? "card" : "plain";
-            return (
-              <motion.section
-                key={s.key}
-                id={`sec-${s.key}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6 }}
-                className={`scroll-mt-32 rounded-[2rem] p-7 md:p-10 ${
-                  i % 2 === 1 ? "texture-grain" : ""
-                }`}
-                style={{ background: i % 2 === 1 ? "var(--card)" : "transparent" }}
-              >
-                <div className="flex items-baseline gap-4">
-                  <span
-                    style={{ fontFamily: "var(--font-serif)" }}
-                    className="text-[2rem] text-accent md:text-[2.4rem]"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h2
-                    style={{ fontFamily: "var(--font-serif)" }}
-                    className="text-[2rem] md:text-[2.4rem]"
-                  >
-                    {s.label}
-                  </h2>
-                </div>
-                <div className="mt-6 flex min-w-0 flex-col gap-9 pl-0 md:gap-12 md:pl-10">
-                  {s.blocks.map((block, bi) => {
-                    const isNewSubsection =
-                      bi > 0 && block.type === "text" && Boolean(block.title);
-                    return (
-                      <div
-                        key={bi}
-                        className={isNewSubsection ? "mt-4 md:mt-6" : undefined}
-                      >
-                        <CaseBlock
-                          block={block}
-                          tone={tone}
-                          onImage={(images, index) => setLightbox({ images, index })}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </motion.section>
-            );
-          })}
+          {project.sections.map((s, i) => (
+            <motion.section
+              key={s.key}
+              id={`sec-${s.key}`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
+              className={`scroll-mt-32 ${i > 0 ? "border-t border-border pt-12" : ""}`}
+            >
+              <div className="flex items-baseline gap-4">
+                <span
+                  style={{ fontFamily: "var(--font-serif)" }}
+                  className="text-[2rem] text-accent md:text-[2.4rem]"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2
+                  style={{ fontFamily: "var(--font-serif)" }}
+                  className="text-[2rem] md:text-[2.4rem]"
+                >
+                  {s.label}
+                </h2>
+              </div>
+              <div className="mt-6 flex min-w-0 flex-col gap-9 pl-0 md:gap-12 md:pl-10">
+                {s.blocks.map((block, bi) => {
+                  const isNewSubsection =
+                    bi > 0 && block.type === "text" && Boolean(block.title);
+                  return (
+                    <div
+                      key={bi}
+                      className={isNewSubsection ? "mt-4 md:mt-6" : undefined}
+                    >
+                      <CaseBlock
+                        block={block}
+                        onImage={(images, index) => setLightbox({ images, index })}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.section>
+          ))}
         </div>
       </div>
 
       {/* Next project */}
-      <button
+      <motion.button
         onClick={() => {
           onOpen(nextProject);
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
+        whileTap={press}
         className="group mt-24 flex w-full items-center justify-between gap-6 rounded-[2.5rem] p-8 texture-grain md:p-12"
         style={{ background: "var(--g1)", color: "var(--ink)" }}
       >
@@ -245,7 +241,7 @@ export function ProjectDetail({ project, onOpen }: ProjectDetailProps) {
         >
           <ArrowRight size={26} />
         </span>
-      </button>
+      </motion.button>
 
       {lightbox && (
         <Lightbox

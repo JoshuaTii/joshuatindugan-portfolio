@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { X, ArrowLeft, ArrowRight } from "lucide-react";
+import { press } from "../lib/interactions";
 import { type ProjectImage } from "../data/projects";
 
 type LightboxProps = {
@@ -90,40 +91,43 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
         className="max-h-[86vh] max-w-[92vw] rounded-none object-contain"
       />
 
-      <button
+      <motion.button
         ref={closeRef}
         onClick={(e) => {
           e.stopPropagation();
           onClose();
         }}
+        whileTap={press}
         aria-label="Close image viewer"
         className="fixed right-5 top-5 flex size-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-300 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
       >
         <X size={20} />
-      </button>
+      </motion.button>
 
       {hasMany && (
         <>
-          <button
+          <motion.button
             onClick={(e) => {
               e.stopPropagation();
               prev();
             }}
+            whileTap={press}
             aria-label="Previous image"
             className="fixed left-4 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-300 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)] md:left-6"
           >
             <ArrowLeft size={20} />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={(e) => {
               e.stopPropagation();
               next();
             }}
+            whileTap={press}
             aria-label="Next image"
             className="fixed right-4 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-300 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)] md:right-6"
           >
             <ArrowRight size={20} />
-          </button>
+          </motion.button>
           <span
             aria-live="polite"
             className="fixed bottom-6 left-1/2 -translate-x-1/2 text-[0.85rem] uppercase tracking-[0.2em] text-white/60"

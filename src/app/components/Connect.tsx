@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Send, ArrowUpRight, Check } from "lucide-react";
 import { toast } from "sonner";
+import { press, hoverScale } from "../lib/interactions";
 
 const socials = [
   {
@@ -40,7 +41,9 @@ export function ConnectLinks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, delay: i * 0.08 }}
-          className="group relative block overflow-hidden border-b no-underline transition-transform duration-[420ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.012] focus-visible:scale-[1.012]"
+          whileHover={hoverScale(1.012)}
+          whileTap={press}
+          className="group relative block overflow-hidden border-b no-underline"
           style={{ borderColor: "var(--g3)" }}
         >
           <span
@@ -195,10 +198,12 @@ export function ContactForm() {
               />
             </div>
 
-            <button
+            <motion.button
               type="submit"
               disabled={status === "loading"}
-              className="group mt-6 flex items-center justify-center gap-2 self-start rounded-full px-7 py-3.5 transition-transform duration-300 hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+              whileHover={status === "loading" ? undefined : hoverScale(1.03)}
+              whileTap={status === "loading" ? undefined : press}
+              className="group mt-6 flex items-center justify-center gap-2 self-start rounded-full px-7 py-3.5 disabled:cursor-not-allowed disabled:opacity-70"
               style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
             >
               <span>{status === "loading" ? "Sending…" : "Send note"}</span>
@@ -206,7 +211,7 @@ export function ContactForm() {
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
               />
-            </button>
+            </motion.button>
           </>
         )}
       </motion.form>

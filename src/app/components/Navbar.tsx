@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { press, islandPress } from "../lib/interactions";
 
 type NavbarProps = {
   active: string;
@@ -32,8 +33,9 @@ export function Navbar({ active, onNavigate, showBack, onBack }: NavbarProps) {
             container) keeps it legible over whatever page content happens
             to scroll underneath it. */}
         {showBack ? (
-          <button
+          <motion.button
             onClick={onBack}
+            whileTap={press}
             className="group flex items-center gap-2 text-[0.85rem] text-[var(--ink)]"
             style={{ textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}
           >
@@ -42,21 +44,26 @@ export function Navbar({ active, onNavigate, showBack, onBack }: NavbarProps) {
               className="transition-transform duration-300 group-hover:-translate-x-1"
             />
             <span>Back to home</span>
-          </button>
+          </motion.button>
         ) : (
-          <button
+          <motion.button
             onClick={() => onNavigate("home")}
+            whileTap={press}
             className="tracking-tight text-[0.85rem] text-[var(--ink)]"
             style={{ fontFamily: "var(--font-serif)", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}
           >
             joshua<span style={{ color: "var(--accent)" }}>·</span>tindugan
-          </button>
+          </motion.button>
         )}
       </motion.div>
 
+      {/* whileTap on the pill itself (not each link) — pressing anywhere on
+          it reacts as one rubbery "island" unit, non-uniform scale reading
+          as a stretch, springing back with a slight overshoot on release. */}
       <motion.nav
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
+        whileTap={islandPress}
         transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-4 bottom-4 z-50 flex items-center justify-around gap-1 rounded-full border p-1.5 backdrop-blur-[10px] md:inset-x-auto md:bottom-auto md:left-1/2 md:top-5 md:right-auto md:-translate-x-1/2 md:justify-center md:gap-1 md:p-1.5"
         style={{ background: "rgba(22,24,29,0.7)", borderColor: "var(--g3)" }}

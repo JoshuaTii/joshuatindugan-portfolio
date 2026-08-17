@@ -1,23 +1,22 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { press } from "../../lib/interactions";
 import { type Block, type MediaImage } from "../../data/case-types";
-
-/**
- * tone describes the surface the block sits on so raised elements
- * (cards, callouts, meta cells) always contrast with their section:
- * "plain" sections (off-white) get beige cards; "card" sections
- * (beige, texture-grain) get off-white cards.
- */
-type Tone = "plain" | "card";
 
 type BlockProps = {
   block: Block;
-  tone: Tone;
   onImage: (images: MediaImage[], index: number) => void;
 };
 
-const surface = (tone: Tone) =>
-  tone === "plain" ? "bg-card texture-grain" : "bg-background";
+/**
+ * One flat treatment for every block that needs visual grouping — a
+ * hairline border, no fill — instead of a filled card sitting inside an
+ * already-tinted section (the "container inside container" look the
+ * reader used to have throughout). Sits directly on the page background
+ * at a single elevation, everywhere.
+ */
+const grouped = "rounded-[1.5rem] border border-border";
 
 /**
  * Green is reserved for the major content-section numeral in ProjectDetail
@@ -53,9 +52,10 @@ function MediaButton({
     <figure
       className={`flex flex-col ${capMobile && isPortrait ? "mx-auto w-full max-w-[320px]" : ""}`}
     >
-      <button
+      <motion.button
         type="button"
         onClick={() => onImage(images, index)}
+        whileTap={press}
         aria-label={`View larger: ${img.alt}`}
         className="group/img block cursor-zoom-in text-left focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)]"
       >
@@ -75,7 +75,7 @@ function MediaButton({
           }}
           className={`w-full ${radius} transition-transform duration-[900ms] ease-out group-hover/img:scale-[1.03]`}
         />
-      </button>
+      </motion.button>
       {img.caption && (
         <figcaption className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">
           {img.caption}
@@ -85,7 +85,7 @@ function MediaButton({
   );
 }
 
-export function CaseBlock({ block, tone, onImage }: BlockProps) {
+export function CaseBlock({ block, onImage }: BlockProps) {
   switch (block.type) {
     case "text":
       return (
@@ -114,10 +114,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
       return (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {block.items.map(({ label, value }) => (
-            <div
-              key={label}
-              className={`flex flex-col gap-1.5 rounded-[1.5rem] p-5 ${surface(tone)}`}
-            >
+            <div key={label} className={`flex flex-col gap-1.5 p-5 ${grouped}`}>
               <span className={label_}>{label}</span>
               <span className="text-[1.05rem] leading-relaxed">{value}</span>
             </div>
@@ -127,7 +124,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
 
     case "callout":
       return (
-        <div className={`rounded-[1.75rem] p-6 md:p-8 ${surface(tone)}`}>
+        <div className={`p-6 md:p-8 ${grouped}`}>
           {block.label && <span className={label_}>{block.label}</span>}
           <p
             className={`${block.label ? "mt-3" : ""} text-[1.35rem] italic leading-relaxed text-foreground/85`}
@@ -147,10 +144,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
       return (
         <div className={`grid gap-4 ${cols}`}>
           {block.items.map((item, i) => (
-            <div
-              key={i}
-              className={`flex flex-col rounded-[1.75rem] p-6 ${surface(tone)}`}
-            >
+            <div key={i} className={`flex flex-col p-6 ${grouped}`}>
               {item.label && <span className={label_}>{item.label}</span>}
               {item.title && (
                 <span
@@ -213,10 +207,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
           {/* Mobile stacked rows */}
           <div className="flex flex-col gap-4 md:hidden">
             {block.rows.map((row, ri) => (
-              <div
-                key={ri}
-                className={`flex flex-col gap-3 rounded-[1.5rem] p-5 ${surface(tone)}`}
-              >
+              <div key={ri} className={`flex flex-col gap-3 p-5 ${grouped}`}>
                 {row.map((cell, ci) => (
                   <div key={ci} className="flex flex-col gap-0.5">
                     <span className={label_}>{block.columns[ci]}</span>
@@ -236,7 +227,10 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
         const img = block.images[0];
         return (
           <div className="flex flex-col">
-            <div className={`mx-auto w-full max-w-[640px] rounded-[10px] p-4 md:p-6 ${surface(tone)}`}>
+            {/* No padded background frame around the image — it sits
+                directly on the page, its own rounded corners doing all the
+                work, rather than a picture-frame-inside-a-frame look. */}
+            <div className="mx-auto w-full max-w-[640px]">
               <MediaButton
                 img={img}
                 images={block.images}
@@ -418,10 +412,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
           }`}
         >
           {block.items.map((item, i) => (
-            <div
-              key={i}
-              className={`flex flex-col gap-2 rounded-[1.5rem] p-5 ${surface(tone)}`}
-            >
+            <div key={i} className={`flex flex-col gap-2 p-5 ${grouped}`}>
               <span
                 style={{ fontFamily: "var(--font-serif)" }}
                 className="text-[1.4rem] text-foreground"
@@ -449,10 +440,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
       return (
         <div className={`grid gap-4 ${cols}`}>
           {block.items.map(({ hex, name, desc }) => (
-            <div
-              key={hex + name}
-              className={`flex flex-col overflow-hidden rounded-[1.5rem] ${surface(tone)}`}
-            >
+            <div key={hex + name} className={`flex flex-col overflow-hidden ${grouped}`}>
               <div className="h-20 w-full" style={{ background: hex }} />
               <div className="flex flex-col gap-1 p-4">
                 <span className="font-medium text-[1.02rem]">{name}</span>
@@ -493,7 +481,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
     case "embed":
       return (
         <div className="flex flex-col">
-          <div className={`overflow-hidden rounded-[2rem] ${surface(tone)}`}>
+          <div className="overflow-hidden rounded-[2rem] border border-border">
             <iframe
               src={block.src}
               title={block.title}
@@ -504,10 +492,11 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
             />
           </div>
           {block.href && (
-            <a
+            <motion.a
               href={block.href}
               target="_blank"
               rel="noopener noreferrer"
+              whileTap={press}
               className="group mt-4 inline-flex w-fit items-center gap-2 text-[1.05rem] text-foreground transition-colors duration-300 hover:text-[var(--accent-bright)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-bright)] rounded-full"
             >
               <span>{block.linkLabel ?? "Open in a new tab"}</span>
@@ -517,7 +506,7 @@ export function CaseBlock({ block, tone, onImage }: BlockProps) {
               >
                 →
               </span>
-            </a>
+            </motion.a>
           )}
         </div>
       );
