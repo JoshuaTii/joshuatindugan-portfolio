@@ -7,9 +7,10 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Clock } from "lucide-react";
 import { projects, type Project } from "../data/projects";
 import { Eyebrow } from "./Eyebrow";
+import { readingTimeLabel, shortYear } from "../lib/readingTime";
 
 type WorkProps = {
   onOpen: (project: Project) => void;
@@ -107,8 +108,14 @@ function CaseBody({ project, index, inverted }: { project: Project; index: numbe
         <span className="text-[0.78rem]" style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}>
           {project.index || String(index + 1).padStart(2, "0")}
         </span>
-        <span className="text-[0.78rem]" style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}>
-          {project.year}
+        {/* No pill/badge — just an icon and caps text, matching the site's
+            plain-label language elsewhere rather than a chip treatment. */}
+        <span
+          className="flex items-center gap-1.5 text-[0.7rem] font-medium uppercase tracking-[0.06em]"
+          style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}
+        >
+          <Clock size={12} />
+          {readingTimeLabel(project)}
         </span>
       </div>
       <div>
@@ -125,7 +132,7 @@ function CaseBody({ project, index, inverted }: { project: Project; index: numbe
           className="mt-2.5 text-[0.76rem] tracking-[0.02em]"
           style={{ color: inverted ? "var(--accent-ink)" : "var(--ink-dim)" }}
         >
-          {project.discipline}
+          {project.discipline} · {shortYear(project.year)}
         </p>
       </div>
       <div
